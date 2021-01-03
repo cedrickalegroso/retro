@@ -1,0 +1,13 @@
+RegisterServerEvent('cmg2_animations:Start')
+AddEventHandler('cmg2_animations:Start', function(target, animationLib, animation, animation2, distans, distans2, height,targetSrc,length,spin,controlFlagSrc,controlFlagTarget,animFlagTarget)
+	print("got to srv cmg2_animations:sync")
+	print("send")
+	TriggerClientEvent('cmg2_animations:Target', targetSrc, source, animationLib, animation2, distans, distans2, height, length,spin,controlFlagTarget,animFlagTarget)
+	print("triggering to target: " .. tostring(targetSrc))
+	TriggerClientEvent('cmg2_animations:Me', source, animationLib, animation,length,controlFlagSrc,animFlagTarget)
+end)
+
+RegisterServerEvent('cmg2_animations:stop')
+AddEventHandler('cmg2_animations:stop', function(targetSrc)
+	TriggerClientEvent('cmg2_animations:cl_stop', targetSrc)
+end)
