@@ -215,32 +215,31 @@ AddEventHandler('esx_basicneeds:onEatHotdog', function()
 			end)
 		]]--
 
-		Citizen.CreateThread(function()
-			TriggerEvent("mythic_progbar:client:progress", {
-				name = "eat_hawtdawg",
-				duration = 5000,
-				label = "Eating Hotdog",
-				useWhileDead = false,
-				canCancel = false,
-				controlDisables = {
-					disableMovement = true,
-					disableCarMovement = true,
-					disableMouse = false,
-					disableCombat = true,
-				},
-				animation = {
-					animDict = "mp_player_inteat@burger",
-					anim = "mp_player_int_eat_burger_fp",
-				},
-				prop = {
-					model = "prop_cs_hotdog_01",
-				}
-			}, function(status)
-				if not status then
-					ClearPedSecondaryTask(playerPed)
-					DeleteObject(prop)
-				end
-			end)
+		TriggerEvent("mythic_progbar:client:progress", {
+			name = "unique_action_name",
+			duration = 5000,
+			label = "Eating Hotdog",
+			useWhileDead = false,
+			canCancel = true,
+			controlDisables = {
+				disableMovement = true,
+				disableCarMovement = true,
+				disableMouse = false,
+				disableCombat = true,
+			},
+			animation = {
+				animDict = "mp_player_inteat@burger",
+				anim = "mp_player_int_eat_burger_fp",
+			},
+			prop = {
+				model = "prop_cs_hotdog_01",
+			}
+		}, function(status)
+			if not status then
+				IsAnimated = false
+				ClearPedSecondaryTask(playerPed)
+				DeleteObject(prop)
+			end
 		end)
 
 	end
@@ -252,7 +251,8 @@ AddEventHandler('esx_basicneeds:onEatChocolate', function(prop_name)
 		prop_name = prop_name or 'prop_choc_ego'
 		IsAnimated = true
 
-		Citizen.CreateThread(function()
+		--[[
+	Citizen.CreateThread(function()
 			local playerPed = PlayerPedId()
 			local x,y,z = table.unpack(GetEntityCoords(playerPed))
 			local prop = CreateObject(GetHashKey(prop_name), x, y, z + 0.2, true, true, true)
@@ -267,6 +267,35 @@ AddEventHandler('esx_basicneeds:onEatChocolate', function(prop_name)
 				DeleteObject(prop)
 			end)
 		end)
+		]]--
+
+		TriggerEvent("mythic_progbar:client:progress", {
+			name = "unique_action_name",
+			duration = 5000,
+			label = "Eating Chocolate",
+			useWhileDead = false,
+			canCancel = true,
+			controlDisables = {
+				disableMovement = true,
+				disableCarMovement = true,
+				disableMouse = false,
+				disableCombat = true,
+			},
+			animation = {
+				animDict = "mp_player_inteat@burger",
+				anim = "mp_player_int_eat_burger_fp",
+			},
+			prop = {
+				model = "prop_choc_ego",
+			}
+		}, function(status)
+			if not status then
+				IsAnimated = false
+				ClearPedSecondaryTask(playerPed)
+				DeleteObject(prop)
+			end
+		end)
+	
 
 	end
 end)
@@ -327,7 +356,36 @@ AddEventHandler('esx_basicneeds:onEatCupCake', function(prop_name)
 		prop_name = prop_name or 'ng_proc_food_ornge1a'
 		IsAnimated = true
 
-		Citizen.CreateThread(function()
+
+		TriggerEvent("mythic_progbar:client:progress", {
+			name = "unique_action_name",
+			duration = 5000,
+			label = "Eating Cupcake",
+			useWhileDead = false,
+			canCancel = true,
+			controlDisables = {
+				disableMovement = true,
+				disableCarMovement = true,
+				disableMouse = false,
+				disableCombat = true,
+			},
+			animation = {
+				animDict = "mp_player_inteat@burger",
+				anim = "mp_player_int_eat_burger_fp",
+			},
+			prop = {
+				model = "ng_proc_food_ornge1a",
+			}
+		}, function(status)
+			if not status then
+				IsAnimated = false
+				ClearPedSecondaryTask(playerPed)
+				DeleteObject(prop)
+			end
+		end)
+
+		--[[
+	Citizen.CreateThread(function()
 			local playerPed = PlayerPedId()
 			local x,y,z = table.unpack(GetEntityCoords(playerPed))
 			local prop = CreateObject(GetHashKey(prop_name), x, y, z + 0.2, true, true, true)
@@ -342,6 +400,8 @@ AddEventHandler('esx_basicneeds:onEatCupCake', function(prop_name)
 				DeleteObject(prop)
 			end)
 		end)
+		]]--
+	
 
 	end
 end)
@@ -418,7 +478,10 @@ AddEventHandler('esx_basicneeds:onDrink', function(prop_name)
 		prop_name = prop_name or 'prop_ld_flow_bottle'
 		IsAnimated = true
 
-		Citizen.CreateThread(function()
+	
+
+	
+	Citizen.CreateThread(function()
 			local playerPed = PlayerPedId()
 			local x,y,z = table.unpack(GetEntityCoords(playerPed))
 			local prop = CreateObject(GetHashKey(prop_name), x, y, z + 0.2, true, true, true)
@@ -434,6 +497,8 @@ AddEventHandler('esx_basicneeds:onDrink', function(prop_name)
 			end)
 		end)
 
+		
+	
 	end
 end)
 
@@ -476,6 +541,24 @@ AddEventHandler('esx_basicneeds:onDrinkCocaCola', function(prop_name)
 			local boneIndex = GetPedBoneIndex(playerPed, 18905)
 			AttachEntityToEntity(prop, playerPed, boneIndex, 0.12, 0.008, 0.03, 240.0, -60.0, 0.0, true, true, false, true, 1, true)
 
+			ESX.Streaming.RequestAnimDict("mp_player_inteat@pnq", function()
+				TaskPlayAnim(playerPed, "mp_player_inteat@pnq", "loop", 8.0, -8, -1, 49, 0, 0, 0, 0)
+                exports["taskbar"]:taskBar(3000, "Drinking Soda")
+				IsAnimated = false
+				ClearPedSecondaryTask(playerPed)
+				DeleteObject(prop)
+			end)
+		end)
+
+
+		--[[
+	Citizen.CreateThread(function()
+			local playerPed = PlayerPedId()
+			local x,y,z = table.unpack(GetEntityCoords(playerPed))
+			local prop = CreateObject(GetHashKey(prop_name), x, y, z + 0.2, true, true, true)
+			local boneIndex = GetPedBoneIndex(playerPed, 18905)
+			AttachEntityToEntity(prop, playerPed, boneIndex, 0.12, 0.008, 0.03, 240.0, -60.0, 0.0, true, true, false, true, 1, true)
+
 			ESX.Streaming.RequestAnimDict('mp_player_intdrink', function()
 				TaskPlayAnim(playerPed, 'mp_player_intdrink', 'loop_bottle', 1.0, -1.0, 2000, 0, 1, true, true, true)
                 exports["taskbar"]:taskBar(3000, "Drinking CocaCola")
@@ -484,6 +567,8 @@ AddEventHandler('esx_basicneeds:onDrinkCocaCola', function(prop_name)
 				DeleteObject(prop)
 			end)
 		end)
+		]]--
+	
 
 	end
 end)
