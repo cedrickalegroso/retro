@@ -1,3 +1,5 @@
+-- StarBlazt Chat
+
 RegisterServerEvent('chat:init')
 RegisterServerEvent('chat:addTemplate')
 RegisterServerEvent('chat:addMessage')
@@ -15,7 +17,7 @@ AddEventHandler('_chat:messageEntered', function(author, color, message)
     TriggerEvent('chatMessage', source, author, message)
 
     if not WasEventCanceled() then
-       TriggerClientEvent('chatMessage', -1, author,  { 255, 255, 255 }, message)
+        TriggerClientEvent('chatMessage', -1, author,  { 255, 255, 255 }, message)
     end
 
     print(author .. '^7: ' .. message .. '^7')
@@ -53,28 +55,6 @@ local function refreshCommands(player)
         TriggerClientEvent('chat:addSuggestions', player, suggestions)
     end
 end
-
---[[ 
-AddEventHandler('chat:init', function()
-
-    TriggerClientEvent('chat:addMessage', -1, { template = '<div class="chat-message dweb"><b>Town {0} : </b> {1}</div>', args = { GetPlayerName(source), "Caught a bus in" } })
-
-   -- TriggerClientEvent('chatMessage', -1, '', { 255, 255, 255 }, '^2* ' .. GetPlayerName(source) .. ' joined.')
-end)
-
-AddEventHandler('playerDropped', function(reason)
-  --  TriggerClientEvent('chatMessage', -1, '', { 255, 255, 255 }, '^2* ' .. GetPlayerName(source) ..' left (' .. reason .. ')')
-
-    TriggerClientEvent('chat:addMessage', -1, { template = '<div class="chat-message server"><b>Town {0} : </b> {1}</div>', args = { GetPlayerName(source), 'Caught a bus out (' .. reason .. ')' } })
-end)
-]]--
-
-RegisterCommand('say', function(source, args, rawCommand)
-   -- TriggerClientEvent('chatMessage', -1, (source == 0) and 'console' or GetPlayerName(source), { 255, 255, 255 }, rawCommand:sub(5))
-
-    TriggerClientEvent('chat:addMessage', -1, {
-    template = '<div class="chat-message server"><b>Console {0} : </b> {1}</div>', args = { (source == 0) and 'Announce' or GetPlayerName(source), rawCommand:sub(5) }})
-end, true)
 
 AddEventHandler('chat:init', function()
     --refreshCommands(source)

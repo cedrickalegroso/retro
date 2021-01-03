@@ -1,8 +1,4 @@
-fx_version 'adamant'
-games { 'rdr3', 'gta5' }
-rdr3_warning 'I acknowledge that this is a prerelease build of RedM, and I am aware my resources *will* become incompatible once RedM ships.'
-
-description 'chat management stuff'
+resource_manifest_version '44febabe-d386-4d18-afbe-5e627f4af937'
 
 ui_page 'html/index.html'
 
@@ -28,15 +24,16 @@ files {
 }
 
 client_scripts {
+  'client/commands.lua',
   'client/cl_chat.lua',
 }
 
 server_scripts {
+  '@mysql-async/lib/MySQL.lua',
   'server/utils.lua',
   'server/commands.lua',
   'server/sv_chat.lua',
   'server/main.lua',
-  '@mysql-async/lib/MySQL.lua'
 }
 
 chat_theme 'gtao' {

@@ -99,6 +99,8 @@ TriggerEvent('es:addGroupCommand', 'setmoney', 'admin', function(source, args, u
 	
 	local xPlayer = ESX.GetPlayerFromId(target)
 
+	xPlayer.setMoney(money_amount)
+
 	if target and money_type and money_amount and xPlayer ~= nil then
 		if money_type == 'cash' then
 			xPlayer.setMoney(money_amount)

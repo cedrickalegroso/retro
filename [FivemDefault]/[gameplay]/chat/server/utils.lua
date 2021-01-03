@@ -1,3 +1,5 @@
+-- StarBlazt Chat
+
 commands = {}
 commandSuggestions = {}
 

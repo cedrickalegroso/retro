@@ -1,9 +1,5 @@
+
 /*@import url('https://use.fontawesome.com/releases/v5.6.3/css/all.css');*/
-
-*{
-  font-size: 0.9rem !important;
-}
-
 .color-0 {
   color: #ffffff;
 }
@@ -11,7 +7,7 @@
   color: #ff4444;
 }
 .color-2 {
-  color: #39e464;
+  color: #99cc00;
 }
 .color-3 {
   color: #ffbb33;
@@ -58,18 +54,18 @@ em {
 
 .chat-window {
   position: absolute;
-  top: 10%;
+  top: 2.5%;
   left: 40px;
-  width:5%;
+  width: 38%;
   height: 530px;
-  max-width: 350px;
-  background-color: rgba(0, 0, 0, 9);
+  max-width: 550px;
+  background-color: rgba(255, 255, 255, 0);
   -webkit-animation-duration: 2s;
 }
 
 .chat-messages {
   max-height: 140%;
-  font-size: 0.9rem;
+  font-size: 1.4rem;
   overflow-x: hidden;
   overflow-y: hidden;
   display: flex;
@@ -78,9 +74,9 @@ em {
 }
 
 .chat-input {
-  font-size: 0.9vh;
+  font-size: 1.65vh;
   position: absolute;
-  top: 50.8%;
+  top: 33.8%;
   left: 50px;
   width: 38%;
   max-width: 610px;
@@ -169,49 +165,25 @@ input:focus {
 }
 
 .chat-message.advert {
-  background-color: rgba(47, 92, 115, 0.5);
+  background-color: rgba(47, 92, 115, 0.75);
 }
 
 .chat-message.server {
-  background-color: rgba(184, 41, 41, 0.5);
+  background-color: rgba(184, 41, 41, 0.75);
 }
 
 .chat-message.system {
-  background-color: rgba(67, 57, 111, 0.5);
+  background-color: rgba(67, 57, 111, 0.75);
 }
 
 .chat-message.emergency {
-  background-color: rgba(224, 50, 50, 0.5);
+  background-color: rgba(224, 50, 50, 0.75);
 }
 
 .chat-message.nonemergency {
-  background-color: rgba(112, 25, 25, 0.5);
+  background-color: rgba(240, 182, 75, 0.75);
 }
 
 .chat-message.success {
-  background-color: rgba(77, 189, 77, 0.5);
-}
-
-.chat-message.vermillion {
-  background-color: rgba(204, 0, 102, 0.5);
-}
-
-.chat-message.thelost {
-  background-color: rgba(255, 255, 0, 0.5);
-}
-
-.chat-message.test {
-  background-color: #33b5e5;
-}
-
-.chat-message.insta {
-  background-color: #cc0068;
-}
-
-.chat-message.fb {
-  background-color: #0099cc;
-}
-
-.chat-message.dweb {
-  background-color: #39e464;
+  background-color: rgba(77, 189, 77, 0.705);
 }

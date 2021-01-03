@@ -1,8 +1,27 @@
+-- StarBlazt Chat
+
+TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+
+function getIdentity(source)
+	local identifier = GetPlayerIdentifiers(source)[1]
+	local result = MySQL.Sync.fetchAll("SELECT * FROM users WHERE identifier = @identifier", {['@identifier'] = identifier})
+	if result[1] ~= nil then
+		local identity = result[1]
+
+		return {
+			identifier = identity['identifier'],
+			firstname = identity['firstname'],
+			lastname = identity['lastname'],
+			dateofbirth = identity['dateofbirth'],
+			sex = identity['sex'],
+			height = identity['height']
+		}
+	else
+		return nil
+	end
+end
+
 --[[ COMMANDS ]]--
-ESX = nil
-
-
-TriggerEvent("esx:getSharedObject", function(obj) ESX = obj end)
 
 RegisterCommand('clear', function(source, args, rawCommand)
     TriggerClientEvent('chat:client:ClearChat', source)
@@ -18,7 +37,7 @@ RegisterCommand('ooc', function(source, args, rawCommand)
     xPlayer.removeMoney(10000)
 
     TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'To lessen the use of "OOC" in chat we are deducting 10,000. Please use twitter for RP. '})
-
+    --TriggerEvent('notification','You do not have a phone.', 2)
 
     if player ~= false then
         local user = GetPlayerName(src)
@@ -493,3 +512,5 @@ function sendToDiscord (name,message,color, webhook)
 	if message == nil or message == '' then return FALSE end
 	PerformHttpRequest(DiscordWebHook, function(err, text, headers) end, 'POST', json.encode({ username = name,embeds = embeds}), { ['Content-Type'] = 'application/json' })
   end
+
+
