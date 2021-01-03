@@ -482,13 +482,13 @@ end)
 RegisterNetEvent('retro_scripts:newlife')
 AddEventHandler('retro_scripts:newlife', function(ttPID)
 
-	local pP = GetPlayerPed(-1)
+	local pP = GetPlayerPed(ttPID)
 
 	local ped = GetPlayerPed(-1)
 
 
 
-	print('newlife '..ped)
+	print('newlife '..pP)
 	SetEntityCoords(PlayerPedId(pP), 251.18321228027, -1348.2706298828, 24.537813186646, true, true, true, false)
 
 	--print(targetPlayer)

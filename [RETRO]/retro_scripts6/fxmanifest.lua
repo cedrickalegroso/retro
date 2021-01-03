@@ -19,7 +19,7 @@ client_script {
   'whistle/client.lua',
 
   --hospital
--- 'esx_hospital/client.lua',
+ 'esx_hospital/client.lua',
 
   --Ktackle
  -- 'esx_ktackle/client/main.lua',
@@ -70,7 +70,7 @@ server_script {
   'Emergency/server.lua',
 
   --hospital
-  --'esx_hospital/server.lua',
+  'esx_hospital/server.lua',
 
    --Ktackle
  --  'esx_ktackle/server/main.lua',

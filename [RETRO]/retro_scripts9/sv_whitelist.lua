@@ -20,6 +20,11 @@ RegisterCommand("whitelistaccess", function(source)
    
 end)
 
+
+RegisterCommand("hpbedarrest", function(source)
+    TriggerClientEvent("retro_scripts:hpanim", source)
+end)
+
 function getIdentity(source)
 	local identifier = GetPlayerIdentifiers(source)[1]
 	local result = MySQL.Sync.fetchAll("SELECT * FROM users WHERE identifier = @identifier", {['@identifier'] = identifier})

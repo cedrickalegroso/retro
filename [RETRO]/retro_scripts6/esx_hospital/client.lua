@@ -1,6 +1,6 @@
 local cJ = false
 local eJE = false
-
+local isInInventory = false
 local isFrozen;
 
 RegisterNetEvent('freeze:freezePlayer')
@@ -10,18 +10,18 @@ end)
 --ESX base
 
 
-local time = 1000
+local time = 10000
 
 Citizen.CreateThread(function()
     while ESX == nil do
-        TriggerEvent('esx:getShRETROaredObjRETROect', function(obj) ESX = obj end)
+        TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
         Citizen.Wait(0)
     end
 end)
 
 
 RegisterNetEvent("retro_scripts:emsbed1")
-AddEventHandler("retro_scripts:emsbed1", function(tPID)
+AddEventHandler("retro_scripts:emsbed1", function(tPID, source)
 	local pP = GetPlayerPed(-1)
 
 
@@ -29,18 +29,58 @@ AddEventHandler("retro_scripts:emsbed1", function(tPID)
 	SetEntityHeading(PlayerPedId(pP), 21)
 
 	
-	ExecuteCommand('e passout3')
 
-	Citizen.Wait(5000)
+	TriggerEvent("mythic_progbar:client:progress", {
+        name = "unique_action_name",
+        duration = 100000,
+        label = "HP BED ARREST",
+        useWhileDead = false,
+        canCancel = false,
+        controlDisables = {
+            disableMovement = true,
+            disableCarMovement = true,
+            disableMouse = false,
+            disableCombat = true,
+        },
+        animation = {
+            animDict = "anim@gangops@morgue@table@",
+            anim = "body_search",
+        },
+        prop = {
+            model = "prop_paper_bag_small",
+        }
+    }, function(status)
+        if not status then
+           
+        end
+    end)
 
+--	TaskPlayAnim(pP, "anim@gangops@morgue@table@", "body_search", 8.0, -8, -1, 49, 0, 0, 0, 0)
+
+--[[
+	Citizen.Wait(500)
+	ExecuteCommand('e sit')
 	TriggerEvent('freeze:freezePlayer')
-	exports['progressBars']:startUI(time, "You are under hospital arrest. ")
-	Citizen.Wait(time)
+	
+
+    ExecuteCommand('e passout3')
+
+	exports["taskbar"]:taskBar(100000, "You are under hospital arrest.")
+	Citizen.Wait(10000)
+	
+
 	TriggerEvent('freeze:freezePlayer')
 	  
 	ExecuteCommand('e c')
+]]--
+
+
 
 end)
+
+
+
+
 
 
 
@@ -52,17 +92,47 @@ AddEventHandler("retro_scripts:emsbed2", function(tPID)
 	SetEntityCoords(PlayerPedId(pP), -451.35906982422,-285.08215332031,35.833198547363, true, true, true, false)
 	SetEntityHeading(PlayerPedId(pP), 21)
 
-	
-	ExecuteCommand('e passout3')
+	TriggerEvent("mythic_progbar:client:progress", {
+        name = "unique_action_name",
+        duration = 100000,
+        label = "HP BED ARREST",
+        useWhileDead = false,
+        canCancel = false,
+        controlDisables = {
+            disableMovement = true,
+            disableCarMovement = true,
+            disableMouse = false,
+            disableCombat = true,
+        },
+        animation = {
+            animDict = "anim@gangops@morgue@table@",
+            anim = "body_search",
+        },
+        prop = {
+            model = "prop_paper_bag_small",
+        }
+    }, function(status)
+        if not status then
+           
+        end
+    end)
 
-	Citizen.Wait(5000)
-
+	--[[
+	Citizen.Wait(500)
+	ExecuteCommand('e sit')
 	TriggerEvent('freeze:freezePlayer')
-	exports['progressBars']:startUI(time, "You are under hospital arrest. ")
-	Citizen.Wait(time)
+	
+
+    ExecuteCommand('e passout3')
+
+	exports["taskbar"]:taskBar(100000, "You are under hospital arrest.")
+	Citizen.Wait(10000)
+	
+
 	TriggerEvent('freeze:freezePlayer')
 	  
 	ExecuteCommand('e c')
+	]]--
 
 end)
 
@@ -77,16 +147,50 @@ AddEventHandler("retro_scripts:emsbed3", function(tPID)
 	SetEntityHeading(PlayerPedId(pP), 21)
 
 	
-	ExecuteCommand('e passout3')
+	TriggerEvent("mythic_progbar:client:progress", {
+        name = "unique_action_name",
+        duration = 100000,
+        label = "HP BED ARREST",
+        useWhileDead = false,
+        canCancel = false,
+        controlDisables = {
+            disableMovement = true,
+            disableCarMovement = true,
+            disableMouse = false,
+            disableCombat = true,
+        },
+        animation = {
+            animDict = "anim@gangops@morgue@table@",
+            anim = "body_search",
+        },
+        prop = {
+            model = "prop_paper_bag_small",
+        }
+    }, function(status)
+        if not status then
+           
+        end
+    end)
 
-	Citizen.Wait(5000)
 
+	--[[
+Citizen.Wait(500)
+	ExecuteCommand('e sit')
 	TriggerEvent('freeze:freezePlayer')
-	exports['progressBars']:startUI(time, "You are under hospital arrest. ")
-	Citizen.Wait(time)
+	
+
+    ExecuteCommand('e passout3')
+
+	exports["taskbar"]:taskBar(100000, "You are under hospital arrest.")
+	Citizen.Wait(10000)
+	
+
 	TriggerEvent('freeze:freezePlayer')
 	  
 	ExecuteCommand('e c')
+	]]--
+
+	
 
 end)
 
@@ -100,16 +204,50 @@ AddEventHandler("retro_scripts:emsbed4", function(tPID)
 	SetEntityHeading(PlayerPedId(pP), 205.1)
 
 	
-	ExecuteCommand('e passout3')
+	
+	TriggerEvent("mythic_progbar:client:progress", {
+        name = "unique_action_name",
+        duration = 100000,
+        label = "HP BED ARREST",
+        useWhileDead = false,
+        canCancel = false,
+        controlDisables = {
+            disableMovement = true,
+            disableCarMovement = true,
+            disableMouse = false,
+            disableCombat = true,
+        },
+        animation = {
+            animDict = "anim@gangops@morgue@table@",
+            anim = "body_search",
+        },
+        prop = {
+            model = "prop_paper_bag_small",
+        }
+    }, function(status)
+        if not status then
+           
+        end
+    end)
 
-	Citizen.Wait(5000)
-
+	--[[
+Citizen.Wait(500)
+	ExecuteCommand('e sit')
 	TriggerEvent('freeze:freezePlayer')
-	exports['progressBars']:startUI(time, "You are under hospital arrest. ")
-	Citizen.Wait(time)
+	
+
+    ExecuteCommand('e passout3')
+
+	exports["taskbar"]:taskBar(100000, "You are under hospital arrest.")
+	Citizen.Wait(10000)
+	
+
 	TriggerEvent('freeze:freezePlayer')
 	  
 	ExecuteCommand('e c')
+	]]--
+	
+	
 
 end)
 
@@ -123,16 +261,49 @@ AddEventHandler("retro_scripts:emsbed5", function(tPID)
 	SetEntityHeading(PlayerPedId(pP), 205.1)
 
 	
-	ExecuteCommand('e passout3')
-
-	Citizen.Wait(5000)
-
+	TriggerEvent("mythic_progbar:client:progress", {
+        name = "unique_action_name",
+        duration = 100000,
+        label = "HP BED ARREST",
+        useWhileDead = false,
+        canCancel = false,
+        controlDisables = {
+            disableMovement = true,
+            disableCarMovement = true,
+            disableMouse = false,
+            disableCombat = true,
+        },
+        animation = {
+            animDict = "anim@gangops@morgue@table@",
+            anim = "body_search",
+        },
+        prop = {
+            model = "prop_paper_bag_small",
+        }
+    }, function(status)
+        if not status then
+           
+        end
+	end)
+	
+	--[[
+Citizen.Wait(500)
+	ExecuteCommand('e sit')
 	TriggerEvent('freeze:freezePlayer')
-	exports['progressBars']:startUI(time, "You are under hospital arrest. ")
-	Citizen.Wait(time)
+	
+
+    ExecuteCommand('e passout3')
+
+	exports["taskbar"]:taskBar(100000, "You are under hospital arrest.")
+	Citizen.Wait(10000)
+	
+
 	TriggerEvent('freeze:freezePlayer')
 	  
 	ExecuteCommand('e c')
+	]]--
+
+	
 
 end)
 
@@ -147,6 +318,8 @@ AddEventHandler("retro_scripts:morgue", function(tPID)
 
 	
 	ExecuteCommand('e passout3')
+	
+	
 
 	Citizen.Wait(5000)
 

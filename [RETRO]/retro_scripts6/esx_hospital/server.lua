@@ -6,7 +6,7 @@ local maxsecs 		= 9999
 -----------------------------
 
 --ESX base
-TriggerEvent('esx:getShRETROaredObjRETROect', function(obj) ESX = obj end)
+TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 local xPlayers 		= ESX.GetPlayers()
 
@@ -35,7 +35,7 @@ AddEventHandler('chatMessage', function(source, n, message)
 				print(t)
 				if GetPlayerName(tPID) ~= nil then
 					print("Put in the hospital: ".. GetPlayerName(tPID).. "  entry done by ".. GetPlayerName(source))
-					TriggerClientEvent("retro_scripts:emsbed1", tPID)
+					TriggerClientEvent("retro_scripts:emsbed1", tPID, source)
 				end
 			end
 		elseif cm[1] == "/hparrest2" then
