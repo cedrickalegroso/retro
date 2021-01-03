@@ -22,7 +22,7 @@ server_scripts {
 
 
    --ambu
- --'esx_policejob/server/main.lua',
+ 'esx_policejob/server/main.lua',
 
    --ambu
  -- 'nef_guerrero/server/main.lua',
@@ -49,8 +49,8 @@ client_scripts {
   'esx_ambulancejob/client/main.lua',
 
    --popo
- -- 'esx_policejob/client/vehicle.lua',
-  -- 'esx_policejob/client/main.lua',
+  'esx_policejob/client/vehicle.lua',
+   'esx_policejob/client/main.lua',
 
    --gang1
  --  'nef_guerrero/client/vehicle.lua',

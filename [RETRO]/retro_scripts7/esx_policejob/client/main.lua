@@ -532,17 +532,21 @@ function OpenPoliceActionsMenu()
 				elements = elements
 			}, function(data2, menu2)
 				local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
-			if closestPlayer ~= -1 and closestDistance <= 3.0 then
+			--if closestPlayer ~= -1 and closestDistance <= 3.0 then
 					local action = data2.current.value
 
+				
+
+
+
 					if action == 'identity_card' then
-						TriggerServerEvent('esx_policejob:message', GetPlayerServerId(closestPlayer), 'You are being searched by the Police')
-						OpenIdentityCardMenuPolice(closestPlayer)
+						TriggerServerEvent('esx_policejob:message', GetPlayerServerId(source), 'You are being searched by the Police')
+					OpenIdentityCardMenuPolice(closestPlayer)
 					elseif action == 'body_search' then
-						TriggerServerEvent('esx_policejob:message', GetPlayerServerId(closestPlayer), _U('being_searched'))
+						TriggerServerEvent('esx_policejob:message', GetPlayerServerId(source), _U('being_searched'))
 						OpenBodySearchMenuPolice(closestPlayer)						
 					elseif action == 'handcuff' then
-						--TriggerServerEvent('esx_policejob:message', GetPlayerServerId(source), 'You are being dragged by the Police')
+						TriggerServerEvent('esx_policejob:message', GetPlayerServerId(source), 'You are being dragged by the Police')
 						TriggerServerEvent('esx_ruski_areszt:startAreszt', GetPlayerServerId(closestPlayer))			
 						Citizen.Wait(3000)							
 						TriggerServerEvent('esx_policejob:haRETROndcuff', GetPlayerServerId(closestPlayer))
@@ -570,7 +574,7 @@ function OpenPoliceActionsMenu()
 						TriggerServerEvent('GSR:Status2', GetPlayerServerId(closestPlayer))
 					end
 
-else
+            else
 					ESX.ShowNotification(_U('no_players_nearby'))
 				end
 
@@ -728,7 +732,8 @@ function SendToCommunityService(player)
 	end)
 end
 
-function OpenIdentityCardMenuPolice(player)
+function OpenIdentityCardMenuPolice(source)
+	print('GET PLAYER DATA CLIENT')
 
 	ESX.TriggerServerCallback('esx_policejob:getOtherPlayerData', function(data)
 
@@ -817,7 +822,100 @@ function OpenIdentityCardMenuPolice(player)
 			menu.close()
 		end)
 	
+	end, GetPlayerServerId(source))
+
+	--[[
+ESX.TriggerServerCallback('esx_policejob:getOtherPlayerData', function(data)
+
+		local elements    = {}
+		local nameLabel   = _U('name', data.name)
+		local jobLabel    = nil
+		local sexLabel    = nil
+		local dobLabel    = nil
+		local heightLabel = nil
+		local idLabel     = nil
+	
+		if data.job.grade_label ~= nil and  data.job.grade_label ~= '' then
+			jobLabel = _U('job', data.job.label .. ' - ' .. data.job.grade_label)
+		else
+			jobLabel = _U('job', data.job.label)
+		end
+	
+		if ConfigPOPO.EnableESXIdentity then
+	
+			nameLabel = _U('name', data.firstname .. ' ' .. data.lastname)
+	
+			if data.sex ~= nil then
+				if string.lower(data.sex) == 'm' then
+					sexLabel = _U('sex', _U('male'))
+				else
+					sexLabel = _U('sex', _U('female'))
+				end
+			else
+				sexLabel = _U('sex', _U('unknown'))
+			end
+	
+			if data.dob ~= nil then
+				dobLabel = _U('dob', data.dob)
+			else
+				dobLabel = _U('dob', _U('unknown'))
+			end
+	
+			if data.height ~= nil then
+				heightLabel = _U('height', data.height)
+			else
+				heightLabel = _U('height', _U('unknown'))
+			end
+	
+			if data.name ~= nil then
+				idLabel = _U('id', data.name)
+			else
+				idLabel = _U('id', _U('unknown'))
+			end
+	
+		end
+	
+		local elements = {
+			{label = nameLabel, value = nil},
+			{label = jobLabel,  value = nil},
+		}
+	
+		if ConfigPOPO.EnableESXIdentity then
+			table.insert(elements, {label = sexLabel, value = nil})
+			table.insert(elements, {label = dobLabel, value = nil})
+			table.insert(elements, {label = heightLabel, value = nil})
+			table.insert(elements, {label = idLabel, value = nil})
+		end
+	
+		if data.drunk ~= nil then
+			table.insert(elements, {label = _U('bac', data.drunk), value = nil})
+		end
+	
+		if data.licenses ~= nil then
+	
+			table.insert(elements, {label = _U('license_label'), value = nil})
+	
+			for i=1, #data.licenses, 1 do
+				table.insert(elements, {label = data.licenses[i].label, value = nil})
+			end
+	
+		end
+	
+		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'citizen_interaction',
+		{
+			title    = _U('citizen_interaction'),
+			align    = 'top-left',
+			elements = elements,
+		}, function(data, menu)
+	
+		end, function(data, menu)
+			menu.close()
+		end)
+	
 	end, GetPlayerServerId(player))
+	]]--
+
+	
 
 end
 
@@ -1878,12 +1976,12 @@ Citizen.CreateThread(function()
 				elseif CurrentAction == 'delete_vehicle' then
 					if ConfigPOPO.EnableSocietyOwnedVehicles then
 						local vehicleProps = ESX.Game.GetVehicleProperties(CurrentActionData.vehicle)
-						TriggerServerEvent('esx_society:putVehicleRETROInGarage', 'police', vehicleProps)
+						TriggerServerEvent('esx_society:putVehicleInGarage', 'police', vehicleProps)
 					end
 					ESX.Game.DeleteVehicle(CurrentActionData.vehicle)
 				elseif CurrentAction == 'menu_boss_actions' then
 					ESX.UI.Menu.CloseAll()
-					TriggerEvent('esx_society:openBosRETROsMenu', 'police', function(data, menu)
+					TriggerEvent('esx_society:openBossMenu', 'police', function(data, menu)
 						menu.close()
 						CurrentAction     = 'menu_boss_actions'
 						CurrentActionMsg  = _U('open_bossmenu')
@@ -1957,7 +2055,7 @@ AddEventHandler('esx_policejob:updateBlip', function()
 	
 	-- Is the player a cop? In that case show all the blips for other cops
 	if PlayerData.job ~= nil and PlayerData.job.name == 'police' then
-		ESX.TriggerServerCallback('esx_society:getOnlRETROinePlayers', function(players)
+		ESX.TriggerServerCallback('esx_society:getOnlinePlayers', function(players)
 			for i=1, #players, 1 do
 				if players[i].job.name == 'police' then
 					local id = GetPlayerFromServerId(players[i].source)

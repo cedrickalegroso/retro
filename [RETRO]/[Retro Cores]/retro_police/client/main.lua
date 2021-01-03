@@ -279,9 +279,9 @@ function OpenPoliceActionsMenu()
 					if action == 'jail_menu' then
 					  TriggerEvent("esx-qalle-jail:openJailMenu")
 					elseif action == 'identity_card' then
-						OpenIdentityCardMenu(closestPlayer)
+						OpenIdentityCardMenu(source)
 					elseif action == 'search' then
-						OpenBodySearchMenu(closestPlayer)
+						OpenBodySearchMenu(source)
 					elseif action == 'ruskicuff' then
 				--		TriggerServerEvent('esx_ruski_areszt:startAreszt', GetPlayerServerId(closestPlayer)) -- Rozpoczyna Funkcje na Animacje (Cala Funkcja jest Powyzej^^^)
 				--		Citizen.Wait(3000)
@@ -532,6 +532,9 @@ function OpenIdentityCardMenu(player)
 end
 
 function OpenBodySearchMenu(player)
+
+	print('OpenBodySearchMenu by '..source )
+
 	ESX.TriggerServerCallback('retro_police:getOtherPlayerData', function(data)
 		local elements = {}
 

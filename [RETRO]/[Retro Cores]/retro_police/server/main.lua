@@ -142,6 +142,9 @@ AddEventHandler('retro_police:putStockItems', function(itemName, count)
 end)
 
 ESX.RegisterServerCallback('retro_police:getOtherPlayerData', function(source, cb, target)
+
+	print('GET OTHER PLAYER DATA')
+
 	if Config.EnableESXIdentity then
 		local xPlayer = ESX.GetPlayerFromId(target)
 		local result = MySQL.Sync.fetchAll('SELECT firstname, lastname, sex, dateofbirth, height FROM users WHERE identifier = @identifier', {

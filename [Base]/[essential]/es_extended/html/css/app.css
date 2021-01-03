@@ -8,25 +8,15 @@
 	src: url('../fonts/bankgothic.ttf')
 }
 
-@font-face {
-	font-family: 'FFF_Tusj';
-	src: url('../fonts/FFF_Tusj.ttf')
-}
-
-@font-face {
-	font-family: 'achtung-polizei';
-	src: url('../fonts/achtung-polizei.ttf')
-}
-
 html {
 	overflow: hidden;
 }
 
 #hud {
 	position: absolute;
-	font-family: 'achtung-polizei';
-	font-size: 25px;
-	color: #ff3b4b;
+	font-family: 'Pricedown';
+	font-size: 35px;
+	color: white;
 	padding: 4px;
 	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 	text-align: right;

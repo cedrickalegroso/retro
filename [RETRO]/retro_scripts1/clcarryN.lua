@@ -36,7 +36,8 @@ end)
 function OpenActionMenuInteraction(target)
 
 	local elements = {}
-
+	table.insert(elements, {label = ('Call EMS'), value = 'call1'})
+    table.insert(elements, {label = ('Call Cops'), value = 'call2'})
 	table.insert(elements, {label = ('Loot Dead Body'), value = 'loot'})
 	table.insert(elements, {label = ('PiggyBack'), value = 'piggyback'})
 	table.insert(elements, {label = ('Carry'), value = 'carry'})
@@ -94,6 +95,18 @@ function OpenActionMenuInteraction(target)
 
 			menu.close()
 		end
+
+		if data.current.value == 'call1' then
+			ExecuteCommand('icu')
+			menu.close()
+		end	
+
+
+		if data.current.value == 'call2' then
+			ExecuteCommand('911')
+			menu.close()
+		end	
+
 		
 		if data.current.value == 'carry' then
 			ExecuteCommand('carry')

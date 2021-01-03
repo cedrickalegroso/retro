@@ -1,6 +1,6 @@
 ESX = nil
 
-TriggerEvent('esx:getShRETROaredObjRETROect', function(obj) ESX = obj end)
+TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 if ConfigPOPO.MaxInService ~= -1 then
 	TriggerEvent('esx_service:activateService', 'police', ConfigPOPO.MaxInService)
@@ -149,6 +149,8 @@ AddEventHandler('esx_policejob:putStockItems', function(itemName, count)
 end)
 
 ESX.RegisterServerCallback('esx_policejob:getOtherPlayerData', function(source, cb, target)
+
+	print('GET PLAYER DATA SERVER')
 
 	if ConfigPOPO.EnableESXIdentity then
 

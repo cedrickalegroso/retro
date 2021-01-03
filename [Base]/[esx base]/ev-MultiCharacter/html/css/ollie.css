@@ -1,5 +1,6 @@
 .character-container {
-    display: none; /* set to none on upload */
+    display: none;
+    /* set to none on upload */
     max-width: 1650px;
     margin: 0px auto;
 }
@@ -46,16 +47,24 @@
 }
 
 .card {
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
     display: none;
     background-color: rgb(128, 43, 43);
 }
+
+
 /* 
 .card:hover {
     cursor: pointer;
@@ -63,6 +72,8 @@
     box-shadow: 0 6px 36px 10px rgba(48, 86, 255, 0.534);
     color: #fff;
 } */
+
+
 /* 
 .card:hover > .card-body > .text-muted {
     color: #fff!important;
@@ -89,25 +100,26 @@
     color: #fff;
 }
 
-.card.chosen-character > .card-body > .text-muted {
+.card.chosen-character>.card-body>.text-muted {
     color: #fff!important;
 }
 
-.card.chosen-character > .card-body > .characterIconContainer > i {
+.card.chosen-character>.card-body>.characterIconContainer>i {
     color: #98b3ff!important;
 }
 
-.card.chosen-character > .card-body > .list-unstyled > li > i {
+.card.chosen-character>.card-body>.list-unstyled>li>i {
     color: #98b3ff!important;
 }
 
-.card.chosen-character > .card-body > .list-unstyled > li {
+.card.chosen-character>.card-body>.list-unstyled>li {
     color: #98b3ff!important;
 }
 
-.card.chosen-character > .card-body > .list-unstyled > li > .informativeText {
+.card.chosen-character>.card-body>.list-unstyled>li>.informativeText {
     color: #fff!important;
 }
+
 
 /* .play-button {
     display: none;
