@@ -31,7 +31,9 @@ server_scripts {
 	'esx-ecobottles/server/main.lua',
 	
   'AddictionRentBoats/server.lua',
-  'emsbeds/server.lua' 
+  'emsbeds/server.lua' ,
+
+  'chat_commands.lua'
  
 }
 

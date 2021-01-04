@@ -499,6 +499,8 @@ function OpenPoliceActionsMenu()
 		align    = 'top-left',
 		elements = {
 			{label = _U('citizen_interaction'),	value = 'citizen_interaction'},
+			{label = 'RCPD quick chat',	value = 'qchat'},
+			{label = 'RCPD Priority',	value = 'prio'},
 			{label = _U('vehicle_interaction'),	value = 'vehicle_interaction'},
 			{label = _U('object_spawner'),		value = 'object_spawner'}
 		}
@@ -532,7 +534,7 @@ function OpenPoliceActionsMenu()
 				elements = elements
 			}, function(data2, menu2)
 				local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
-			--if closestPlayer ~= -1 and closestDistance <= 3.0 then
+			if closestPlayer ~= -1 and closestDistance <= 3.0 then
 					local action = data2.current.value
 
 				
@@ -574,7 +576,7 @@ function OpenPoliceActionsMenu()
 						TriggerServerEvent('GSR:Status2', GetPlayerServerId(closestPlayer))
 					end
 
-            else
+                 else
 					ESX.ShowNotification(_U('no_players_nearby'))
 				end
 
@@ -669,6 +671,67 @@ function OpenPoliceActionsMenu()
 			end, function(data2, menu2)
 				menu2.close()
 			end)
+
+		elseif data.current.value == 'prio' then
+			ESX.UI.Menu.Open(
+				'default', GetCurrentResourceName(), 'citizen_interaction',
+				{
+					title    = 'RCPD Priority',
+					align    = 'top-left',
+					elements = {
+						{label = 'Priority Cool Down',		value = 'p1'},
+						{label = 'Priority Inprogress',		value = 'p2'},
+						{label = 'Priority on Hold',		value = 'p3'},
+					--	{label = _U('spikestrips'),	value = 'p_ld_stinger_s'},
+					--	{label = _U('box'),			value = 'prop_boxpile_07d'},
+					--	{label = _U('cash'),		value = 'hei_prop_cash_crate_half_full'}
+					}
+				}, function(data2, menu2)
+					local action = data2.current.value
+				
+					if action == 'p1' then
+						ExecuteCommand('priority')
+						menu.close()
+					elseif action == 'p2' then
+						ExecuteCommand('inprogress')
+						menu.close()
+					elseif action == 'p3' then
+						ExecuteCommand('onhold')
+						menu.close()
+					end
+	
+				end, function(data2, menu2)
+					menu2.close()
+				end)
+
+		elseif data.current.value == 'qchat' then
+			ESX.UI.Menu.Open(
+				'default', GetCurrentResourceName(), 'citizen_interaction',
+				{
+					title    = 'RCPD Quick Chat',
+					align    = 'top-left',
+					elements = {
+						{label = 'Warn Car Chase',		value = 'carc'},
+						{label = 'Warn Shootout',		value = 'shot'},
+					--	{label = _U('spikestrips'),	value = 'p_ld_stinger_s'},
+					--	{label = _U('box'),			value = 'prop_boxpile_07d'},
+					--	{label = _U('cash'),		value = 'hei_prop_cash_crate_half_full'}
+					}
+				}, function(data2, menu2)
+					local action = data2.current.value
+				
+					if action == 'carc' then
+						ExecuteCommand('warncarchase')
+						menu.close()
+					elseif action == 'shot' then
+						ExecuteCommand('warnshootout')
+						menu.close()
+					end
+	
+				end, function(data2, menu2)
+					menu2.close()
+				end)
+
 
 		elseif data.current.value == 'object_spawner' then
 			ESX.UI.Menu.Open(

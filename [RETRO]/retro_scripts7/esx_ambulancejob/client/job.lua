@@ -115,9 +115,10 @@ function OpenMobileAmbulanceActionsMenu()
 
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'mobile_ambulance_actions', {
 		title    = _U('ambulance'),
-		align    = 'top-right',
+		align    = 'top-left',
 		elements = {
 			{label = _U('ems_menu'), value = 'citizen_interaction'},
+			{label = 'EMS QUICK CHAT', value = 'qchat'},
 			{label = 'EMS UNCONCIOUS PATIENT MENU', value = 'skeletal'}
 		}
 	}, function(data, menu)
@@ -148,19 +149,61 @@ function OpenMobileAmbulanceActionsMenu()
 			end, function(data, menu)
 				menu.close()
 		
-				CurrentAction     = 'menu_armory'
-				CurrentActionMsg  = _U('open_armory')
-				CurrentActionData = {station = station}
+			
 			end)
 
 	
+
+		elseif data.current.value == 'qchat' then
+
+
+			ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'armory', {
+				title    = 'EMS QUICK CHAT MENU',
+				align    = 'top-left',
+				elements = {
+					{label = 'RCEMS OTW', value = 'otw'},
+					{label = 'RCEMS OTW2', value = 'otw2'},
+					{label = 'RCEMS OTW3', value = 'otw3'},
+					{label = 'RCEMS Standby', value = 'standby'},
+					{label = 'RCEMS Delay', value = 'delay'}
+				}
+			}, function(data, menu)
+		
+				if data.current.value == 'otw' then
+					ExecuteCommand('rcemsotw')
+					menu.close()
+				elseif data.current.value == 'otw2' then
+					ExecuteCommand('rcemsotw2')
+					menu.close()
+				elseif data.current.value == 'otw3' then
+					ExecuteCommand('rcemsotw3')
+					menu.close()
+				
+			elseif data.current.value == 'standby' then
+				ExecuteCommand('rcemsstandby')
+				menu.close()
+			
+			elseif data.current.value == 'delay' then
+				ExecuteCommand('rcemsdelay')
+				menu.close()
+
+		elseif data.current.value == 'otw3' then
+			ExecuteCommand('rcemsotw3')
+			menu.close()
+		end
+		
+			end, function(data, menu)
+				menu.close()
+		
+			
+			end)
 	
 
 	
 	elseif data.current.value == 'citizen_interaction' then
 			ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'citizen_interaction', {
 				title    = _U('ems_menu_title'),
-				align    = 'top-right',
+				align    = 'top-left',
 				elements = {
 					{label = _U('ems_menu_revive'), value = 'revive'},
 					{label = _U('ems_menu_small'), value = 'small'},
