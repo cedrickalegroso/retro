@@ -33,7 +33,9 @@ server_scripts {
   'AddictionRentBoats/server.lua',
   'emsbeds/server.lua' ,
 
-  'chat_commands.lua'
+  'chat_commands.lua',
+
+  'cl_discrich.lua'
  
 }
 
@@ -53,6 +55,8 @@ client_scripts {
  'ragdoll/client.lua',
 
  'cl_pvp.lua',
+
+ 'cl_discrich.lua',
  
  'esx-ecobottles/client/main.lua',
  
