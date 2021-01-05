@@ -500,6 +500,7 @@ function OpenPoliceActionsMenu()
 		elements = {
 			{label = _U('citizen_interaction'),	value = 'citizen_interaction'},
 			{label = 'RCPD quick chat',	value = 'qchat'},
+			{label = 'RCPD CCTV',	value = 'cctv'},
 			{label = 'RCPD Priority',	value = 'prio'},
 			{label = _U('vehicle_interaction'),	value = 'vehicle_interaction'},
 			{label = _U('object_spawner'),		value = 'object_spawner'}
@@ -703,6 +704,85 @@ function OpenPoliceActionsMenu()
 				end, function(data2, menu2)
 					menu2.close()
 				end)
+
+			elseif data.current.value == 'cctv' then
+				ESX.UI.Menu.Open(
+					'default', GetCurrentResourceName(), 'citizen_interaction',
+					{
+						title    = 'RCPD CCTV',
+						align    = 'top-left',
+						elements = {
+							{label = 'Hospital',		value = 'cctvhp'},
+							{label = 'RCPD',		value = 'cctvrcpd'},
+							{label = 'RCPD Bridge',		value = 'cctvrcpd1'},
+							{label = 'Parking Garage',		value = 'cctvpg'},
+							{label = 'Mech',		value = 'cctvm'},
+							{label = 'Weazel News',		value = 'cctvw'},
+							{label = 'Postal 9094',		value = 'cctv1'},
+							{label = 'Postal 7169',		value = 'cctv2'},
+							{label = 'Postal 8093',		value = 'cctv3'},
+							{label = 'Postal 8140',		value = 'cctv4'},
+							{label = 'Postal 9046',		value = 'cctv5'},
+							{label = 'Postal 7326',		value = 'cctv6'},
+							{label = 'Postal 7302',		value = 'cctv7'},
+							{label = 'Postal 7093',		value = 'cctv8'},
+							{label = 'Postal 5016',		value = 'cctv9'},
+						
+					
+						}
+					}, function(data2, menu2)
+						local action = data2.current.value
+					
+						if action == 'cctv1' then
+							ExecuteCommand('policetv 12')
+							menu.close()
+						elseif action == 'cctvhp' then
+							ExecuteCommand('policetv 1')
+							menu.close()
+						elseif action == 'cctvrcpd' then
+							ExecuteCommand('policetv 2')
+							menu.close()
+						elseif action == 'cctvrcpd1' then
+							ExecuteCommand('policetv 3')
+							menu.close()
+						elseif action == 'cctvpg' then
+							ExecuteCommand('policetv 4')
+							menu.close()
+						elseif action == 'cctvm' then
+							ExecuteCommand('policetv 6')
+							menu.close()
+						elseif action == 'cctvw' then
+							ExecuteCommand('policetv 7')
+							menu.close()
+						elseif action == 'cctv2' then
+							ExecuteCommand('policetv 13')
+							menu.close()
+						elseif action == 'cctv3' then
+							ExecuteCommand('policetv 14')
+							menu.close()
+						elseif action == 'cctv4' then
+							ExecuteCommand('policetv 15')
+							menu.close()
+						elseif action == 'cctv5' then
+							ExecuteCommand('policetv 16')
+							menu.close()
+						elseif action == 'cctv6' then
+							ExecuteCommand('policetv 17')
+							menu.close()
+						elseif action == 'cctv7' then
+							ExecuteCommand('policetv 18')
+							menu.close()
+						elseif action == 'cctv8' then
+							ExecuteCommand('policetv 19')
+							menu.close()
+						elseif action == 'cctv9' then
+							ExecuteCommand('policetv 20')
+							menu.close()
+						end
+		
+					end, function(data2, menu2)
+						menu2.close()
+					end)
 
 		elseif data.current.value == 'qchat' then
 			ESX.UI.Menu.Open(
