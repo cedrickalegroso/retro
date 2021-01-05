@@ -6,7 +6,7 @@ local SafeCodes = {}
 Citizen.CreateThread(function()
     while true do 
         SafeCodes = {
-            [1] = math.random(1000, 9999),
+            [1] = 1234,
             [2] = {math.random(1, 149), math.random(150.0, 359.0), math.random(1, 149), math.random(150.0, 359.0), math.random(1, 149)},
             [3] = {math.random(1, 149), math.random(150.0, 359.0), math.random(1, 149), math.random(150.0, 359.0), math.random(1, 149)},
             [4] = math.random(1000, 9999),
@@ -76,6 +76,21 @@ end)
 RegisterServerEvent('qb-storerobbery:server:setRegisterStatus')
 AddEventHandler('qb-storerobbery:server:setRegisterStatus', function(register)
     TriggerClientEvent('qb-storerobbery:client:setRegisterStatus', -1, register, true)
+
+    TriggerEvent('InteractSound_SV:PlayOnAll','demo',0.5)
+
+    TriggerEvent('isPriority')
+
+
+    Citizen.Wait(5000)
+
+
+    TriggerClientEvent('chat:addMessage', -1, {
+        template = '<div class="chat-message system"><b> 👮 RCPD : </b> ^1Robbery in progress at '..Config.Registers[register].storename..' Postal Code '..Config.Registers[register].postal..'  ^3EMS AND MECHANIC STANDBY!  </div>',
+        args = { fal, msg }
+    })
+
+
     Config.Registers[register].robbed   = true
     Config.Registers[register].time     = Config.resetTime
 end)
@@ -85,8 +100,24 @@ AddEventHandler('qb-storerobbery:server:setSafeStatus', function(safe)
     TriggerClientEvent('qb-storerobbery:client:setSafeStatus', -1, safe, true)
     Config.Safes[safe].robbed = true
 
+    TriggerEvent('InteractSound_SV:PlayOnAll','demo',0.5)
+
+    TriggerEvent('isPriority')
+
+
+    Citizen.Wait(5000)
+
+
+    TriggerClientEvent('chat:addMessage', -1, {
+        template = '<div class="chat-message system"><b> 👮 RCPD : </b> ^1Robbery in progress at Vault openned  ^3EMS AND MECHANIC STANDBY!  </div>',
+        args = { fal, msg }
+    })
+
+
+
     SetTimeout(math.random(40, 80) * (60 * 1000), function()
         TriggerClientEvent('qb-storerobbery:client:setSafeStatus', -1, safe, false)
+        TriggerClientEvent('SafeCracker:EndMinigameanim')
         Config.Safes[safe].robbed = false
     end)
 end)
@@ -97,7 +128,8 @@ AddEventHandler('qb-storerobbery:server:SafeReward', function(safe)
     local Player = ESX.GetPlayerFromId(src)
     local cakam2 = math.random(1000, 3000)
     Player.addMoney(cakam2)
-    TriggerClientEvent('notification', source, cakam2.. '$ eklendi' , 3)
+    TriggerClientEvent('SafeCracker:EndMinigameanim', src)
+    TriggerClientEvent('notification', source, cakam2.. ' Pesos' , 3)
     local luck = math.random(1, 100)
     local odd = math.random(1, 100)
     if luck <= 10 then
@@ -109,8 +141,64 @@ AddEventHandler('qb-storerobbery:server:SafeReward', function(safe)
     end
 end)
 
+
+
+RegisterServerEvent('retro_scripts:callcopsnew')
+AddEventHandler('retro_scripts:callcopsnew', function(safe, currentRegister, streetLabel, pos, storename, postal)
+  
+    print(pos)
+
+    TriggerEvent('InteractSound_SV:PlayOnAll','demo',0.5)
+
+    TriggerEvent('isPriority')
+
+
+    Citizen.Wait(5000)
+
+
+    TriggerClientEvent('chat:addMessage', -1, {
+        template = '<div class="chat-message system"><b> 👮 RCPD : </b> ^1Robbery in progress at '..storename..' Postal Code '..postal..'  ^3EMS AND MECHANIC STANDBY!  </div>',
+        args = { fal, msg }
+    })
+
+    --[[
+Citizen.Wait(5000)
+
+    TriggerClientEvent('chat:addMessage', -1, {
+        template = '<div class="chat-message system"><b> 👮 RCPD : </b> ^1Robbery in progress at '..storename..' Postal Code '..postal..'  ^3EMS AND MECHANIC STANDBY!  </div>',
+        args = { fal, msg }
+    })
+
+    Citizen.Wait(5000)
+
+    TriggerClientEvent('chat:addMessage', -1, {
+        template = '<div class="chat-message system"><b> 👮 RCPD : </b> ^1Robbery in progress at '..storename..' Postal Code '..postal..'  ^3EMS AND MECHANIC STANDBY!  </div>',
+        args = { fal, msg }
+    })
+
+    Citizen.Wait(5000)
+
+    TriggerClientEvent('chat:addMessage', -1, {
+        template = '<div class="chat-message system"><b> 👮 RCPD : </b> ^1Robbery in progress at '..storename..' Postal Code '..postal..'  ^3EMS AND MECHANIC STANDBY!  </div>',
+        args = { fal, msg }
+    })
+
+    Citizen.Wait(5000)
+
+    TriggerClientEvent('chat:addMessage', -1, {
+        template = '<div class="chat-message system"><b> 👮 RCPD : </b> ^1Robbery in progress at '..storename..' Postal Code '..postal..'  ^3EMS AND MECHANIC STANDBY!  </div>',
+        args = { fal, msg }
+    })
+
+    Citizen.Wait(5000)
+    ]]---
+    
+end)
+
+
 RegisterServerEvent('qb-storerobbery:server:callCops')
 AddEventHandler('qb-storerobbery:server:callCops', function(type, safe, streetLabel, coords)
+    print('Calling Cops')
     local cameraId = 4
     if type == "safe" then
         cameraId = Config.Safes[safe].camId

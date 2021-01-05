@@ -27,9 +27,9 @@ end)
 			--	if IsControlJustReleased(0, 38) then		
 				local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 					if IsPlayerDead(closestPlayer) then 
-						if closestPlayer ~= -1 and closestDistance <= 5.0 then
-						OpenBodySearchMenu(closestPlayer)
-						end
+				--		if closestPlayer ~= -1 and closestDistance <= 5.0 then
+					--	OpenBodySearchMenu(closestPlayer)
+				--		end
 					end
 				--end
 		--	end -- comment this line if you want to allow all player to loot

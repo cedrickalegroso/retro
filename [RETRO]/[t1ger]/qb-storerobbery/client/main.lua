@@ -1,3 +1,10 @@
+local isFrozen;
+
+RegisterNetEvent('freeze:freezePlayer')
+AddEventHandler('freeze:freezePlayer', function()
+    isFrozen = not isFrozen
+end)
+
 Keys = {
     ['ESC'] = 322, ['F1'] = 288, ['F2'] = 289, ['F3'] = 170, ['F5'] = 166, ['F6'] = 167, ['F7'] = 168, ['F8'] = 169, ['F9'] = 56, ['F10'] = 57,
     ['~'] = 243, ['1'] = 157, ['2'] = 158, ['3'] = 160, ['4'] = 164, ['5'] = 165, ['6'] = 159, ['7'] = 161, ['8'] = 162, ['9'] = 163, ['-'] = 84, ['='] = 83, ['BACKSPACE'] = 177,
@@ -8,6 +15,9 @@ Keys = {
     ['HOME'] = 213, ['PAGEUP'] = 10, ['PAGEDOWN'] = 11, ['DELETE'] = 178,
     ['LEFT'] = 174, ['RIGHT'] = 175, ['TOP'] = 27, ['DOWN'] = 173,
 }
+
+
+
 
 Citizen.CreateThread(function()
 	while ESX == nil do
@@ -86,7 +96,7 @@ Citizen.CreateThread(function()
                     inRange = true
                     if dist < 1.0 then
                         if not Config.Safes[safe].robbed then
-                            DrawText3Ds(Config.Safes[safe].x, Config.Safes[safe].y, Config.Safes[safe].z, '~g~E~w~ - Kombinasyonu dene')
+                            DrawText3Ds(Config.Safes[safe].x, Config.Safes[safe].y, Config.Safes[safe].z, '~g~E~w~ - Crack Combination')
                             if IsControlJustPressed(0, Keys["E"]) then
                                 if CurrentCops >= Config.MinimumStoreRobberyPolice then
                                     currentSafe = safe
@@ -110,15 +120,18 @@ Citizen.CreateThread(function()
                                         if street2 ~= nil then 
                                             streetLabel = streetLabel .. " " .. street2
                                         end
-                                        TriggerServerEvent("qb-storerobbery:server:callCops", "safe", currentSafe, streetLabel, pos)
+
+                                        ExecuteCommand('911')
+
+                                     --   TriggerServerEvent("qb-storerobbery:server:callCops", "safe", currentSafe, streetLabel, pos)
                                         copsCalled = true
                                     end
                                 else
-                                    TriggerEvent('notification', ('Yeterli polis yok..'), 2)
+                                  --  TriggerEvent('notification', ('Yeterli polis yok..'), 2)
                                 end
                             end
                         else
-                            DrawText3Ds(Config.Safes[safe].x, Config.Safes[safe].y, Config.Safes[safe].z, 'Kasa acildi ..')
+                            DrawText3Ds(Config.Safes[safe].x, Config.Safes[safe].y, Config.Safes[safe].z, 'Combination Cracked.')
                         end
                     end
                 end
@@ -158,7 +171,10 @@ AddEventHandler('lockpicks:UseLockpick', function(isAdvanced)
     for k, v in pairs(Config.Registers) do
         local ped = GetPlayerPed(-1)
         local pos = GetEntityCoords(ped)
+       
         local dist = GetDistanceBetweenCoords(pos, Config.Registers[k].x, Config.Registers[k].y, Config.Registers[k].z)
+        local postal = Config.Registers[k].postal
+        local storename = Config.Registers[k].storename
         if dist <= 1 and not Config.Registers[k].robbed then
             if CurrentCops >= Config.MinimumStoreRobberyPolice then
                 if usingAdvanced then
@@ -172,8 +188,16 @@ AddEventHandler('lockpicks:UseLockpick', function(isAdvanced)
                         if street2 ~= nil then 
                             streetLabel = streetLabel .. " " .. street2
                         end
-                        print('1')
-                        TriggerServerEvent("qb-storerobbery:server:callCops", "cashier", currentRegister, streetLabel, pos)
+
+                     --   print(Config.Registers[k])
+
+                     --   print(storename)
+
+                     --   print(postal)
+
+                        ExecuteCommand('911')
+
+                    --    TriggerServerEvent("retro_scripts:callcopsnew", "cashier", currentRegister, streetLabel, pos, storename, postal)
                         copsCalled = true
                     end
                 else
@@ -313,6 +337,8 @@ RegisterNUICallback('success', function()
             if not status then
                 openingDoor = false
                 ClearPedTasks(GetPlayerPed(-1))
+                print(currentRegister)
+               -- TriggerServerEvent("retro_scripts:callcopsnew", "cashier", currentRegister, streetLabel, pos, storename, postal)
                 TriggerServerEvent('qb-storerobbery:server:takeMoney', currentRegister, true)            
                 currentRegister = 0     
             end
@@ -357,13 +383,22 @@ RegisterNetEvent('SafeCracker:EndMinigame')
 AddEventHandler('SafeCracker:EndMinigame', function(won)
     if currentSafe ~= 0 then
         if won then
+
+         
+
             if currentSafe ~= 0 then
                 if not Config.Safes[currentSafe].robbed then
-                    SetNuiFocus(false, false)
-                    TriggerServerEvent("qb-storerobbery:server:SafeReward", currentSafe)
+
+                
+             
+                    
+                  
+    TriggerServerEvent("qb-storerobbery:server:SafeReward", currentSafe)
                     TriggerServerEvent("qb-storerobbery:server:setSafeStatus", currentSafe)
                     currentSafe = 0
                     takeAnim()
+                     
+                
                 end
             else
                 SendNUIMessage({
@@ -374,6 +409,39 @@ AddEventHandler('SafeCracker:EndMinigame', function(won)
     end
     copsCalled = false
 end)
+
+
+RegisterNetEvent('SafeCracker:EndMinigameanim')
+AddEventHandler('SafeCracker:EndMinigameanim', function(src)
+    
+    TriggerEvent("mythic_progbar:client:progress", {
+        name = "unique_action_name",
+        duration = 180000,
+        label = "Robbing",
+        useWhileDead = false,
+        canCancel = false,
+        controlDisables = {
+          disableMovement = true,
+          disableCarMovement = true,
+          disableMouse = false,
+          disableCombat = true,
+        },
+        animation = {
+            animDict = "amb@prop_human_bum_bin@idle_b",
+            anim = "idle_d",
+          },
+          prop = {
+            model = "prop_money_bag_01",
+          }
+       }, 
+        function(status)
+          if not status then
+ 
+              
+          end
+      end)
+end)
+
 
 RegisterNUICallback('PadLockSuccess', function()
     if currentSafe ~= 0 then
@@ -454,7 +522,7 @@ end)
 
 RegisterNetEvent('qb-storerobbery:client:robberyCall')
 AddEventHandler('qb-storerobbery:client:robberyCall', function(type, key, streetLabel, coords)
-    if PlayerJob.name == "police" then
+    if PlayerJob.name == "Police" then
         local cameraId = 4
         if type == "safe" then
             cameraId = Config.Safes[key].camId
