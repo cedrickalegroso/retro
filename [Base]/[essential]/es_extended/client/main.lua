@@ -16,8 +16,6 @@ local PlayerSpawned = false
 local LastLoadout   = {}
 local Pickups       = {}
 local isDead        = false
-currentMaxWeight = {}
-currentWeight = {}
 
 RegisterNetEvent('esx:playerLoaded')
 AddEventHandler('esx:playerLoaded', function(xPlayer)
@@ -144,32 +142,62 @@ AddEventHandler('es:activateMoney', function(money)
 	ESX.PlayerData.money = money
 end)
 
+
 RegisterNetEvent('esx:addInventoryItem')
 AddEventHandler('esx:addInventoryItem', function(item, count)
 
+	--[[
 	for i=1, #ESX.PlayerData.inventory, 1 do
 		if ESX.PlayerData.inventory[i].name == item.name then
 			ESX.PlayerData.inventory[i] = item
 			break
 		end
 	end
+]]--
+	
+
+
+
+	ESX.UI.ShowInventoryItemNotification(true, item, count)
+
+		--[[
+
+	if ESX.UI.Menu.IsOpen('default', 'es_extended', 'inventory') then
+		ESX.ShowInventory()
+	end
+
+	]]--
 end)
 
 RegisterNetEvent('esx:removeInventoryItem')
 AddEventHandler('esx:removeInventoryItem', function(item, count)
+
+	
+		--[[
 	for i=1, #ESX.PlayerData.inventory, 1 do
 		if ESX.PlayerData.inventory[i].name == item.name then
 			ESX.PlayerData.inventory[i] = item
 			break
 		end
 	end
+
+	]]--
+
+	ESX.UI.ShowInventoryItemNotification(false, item, count)
+
+	--[[
+
+	if ESX.UI.Menu.IsOpen('default', 'es_extended', 'inventory') then
+		ESX.ShowInventory()
+	end
+
+	]]--
+
 end)
 
-RegisterNetEvent('inventory:updateWeight')
-AddEventHandler('inventory:updateWeight', function(data)
-    currentMaxWeight[source] = data.max
-    currentWeight[source] = data.weight
-end)
+
+
+
 
 RegisterNetEvent('esx:setJob')
 AddEventHandler('esx:setJob', function(job)
@@ -289,17 +317,6 @@ AddEventHandler('esx:playEmote', function(emote)
 	end)
 end)
 
-RegisterNetEvent('esx:carCommand')
-AddEventHandler('esx:carCommand', function(model)
-	local playerPed = PlayerPedId()
-	local coords    = GetEntityCoords(playerPed)
-
-	ESX.Game.SpawnVehicle(model, coords, 90.0, function(vehicle)
-		TaskWarpPedIntoVehicle(playerPed,  vehicle, -1)
-		TriggerEvent('keys:addNew',vehicle,GetVehicleNumberPlateText(vehicle))
-	end)
-end)
-
 RegisterNetEvent('esx:spawnVehicle')
 AddEventHandler('esx:spawnVehicle', function(model)
 	local playerPed = PlayerPedId()
@@ -328,32 +345,41 @@ AddEventHandler('esx:spawnObject', function(model)
 end)
 
 RegisterNetEvent('esx:pickup')
-AddEventHandler('esx:pickup', function(id, label, player)
-	local ped     = GetPlayerPed(GetPlayerFromServerId(player))
-	local coords  = GetEntityCoords(ped)
-	local forward = GetEntityForwardVector(ped)
-	local x, y, z = table.unpack(coords + forward * -2.0)
+AddEventHandler('esx:pickup', function(pickupId, label, playerId, type, name, components)
+	local playerPed = GetPlayerPed(GetPlayerFromServerId(playerId))
+	local entityCoords, forward, pickupObject = GetEntityCoords(playerPed), GetEntityForwardVector(playerPed)
+	local objectCoords = (entityCoords + forward * 1.0)
 
-	ESX.Game.SpawnLocalObject('prop_money_bag_01', {
-		x = x,
-		y = y,
-		z = z - 2.0,
-	}, function(obj)
-		SetEntityAsMissionEntity(obj, true, false)
-		PlaceObjectOnGroundProperly(obj)
+	if type == 'item_weapon' then
+		ESX.Streaming.RequestWeaponAsset(GetHashKey(name))
+		pickupObject = CreateWeaponObject(GetHashKey(name), 50, objectCoords, true, 1.0, 0)
 
-		Pickups[id] = {
-			id = id,
-			obj = obj,
-			label = label,
-			inRange = false,
-			coords = {
-				x = x,
-				y = y,
-				z = z
-			}
-		}
-	end)
+		for k,v in ipairs(components) do
+			local component = ESX.GetWeaponComponent(name, v)
+			GiveWeaponComponentToWeaponObject(pickupObject, component.hash)
+		end
+	else
+		ESX.Game.SpawnLocalObject('ng_proc_binbag_02a', objectCoords, function(obj)
+			pickupObject = obj
+		end)
+
+		while not pickupObject do
+			Citizen.Wait(10)
+		end
+	end
+
+	SetEntityAsMissionEntity(pickupObject, true, false)
+	PlaceObjectOnGroundProperly(pickupObject)
+	FreezeEntityPosition(pickupObject, true)
+	SetEntityCollision(pickupObject, false, true)
+
+	Pickups[pickupId] = {
+		id = pickupId,
+		obj = pickupObject,
+		label = label,
+		inRange = false,
+		coords = objectCoords
+	}
 end)
 
 RegisterNetEvent('esx:removePickup')
@@ -538,38 +564,49 @@ end
 -- Pickups
 Citizen.CreateThread(function()
 	while true do
-
 		Citizen.Wait(0)
-
 		local playerPed = PlayerPedId()
-		local coords    = GetEntityCoords(playerPed)
-		
-		-- if there's no nearby pickups we can wait a bit to save performance
-		if next(Pickups) == nil then
-			Citizen.Wait(500)
-		end
+		local playerCoords, letSleep = GetEntityCoords(playerPed), true
+		local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 
 		for k,v in pairs(Pickups) do
+			local distance = #(playerCoords - v.coords)
 
-			local distance = GetDistanceBetweenCoords(coords, v.coords.x, v.coords.y, v.coords.z, true)
-			local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
+			if distance < 5 then
+				local label = v.label
+				letSleep = false
 
-			if distance <= 5.0 then
+				if distance < 1 then
+					if IsControlJustReleased(0, 38) then
+						if IsPedOnFoot(playerPed) and (closestDistance == -1 or closestDistance > 3) and not v.inRange then
+							v.inRange = true
+
+							local dict, anim = 'weapons@first_person@aim_rng@generic@projectile@sticky_bomb@', 'plant_floor'
+							ESX.Streaming.RequestAnimDict(dict)
+							TaskPlayAnim(playerPed, dict, anim, 8.0, 1.0, 1000, 16, 0.0, false, false, false)
+							Citizen.Wait(1000)
+
+							TriggerServerEvent('esx:onPickup', v.id)
+							PlaySoundFrontend(-1, 'PICK_UP', 'HUD_FRONTEND_DEFAULT_SOUNDSET', false)
+						end
+					end
+
+					label = ('%s~n~%s'):format(label, _U('threw_pickup_prompt'))
+				end
+
 				ESX.Game.Utils.DrawText3D({
 					x = v.coords.x,
 					y = v.coords.y,
 					z = v.coords.z + 0.25
-				}, v.label)
+				}, label, 1.2, 0)
+			elseif v.inRange then
+				v.inRange = false
 			end
-
-			if (closestDistance == -1 or closestDistance > 3) and distance <= 1.0 and not v.inRange and not IsPedSittingInAnyVehicle(playerPed) then
-				TriggerServerEvent('esx:onPickup', v.id)
-				PlaySoundFrontend(-1, 'PICK_UP', 'HUD_FRONTEND_DEFAULT_SOUNDSET', false)
-				v.inRange = true
-			end
-
 		end
 
+		if letSleep then
+			Citizen.Wait(500)
+		end
 	end
 end)
 

@@ -38,6 +38,7 @@ AddEventHandler('playerSpawned', function()
             
             Wait(5000)
 
+            TriggerEvent('esx:restoreLoadout')
             TriggerEvent('clothing:setupCommandsData')
 		end
 	end)

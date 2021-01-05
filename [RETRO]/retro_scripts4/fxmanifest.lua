@@ -86,13 +86,13 @@ server_scripts {
   -- 'esx_tattoosShops/server/server.lua',
 
    --dsicbase
-  -- 'disc-base/utils.lua',
-  --  'disc-base/server/items.lua',
-  --  'disc-base/server/main.lua',
-  --  'disc-base/server/cron.lua',
+   'disc-base/utils.lua',
+    'disc-base/server/items.lua',
+   'disc-base/server/main.lua',
+  'disc-base/server/cron.lua',
 
    --discammo
-  -- 'disc-ammo/server/main.lua',
+   'disc-ammo/server/main.lua',
 
    --attachment
    --'esx_attachments_bleiker/server/main.lua',
@@ -181,13 +181,13 @@ client_scripts {
  -- 'esx_tattoosShops/client/tattoosList/list.lua',
 
   --disc base
- -- 'disc-base/client/main.lua',
-  --  'disc-base/utils.lua',
- --  'disc-base/client/markers.lua',
+  'disc-base/client/main.lua',
+   'disc-base/utils.lua',
+   'disc-base/client/markers.lua',
 
 
   --disc ammo
- -- 'disc-ammo/client/main.lua',
+  'disc-ammo/client/main.lua',
 
 
   --tlg ads

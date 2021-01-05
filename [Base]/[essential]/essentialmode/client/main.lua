@@ -1,21 +1,20 @@
 --       Licensed under: AGPLv3        --
 --  GNU AFFERO GENERAL PUBLIC LICENSE  --
 --     Version 3, 19 November 2007     --
---
---[[Citizen.CreateThread(function()
+
+Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
+
 		if NetworkIsSessionStarted() then
-            TriggerEvent("multicharacter:client:WelcomePage")
-            TriggerEvent("multicharacter:client:SetupCharacters")
+			TriggerServerEvent('es:firstJoinProper')
+			TriggerEvent('es:allowedToSpawn')
 			return
 		end
 	end
-end)]]--
+end)
 
-local loaded = false
 local oldPos
-local pvpEnabled = false
 
 Citizen.CreateThread(function()
 	while true do
@@ -41,18 +40,10 @@ AddEventHandler("es:setPlayerDecorator", function(key, value, doNow)
 	end
 end)
 
-local enableNative = {}
-
-local firstSpawn = true
 AddEventHandler("playerSpawned", function()
 	for k,v in pairs(myDecorators)do
 		DecorSetInt(PlayerPedId(), k, v)
 	end
 
 	TriggerServerEvent('playerSpawn')
-end)
-
-RegisterNetEvent("es:enablePvp")
-AddEventHandler("es:enablePvp", function()
-	pvpEnabled = true
 end)

@@ -1,54 +1,81 @@
-local WaitTime = 60000 -- How often do you want to update the status (In MS)
+ConfigDiscord = {}
+ConfigDiscord.ClientID = 763715352680202270 -- Put your discord bot client id here
+ConfigDiscord.PlayerCount = 64
+ConfigDiscord.PlayerText = "Players" -- Player text. Example Players 10/32
+ConfigDiscord.ResourceTimer = 5 -- Time in witch resource updates in seconds
+ConfigDiscord.UseESXIdentity = true -- Uses ESX Identity name not steam name
 
-local DiscordAppId = tonumber(GetConvar("RichAppId", "763715352680202270"))
-local DiscordAppAsset = GetConvar("RichAssetId", "logo_retro")
-local UseKMH = GetConvar("RichUseKMH", false)
-	
+ESX = nil
+local jobGrade = ''
+local job = ''
+local playerName = nil
+local playerLoaded = false
+-- ESX Stuff----
 Citizen.CreateThread(function()
-	SetDiscordAppId(DiscordAppId)
-	SetDiscordRichPresenceAsset(DiscordAppAsset)
-	while true do
-		local x,y,z = table.unpack(GetEntityCoords(PlayerPedId(),true))
-		local StreetHash = GetStreetNameAtCoord(x, y, z)
-		Citizen.Wait(WaitTime)
-		if StreetHash ~= nil then
-			StreetName = GetStreetNameFromHashKey(StreetHash)
-			if IsPedOnFoot(PlayerPedId()) and not IsEntityInWater(PlayerPedId()) then
-				if IsPedSprinting(PlayerPedId()) then
-					SetRichPresence("Sprinting down "..StreetName)
-				elseif IsPedRunning(PlayerPedId()) then
-					SetRichPresence("Running down "..StreetName)
-				elseif IsPedWalking(PlayerPedId()) then
-					SetRichPresence("Walking down "..StreetName)
-				elseif IsPedStill(PlayerPedId()) then
-					SetRichPresence("Standing on "..StreetName)
-				end
-			elseif GetVehiclePedIsUsing(PlayerPedId()) ~= nil and not IsPedInAnyHeli(PlayerPedId()) and not IsPedInAnyPlane(PlayerPedId()) and not IsPedOnFoot(PlayerPedId()) and not IsPedInAnySub(PlayerPedId()) and not IsPedInAnyBoat(PlayerPedId()) then
-				local VehSpeed = GetEntitySpeed(GetVehiclePedIsUsing(PlayerPedId()))
-				local CurSpeed = UseKMH and math.ceil(VehSpeed * 3.6) or math.ceil(VehSpeed * 2.236936)
-				local VehName = GetLabelText(GetDisplayNameFromVehicleModel(GetEntityModel(GetVehiclePedIsUsing(PlayerPedId()))))
-				if CurSpeed > 50 then
-					SetRichPresence("Speeding down "..StreetName.." In a "..VehName)
-				elseif CurSpeed <= 50 and CurSpeed > 0 then
-					SetRichPresence("Cruising down "..StreetName.." In a "..VehName)
-				elseif CurSpeed == 0 then
-					SetRichPresence("Parked on "..StreetName.." In a "..VehName)
-				end
-			elseif IsPedInAnyHeli(PlayerPedId()) or IsPedInAnyPlane(PlayerPedId()) then
-				local VehName = GetLabelText(GetDisplayNameFromVehicleModel(GetEntityModel(GetVehiclePedIsUsing(PlayerPedId()))))
-				if IsEntityInAir(GetVehiclePedIsUsing(PlayerPedId())) or GetEntityHeightAboveGround(GetVehiclePedIsUsing(PlayerPedId())) > 5.0 then
-					SetRichPresence("Flying over "..StreetName.." in a "..VehName)
-				else
-					SetRichPresence("Landed at "..StreetName.." in a "..VehName)
-				end
-			elseif IsEntityInWater(PlayerPedId()) then
-				SetRichPresence("Swimming around")
-			elseif IsPedInAnyBoat(PlayerPedId()) and IsEntityInWater(GetVehiclePedIsUsing(PlayerPedId())) then
-				local VehName = GetLabelText(GetDisplayNameFromVehicleModel(GetEntityModel(GetVehiclePedIsUsing(PlayerPedId()))))
-				SetRichPresence("Sailing around in a "..VehName)
-			elseif IsPedInAnySub(PlayerPedId()) and IsEntityInWater(GetVehiclePedIsUsing(PlayerPedId())) then
-				SetRichPresence("In a yellow submarine")
+	while ESX == nil do
+		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+		Citizen.Wait(0)
+	end
+
+	while ESX.GetPlayerData().job == nil do
+		Citizen.Wait(10)
+	end
+
+	ESX.PlayerData = ESX.GetPlayerData()
+end)
+
+RegisterNetEvent('esx:playerLoaded')
+AddEventHandler('esx:playerLoaded', function(xPlayer)
+	ESX.PlayerData = xPlayer
+	playerLoaded = true
+end)
+
+RegisterNetEvent('esx:setJob')
+AddEventHandler('esx:setJob', function(job)
+	ESX.PlayerData.job = job
+end)
+
+RegisterNetEvent('discord:client:setPresence')
+AddEventHandler('discord:client:setPresence', function(_playerName)
+	playerName = _playerName
+   	SetRichPresence('ID:' .. GetPlayerServerId(NetworkGetEntityOwner(GetPlayerPed(-1))) .. ' | ' .. playerName .. ' | ' ..' '.. ConfigDiscord.PlayerText ..' ' .. #GetActivePlayers() .. '/' .. tostring(ConfigDiscord.PlayerCount))
+end)
+
+Citizen.CreateThread(function()
+	while true do			
+		
+		-- Checking if player is loaded	
+		if playerLoaded then
+			if ESX.PlayerData.job then
+			 		--Setting players image to reflect their job
+					SetDiscordRichPresenceAssetSmall(ESX.PlayerData.job.name)
+					job = ESX.PlayerData.job.label
+					jobGrade = ESX.PlayerData.job.grade_label
+					--Setting the job text
+					SetDiscordRichPresenceAssetSmallText(job .. " - " .. jobGrade)	
+				else			
+				Citizen.Wait(500)
 			end
-		end
+		end					
+			
+        --This is the Application ID (Replace this with you own)
+		SetDiscordAppId(ConfigDiscord.ClientID)
+
+        --Here you will have to put the image name for the "large" icon.
+		SetDiscordRichPresenceAsset('logo_retro')
+		
+		
+		
+		if ConfigDiscord.UseESXIdentity and playerLoaded then			
+			TriggerServerEvent(('discord:server:setName'))
+		else
+			SetRichPresence('ID:' .. GetPlayerServerId(NetworkGetEntityOwner(GetPlayerPed(-1))) .. ' | ' .. GetPlayerName(PlayerId()) .. ' | ' ..' '.. ConfigDiscord.PlayerText ..' ' .. #GetActivePlayers() .. '/' .. tostring(ConfigDiscord.PlayerCount))
+        end
+
+        --Here you can add hover text for the "large" icon.
+        SetDiscordRichPresenceAssetText('RETRO CITY SEASON 2 Badge')
+	
+        --It updates every five seconds just in case.
+		Citizen.Wait(ConfigDiscord.ResourceTimer*1000)
 	end
 end)

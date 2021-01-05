@@ -62,7 +62,7 @@ end, function(source, args, user)
 end, {help = _U('play_emote')})
 
 TriggerEvent('es:addGroupCommand', 'car', 'admin', function(source, args, user)
-	TriggerClientEvent('esx:carCommand', source, args[1])
+	TriggerClientEvent('esx:spawnVehicle', source, args[1])
 end, function(source, args, user)
 	TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'Insufficient Permissions.' } })
 end, {help = _U('spawn_car'), params = {{name = "car", help = _U('spawn_car_param')}}})

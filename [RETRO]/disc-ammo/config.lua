@@ -1,12 +1,8 @@
-ESX = nil
+Config = {}
+Config.EnableInventoryHUD = true
+Config.ReloadTime = 2000 --ms
 
-TriggerEvent('esx:getSharedObject', function(obj)
-    ESX = obj
-end)
-
-Config1 = {}
-
-Config1.Ammo = {
+Config.Ammo = {
     {
         name = 'disc_ammo_pistol',
         weapons = {
@@ -126,19 +122,3 @@ Config1.Ammo = {
         count = 15
     }
 }
-
-
-Citizen.CreateThread(function()
-    Citizen.Wait(0)
-    for k, v in pairs(Config1.Ammo) do
-        ESX.RegisterUsableItem(v.name, function(source)
-            TriggerClientEvent('disc-ammo:useAmmoItem', source, v)
-        end)
-    end
-end)
-
-RegisterServerEvent('disc-ammo:removeAmmoItem')
-AddEventHandler('disc-ammo:removeAmmoItem', function(ammo)
-    local player = ESX.GetPlayerFromId(source)
-    player.removeInventoryItem(ammo.name, 1)
-end)

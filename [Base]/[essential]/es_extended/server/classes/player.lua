@@ -319,8 +319,9 @@ function CreateExtendedPlayer(player, accounts, inventory, job, loadout, name, l
 		local item     = self.getInventoryItem(name)
 		local newCount = item.count + count
 		item.count     = newCount
-		TriggerClientEvent('esx:addInventoryItem', self.source, item, count)
+
 		TriggerEvent('esx:onAddInventoryItem', self.source, item, count)
+		TriggerClientEvent('esx:addInventoryItem', self.source, item, count)
 	end
 
 	self.removeInventoryItem = function(name, count)
@@ -341,9 +342,6 @@ function CreateExtendedPlayer(player, accounts, inventory, job, loadout, name, l
 			TriggerEvent('esx:onRemoveInventoryItem', self.source, item, oldCount - item.count)
 			TriggerClientEvent('esx:removeInventoryItem', self.source, item, oldCount - item.count)
 		else
-			if currentWeight[source] == currentMaxWeight[source] or currentWeight[source] > currentMaxWeight[source] then
-				return
-			end
 			TriggerEvent('esx:onAddInventoryItem', self.source, item, item.count - oldCount)
 			TriggerClientEvent('esx:addInventoryItem', self.source, item, item.count - oldCount)
 		end
@@ -484,18 +482,6 @@ function CreateExtendedPlayer(player, accounts, inventory, job, loadout, name, l
 		end
 
 		return nil
-	end
-	
-	self.triggerEvent = function(eventName, ...)
-		TriggerClientEvent(eventName, self.source, ...)
-	end
-
-	self.showNotification = function(msg, flash, saveToBrief, hudColorIndex)
-		self.triggerEvent('esx:showNotification', msg, flash, saveToBrief, hudColorIndex)
-	end
-
-	self.showHelpNotification = function(msg, thisFrame, beep, duration)
-		self.triggerEvent('esx:showHelpNotification', msg, thisFrame, beep, duration)
 	end
 
 	return self

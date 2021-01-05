@@ -21,6 +21,16 @@ RegisterCommand("whitelistaccess", function(source)
 end)
 
 
+RegisterCommand("loadweapons", function(source)
+
+    print('take loadouts')
+
+    TriggerEvent('esx:restoreLoadout', source)
+
+    
+end)
+
+
 RegisterCommand("hpbedarrest", function(source)
     TriggerClientEvent("retro_scripts:hpanim", source)
 end)

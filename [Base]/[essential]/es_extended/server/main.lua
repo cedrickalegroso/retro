@@ -1,12 +1,3 @@
-currentMaxWeight = {}
-currentWeight = {}
-
-RegisterNetEvent('inventory:updateWeight')
-AddEventHandler('inventory:updateWeight', function(data)
-    currentMaxWeight[source] = data.max
-    currentWeight[source] = data.weight
-end)
-
 AddEventHandler('es:playerLoaded', function(source, _player)
 	local _source = source
 	local tasks   = {}
@@ -276,8 +267,8 @@ AddEventHandler('esx:updateLastPosition', function(position)
 	xPlayer.setLastPosition(position)
 end)
 
-RegisterServerEvent('esx:giveInventoryItem')
-AddEventHandler('esx:giveInventoryItem', function(target, type, itemName, itemCount)
+RegisterServerEvent('esx:giRETROveInventoryItem')
+AddEventHandler('esx:giRETROveInventoryItem', function(target, type, itemName, itemCount)
 	local _source = source
 
 	local sourceXPlayer = ESX.GetPlayerFromId(_source)
@@ -290,15 +281,59 @@ AddEventHandler('esx:giveInventoryItem', function(target, type, itemName, itemCo
 
 		if itemCount > 0 and sourceItem.count >= itemCount then
 
-			if targetItem.limit ~= -1 and (targetItem.count + itemCount) > targetItem.limit then
-				TriggerClientEvent('esx:showNotification', _source, _U('ex_inv_lim', targetXPlayer.name))
-			else
-				sourceXPlayer.removeInventoryItem(itemName, itemCount)
-				targetXPlayer.addInventoryItem   (itemName, itemCount)
+			if itemName == 'armbrace' or itemName == 'legbrace' or itemName == 'neckbrace' or itemName == 'bodybandage' then 
+
+				if targetXPlayer.getJob().name == 'ambulance' or  targetXPlayer.getJob().grade == 15 then 
+					sourceXPlayer.removeInventoryItem(itemName, itemCount)
+					targetXPlayer.addInventoryItem   (itemName, itemCount)
+					
+					TriggerClientEvent('esx:showNotification', _source, _U('gave_item', itemCount, ESX.Items[itemName].label, targetXPlayer.name))
+					TriggerClientEvent('esx:showNotification', target,  _U('received_item', itemCount, ESX.Items[itemName].label, sourceXPlayer.name)) 
+				else 
+	
+					TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'Oops! You shouldnt be doing this. Sent email to the admins Good Luck ;)'})
+	
+	
+					local name = GetPlayerName(source)
+					local message = name..' tried to give '..itemName..' count '..itemCount.. ' but he/she is not a Ambulance or Police General either!'
+					local color = 56108
+					local webhook = 'https://discordapp.com/api/webhooks/767904604351627274/1eQ_GA96IxSe_TQrbJg1e8WJbj3ImHe-fK3GeUUvQbAafUtAT1p1BLfvAAL-fjRByysC'
+					
+					sendToDiscord (name,message,color, webhook)  
+				end
+
+			else 
+
+				--[[
+		if targetItem.limit ~= -1 and (targetItem.count + itemCount) > targetItem.limit then
+					TriggerClientEvent('esx:showNotification', _source, _U('ex_inv_lim', targetXPlayer.name))
+				else
+					sourceXPlayer.removeInventoryItem(itemName, itemCount)
+					targetXPlayer.addInventoryItem   (itemName, itemCount)
+					
+					TriggerClientEvent('esx:showNotification', _source, _U('gave_item', itemCount, ESX.Items[itemName].label, targetXPlayer.name))
+					TriggerClientEvent('esx:showNotification', target,  _U('received_item', itemCount, ESX.Items[itemName].label, sourceXPlayer.name))
+				end
+if targetItem.limit ~= -1 and (targetItem.count + itemCount) > targetItem.limit then
+					sourceXPlayer.removeInventoryItem(itemName, itemCount)
+					targetXPlayer.addInventoryItem   (itemName, itemCount)
+					
+					TriggerClientEvent('esx:showNotification', _source, _U('gave_item', itemCount, ESX.Items[itemName].label, targetXPlayer.name))
+					TriggerClientEvent('esx:showNotification', target,  _U('received_item', itemCount, ESX.Items[itemName].label, sourceXPlayer.name))
+				end
+
+				]]--
 				
-				TriggerClientEvent('esx:showNotification', _source, _U('gave_item', itemCount, ESX.Items[itemName].label, targetXPlayer.name))
-				TriggerClientEvent('esx:showNotification', target,  _U('received_item', itemCount, ESX.Items[itemName].label, sourceXPlayer.name))
+					sourceXPlayer.removeInventoryItem(itemName, itemCount)
+					targetXPlayer.addInventoryItem   (itemName, itemCount)
+					
+					TriggerClientEvent('esx:showNotification', _source, _U('gave_item', itemCount, ESX.Items[itemName].label, targetXPlayer.name))
+					TriggerClientEvent('esx:showNotification', target,  _U('received_item', itemCount, ESX.Items[itemName].label, sourceXPlayer.name))
+				
+
 			end
+
+		
 
 		else
 			TriggerClientEvent('esx:showNotification', _source, _U('imp_invalid_quantity'))
@@ -447,12 +482,18 @@ AddEventHandler('esx:useItem', function(itemName)
 	local xPlayer = ESX.GetPlayerFromId(source)
 	local count   = xPlayer.getInventoryItem(itemName).count
 
+	local name = GetPlayerName(source)
+	local message = name..' used item '..itemName
+	local color = 56108
+	local webhook = 'https://discordapp.com/api/webhooks/765841488306896916/xKB896-BO8elSPRxk-uXmkeYrKAzsIbN6Qh4mUVcHAiTqq5qE92UuMefcVfDpk_QFpo5'
+	
+	sendToDiscord (name,message,color, webhook)  
+
+
 	if count > 0 then
 		ESX.UseItem(source, itemName)
 	else
-		TriggerClientEvent('notification', xPlayer.source, _U('act_imp'), 2)
-		xPlayer.setInventoryItem(itemName, count)
-		TriggerClientEvent('ev-inventory:refreshInventory', source)
+		TriggerClientEvent('esx:showNotification', xPlayer.source, _U('act_imp'))
 	end
 end)
 
@@ -519,27 +560,28 @@ ESX.RegisterServerCallback('esx:getOtherPlayerData', function(source, cb, target
 	})
 end)
 
-CreateThread(function()
-	Wait(4000)
-	print('\n^9EEEEEEEEEEEEEEEEEEEEEE                             tttt                                         VVVVVVVV           VVVVVVVV iiii                     iiii                                     ')
-	print('^9E::::::::::::::::::::E                          ttt:::t                                         V::::::V           V::::::Vi::::i                   i::::i                                    ')
-	print('^9E::::::::::::::::::::E                          t:::::t                                         V::::::V           V::::::V iiii                     iiii                                     ')
-	print('^9EE::::::EEEEEEEEE::::E                          t:::::t                                         V::::::V           V::::::V                                                                   ')
-	print('^9  E:::::E       EEEEEExxxxxxx      xxxxxxxttttttt:::::ttttttt   rrrrr   rrrrrrrrr   aaaaaaaaaaaaaV:::::V           V:::::Viiiiiii     ssssssssss   iiiiiii    ooooooooooo   nnnn  nnnnnnnn    ')
-	print('^9  E:::::E              x:::::x    x:::::x t:::::::::::::::::t   r::::rrr:::::::::r  a::::::::::::aV:::::V         V:::::V i:::::i   ss::::::::::s  i:::::i  oo:::::::::::oo n:::nn::::::::nn  ')
-	print('^9  E::::::EEEEEEEEEE     x:::::x  x:::::x  t:::::::::::::::::t   r:::::::::::::::::r aaaaaaaaa:::::aV:::::V       V:::::V   i::::i ss:::::::::::::s  i::::i o:::::::::::::::on::::::::::::::nn ')
-	print('^9  E:::::::::::::::E      x:::::xx:::::x   tttttt:::::::tttttt   rr::::::rrrrr::::::r         a::::a V:::::V     V:::::V    i::::i s::::::ssss:::::s i::::i o:::::ooooo:::::onn:::::::::::::::n')
-	print('^9  E:::::::::::::::E       x::::::::::x          t:::::t          r:::::r     r:::::r  aaaaaaa:::::a  V:::::V   V:::::V     i::::i  s:::::s  ssssss  i::::i o::::o     o::::o  n:::::nnnn:::::n')
-	print('^9  E::::::EEEEEEEEEE        x::::::::x           t:::::t          r:::::r     rrrrrrraa::::::::::::a   V:::::V V:::::V      i::::i    s::::::s       i::::i o::::o     o::::o  n::::n    n::::n')
-	print('^9  E:::::E                  x::::::::x           t:::::t          r:::::r           a::::aaaa::::::a    V:::::V:::::V       i::::i       s::::::s    i::::i o::::o     o::::o  n::::n    n::::n')
-	print('^9  E:::::E       EEEEEE    x::::::::::x          t:::::t    ttttttr:::::r          a::::a    a:::::a     V:::::::::V        i::::i ssssss   s:::::s  i::::i o::::o     o::::o  n::::n    n::::n')
-	print('^9EE::::::EEEEEEEE:::::E   x:::::xx:::::x         t::::::tttt:::::tr:::::r          a::::a    a:::::a      V:::::::V        i::::::is:::::ssss::::::si::::::io:::::ooooo:::::o  n::::n    n::::n')
-	print('^9E::::::::::::::::::::E  x:::::x  x:::::x        tt::::::::::::::tr:::::r          a:::::aaaa::::::a       V:::::V         i::::::is::::::::::::::s i::::::io:::::::::::::::o  n::::n    n::::n')
-	print('^9E::::::::::::::::::::E x:::::x    x:::::x         tt:::::::::::ttr:::::r           a::::::::::aa:::a       V:::V          i::::::i s:::::::::::ss  i::::::i oo:::::::::::oo   n::::n    n::::n')
-	print('^9EEEEEEEEEEEEEEEEEEEEEExxxxxxx      xxxxxxx          ttttttttttt  rrrrrrr            aaaaaaaaaa  aaaa        VVV           iiiiiiii  sssssssssss    iiiiiiii   ooooooooooo     nnnnnn    nnnnnn^0')
-end)                                                                                                                                                                                      
-
 TriggerEvent("es:addGroup", "jobmaster", "user", function(group) end)
 
 ESX.StartDBSync()
 ESX.StartPayCheck()
+
+
+function sendToDiscord (name,message,color, webhook)  
+	local DiscordWebHook = webhook
+	local DISCORD_IMAGE	= "https://i.imgur.com/DZUmmWL.png"
+  
+  local embeds = {
+	  {
+		  ["title"]=message,
+		  ["type"]="rich",
+		  ["color"] =color,
+		  ["footer"]=  {
+			  ["text"]= "Discord Bot by Cedrick  Alegroso",
+			  ["icon_url"] = DISCORD_IMAGE,
+		 },
+	  }
+  }
+  
+	if message == nil or message == '' then return FALSE end
+	PerformHttpRequest(DiscordWebHook, function(err, text, headers) end, 'POST', json.encode({ username = name,embeds = embeds}), { ['Content-Type'] = 'application/json' })
+  end

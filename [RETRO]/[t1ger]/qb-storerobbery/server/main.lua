@@ -36,8 +36,10 @@ AddEventHandler('qb-storerobbery:server:takeMoney', function(register, isDone)
     local Player = ESX.GetPlayerFromId(src)
     local cakam = math.random(50, 100)
    -- Player.addMoney(cakam)
+
+   
     Player.addAccountMoney('black_money', cakam)
-    TriggerClientEvent('notification', source, cakam.. '$ Added' , 3)
+    TriggerClientEvent('notification', source, cakam.. '$ Dirty Money' , 3)
     if isDone then
         --if math.random(1, 100) <= 17 then
             local code = SafeCodes[Config.Registers[register].safeKey]
@@ -127,9 +129,11 @@ AddEventHandler('qb-storerobbery:server:SafeReward', function(safe)
     local src   = source
     local Player = ESX.GetPlayerFromId(src)
     local cakam2 = math.random(1000, 3000)
-    Player.addMoney(cakam2)
+  
+
+    Player.addAccountMoney('black_money', cakam2)
     TriggerClientEvent('SafeCracker:EndMinigameanim', src)
-    TriggerClientEvent('notification', source, cakam2.. ' Pesos' , 3)
+    TriggerClientEvent('notification', source, cakam2.. ' Dirty Money' , 3)
     local luck = math.random(1, 100)
     local odd = math.random(1, 100)
     if luck <= 10 then

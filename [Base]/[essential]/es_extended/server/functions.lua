@@ -148,20 +148,6 @@ ESX.GetPlayerFromIdentifier = function(identifier)
 	end
 end
 
-RegisterServerEvent("QBCore:Server:RemoveItem")
-AddEventHandler('QBCore:Server:RemoveItem', function(itemName, amount, slot)
-	local src = source
-	local xPlayer = ESX.GetPlayerFromId(src)
-	xPlayer.removeItem(itemName, amount, slot)
-end)
-
-RegisterServerEvent("QBCore:Server:AddItem")
-AddEventHandler('QBCore:Server:AddItem', function(itemName, amount, slot, info)
-	local src = source
-	local xPlayer = ESX.GetPlayerFromId(src)
-	xPlayer.addItem(itemName, amount, slot, info)
-end)
-
 ESX.RegisterUsableItem = function(item, cb)
 	ESX.UsableItemsCallbacks[item] = cb
 end
