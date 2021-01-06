@@ -31,77 +31,78 @@ Padlock.Open = function(data) {
     $(".combonum").removeClass("found");
     combo = [];
     $("#padlock").css("display", "block");
-    $.each(data.combination, function(i, combi){
+    $.each(data.combination, function(i, combi) {
         combo.push(combi);
     });
 }
 
 Padlock.Close = function() {
     $("#padlock").css("display", "none");
-    $.post('http://qb-storerobbery/PadLockClose');
+    $.post('http://hsn-hotwire/PadLockClose');
 }
 
 Keypad.Open = function(data) {
     CurrentType = "keypad"
     $("#keypad").css("display", "block");
-    $( "#keypad" ).html(
+    $("#keypad").html(
         "<form action='' method='' name='PINform' id='PINform' autocomplete='off' draggable='true'>" +
-            "<input id='PINbox' type='password' value='' name='PINbox' disabled />" +
-            "<br/>" +
-            "<input type='button' class='PINbutton' name='1' value='1' id='1' onClick=addKeyPadNumber(this); />" +
-            "<input type='button' class='PINbutton' name='2' value='2' id='2' onClick=addKeyPadNumber(this); />" +
-            "<input type='button' class='PINbutton' name='3' value='3' id='3' onClick=addKeyPadNumber(this); />" +
-            "<br>" +
-            "<input type='button' class='PINbutton' name='4' value='4' id='4' onClick=addKeyPadNumber(this); />" +
-            "<input type='button' class='PINbutton' name='5' value='5' id='5' onClick=addKeyPadNumber(this); />" +
-            "<input type='button' class='PINbutton' name='6' value='6' id='6' onClick=addKeyPadNumber(this); />" +
-            "<br>" +
-            "<input type='button' class='PINbutton' name='7' value='7' id='7' onClick=addKeyPadNumber(this); />" +
-            "<input type='button' class='PINbutton' name='8' value='8' id='8' onClick=addKeyPadNumber(this); />" +
-            "<input type='button' class='PINbutton' name='9' value='9' id='9' onClick=addKeyPadNumber(this); />" +
-            "<br>" +
-            "<input type='button' class='PINbutton clear' name='-' value='clear' id='-' onClick=clearForm(this); />" +
-            "<input type='button' class='PINbutton' name='0' value='0' id='0' onClick=addKeyPadNumber(this); />" +
-            "<input type='button' class='PINbutton enter' name='+' value='enter' id='+' onClick=submitForm(PINbox); />" +
+        "<input id='PINbox' type='password' value='' name='PINbox' disabled />" +
+        "<br/>" +
+        "<input type='button' class='PINbutton' name='1' value='1' id='1' onClick=addKeyPadNumber(this); />" +
+        "<input type='button' class='PINbutton' name='2' value='2' id='2' onClick=addKeyPadNumber(this); />" +
+        "<input type='button' class='PINbutton' name='3' value='3' id='3' onClick=addKeyPadNumber(this); />" +
+        "<br>" +
+        "<input type='button' class='PINbutton' name='4' value='4' id='4' onClick=addKeyPadNumber(this); />" +
+        "<input type='button' class='PINbutton' name='5' value='5' id='5' onClick=addKeyPadNumber(this); />" +
+        "<input type='button' class='PINbutton' name='6' value='6' id='6' onClick=addKeyPadNumber(this); />" +
+        "<br>" +
+        "<input type='button' class='PINbutton' name='7' value='7' id='7' onClick=addKeyPadNumber(this); />" +
+        "<input type='button' class='PINbutton' name='8' value='8' id='8' onClick=addKeyPadNumber(this); />" +
+        "<input type='button' class='PINbutton' name='9' value='9' id='9' onClick=addKeyPadNumber(this); />" +
+        "<br>" +
+        "<input type='button' class='PINbutton clear' name='-' value='clear' id='-' onClick=clearForm(this); />" +
+        "<input type='button' class='PINbutton' name='0' value='0' id='0' onClick=addKeyPadNumber(this); />" +
+        "<input type='button' class='PINbutton enter' name='+' value='enter' id='+' onClick=submitForm(PINbox); />" +
         "</form>"
     );
 }
 
 Keypad.Close = function(data) {
     $("#keypad").css("display", "none");
-    $.post('http://qb-storerobbery/PadLockClose');
+    $.post('http://hsn-hotwire/PadLockClose');
     if (data.error != null) {
-        $.post('http://qb-storerobbery/CombinationFail');
+        $.post('http://hsn-hotwire/CombinationFail');
     }
 }
 
-function addKeyPadNumber(e){
-	//document.getElementById('PINbox').value = document.getElementById('PINbox').value+element.value;
-    var v = $( "#PINbox" ).val();
+function addKeyPadNumber(e) {
+    //document.getElementById('PINbox').value = document.getElementById('PINbox').value+element.value;
+    var v = $("#PINbox").val();
     if (v.length < 4) {
-        $( "#PINbox" ).val( v + e.value );
+        $("#PINbox").val(v + e.value);
     }
 }
-function clearForm(e){
-	//document.getElementById('PINbox').value = "";
-	$( "#PINbox" ).val( "" );
+
+function clearForm(e) {
+    //document.getElementById('PINbox').value = "";
+    $("#PINbox").val("");
 }
 
 var CanConfirm = true;
 
 function submitForm(e) {
     $("#keypad").css("display", "none");
-    $.post("http://qb-storerobbery/TryCombination", JSON.stringify({
+    $.post("http://hsn-hotwire/TryCombination", JSON.stringify({
         combination: e.value,
     }));
 };
 
 Draggable.create(".dial", {
-    type:"rotation",
-    throwProps:true
+    type: "rotation",
+    throwProps: true
 });
 
-findCombo = function(comboArr){
+findCombo = function(comboArr) {
     let dial = $(".dial"),
         dialTrans = dial.css("transform"),
         ticks = 40,
@@ -121,32 +122,32 @@ findCombo = function(comboArr){
     // check numbers found, stop loop if at first number not found
     for (let i = 0; i < comboArr.length; ++i) {
         if (!$(".num" + (i + 1)).hasClass("found")) {
-        if (angle > (comboArr[i] - numOffset) * tickAngle &&
-            angle < (comboArr[i] + numOffset) * tickAngle) {
-            // make numbers green when found
-            $(".num" + (i + 1)).addClass("found");
-            // on unlock
-            $.post('http://qb-storerobbery/callcops');
-            if (i == comboArr.length - 1) {
-                // unlock :)
-                $.post('http://qb-storerobbery/PadLockSuccess');
-                Padlock.Close();
+            if (angle > (comboArr[i] - numOffset) * tickAngle &&
+                angle < (comboArr[i] + numOffset) * tickAngle) {
+                // make numbers green when found
+                $(".num" + (i + 1)).addClass("found");
+                // on unlock
+                $.post('http://hsn-hotwire/callcops');
+                if (i == comboArr.length - 1) {
+                    // unlock :)
+                    $.post('http://hsn-hotwire/PadLockSuccess');
+                    Padlock.Close();
+                }
             }
-        }
-        break;
+            break;
         }
     }
 };
 
-$(".dial").on("click",function(){
+$(".dial").on("click", function() {
     findCombo(combo);
 });
 // dial interaction (touch)
-$(".dial").on("touchend",function(){
+$(".dial").on("touchend", function() {
     findCombo(combo);
 });
 
-$(function () {
+$(function() {
 
     //pop vars
     pin = $('#pin');
@@ -155,7 +156,7 @@ $(function () {
 
     $('#wrap').hide();
 
-    window.addEventListener('message', function(event){
+    window.addEventListener('message', function(event) {
         var eventData = event.data;
 
         if (eventData.action == "ui") {
@@ -192,7 +193,7 @@ $(function () {
         }
     })
 
-    $('body').on('mousemove', function (e) {
+    $('body').on('mousemove', function(e) {
         if (lastMousePos && !gameOver && !gamePaused) {
             var pinRotChange = (e.clientX - lastMousePos) / mouseSmoothing;
             pinRot += pinRotChange;
@@ -203,38 +204,35 @@ $(function () {
         }
         lastMousePos = e.clientX;
     });
-    $('body').on('mouseleave', function (e) {
+    $('body').on('mouseleave', function(e) {
         lastMousePos = 0;
     });
 
-    $('body').on('keydown', function (e) {
+    $('body').on('keydown', function(e) {
         if ((e.keyCode == 87 || e.keyCode == 65 || e.keyCode == 83 || e.keyCode == 68 || e.keyCode == 37 || e.keyCode == 39) && !userPushingCyl && !gameOver && !gamePaused) {
             pushCyl();
         }
     });
 
-    $('body').on('keyup', function (e) {
+    $('body').on('keyup', function(e) {
         if ((e.keyCode == 87 || e.keyCode == 65 || e.keyCode == 83 || e.keyCode == 68 || e.keyCode == 37 || e.keyCode == 39) && !gameOver) {
             unpushCyl();
         }
     });
 
     //TOUCH HANDLERS
-    $('body').on('touchstart', function (e) {
-        if (!e.touchList) {
-        }
-        else if (e.touchList) {
-        }
+    $('body').on('touchstart', function(e) {
+        if (!e.touchList) {} else if (e.touchList) {}
     })
-    
-    document.onkeyup = function (data) {
-        if (data.which == 27 ) {
+
+    document.onkeyup = function(data) {
+        if (data.which == 27) {
             if (CurrentType == "keypad") {
                 Keypad.Close();
-            } else if(CurrentType == "padlock") {
+            } else if (CurrentType == "padlock") {
                 Padlock.Close();
             } else {
-                $.post('http://qb-storerobbery/exit');
+                $.post('http://hsn-hotwire/exit');
             }
         }
     };
@@ -255,15 +253,14 @@ function pushCyl() {
     cylRotationAllowance = Util.convertRanges(distFromSolve, 0, maxDistFromSolve, 1, 0.02); //oldval is distfromsolve, oldmin is....0? oldMax is maxDistFromSolve, newMin is 100 (we are at solve, so cyl may travel 100% of maxRot), newMax is 0 (we are at or beyond max dist from solve, so cyl may not travel at all - UPDATE - must give cyl just a teensy bit of travel so user isn't hammered);
     cylRotationAllowance = cylRotationAllowance * maxRot;
 
-    cylRotationInterval = setInterval(function () {
+    cylRotationInterval = setInterval(function() {
         cylRot += cylRotSpeed;
         if (cylRot >= maxRot) {
             cylRot = maxRot;
             // do happy solvey stuff
             clearInterval(cylRotationInterval);
             unlock();
-        }
-        else if (cylRot >= cylRotationAllowance) {
+        } else if (cylRot >= cylRotationAllowance) {
             cylRot = cylRotationAllowance;
             // do sad pin-hurty stuff
             damagePin();
@@ -282,7 +279,7 @@ function unpushCyl() {
     userPushingCyl = false;
     //set an interval based on keyrepeat that will rotate the cyl backward, and if cyl is at or past origin, set to origin and stop.
     clearInterval(cylRotationInterval);
-    cylRotationInterval = setInterval(function () {
+    cylRotationInterval = setInterval(function() {
         cylRot -= cylRotSpeed;
         cylRot = Math.max(cylRot, 0);
         cyl.css({
@@ -339,7 +336,7 @@ function breakPin() {
         x: 200,
         y: 100,
         opacity: 0,
-        onComplete: function () {
+        onComplete: function() {
             if (numPins > 0) {
                 gamePaused = false;
                 reset();
@@ -380,15 +377,15 @@ function reset() {
 
 function outOfPins() {
     gameOver = true;
-    $.post('http://qb-storerobbery/fail');
-    setTimeout(function(){
+    $.post('http://hsn-hotwire/fail');
+    setTimeout(function() {
         reset()
     }, 250)
 }
 
 function unlock() {
     gameOver = true;
-    $.post('http://qb-storerobbery/success');
+    $.post('http://hsn-hotwire/success');
     solveDeg = (Math.random() * 180) - 90
     solvePadding = 4
     maxDistFromSolve = 45
@@ -399,9 +396,9 @@ function unlock() {
 
 //UTIL
 Util = {};
-Util.clamp = function (val, max, min) {
+Util.clamp = function(val, max, min) {
     return Math.min(Math.max(val, min), max);
 }
-Util.convertRanges = function (OldValue, OldMin, OldMax, NewMin, NewMax) {
+Util.convertRanges = function(OldValue, OldMin, OldMax, NewMin, NewMax) {
     return (((OldValue - OldMin) * (NewMax - NewMin)) / (OldMax - OldMin)) + NewMin
 }

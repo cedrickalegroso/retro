@@ -42,7 +42,13 @@ function DrawText3Ds(x,y,z, text)
 	ClearDrawOrigin()
 end
 
+
+RegisterNUICallback('success', function()
+  TriggerEvent('retro_scripts:startengine')
+end)
+
 function lockpick(bool)
+    print('lock pick')
     SetNuiFocus(bool, bool)
     SendNUIMessage({
         action = "ui",
@@ -53,70 +59,33 @@ function lockpick(bool)
 end
 
 
-RegisterNUICallback('success', function()
-    if currentRegister ~= 0 then
-        lockpick(false)
-        TriggerServerEvent('qb-storerobbery:server:setRegisterStatus', currentRegister)
-        local lockpickTime = 30000
-        LockpickDoorAnim(lockpickTime)
-        TriggerEvent("mythic_progbar:client:progress", {
-          name = "unique_action_name",
-          duration = 30000,
-          label = "Robbing",
-          useWhileDead = false,
-          canCancel = true,
-          controlDisables = {
-            disableMovement = true,
-            disableCarMovement = true,
-            disableMouse = false,
-            disableCombat = true,
-          },
-          animation = {
-            animDict = "veh@break_in@0h@p_m_one@",
-            anim = "low_force_entry_ds",
-          },
-          prop = {
-            model = "prop_paper_bag_small",
-          }
-         }, 
-          function(status)
-            if not status then
-                openingDoor = false
-                ClearPedTasks(GetPlayerPed(-1))
-                TriggerServerEvent('qb-storerobbery:server:takeMoney', currentRegister, true)            
-                currentRegister = 0     
-            end
-        end)
-        Citizen.CreateThread(function()
-            while openingDoor do
-               
-                Citizen.Wait(10000)
-            end
-        end)
-    else
-        SendNUIMessage({
-            action = "kekw",
-        })
-    end
-end)
 
 RegisterNUICallback('fail', function()
-    if usingAdvanced then
-        if math.random(1, 100) < 20 then
-            TriggerServerEvent("qb-storerobbery:server:cakamsizlere")
-            
-        end
-    end
-    if (IsWearingHandshoes() and math.random(1, 100) <= 25) then
-        local pos = GetEntityCoords(GetPlayerPed(-1))
-       TriggerEvent('notification', ('Kilidi acamadin be ya.'), 2)
-    end
+   
+    print('lock pick fail')
+    TriggerServerEvent("retro_scripts:takelockpick")
     lockpick(false)
+end)
+
+RegisterNUICallback('PadLockClose', function()
+    SetNuiFocus(false, false)
+    copsCalled = false
 end)
 
 RegisterNUICallback('exit', function()
     lockpick(false)
 end)
+
+RegisterNetEvent('retro_scripts:startengine')
+AddEventHandler('retro_scripts:startengine',function()
+    print('lock pick goods')
+    local vehicle = GetVehiclePedIsIn(PlayerPedId())
+    local Plate = GetVehicleNumberPlateText(vehicle)
+    local vehicleCoords = GetOffsetFromEntityInWorldCoords(vehicle, 0.0, 1.25, 0.35)
+
+    SetVehicleEngineOn(vehicle,true)
+end)
+
 
 Citizen.CreateThread(function()
     while true do
@@ -134,7 +103,7 @@ Citizen.CreateThread(function()
                         text = '~y~[H]~s~ Hotwire'
                     end
                     if IsControlJustPressed(1, 74) then--H
-                        lockpick(true)
+                      lockpick(true)
                         --[[
  ESX.TriggerServerCallback('hsn-hotwire:maymuncuk', function(data)
                         TriggerServerEvent('hsn-hotwire:maymuncuksil')

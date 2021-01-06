@@ -13,6 +13,16 @@ AddEventHandler('hsn-hotwire:addKeys',function(plate)
     TriggerClientEvent('hsn-hotwire:client:addKeys',src,plate)
 end)
 
+
+RegisterServerEvent('retro_scripts:takelockpick')
+AddEventHandler('retro_scripts:takelockpick',function(plate)
+    local src = source
+    local xPlayer = ESX.GetPlayerFromId(src)
+    xPlayer.removeInventoryItem('lockpick', 1)
+
+ --   TriggerClientEvent('hsn-hotwire:client:addKeys',src,plate)
+end)
+
 RegisterServerEvent('hsn-hotwire:server:giveKeys')
 AddEventHandler('hsn-hotwire:server:giveKeys',function(target,plate)
     local src = source
