@@ -131,7 +131,7 @@ ConfigAmbu.RemoveCashAfterRPDeath     = true
 ConfigAmbu.RemoveItemsAfterRPDeath    = true
 
 -- Let the player pay for respawning early, only if he can afford it.
-ConfigAmbu.EarlyRespawnFine           = false
+ConfigAmbu.EarlyRespawnFine           = true
 ConfigAmbu.EarlyRespawnFineAmount     = 20000
 
 ConfigAmbu.RespawnPoint = {coords = vector3(-444.88052368164,-366.28948974609,33.315761566162), heading = 48.5}

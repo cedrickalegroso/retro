@@ -5,6 +5,7 @@ Citizen.CreateThread(function()
 		-- These natives have to be called every frame.
 		SetPedDensityMultiplierThisFrame(0.1) -- set npc/ai peds density to 0
 		SetRandomVehicleDensityMultiplierThisFrame(0.1) -- set random vehicles (car scenarios / cars driving off from a parking spot etc.) to 0
+		SetParkedVehicleDensityMultiplierThisFrame(0.3)
 		SetScenarioPedDensityMultiplierThisFrame(0.0, 0.1) -- set random npc/ai peds or scenario peds to 0
 		SetGarbageTrucks(false) -- Stop garbage trucks from randomly spawning
 		SetRandomBoats(false) -- Stop random boats from spawning in the water.
@@ -21,13 +22,13 @@ Citizen.CreateThread(function()
 
             if GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1),false),-1) == GetPlayerPed(-1) then
                 SetVehicleDensityMultiplierThisFrame(0.1)
-                SetParkedVehicleDensityMultiplierThisFrame(0.1)
+                SetParkedVehicleDensityMultiplierThisFrame(0.3)
             else
                 SetVehicleDensityMultiplierThisFrame(0.1)
-                SetParkedVehicleDensityMultiplierThisFrame(0.1)
+                SetParkedVehicleDensityMultiplierThisFrame(0.3)
             end
         else
-          SetParkedVehicleDensityMultiplierThisFrame(0.1)
+          SetParkedVehicleDensityMultiplierThisFrame(0.2)
           SetVehicleDensityMultiplierThisFrame(0.1)
         end
 	end

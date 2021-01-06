@@ -180,6 +180,7 @@ function StartDistressSignal()
 			SetTextOutline()
 			BeginTextCommandDisplayText('STRING')
 			AddTextComponentSubstringPlayerName(_U('distress_send'))
+			
 			EndTextCommandDisplayText(0.175, 0.805)
 
 			if IsControlPressed(0, Keys['G']) then

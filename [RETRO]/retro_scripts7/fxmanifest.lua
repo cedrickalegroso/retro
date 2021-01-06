@@ -44,6 +44,8 @@ client_scripts {
   'locales/en.lua',
   'config.lua',
 
+  'cl_avr.lua',
+
    --ambu
    'esx_ambulancejob/client/job.lua',
   'esx_ambulancejob/client/main.lua',
