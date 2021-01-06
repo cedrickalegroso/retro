@@ -52,6 +52,7 @@ client_scripts {
   'config.lua',
 
   --'jsfour-idcard/client.lua',
+  'bleed.lua',
 
   'jsfour-licenseplate/client.lua',
 

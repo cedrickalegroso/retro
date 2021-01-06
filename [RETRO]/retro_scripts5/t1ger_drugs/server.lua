@@ -420,6 +420,44 @@ Citizen.CreateThread(function()
 	end
 end)
 
+RegisterServerEvent('retro_scripts:callpopo')
+AddEventHandler('retro_scripts:callpopo', function(i,j)
+
+	
+
+	TriggerEvent('isPriority')
+
+	Citizen.Wait(5000)
+
+
+	TriggerClientEvent('chat:addMessage', -1, {
+		template = '<div class="chat-message system"><b> 👮 RCPD : </b> ^1Ongoing Illegal Drug transport last seen at '..j..' ^3EMS AND MECHANIC STANDBY!  </div>',
+		args = { fal, msg }
+	})
+
+	Citizen.Wait(2500)
+
+	TriggerClientEvent('chat:addMessage', -1, {
+		template = '<div class="chat-message system"><b> 👮 RCPD : </b> ^1Ongoinh Illegal Drug transport last seen at '..j..' ^3EMS AND MECHANIC STANDBY!  </div>',
+		args = { fal, msg }
+	})
+
+	Citizen.Wait(2500)
+
+	TriggerClientEvent('chat:addMessage', -1, {
+		template = '<div class="chat-message system"><b> 👮 RCPD : </b> ^1Ongoing Illegal Drug transport last seen at '..j..' ^3EMS AND MECHANIC STANDBY!  </div>',
+		args = { fal, msg }
+	})
+
+	Citizen.Wait(2500)
+
+
+	TriggerClientEvent('chat:addMessage', -1, {
+		template = '<div class="chat-message system"><b> 👮 RCPD : </b> ^1Ongoing Illegal Drug transport last seen at '..j..' ^3EMS AND MECHANIC STANDBY!  </div>',
+		args = { fal, msg }
+	})
+end)
+
 RegisterServerEvent('t1ger_drugs:DrugJobInProgress')
 AddEventHandler('t1ger_drugs:DrugJobInProgress', function(targetCoords, streetName)
 	TriggerClientEvent('t1ger_drugs:outlawNotify', -1,string.format("^0Shots fired and ongoing grand theft auto at ^5%s^0",streetName))

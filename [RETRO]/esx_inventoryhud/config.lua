@@ -10,7 +10,7 @@ Config.OpenControl = 289 -- Key for opening inventory. Edit html/js/config.js to
 Config.OpenKey = 246 -- Key for opening trunk
 
 -- List of item names that will close ui when used
-Config.CloseUiItems = {"water", "bandage", "firstaid", "medkit", "cupcake", "hersheys", "chocolate", "hotdog", "taco", "orange", "chips", "headbag", "bread", "burger", "rccola", "pepsibp", "yakult", "cashregbypass", "safebypass", "fishingrod", "tuning_laptop", "binoculars", "gps", "joint", "cigarette", "cigar", "fixkit", "rollingpaper", "cocaine", "meth"}
+Config.CloseUiItems = { "drugItem","water", "bandage", "firstaid", "medkit", "cupcake", "hersheys", "chocolate", "hotdog", "taco", "orange", "chips", "headbag", "bread", "burger", "rccola", "pepsibp", "yakult", "cashregbypass", "safebypass", "fishingrod", "tuning_laptop", "binoculars", "gps", "joint", "cigarette", "cigar", "fixkit", "rollingpaper", "cocaine", "meth"}
 
 Config.ShopBlipID = 52
 Config.LiquorBlipID = 93

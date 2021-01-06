@@ -37,7 +37,7 @@ RegisterNetEvent('esx-br-rob-humane:currentlyrobbing')
 AddEventHandler('esx-br-rob-humane:currentlyrobbing', function(robb)
 	holdingup = true
 	bank = robb
-	secondsRemaining = 600
+	secondsRemaining = 10
 end)
 
 RegisterNetEvent('esx-br-rob-humane:killblip')

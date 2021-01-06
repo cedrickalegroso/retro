@@ -44,10 +44,23 @@ ESX.RegisterUsableItem('hydrocodone', function(source)
 	TriggerClientEvent("mythic_hospital:heal", source, "medkit")
 end)
 
+
+RegisterCommand("wew", function(source)
+
+	print('Use Morph')
+	local xPlayer = ESX.GetPlayerFromId(source)
+	print(xPlayer)
+	TriggerClientEvent("retro_scripts:notBleed", source)
+	TriggerClientEvent("mythic_hospital:client:RemoveBleed", source)
+    
+end)
+
 ESX.RegisterUsableItem('morphine', function(source)
+	print('Use Morph')
 	local xPlayer = ESX.GetPlayerFromId(source)
 	xPlayer.removeInventoryItem('morphine', 1)
-	TriggerClientEvent('mythic_hospital:items:morphine', source)
-	TriggerClientEvent("mythic_hospital:heal", source, "medkit")
+	TriggerClientEvent("retro_scripts:notBlee", source)
+--	TriggerClientEvent('mythic_hospital:items:morphine', source)
+--	TriggerClientEvent("mythic_hospital:heal", source, "medkit")
 end)
 

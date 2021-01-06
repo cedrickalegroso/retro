@@ -332,7 +332,7 @@ Config.ArmoredTruck =
 --HUMANE
 --
 
-Config.NumberOfCopsRequiredHumane = 8
+Config.NumberOfCopsRequiredHumane = 0
 
 BanksHumane = {
 	["humane_labs"] = {

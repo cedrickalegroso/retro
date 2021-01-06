@@ -326,11 +326,62 @@ RegisterNetEvent("t1ger_drugs:UsableItem")
 AddEventHandler("t1ger_drugs:UsableItem",function()
 	local player = PlayerPedId()
 	if IsPedInAnyVehicle(player) then
-		exports['progressBars']:startUI(4000, "CONNECTING USB TO DEVICE")
+		TriggerEvent("mythic_progbar:client:progress", {
+			name = "unique_action_name",
+			duration = 4000,
+			label = "CONNECTING USB TO DEVICE",
+			useWhileDead = false,
+			canCancel = false,
+			controlDisables = {
+				disableMovement = true,
+				disableCarMovement = true,
+				disableMouse = false,
+				disableCombat = true,
+			},
+			animation = {
+				animDict = "amb@world_human_stand_mobile@female@standing@call@enter",
+				anim = "enter",
+			},
+			prop = {
+				model = "prop_police_phone",
+			}
+		}, function(status)
+			if not status then
+				-- Do Something If Event Wasn't Cancelled
+			end
+		end)
+		--exports['progressBars']:startUI(, "CONNECTING USB TO DEVICE")
 	else
-		FreezeEntityPosition(player,true)
+		TriggerEvent("mythic_progbar:client:progress", {
+			name = "unique_action_name",
+			duration = 4000,
+			label = "CONNECTING USB TO DEVICE",
+			useWhileDead = false,
+			canCancel = false,
+			controlDisables = {
+				disableMovement = true,
+				disableCarMovement = true,
+				disableMouse = false,
+				disableCombat = true,
+			},
+			animation = {
+				animDict = "amb@world_human_stand_mobile@female@standing@call@enter",
+				anim = "enter",
+			},
+			prop = {
+				model = "prop_police_phone",
+			}
+		}, function(status)
+			if not status then
+				-- Do Something If Event Wasn't Cancelled
+			end
+		end)
+		--[[
+FreezeEntityPosition(player,true)
 		TaskStartScenarioInPlace(player, 'WORLD_HUMAN_STAND_MOBILE', 0, true)
 		exports['progressBars']:startUI(4000, "CONNECTING USB TO DEVICE")
+		]]--
+		
 	end
 	Citizen.Wait(4000)
 	ChooseDrugMenu()
@@ -746,13 +797,41 @@ function LockpickJobVan(selectedJob)
 	FreezeEntityPosition(playerPed, true)
 	TaskPlayAnimAdvanced(playerPed, animDict, animName, selectedJob.LockpickPos.x, selectedJob.LockpickPos.y, selectedJob.LockpickPos.z, 0.0, 0.0, selectedJob.LockpickHeading, 3.0, 1.0, -1, 31, 0, 0, 0 )
 
+	TriggerEvent("mythic_progbar:client:progress", {
+		name = "unique_action_name",
+		duration = 7500,
+		label = "LOCKPICKING VAN",
+		useWhileDead = false,
+		canCancel = false,
+		controlDisables = {
+			disableMovement = true,
+			disableCarMovement = true,
+			disableMouse = false,
+			disableCombat = true,
+		},
+		animation = {
+			animDict = "anim@veh@armordillo@rds@enter_exit",
+			anim = "d_force_entry",
+		},
+		prop = {
+			model = "prop_police_phone",
+		}
+	}, function(status)
+		if not status then
+			ClearPedTasks(playerPed)
+			FreezeEntityPosition(playerPed, false)
+			isVehicleLockPicked = true
+			SetVehicleDoorsLockedForAllPlayers(JobVan, false)
+		end
+	end)
+
+	--[[
 	exports['progressBars']:startUI(7500, "LOCKPICKING VAN")
 	Citizen.Wait(7500)
+	]]--
+
 	
-	ClearPedTasks(playerPed)
-	FreezeEntityPosition(playerPed, false)
-	isVehicleLockPicked = true
-	SetVehicleDoorsLockedForAllPlayers(JobVan, false)
+
 end
 
 -- Function for job blip in progress:

@@ -98,13 +98,13 @@ local hurtLevel = 0
 local limbNotifId = '1'
 local bleedNotifId = '2'
 
---[[
+
 RegisterNetEvent('mythic_hospital:client:UsePainKiller')
 AddEventHandler('mythic_hospital:client:UsePainKiller', function(tier)
    print("painkiller")
-   painkiller()
+   painkiller(5)
 end)
-]]
+
 RegisterNetEvent('mythic_hospital:heal')
 AddEventHandler('mythic_hospital:heal', function(itemName)
 	if itemName == 'medkit' then
