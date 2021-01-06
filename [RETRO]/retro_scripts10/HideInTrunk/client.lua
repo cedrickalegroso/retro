@@ -1,6 +1,16 @@
 local inTrunk = false
 
 ESX = nil
+
+
+
+Citizen.CreateThread(function()
+	while ESX == nil do
+		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+		Citizen.Wait(0)
+	end
+end)
+
 Citizen.CreateThread(function()
     while true do
         Wait(0)
@@ -44,8 +54,37 @@ Citizen.CreateThread(function()
     end
 end)   
 
+RegisterNetEvent('retro_scripts:hidetrunk')
+AddEventHandler('retro_scripts:hidetrunk', function(source)
+    print('called hide')
+   local vehicle = GetClosestVehicle(GetEntityCoords(PlayerPedId()), 10.0, 0, 70)
+        if DoesEntityExist(vehicle) then
+            local player = ESX.Game.GetClosestPlayer()
+            local playerPed = GetPlayerPed(player)
+            if DoesEntityExist(playerPed) then
+                if not IsEntityAttached(playerPed) or GetDistanceBetweenCoords(GetEntityCoords(playerPed), GetEntityCoords(PlayerPedId()), true) >= 5.0 then
+                    SetCarBootOpen(vehicle)
+                    Wait(350)
+                    AttachEntityToEntity(PlayerPedId(), vehicle, -1, 0.0, -2.2, 0.5, 0.0, 0.0, 0.0, false, false, false, false, 20, true)	
+                    loadDict('timetable@floyd@cryingonbed@base')
+                    TaskPlayAnim(PlayerPedId(), 'timetable@floyd@cryingonbed@base', 'base', 8.0, -8.0, -1, 1, 0, false, false, false)
+                    Wait(50)
+                    inTrunk = true
+
+                    Wait(1500)
+                    SetVehicleDoorShut(vehicle, 5)
+                else
+                    ESX.ShowNotification('Someone is already hiding in that vehicle!')
+                end
+            end
+        end
+
+end)
+
+
+--[[
 Citizen.CreateThread(function()
-	while ESX == nil do TriggerEvent('esx:getShRETROaredObjRETROect', function(obj) ESX = obj end) Wait(0) end
+	while ESX == nil do TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end) Wait(0) end
     while not NetworkIsSessionStarted() or ESX.GetPlayerData().job == nil do Wait(0) end
     while true do
         local vehicle = GetClosestVehicle(GetEntityCoords(PlayerPedId()), 10.0, 0, 70)
@@ -94,6 +133,9 @@ Citizen.CreateThread(function()
         Wait(0)
     end
 end)
+]]--
+
+
 
 loadDict = function(dict)
     while not HasAnimDictLoaded(dict) do Wait(0) RequestAnimDict(dict) end

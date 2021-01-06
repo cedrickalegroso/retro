@@ -212,7 +212,7 @@ AddEventHandler("mythic_hospital:items:morphine", function(item)
     exports['progressbar']:Progress({
         name = "firstaid_action",
         duration = 2000,
-        label = "Taking Morphine",
+        label = "Taking Oxy",
         useWhileDead = false,
         canCancel = true,
         controlDisables = {
@@ -234,7 +234,11 @@ AddEventHandler("mythic_hospital:items:morphine", function(item)
         },
     }, function(status)
         if not status then
-            TriggerEvent('mythic_hospital:client:UsePainKiller', 3)
+       --     TriggerEvent('mythic_hospital:client:UsePainKiller', 3)
+           TriggerEvent('mythic_hospital:client:RemoveBleed')
+           TriggerEvent('mythic_hospital:client:ResetLimbs')
+            TriggerEvent('retro_scripts:notBleed')
+            --RegisterNetEvent('retro_scripts:notBleed')
         end
     end)
 end)

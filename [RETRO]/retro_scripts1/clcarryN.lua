@@ -38,7 +38,8 @@ function OpenActionMenuInteraction(target)
 	local elements = {}
 	table.insert(elements, {label = ('Call EMS'), value = 'call1'})
 	table.insert(elements, {label = ('Call Mech'), value = 'call11'})
-    table.insert(elements, {label = ('Call Cops'), value = 'call2'})
+	table.insert(elements, {label = ('Call Cops'), value = 'call2'})
+	table.insert(elements, {label = ('Hide In Trunk'), value = 'hide'})
 	table.insert(elements, {label = ('Loot Dead Body'), value = 'loot'})
 	table.insert(elements, {label = ('PiggyBack'), value = 'piggyback'})
 	table.insert(elements, {label = ('Carry'), value = 'carry'})
@@ -89,6 +90,13 @@ function OpenActionMenuInteraction(target)
 				end
 				menu.close()
 			end
+
+			if data.current.value == 'hide' then
+			
+				ExecuteCommand('hideintrunk')
+
+			menu.close()
+		end
 		
 			if data.current.value == 'piggyback' then
 			

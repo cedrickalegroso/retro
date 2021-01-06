@@ -29,12 +29,12 @@ client_script {
 
  'cl_crossarm.lua',
 
- -- 'cl_disc.lua',
+ 'cl_crouch.lua',
 
   --crouch
-  'crouch/client/cor.lua',
-  'crouch/client/main.lua',
-  'crouch/client/stealthon.lua',
+ -- 'crouch/client/cor.lua',
+ -- 'crouch/client/main.lua',
+ -- 'crouch/client/stealthon.lua',
 
 
 

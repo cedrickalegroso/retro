@@ -12,6 +12,8 @@ RegisterNetEvent('esx_dmvschool:addLicense')
 AddEventHandler('esx_dmvschool:addLicense', function(type)
 	local _source = source
 
+	print('add license')
+
 	TriggerEvent('esx_license:addLicense', _source, type, function()
 		TriggerEvent('esx_license:getLicenses', _source, function(licenses)
 			TriggerClientEvent('esx_dmvschool:loadLicenses', _source, licenses)

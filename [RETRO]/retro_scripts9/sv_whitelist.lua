@@ -21,19 +21,23 @@ RegisterCommand("whitelistaccess", function(source)
 end)
 
 
-RegisterCommand("loadweapons", function(source)
+RegisterCommand("hideintrunk", function(source)
 
     local _source = source
     local xPlayer = ESX.GetPlayerFromId(_source)
 
-    print(xPlayer.getJob2().name)
+    --print(xPlayer.getJob2().name)
 
     
+    --print('testt hide')
 
    -- TriggerEvent('esx:restoreLoadout', source)
 
-    
+   TriggerClientEvent("retro_scripts:hidetrunk", source)
 end)
+
+    
+
 
 
 RegisterCommand("hpbedarrest", function(source)

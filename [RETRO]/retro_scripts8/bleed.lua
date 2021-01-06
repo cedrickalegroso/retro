@@ -1,10 +1,16 @@
+local takenoxy = false
+local alreadyTaken = false
+
 function setBleedingOn(ped)
     SetEntityHealth(ped,GetEntityHealth(ped)-2)
     if not effect then
    StartScreenEffect('Rampage', 0, true)
    effect = true
    end
-    ShakeGameplayCam("SMALL_EXPLOSION_SHAKE", 0.1)
+
+  
+
+   -- ShakeGameplayCam("SMALL_EXPLOSION_SHAKE", 0.1)
     InfoRanny("~r~You are bleeding!")
     SetPlayerHealthRechargeMultiplier(PlayerId(), 0.0)
     Wait(7000)
@@ -13,18 +19,35 @@ function setBleedingOn(ped)
  
  RegisterNetEvent('retro_scripts:notBleed')
 AddEventHandler('retro_scripts:notBleed', function(source, ped)
-    print('Stopping Bleed')
-    print(ped)
-    SetEntityHealth(ped, 139)
-    setBleedingOff(ped)
-    Citizen.Wait(100000)
+
+    if alreadyTaken == true then 
+      TriggerEvent('notification', ('Oxy is not stackable spamming wont do you any good'), 2)
+     -- exports['mythic_notify']:DoHudText('error', 'Oxy is not stackable spamming wont do you any good')
+     --TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'Oxy is not stackable spamming wont do you any good'})
+    else
+      TriggerEvent('notification', ('You have taken Oxy this will last for 1 Min'), 2)
+     -- exports['mythic_notify']:DoHudText('success', 'You have taken Oxy this will last for 1 Min')
+    -- TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = 'You have taken Oxy this will last for 1 Min. '})
+      print('Stopping Bleed')
+      print(ped)
+     -- SetEntityHealth(ped, 139)
+      setBleedingOff(ped)
+      takenoxy = true
+      alreadyTaken = true
+      effect = false
+    end
+
+   
+  
+    
 end)
 
 
  function setBleedingOff(ped)
     effect = false
+ --   SetEntityHealth(ped, 150)
     StopScreenEffect('Rampage')
-    SetPlayerHealthRechargeMultiplier(PlayerId(), 1.0)
+    SetPlayerHealthRechargeMultiplier(PlayerId(), 0.0)
  end
  
  local effect = false
@@ -35,12 +58,21 @@ end)
  local player = GetPlayerPed(-1)
  local Health = GetEntityHealth(player)
  
-  if Health <= 139  then
-     setBleedingOn(player)
- 
-  elseif Health > 140 then
-    setBleedingOff(player)
-  end
+ if takenoxy == true then
+   setBleedingOff(player)
+   Citizen.Wait(60000)
+   takenoxy = true
+   alreadyTaken = true
+ else 
+   if Health <= 139   then
+      setBleedingOn(player)
+  
+   elseif Health > 140 then
+     setBleedingOff(player)
+   end
+
+ end
+  
  end
  end)
   
