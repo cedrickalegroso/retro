@@ -33,7 +33,7 @@ AddEventHandler('esx:playerLoaded', function(xPlayer)
 	local job = data.job
 	local job2 = data.job2
 	SendNUIMessage({action = "updatePraca", praca = job.label.." - "..job.grade_label})
-	SendNUIMessage({action = "updatePraca", praca = job2.label.." - "..job2.grade_label})
+	SendNUIMessage({action = "updatePraca2", praca2 = job2.label.." - "..job2.grade_label})
 end)
 
 RegisterNetEvent('esx:setJob')
@@ -43,7 +43,7 @@ end)
 
 RegisterNetEvent('esx:setJob2')
 AddEventHandler('esx:setJob2', function(job2)
-	SendNUIMessage({action = "updatePraca", praca = job2.label.." - "..job2.grade_label})
+	SendNUIMessage({action = "updatePraca2", praca2 = job2.label.." - "..job2.grade_label})
 end)
 
 
@@ -143,28 +143,28 @@ function checkemscount(connectedPlayers)
 
 		players = players + 1
 
-		if v.job == 'ambulance' then
+		if v.job or v.job2  == 'ambulance' then
 			--print('add to ambu')
 			ems = ems + 1
-		elseif v.job == 'police' then
+		elseif v.job or v.job2 == 'police' then
 			police = police + 1
-		elseif v.job == 'taxi' then
+		elseif v.job or v.job2 == 'taxi' then
 			taxi = taxi + 1
-		elseif v.job == 'groove' then
+		elseif v.job or v.job2 == 'groove' then
 			groove = groove + 1
-		elseif v.job == 'taxi' then
+		elseif v.job or v.job2 == 'taxi' then
 			taxi = taxi + 1
-		elseif v.job == 'tamasakv2' then
+		elseif v.job or v.job2 == 'tamasakv2' then
 			tamasakv2 = tamasakv2 + 1
-		elseif v.job == 'guerrero' then
+		elseif v.job or v.job2 == 'guerrero' then
 			guerrero = guerrero + 1
-		elseif v.job == 'cuatro' then
+		elseif v.job or v.job2 == 'cuatro' then
 			cuatro = cuatro + 1
-		elseif v.job == 'government' then
+		elseif v.job or v.job2 == 'government' then
 			government = government + 1
-		elseif v.job == 'vermillion' then
+		elseif v.job or v.job2 == 'vermillion' then
 			vermillion = vermillion + 1
-		elseif v.job == 'thelost' then
+		elseif v.job or v.job2 == 'thelost' then
 			thelost = thelost + 1
 		end
 

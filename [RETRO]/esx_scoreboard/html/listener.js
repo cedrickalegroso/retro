@@ -7,6 +7,10 @@ $(function() {
             $('#praca').html(event.data.praca);
         }
 
+        if (event.data.action == "updatePraca2") {
+            $('#praca2').html(event.data.praca2);
+        }
+
         switch (event.data.action) {
             case 'toggle':
                 if (visable) {
@@ -51,7 +55,7 @@ $(function() {
 
                 $('#vermillion').html(jobs.vermillion);
 
-		$('#thelost').html(jobs.thelost);
+                $('#thelost').html(jobs.thelost);
 
                 $('#cuatro').html(jobs.cuatro);
 

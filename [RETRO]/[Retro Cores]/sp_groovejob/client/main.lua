@@ -81,7 +81,7 @@ AddEventHandler('retro_mechanic:updateBlip', function()
 	
 	-- Is the player a cop? In that case show all the blips for other cops
 	if PlayerData.job ~= nil and PlayerData.job.name == 'groove' then
-		ESX.TriggerServerCallback('esx_society:getOnlRETROinePlayers', function(players)
+		ESX.TriggerServerCallback('esx_society:getOnlinePlayers', function(players)
 			for i=1, #players, 1 do
 				if players[i].job.name == 'groove' then
 					local id = GetPlayerFromServerId(players[i].source)
@@ -119,7 +119,7 @@ end)
 -- SP © License | Discord : https://discord.gg/39mJqPU / https://discord.gg/3wwzfmf
 Citizen.CreateThread(function()
 	while ESX == nil do
-		TriggerEvent('esx:getShRETROaredObjRETROect', function(obj) ESX = obj end)
+		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 		Citizen.Wait(0)
 	end
 
@@ -385,7 +385,7 @@ function OpengrooveActionsMenu()
 		elseif data.current.value == 'get_stock' then
 			OpenGetStocksMenu()
 		elseif data.current.value == 'boss_actions' then
-			TriggerEvent('esx_society:openBosRETROsMenu', 'groove', function(data, menu)
+			TriggerEvent('esx_society:openBossMenu', 'groove', function(data, menu)
 				menu.close()
 			end, {wash = false})
 		end
@@ -530,7 +530,7 @@ function OpentestActionsMenu()
 		elseif data.current.value == 'get_stock' then
 			OpenGetStocksMenu()
 		elseif data.current.value == 'boss_actions' then
-			TriggerEvent('esx_society:openBosRETROsMenu', 'groove', function(data, menu)
+			TriggerEvent('esx_society:openBossMenu', 'groove', function(data, menu)
 				menu.close()
 			end, {wash = true})
 		end
@@ -634,7 +634,7 @@ function OpenMobilegrooveActionsMenu()
 		align    = 'left',
 		elements = {
 			{label = '📝 Billing',       value = 'billing'},
-		--	{label = '👨‍🏭 Call a Mechanic',       value = 'meca1'},					
+			{label = '👨‍🏭 Mechanic OTW chat',       value = 'meca1'},	
 			{label = '🔨 Hijack',        value = 'hijack_vehicle'},
 			{label = '🛠️ Bike/Truck Repair',        value = 'fix_vehicle'},
 			{label = '🔧 Car Repair',        value = 'fix_vehicle1'},	
@@ -651,7 +651,7 @@ function OpenMobilegrooveActionsMenu()
 				menu.close()
         end			
 			if data.current.value == 'meca1' then
-				TriggerEvent('knb:mech')	
+				Executecommand('rcmechotw')
 				menu.close()
         end	
 			if data.current.value == 'fix_wheel' then
@@ -674,7 +674,7 @@ function OpenMobilegrooveActionsMenu()
 					if closestPlayer == -1 or closestDistance > 3.0 then
 						ESX.ShowNotification(_U('no_players_near'))
 					else
-						TriggerServerEvent('esx_biRETROlling:sendBill', GetPlayerServerId(closestPlayer), 'society_groove', 'groove', amount)
+						TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(closestPlayer), 'society_groove', 'groove', amount)
 						ESX.ShowNotification(_U('billing_sent'))
 					end
 
@@ -1358,7 +1358,7 @@ Citizen.CreateThread(function()
 					if Config.EnableSocietyOwnedVehicles then
 
 						local vehicleProps = ESX.Game.GetVehicleProperties(CurrentActionData.vehicle)
-						TriggerServerEvent('esx_society:putVehicleRETROInGarage', 'groove', vehicleProps)
+						TriggerServerEvent('esx_society:putVehicleInGarage', 'groove', vehicleProps)
 
 					else
 

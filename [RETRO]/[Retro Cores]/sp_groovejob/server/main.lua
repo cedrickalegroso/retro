@@ -6,7 +6,7 @@ PlayersCrafting    = {}
 PlayersCrafting2   = {}
 PlayersCrafting3   = {}
 
-TriggerEvent('esx:getShRETROaredObjRETROect', function(obj) ESX = obj end)
+TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 -- SP © License | Discord : https://discord.gg/39mJqPU / https://discord.gg/3wwzfmf
 if Config.MaxInService ~= -1 then
   TriggerEvent('esx_service:activateService', 'groove', Config.MaxInService)

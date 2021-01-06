@@ -6,6 +6,7 @@ AddEventHandler('es:playerLoaded', function(source, _player)
 		accounts     = {},
 		inventory    = {},
 		job          = {},
+		job2         = {},
 		loadout      = {},
 		playerName   = GetPlayerName(_source),
 		lastPosition = nil
@@ -128,13 +129,15 @@ AddEventHandler('es:playerLoaded', function(source, _player)
 			-- Get job name, grade and last position
 			table.insert(tasks2, function(cb2)
 
-				MySQL.Async.fetchAll('SELECT job, job_grade, loadout, position FROM `users` WHERE `identifier` = @identifier', {
+				MySQL.Async.fetchAll('SELECT job, job_grade,  job2, job2_grade, loadout, position FROM `users` WHERE `identifier` = @identifier', {
 					['@identifier'] = player.getIdentifier()
 				}, function(result)
 					local job, grade = result[1].job, tostring(result[1].job_grade)
+					local job2, grade2 = result[1].job2, tostring(result[1].job2_grade)
 
-					if ESX.DoesJobExist(job, grade) then
+					if ESX.DoesJobExist(job, grade, job2, job2_grade) then
 						local jobObject, gradeObject = ESX.Jobs[job], ESX.Jobs[job].grades[grade]
+						local jobObject2, gradeObject2 = ESX.Jobs[job2], ESX.Jobs[job2].grades[grade2]
 
 						userData.job = {}
 
@@ -156,6 +159,30 @@ AddEventHandler('es:playerLoaded', function(source, _player)
 			
 						if gradeObject.skin_female ~= nil then
 							userData.job.skin_female = json.decode(gradeObject.skin_female)
+						end
+
+
+						
+						userData.job2 = {}
+
+						userData.job2.id    = jobObject2.id
+						userData.job2.name  = jobObject2.name
+						userData.job2.label = jobObject2.label
+
+						userData.job2.grade        = tonumber(grade2)
+						userData.job2.grade_name   = gradeObject2.name
+						userData.job2.grade_label  = gradeObject2.label
+						userData.job2.grade_salary = gradeObject2.salary
+
+						userData.job2.skin_male    = {}
+						userData.job2.skin_female  = {}
+
+						if gradeObject2.skin_male ~= nil then
+							userData.job2.skin_male = json.decode(gradeObject2.skin_male)
+						end
+			
+						if gradeObject2.skin_female ~= nil then
+							userData.job2.skin_female = json.decode(gradeObject2.skin_female)
 						end
 					else
 						print(('es_extended: %s had an unknown job [job: %s, grade: %s], setting as unemployed!'):format(player.getIdentifier(), job, grade))
@@ -204,7 +231,7 @@ AddEventHandler('es:playerLoaded', function(source, _player)
 
 		-- Run Tasks
 		Async.parallel(tasks, function(results)
-			local xPlayer = CreateExtendedPlayer(player, userData.accounts, userData.inventory, userData.job, userData.loadout, userData.playerName, userData.lastPosition)
+			local xPlayer = CreateExtendedPlayer(player, userData.accounts, userData.inventory, userData.job,   userData.job2, userData.loadout, userData.playerName, userData.lastPosition)
 
 			xPlayer.getMissingAccounts(function(missingAccounts)
 				if #missingAccounts > 0 then
@@ -229,6 +256,7 @@ AddEventHandler('es:playerLoaded', function(source, _player)
 					accounts     = xPlayer.getAccounts(),
 					inventory    = xPlayer.getInventory(),
 					job          = xPlayer.getJob(),
+					job2         = xPlayer.getJob2(),
 					loadout      = xPlayer.getLoadout(),
 					lastPosition = xPlayer.getLastPosition(),
 					money        = xPlayer.getMoney()
@@ -267,8 +295,8 @@ AddEventHandler('esx:updateLastPosition', function(position)
 	xPlayer.setLastPosition(position)
 end)
 
-RegisterServerEvent('esx:giRETROveInventoryItem')
-AddEventHandler('esx:giRETROveInventoryItem', function(target, type, itemName, itemCount)
+RegisterServerEvent('esx:giveInventoryItem')
+AddEventHandler('esx:giveInventoryItem', function(target, type, itemName, itemCount)
 	local _source = source
 
 	local sourceXPlayer = ESX.GetPlayerFromId(_source)
@@ -540,6 +568,7 @@ ESX.RegisterServerCallback('esx:getPlayerData', function(source, cb)
 		accounts     = xPlayer.getAccounts(),
 		inventory    = xPlayer.getInventory(),
 		job          = xPlayer.getJob(),
+		job2         = xPlayer.getJob2(),
 		loadout      = xPlayer.getLoadout(),
 		lastPosition = xPlayer.getLastPosition(),
 		money        = xPlayer.getMoney()
@@ -554,6 +583,7 @@ ESX.RegisterServerCallback('esx:getOtherPlayerData', function(source, cb, target
 		accounts     = xPlayer.getAccounts(),
 		inventory    = xPlayer.getInventory(),
 		job          = xPlayer.getJob(),
+		job2         = xPlayer.getJob2(),
 		loadout      = xPlayer.getLoadout(),
 		lastPosition = xPlayer.getLastPosition(),
 		money        = xPlayer.getMoney()

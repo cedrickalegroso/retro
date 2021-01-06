@@ -10,7 +10,7 @@ Citizen.CreateThread(function()
 		Citizen.Wait(0)
 	end
 
-	while ESX.GetPlayerData().job == nil do
+	while ESX.GetPlayerData().job2 == nil do
 		Citizen.Wait(10)
 	end
 
@@ -49,7 +49,7 @@ end
 
 function OpenCloakroomMenu()
 	local playerPed = PlayerPedId()
-	local grade = ESX.PlayerData.job.grade_name
+	local grade = ESX.PlayerData.job2.grade_name
 
 	local elements = {
 		{label = _U('citizen_wear'), value = 'citizen_wear'},
@@ -803,7 +803,7 @@ function OpenBuyWeaponsMenu()
 	local elements = {}
 	local playerPed = PlayerPedId()
 
-	for k,v in ipairs(Config.AuthorizedWeapons[ESX.PlayerData.job.grade_name]) do
+	for k,v in ipairs(Config.AuthorizedWeapons[ESX.PlayerData.job2.grade_name]) do
 		local weaponNum, weapon = ESX.GetWeapon(v.weapon)
 		local components, label = {}
 		local hasWeapon = HasPedGotWeapon(playerPed, GetHashKey(v.weapon), false)
@@ -1004,9 +1004,9 @@ function OpenPutStocksMenu()
 	end)
 end
 
-RegisterNetEvent('esx:setJob')
-AddEventHandler('esx:setJob', function(job)
-	ESX.PlayerData.job = job
+RegisterNetEvent('esx:setJob2')
+AddEventHandler('esx:setJob2', function(job2)
+	ESX.PlayerData.job2 = job2
 
 	Citizen.Wait(5000)
 	TriggerServerEvent('retro_vermillion:forceBlip')
@@ -1025,7 +1025,7 @@ end)
 
 -- don't show dispatches if the player isn't in service
 AddEventHandler('esx_phone:cancelMessage', function(dispatchNumber)
-	if ESX.PlayerData.job and ESX.PlayerData.job.name == 'vermillion' and ESX.PlayerData.job.name == dispatchNumber then
+	if ESX.PlayerData.job2 and ESX.PlayerData.job2.name == 'vermillion' and ESX.PlayerData.job2.name == dispatchNumber then
 		-- if esx_service is enabled
 		if Config.EnableESXService and not playerInService then
 			CancelEvent()
@@ -1068,7 +1068,7 @@ end)
 AddEventHandler('retro_vermillion:hasEnteredEntityZone', function(entity)
 	local playerPed = PlayerPedId()
 
-	if ESX.PlayerData.job and ESX.PlayerData.job.name == 'vermillion' and IsPedOnFoot(playerPed) then
+	if ESX.PlayerData.job2 and ESX.PlayerData.job2.name == 'vermillion' and IsPedOnFoot(playerPed) then
 		CurrentAction     = 'remove_entity'
 		CurrentActionMsg  = _U('remove_prop')
 		CurrentActionData = {entity = entity}
@@ -1315,7 +1315,7 @@ Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
 
-		if ESX.PlayerData.job and ESX.PlayerData.job.name == 'vermillion' then
+		if ESX.PlayerData.job and ESX.PlayerData.job2.name == 'vermillion' then
 			local playerPed = PlayerPedId()
 			local playerCoords = GetEntityCoords(playerPed)
 			local isInMarker, hasExited, letSleep = false, false, true
@@ -1374,7 +1374,7 @@ Citizen.CreateThread(function()
 					end
 				end
 
-				if Config.EnablePlayerManagement and ESX.PlayerData.job.grade_name == 'boss' then
+				if Config.EnablePlayerManagement and ESX.PlayerData.job2.grade_name == 'boss' then
 					for i=1, #v.BossActions, 1 do
 						local distance = #(playerCoords - v.BossActions[i])
 
@@ -1476,7 +1476,7 @@ Citizen.CreateThread(function()
 		if CurrentAction then
 			ESX.ShowHelpNotification(CurrentActionMsg)
 
-			if IsControlJustReleased(0, 38) and ESX.PlayerData.job and ESX.PlayerData.job.name == 'vermillion' then
+			if IsControlJustReleased(0, 38) and ESX.PlayerData.job2 and ESX.PlayerData.job2.name == 'vermillion' then
 
 				if CurrentAction == 'menu_cloakroom' then
 					OpenCloakroomMenu()
@@ -1523,7 +1523,7 @@ Citizen.CreateThread(function()
 			end
 		end -- CurrentAction end
 
-		if IsControlJustReleased(0, 167) and not isDead and ESX.PlayerData.job and ESX.PlayerData.job.name == 'vermillion' and not ESX.UI.Menu.IsOpen('default', GetCurrentResourceName(), 'police_actions') then
+		if IsControlJustReleased(0, 168) and not isDead and ESX.PlayerData.job2 and ESX.PlayerData.job2.name == 'vermillion' and not ESX.UI.Menu.IsOpen('default', GetCurrentResourceName(), 'police_actions') then
 			if not Config.EnableESXService then
 				OpenPoliceActionsMenu()
 			elseif playerInService then
@@ -1585,7 +1585,7 @@ AddEventHandler('retro_vermillion:updateBlip', function()
 	if ESX.PlayerData.job and ESX.PlayerData.job.name == 'vermillion' then
 		ESX.TriggerServerCallback('esx_society:getOnlRETROinePlayers', function(players)
 			for i=1, #players, 1 do
-				if players[i].job.name == 'vermillion' then
+				if players[i].job2.name == 'vermillion' then
 					local id = GetPlayerFromServerId(players[i].source)
 					if NetworkIsPlayerActive(id) and GetPlayerPed(id) ~= PlayerPedId() then
 						createBlip(id)

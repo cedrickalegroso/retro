@@ -23,9 +23,14 @@ end)
 
 RegisterCommand("loadweapons", function(source)
 
-    print('take loadouts')
+    local _source = source
+    local xPlayer = ESX.GetPlayerFromId(_source)
 
-    TriggerEvent('esx:restoreLoadout', source)
+    print(xPlayer.getJob2().name)
+
+    
+
+   -- TriggerEvent('esx:restoreLoadout', source)
 
     
 end)

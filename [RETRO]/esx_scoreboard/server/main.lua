@@ -13,7 +13,7 @@ AddEventHandler('esx:setJob', function(playerId, job, lastJob)
 	TriggerClientEvent('esx_scoreboard:updateConnectedPlayers', -1, connectedPlayers)
 end)
 
-AddEventHandler('esx:setJob2', function(playerId, job2, lastJob)
+AddEventHandler('esx:setJob2', function(playerId, job2, lastJob2)
 	connectedPlayers[playerId].job = job2.name
 
 	TriggerClientEvent('esx_scoreboard:updateConnectedPlayers', -1, connectedPlayers)

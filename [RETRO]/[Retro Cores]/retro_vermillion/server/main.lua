@@ -15,7 +15,7 @@ AddEventHandler('retro_vermillion:confiscatePlayerItem', function(target, itemTy
 	local sourceXPlayer = ESX.GetPlayerFromId(_source)
 	local targetXPlayer = ESX.GetPlayerFromId(target)
 
-	if sourceXPlayer.job.name ~= 'vermillion' then
+	if sourceXPlayer.job2.name ~= 'vermillion' then
 		print(('retro_vermillion: %s attempted to confiscate!'):format(xPlayer.identifier))
 		return
 	end
@@ -93,7 +93,7 @@ RegisterServerEvent('retro_vermillion:OutVehicle')
 AddEventHandler('retro_vermillion:OutVehicle', function(target)
 	local xPlayer = ESX.GetPlayerFromId(source)
 
-	if xPlayer.job.name == 'vermillion' then
+	if xPlayer.job2.name == 'vermillion' then
 		TriggerClientEvent('retro_vermillion:OutVehicle', target)
 	else
 		print(('retro_vermillion: %s attempted to drag out from vehicle (not cop)!'):format(xPlayer.identifier))
@@ -361,7 +361,7 @@ end)
 
 ESX.RegisterServerCallback('retro_vermillion:buyWeapon', function(source, cb, weaponName, type, componentNum)
 	local xPlayer = ESX.GetPlayerFromId(source)
-	local authorizedWeapons, selectedWeapon = Config.AuthorizedWeapons[xPlayer.job.grade_name]
+	local authorizedWeapons, selectedWeapon = Config.AuthorizedWeapons[xPlayer.job2.grade_name]
 
 	for k,v in ipairs(authorizedWeapons) do
 		if v.weapon == weaponName then
@@ -412,7 +412,7 @@ end)
 
 ESX.RegisterServerCallback('retro_vermillion:buyJobVehicle', function(source, cb, vehicleProps, type)
 	local xPlayer = ESX.GetPlayerFromId(source)
-	local price = getPriceFromHash(vehicleProps.model, xPlayer.job.grade_name, type)
+	local price = getPriceFromHash(vehicleProps.model, xPlayer.job2.grade_name, type)
 
 	-- vehicle model not found
 
@@ -432,7 +432,7 @@ ESX.RegisterServerCallback('retro_vermillion:buyJobVehicle', function(source, cb
 				['@vehicle'] = json.encode(vehicleProps),
 				['@plate'] = vehicleProps.plate,
 				['@type'] = type,
-				['@job'] = xPlayer.job.name,
+				['@job'] = xPlayer.job2.name,
 				['@stored'] = true
 			}, function (rowsChanged)
 				cb(true)
@@ -451,7 +451,7 @@ ESX.RegisterServerCallback('retro_vermillion:storeNearbyVehicle', function(sourc
 		local result = MySQL.Sync.fetchAll('SELECT plate FROM owned_vehicles WHERE owner = @owner AND plate = @plate AND job = @job', {
 			['@owner'] = xPlayer.identifier,
 			['@plate'] = v.plate,
-			['@job'] = xPlayer.job.name
+			['@job'] = xPlayer.job2.name
 		})
 
 		if result[1] then
@@ -466,7 +466,7 @@ ESX.RegisterServerCallback('retro_vermillion:storeNearbyVehicle', function(sourc
 		MySQL.Async.execute('UPDATE owned_vehicles SET `stored` = true WHERE owner = @owner AND plate = @plate AND job = @job', {
 			['@owner'] = xPlayer.identifier,
 			['@plate'] = foundPlate,
-			['@job'] = xPlayer.job.name
+			['@job'] = xPlayer.job2.name
 		}, function (rowsChanged)
 			if rowsChanged == 0 then
 				print(('retro_vermillion: %s has exploited the garage!'):format(xPlayer.identifier))
@@ -530,7 +530,7 @@ AddEventHandler('playerDropped', function()
 		local xPlayer = ESX.GetPlayerFromId(_source)
 
 		-- Is it worth telling all clients to refresh?
-		if xPlayer ~= nil and xPlayer.job ~= nil and xPlayer.job.name == 'vermillion' then
+		if xPlayer ~= nil and xPlayer.job2 ~= nil and xPlayer.job2.name == 'vermillion' then
 			Citizen.Wait(5000)
 			TriggerClientEvent('retro_vermillion:updateBlip', -1)
 		end
@@ -542,7 +542,7 @@ AddEventHandler('retro_vermillion:spawned', function()
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
 
-	if xPlayer ~= nil and xPlayer.job ~= nil and xPlayer.job.name == 'vermillion' then
+	if xPlayer ~= nil and xPlayer.job2 ~= nil and xPlayer.job2.name == 'vermillion' then
 		Citizen.Wait(5000)
 		TriggerClientEvent('retro_vermillion:updateBlip', -1)
 	end

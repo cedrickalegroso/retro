@@ -55,12 +55,12 @@ RegisterCommand("wew", function(source)
     
 end)
 
-ESX.RegisterUsableItem('morphine', function(source)
-	print('Use Morph')
+ESX.RegisterUsableItem('oxy', function(source)
+	--print('Use oxy')
 	local xPlayer = ESX.GetPlayerFromId(source)
-	xPlayer.removeInventoryItem('morphine', 1)
+	xPlayer.removeInventoryItem('oxy', 1)
 	TriggerClientEvent("retro_scripts:notBlee", source)
---	TriggerClientEvent('mythic_hospital:items:morphine', source)
---	TriggerClientEvent("mythic_hospital:heal", source, "medkit")
+	TriggerClientEvent('mythic_hospital:items:morphine', source)
+	TriggerClientEvent("mythic_hospital:heal", source, "medkit")
 end)
 

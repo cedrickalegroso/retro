@@ -52,6 +52,22 @@ AddEventHandler('esx:playerLoaded', function(xPlayer)
 			grade_label = xPlayer.job.grade_label
 		})
 
+		local job2Tpl = '<div>{{job2_label}} - {{grade2_label}}</div>'
+	
+		if xPlayer.job2.grade_label == '' then
+		job2Tpl = '<div>{{job2_label}}</div>'
+		end
+		
+	  ESX.UI.HUD.RegisterElement('job2', #xPlayer.accounts, 0, job2Tpl, {
+		job2_label   = '',
+		grade2_label = ''
+	  })
+	   
+	  ESX.UI.HUD.UpdateElement('job2', {
+		job2_label   = xPlayer.job2.label,
+		grade2_label = xPlayer.job2.grade_label
+	  })
+
 	else
 		TriggerEvent('es:setMoneyDisplay', 0.0)
 	end
@@ -204,6 +220,12 @@ AddEventHandler('esx:setJob', function(job)
 	ESX.PlayerData.job = job
 end)
 
+RegisterNetEvent('esx:setJob2')
+AddEventHandler('esx:setJob2', function(job2)
+  ESX.PlayerData.job2 = job2
+end)
+
+
 RegisterNetEvent('esx:addWeapon')
 AddEventHandler('esx:addWeapon', function(weaponName, ammo)
 	local playerPed  = PlayerPedId()
@@ -273,6 +295,14 @@ AddEventHandler('esx:setJob', function(job)
 			grade_label = job.grade_label
 		})
 	end
+end)
+
+RegisterNetEvent('esx:setJob2')
+AddEventHandler('esx:setJob2', function(job2)
+  ESX.UI.HUD.UpdateElement('job2', {
+    job2_label   = job2.label,
+    grade2_label = job2.grade_label
+  })
 end)
 
 RegisterNetEvent('esx:loadIPL')

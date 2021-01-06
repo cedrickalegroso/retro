@@ -1,10 +1,11 @@
-function CreateExtendedPlayer(player, accounts, inventory, job, loadout, name, lastPosition)
+function CreateExtendedPlayer(player, accounts, inventory, job,job2, loadout, name, lastPosition)
 	local self = {}
 
 	self.player       = player
 	self.accounts     = accounts
 	self.inventory    = inventory
 	self.job          = job
+	self.job2         = job2
 	self.loadout      = loadout
 	self.name         = name
 	self.lastPosition = lastPosition
@@ -185,6 +186,11 @@ function CreateExtendedPlayer(player, accounts, inventory, job, loadout, name, l
 	self.getJob = function()
 		return self.job
 	end
+
+	    ---SECONDJOB INCLUDED
+		self.getJob2 = function()
+			return self.job2
+		end
 
 	self.getLoadout = function()
 		return self.loadout
@@ -376,6 +382,41 @@ function CreateExtendedPlayer(player, accounts, inventory, job, loadout, name, l
 
 			TriggerEvent('esx:setJob', self.source, self.job, lastJob)
 			TriggerClientEvent('esx:setJob', self.source, self.job)
+		else
+			print(('es_extended: ignoring setJob for %s due to job not found!'):format(self.source))
+		end
+	end
+
+	self.setJob2 = function(job2, grade2)
+		grade2 = tostring(grade2)
+		local lastJob2 = json.decode(json.encode(self.job2))
+
+		if ESX.DoesJobExist(job2, grade2) then
+			local jobObject, gradeObject = ESX.Jobs[job2], ESX.Jobs[job2].grades[grade2]
+
+			self.job2.id    = jobObject.id
+			self.job2.name  = jobObject.name
+			self.job2.label = jobObject.label
+
+			self.job2.grade        = tonumber(grade)
+			self.job2.grade_name   = gradeObject.name
+			self.job2.grade_label  = gradeObject.label
+			self.job2.grade_salary = gradeObject.salary
+
+			self.job2.skin_male    = {}
+			self.job2.skin_female  = {}
+
+			if gradeObject.skin_male ~= nil then
+				self.job2.skin_male = json.decode(gradeObject.skin_male)
+			end
+
+			if gradeObject.skin_female ~= nil then
+				self.job2.skin_female = json.decode(gradeObject.skin_female)
+			end
+
+			TriggerEvent("esx:setJob2", self.source, self.job2, lastJob2)
+			TriggerClientEvent("esx:setJob2", self.source, self.job2)
+		
 		else
 			print(('es_extended: ignoring setJob for %s due to job not found!'):format(self.source))
 		end

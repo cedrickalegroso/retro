@@ -9,7 +9,7 @@ Author 'Cedrick Alegroso'
 version '1.0.0'
 
 
---ui_page 'jsfour-idcard/html/index.html'
+ui_page 'jsfour-idcard/html/index.html'
 
 
 
@@ -21,9 +21,9 @@ server_scripts {
   'config.lua',
   'locales/en.lua',
 
-  --'jsfour-idcard/server.lua',
+  'jsfour-idcard/server.lua',
 
-  'jsfour-licenseplate/server.lua',
+ -- 'jsfour-licenseplate/server.lua',
 
   'esx_outlawalert/server/main.lua',
 
@@ -51,10 +51,10 @@ client_scripts {
   'locales/en.lua',
   'config.lua',
 
-  --'jsfour-idcard/client.lua',
+  'jsfour-idcard/client.lua',
   'bleed.lua',
 
-  'jsfour-licenseplate/client.lua',
+  --'jsfour-licenseplate/client.lua',
 
   'esx_outlawalert/client/main.lua',
 

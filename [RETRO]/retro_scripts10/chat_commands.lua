@@ -284,6 +284,48 @@ RegisterCommand('thelost', function(source, args, rawCommand)
 end, false)
 
 
+RegisterCommand('rcmech', function(source, args, rawCommand)
+    local src = source
+    local msg = rawCommand:sub(8)
+   -- local name = getIdentity(src)
+   local xPlayer = ESX.GetPlayerFromId(source)
+   local playerName =  xPlayer.name
+  
+ 
+   if  xPlayer.getJob().name == 'groove' then 
+
+    TriggerClientEvent('chat:addMessage', -1, {
+        template = '<div class="chat-message thelost"><b> &#128295;   RCMECH  '..playerName..': {1}. </div>',
+        args = { user, msg }
+    })
+
+   end
+
+ 
+end, false)
+
+RegisterCommand('rcmechotw', function(source, args, rawCommand)
+    local src = source
+    local msg = rawCommand:sub(8)
+   -- local name = getIdentity(src)
+   local xPlayer = ESX.GetPlayerFromId(source)
+   local playerName =  xPlayer.name
+  
+ 
+   if  xPlayer.getJob().name == 'groove' then 
+
+    TriggerClientEvent('chat:addMessage', -1, {
+        template = '<div class="chat-message thelost"><b> &#128295;   RCMECH  '..playerName..': RETRO CITY MECH IS ON THE WAY! </div>',
+        args = { user, msg }
+    })
+
+   end
+
+ 
+end, false)
+
+
+
 
 --[[ END OF POLICE COMMANDS ]]--
 
