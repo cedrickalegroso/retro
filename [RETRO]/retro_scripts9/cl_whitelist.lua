@@ -27,6 +27,16 @@ AddEventHandler('retro_scripts:initems', function(source)
     exports['mythic_notify']:DoHudText('inform', 'Whitelist Access for EMS activated')
 end)
 
+RegisterNetEvent("retro_scripts:fly")
+AddEventHandler('retro_scripts:fly', function(source)
+    local pP = GetPlayerPed(-1)
+    local coords    = GetEntityCoords(pP)
+
+    SetEntityCoords(PlayerPedId(pP), coords.x, coords.y, coords.z + 20, true, true, true, false)
+    ClearPedTasksImmediately(GetPlayerPed(-1))
+end)
+
+
 
 RegisterNetEvent("retro_scripts:initgroove")
 AddEventHandler('retro_scripts:initgroove', function(source)

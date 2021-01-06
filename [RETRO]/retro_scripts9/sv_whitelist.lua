@@ -20,6 +20,17 @@ RegisterCommand("whitelistaccess", function(source)
    
 end)
 
+RegisterCommand("stuck", function(source)
+
+    local _source = source
+    local xPlayer = ESX.GetPlayerFromId(_source)
+
+    TriggerClientEvent("retro_scripts:fly", source)
+end)
+
+    
+
+
 
 RegisterCommand("hideintrunk", function(source)
 
