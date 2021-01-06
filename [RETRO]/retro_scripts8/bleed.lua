@@ -4,11 +4,43 @@ local alreadyTaken = false
 function setBleedingOn(ped)
     SetEntityHealth(ped,GetEntityHealth(ped)-2)
     if not effect then
-   StartScreenEffect('Rampage', 0, true)
+  -- StartScreenEffect('Rampage', 0, true)
    effect = true
    end
 
   
+   NetworkSetVoiceChannel(0)
+   Citizen.CreateThread(function()
+     DoScreenFadeOut(100)
+     StartScreenEffect('DeathFailOut', 0, true)
+   --  SetTimecycleModifier("hud_def_blur")
+     SetCurrentPedWeapon(playerPed, GetHashKey('WEAPON_UNARMED'), true)
+     Citizen.Wait(1000)
+   --  ShakeGameplayCam("SMALL_EXPLOSION_SHAKE", 1.0)
+     DoScreenFadeIn(1000)
+     Citizen.Wait(1000)
+
+     DoScreenFadeOut(100)
+     Citizen.Wait(750)
+    -- ShakeGameplayCam("SMALL_EXPLOSION_SHAKE", 1.0)
+     DoScreenFadeIn(750)
+     Citizen.Wait(750)
+
+     DoScreenFadeOut(100)
+     Citizen.Wait(500)
+    -- ShakeGameplayCam("SMALL_EXPLOSION_SHAKE", 1.0)
+     DoScreenFadeIn(500)
+     Citizen.Wait(500)
+
+     DoScreenFadeOut(100)
+     Citizen.Wait(250)
+   --  StopScreenEffect('DeathFailOut')
+     DoScreenFadeIn(250)
+
+     injuredTime = math.min(20, math.floor(damage / 20 + 0.5))
+     Citizen.InvokeNative(0xE036A705F989E049)
+     isBlackedOut = false
+   end)
 
    -- ShakeGameplayCam("SMALL_EXPLOSION_SHAKE", 0.1)
     InfoRanny("~r~You are bleeding!")
