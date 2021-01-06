@@ -94,7 +94,18 @@ AddEventHandler('retro_scripts:startengine',function()
    
 end)
 
+RegisterNetEvent('retro_scripts:starthotwire')
+AddEventHandler('retro_scripts:starthotwire',function(source)
+    if IsPedInAnyVehicle(PlayerPedId(),false)  then
+        lockpick(true)
+    else 
+        TriggerEvent('notification', ('You need to get into a vehicle!'), 2)
+    end
+    
+end)
 
+
+--[[
 Citizen.CreateThread(function()
     while true do
         local wait = 1000
@@ -147,7 +158,7 @@ Citizen.CreateThread(function()
                             end
                         end)
                         end, "lockpick")
-                        ]]--
+                        
                        
                     end
                     if IsControlJustPressed(1, 20) then --Z
@@ -162,6 +173,8 @@ Citizen.CreateThread(function()
         Citizen.Wait(wait)  
     end
 end)
+]]--
+
 
 RegisterCommand('anahtarver', function()
     local vehicle = ESX.Game.GetVehicleInDirection()

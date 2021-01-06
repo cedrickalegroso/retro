@@ -222,6 +222,7 @@ function OpenCarMenu()
 	
 	local elements = {
 		{ label = Lang['your_keys'], value = "your_keys_btn" },
+		{ label = 'Hotwire Car', value = "hoty" },
 		{ label = Lang['veh_windows_menu'], value = "veh_window_menu" },
 		{ label = Lang['veh_door_menu'], value = "veh_door_menu" },
 		{ label = Lang['veh_engine_label'], value = "veh_eng_btn" },
@@ -243,7 +244,12 @@ function OpenCarMenu()
 		-- KEYS:
 		if (data.current.value == 'your_keys_btn') then
 			OwnedKeysActions()
+
 		
+		elseif (data.current.value == 'hoty') then
+		  ExecuteCommand('hotwirecar')
+		  ESX.UI.Menu.CloseAll()
+		  
 		-- WINDOWS:
 		elseif (data.current.value == 'veh_window_menu') then
 			local elements = {}
