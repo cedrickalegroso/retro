@@ -45,6 +45,7 @@ end
 
 RegisterNUICallback('success', function()
   TriggerEvent('retro_scripts:startengine')
+  lockpick(false)
 end)
 
 function lockpick(bool)
@@ -62,8 +63,9 @@ end
 
 RegisterNUICallback('fail', function()
    
-    print('lock pick fail')
+  --  print('lock pick fail')
     TriggerServerEvent("retro_scripts:takelockpick")
+  --TriggerEvent('retro_scripts:startengine')
     lockpick(false)
 end)
 
@@ -79,11 +81,17 @@ end)
 RegisterNetEvent('retro_scripts:startengine')
 AddEventHandler('retro_scripts:startengine',function()
     print('lock pick goods')
-    local vehicle = GetVehiclePedIsIn(PlayerPedId())
-    local Plate = GetVehicleNumberPlateText(vehicle)
-    local vehicleCoords = GetOffsetFromEntityInWorldCoords(vehicle, 0.0, 1.25, 0.35)
-
-    SetVehicleEngineOn(vehicle,true)
+   
+    if IsPedInAnyVehicle(PlayerPedId(),false)  then
+        local vehicle = GetVehiclePedIsIn(PlayerPedId())
+        print('veh '..vehicle)
+        local Plate = GetVehicleNumberPlateText(vehicle)
+        local vehicleCoords = GetOffsetFromEntityInWorldCoords(vehicle, 0.0, 1.25, 0.35)
+    
+        TriggerServerEvent('hsn-hotwire:addKeys',Plate)
+        SetVehicleEngineOn(vehicle,true)
+    end
+   
 end)
 
 
