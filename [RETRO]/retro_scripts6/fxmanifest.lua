@@ -41,6 +41,8 @@ client_script {
     --heli
     'heli/heli_client.lua',
 
+    'cl-vape.lua'
+
     --choppy
   ----  'Lenzh_chopshop/client/cl_main.lua',
 
@@ -68,6 +70,8 @@ server_script {
 
   --Em
   'Emergency/server.lua',
+
+  'sv-vape.lua',
 
   --hospital
   'esx_hospital/server.lua',

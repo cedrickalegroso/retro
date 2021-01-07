@@ -12,9 +12,9 @@ Citizen.CreateThread(function()
 end)
 
 AddEventHandler('esx_basicneeds:resetStatus', function()
-	TriggerEvent('esx_status:set', 'hunger', 1000000)
-	TriggerEvent('esx_status:set', 'thirst', 1000000)
-	TriggerEvent('esx_status:set', 'stress', 100000)
+	TriggerEvent('esx_status:set', 'hunger', 500000)
+	TriggerEvent('esx_status:set', 'thirst', 500000)
+	TriggerEvent('esx_status:set', 'stress', 0)
 end)
 
 RegisterNetEvent('esx_basicneeds:healPlayer')
@@ -22,8 +22,7 @@ AddEventHandler('esx_basicneeds:healPlayer', function()
 	-- restore hunger & thirst
 	TriggerEvent('esx_status:set', 'hunger', 1000000)
 	TriggerEvent('esx_status:set', 'thirst', 1000000)
-	TriggerEvent('esx_status:set', 'stress', 200000)
-
+	TriggerEvent('esx_status:set', 'stress', 0)
 
 	-- restore hp
 	local playerPed = PlayerPedId()
@@ -100,16 +99,27 @@ AddEventHandler('esx_status:loaded', function(status)
 			end
 
 			if stressVal >= 750000 then
+				DoScreenFadeOut(1000)
+				StartScreenEffect('DeathFailOut', 0, true)
+				DoScreenFadeIn(2000)
 				Citizen.Wait(3000)
-				---ShakeGameplayCam('LARGE_EXPLOSION_SHAKE', 0.16)
+				ShakeGameplayCam('LARGE_EXPLOSION_SHAKE', 0.20)
 			elseif stressVal >= 700000 then
+				DoScreenFadeOut(1000)
+				StartScreenEffect('DeathFailOut', 0, true)
+				DoScreenFadeIn(2000)
+				Citizen.Wait(3000)
 				Citizen.Wait(4000)
-				--ShakeGameplayCam('LARGE_EXPLOSION_SHAKE', 0.12)
+				ShakeGameplayCam('LARGE_EXPLOSION_SHAKE', 0.12)
 			elseif stressVal >= 600000 then
 				Citizen.Wait(5000)
-				--ShakeGameplayCam('LARGE_EXPLOSION_SHAKE', 0.07)
+				ShakeGameplayCam('LARGE_EXPLOSION_SHAKE', 0.07)
 			elseif stressVal >= 350000 then
 				Citizen.Wait(6000)
+				ShakeGameplayCam('LARGE_EXPLOSION_SHAKE', 0.03)
+			elseif stressVal <= 350000 then
+				Citizen.Wait(6000)
+				StopScreenEffect('DeathFailOut', 0, true)
 				--ShakeGameplayCam('LARGE_EXPLOSION_SHAKE', 0.03)
 			end
 		end
@@ -123,53 +133,61 @@ end)
 
 RegisterNetEvent('esx_basicneeds:onEatPancakes')
 AddEventHandler('esx_basicneeds:onEatPancakes', function(prop_name)
-	if not IsAnimated then
-		IsAnimated = true
-
-		Citizen.CreateThread(function()
-			local playerPed = PlayerPedId()
-
-			TriggerEvent("mythic_progbar:client:progress", {
-				name = "unique_action_name",
-				duration = 500,
-				label = "Eating",
-				useWhileDead = false,
-				canCancel = true,
-				controlDisables = {
-					disableMovement = true,
-					disableCarMovement = true,
-					disableMouse = false,
-					disableCombat = true,
-				},
-				animation = {
-					animDict = "mp_player_inteat@burger",
-					anim = "mp_player_int_eat_burger_fp",
-				},
-				prop = {
-					model = "prop_paper_bag_small",
-				}
-			}, function(status)
-				if not status then
-					-- Do Something If Event Wasn't Cancelled
-				end
-			end)
-
-			--[[
-	ESX.Streaming.RequestAnimDict('mp_player_inteat@burger', function()
-				TaskPlayAnim(playerPed, 'mp_player_inteat@burger', 'mp_player_int_eat_burger_fp', 8.0, -8, -1, 49, 0, 0, 0, 0)
-                exports["taskbar"]:taskBar(8500, "Eating")
-				IsAnimated = false
-				ClearPedSecondaryTask(playerPed)
-			end)
-			]]--
+	TriggerEvent("mythic_progbar:client:progress", {
+		name = "unique_action_name",
+		duration = 5000,
+		label = "Eating Bread",
+		useWhileDead = false,
+		canCancel = true,
+		controlDisables = {
+			disableMovement = true,
+			disableCarMovement = true,
+			disableMouse = false,
+			disableCombat = true,
+		},
+		animation = {
+			animDict = "mp_player_inteat@burger",
+			anim = "mp_player_int_eat_burger_fp",
+		},
+		prop = {
+			model = "prop_paper_bag_small",
+		}
+	}, function(status)
+		if not status then
 		
-		end)
-
-	end
+		end
+	end)
 end)
 
 RegisterNetEvent('esx_basicneeds:onEat')
 AddEventHandler('esx_basicneeds:onEat', function(prop_name)
+
+	TriggerEvent("mythic_progbar:client:progress", {
+		name = "unique_action_name",
+		duration = 5000,
+		label = "Eating Bread",
+		useWhileDead = false,
+		canCancel = true,
+		controlDisables = {
+			disableMovement = true,
+			disableCarMovement = true,
+			disableMouse = false,
+			disableCombat = true,
+		},
+		animation = {
+			animDict = "mp_player_inteat@burger",
+			anim = "mp_player_int_eat_burger_fp",
+		},
+		prop = {
+			model = "prop_cs_burger_01",
+		}
+	}, function(status)
+		if not status then
+		
+		end
+	end)
+
+	--[[
 	if not IsAnimated then
 		prop_name = prop_name or 'prop_cs_burger_01'
 		IsAnimated = true
@@ -191,16 +209,19 @@ AddEventHandler('esx_basicneeds:onEat', function(prop_name)
 		end)
 
 	end
+	]]--
+
 end)
 
 RegisterNetEvent('esx_basicneeds:onEatHotdog')
 AddEventHandler('esx_basicneeds:onEatHotdog', function()
-	if not IsAnimated then
-		prop_name = 'prop_cs_hotdog_01'
-		IsAnimated = true
 
 	
 		--[[
+				if not IsAnimated then
+		prop_name = 'prop_cs_hotdog_01'
+		IsAnimated = true
+
 	local playerPed = PlayerPedId()
 			local x,y,z = table.unpack(GetEntityCoords(playerPed))
 			local prop = CreateObject(GetHashKey(prop_name), x, y, z + 0.2, true, true, true)
@@ -213,6 +234,7 @@ AddEventHandler('esx_basicneeds:onEatHotdog', function()
 				ClearPedSecondaryTask(playerPed)
 				DeleteObject(prop)
 			end)
+			end
 		]]--
 
 		TriggerEvent("mythic_progbar:client:progress", {
@@ -236,93 +258,73 @@ AddEventHandler('esx_basicneeds:onEatHotdog', function()
 			}
 		}, function(status)
 			if not status then
-				IsAnimated = false
-				ClearPedSecondaryTask(playerPed)
-				DeleteObject(prop)
+				
 			end
 		end)
 
-	end
+	
 end)
 
 RegisterNetEvent('esx_basicneeds:onEatChocolate')
 AddEventHandler('esx_basicneeds:onEatChocolate', function(prop_name)
-	if not IsAnimated then
-		prop_name = prop_name or 'prop_choc_ego'
-		IsAnimated = true
-
-		--[[
-	Citizen.CreateThread(function()
-			local playerPed = PlayerPedId()
-			local x,y,z = table.unpack(GetEntityCoords(playerPed))
-			local prop = CreateObject(GetHashKey(prop_name), x, y, z + 0.2, true, true, true)
-			local boneIndex = GetPedBoneIndex(playerPed, 18905)
-			AttachEntityToEntity(prop, playerPed, boneIndex, 0.12, 0.035, 0.009, -30.0, -240.0, -120.0, true, true, false, true, 1, true)
-
-			ESX.Streaming.RequestAnimDict('mp_player_inteat@burger', function()
-				TaskPlayAnim(playerPed, 'mp_player_inteat@burger', 'mp_player_int_eat_burger_fp', 8.0, -8, -1, 49, 0, 0, 0, 0)
-                exports["taskbar"]:taskBar(3000, "Eating")
-				IsAnimated = false
-				ClearPedSecondaryTask(playerPed)
-				DeleteObject(prop)
-			end)
-		end)
-		]]--
-
-		TriggerEvent("mythic_progbar:client:progress", {
-			name = "unique_action_name",
-			duration = 5000,
-			label = "Eating Chocolate",
-			useWhileDead = false,
-			canCancel = true,
-			controlDisables = {
-				disableMovement = true,
-				disableCarMovement = true,
-				disableMouse = false,
-				disableCombat = true,
-			},
-			animation = {
-				animDict = "mp_player_inteat@burger",
-				anim = "mp_player_int_eat_burger_fp",
-			},
-			prop = {
-				model = "prop_choc_ego",
-			}
-		}, function(status)
-			if not status then
-				IsAnimated = false
-				ClearPedSecondaryTask(playerPed)
-				DeleteObject(prop)
-			end
-		end)
+	TriggerEvent("mythic_progbar:client:progress", {
+		name = "unique_action_name",
+		duration = 5000,
+		label = "Eating Chocolate",
+		useWhileDead = false,
+		canCancel = true,
+		controlDisables = {
+			disableMovement = true,
+			disableCarMovement = true,
+			disableMouse = false,
+			disableCombat = true,
+		},
+		animation = {
+			animDict = "mp_player_inteat@burger",
+			anim = "mp_player_int_eat_burger_fp",
+		},
+		prop = {
+			model = "prop_choc_ego",
+		}
+	}, function(status)
+		if not status then
+			IsAnimated = false
+			ClearPedSecondaryTask(playerPed)
+			DeleteObject(prop)
+		end
+	end)
 	
-
-	end
 end)
 
 RegisterNetEvent('esx_basicneeds:onEatCandy')
 AddEventHandler('esx_basicneeds:onEatCandy', function(prop_name)
-	if not IsAnimated then
-		prop_name = prop_name or 'prop_candy_pqs'
-		IsAnimated = true
+	TriggerEvent("mythic_progbar:client:progress", {
+		name = "unique_action_name",
+		duration = 5000,
+		label = "Eating Candy",
+		useWhileDead = false,
+		canCancel = true,
+		controlDisables = {
+			disableMovement = true,
+			disableCarMovement = true,
+			disableMouse = false,
+			disableCombat = true,
+		},
+		animation = {
+			animDict = "mp_player_inteat@burger",
+			anim = "mp_player_int_eat_burger_fp",
+		},
+		prop = {
+			model = "prop_candy_pqs",
+		}
+	}, function(status)
+		if not status then
+			IsAnimated = false
+			ClearPedSecondaryTask(playerPed)
+			DeleteObject(prop)
+		end
+	end)
 
-		Citizen.CreateThread(function()
-			local playerPed = PlayerPedId()
-			local x,y,z = table.unpack(GetEntityCoords(playerPed))
-			local prop = CreateObject(GetHashKey(prop_name), x, y, z + 0.2, true, true, true)
-			local boneIndex = GetPedBoneIndex(playerPed, 18905)
-			AttachEntityToEntity(prop, playerPed, boneIndex, 0.12, 0.035, 0.009, -30.0, -240.0, -120.0, true, true, false, true, 1, true)
-
-			ESX.Streaming.RequestAnimDict('mp_player_inteat@burger', function()
-				TaskPlayAnim(playerPed, 'mp_player_inteat@burger', 'mp_player_int_eat_burger_fp', 8.0, -8, -1, 49, 0, 0, 0, 0)
-                exports["taskbar"]:taskBar(3000, "Eating Candy")
-				IsAnimated = false
-				ClearPedSecondaryTask(playerPed)
-				DeleteObject(prop)
-			end)
-		end)
-
-	end
 end)
 
 RegisterNetEvent('esx_basicneeds:onEatChips')
@@ -935,6 +937,91 @@ AddEventHandler('esx_basicneeds:onDrinkChampagne', function(prop_name)
 
 	end
 end)
+
+RegisterNetEvent('retro_scripts:takePill')
+AddEventHandler('retro_scripts:takePill', function()
+
+    TriggerEvent("mythic_progbar:client:progress", {
+        name = "unique_action_name",
+        duration = 2000,
+        label = "Taking Stress Tabs",
+        useWhileDead = false,
+        canCancel = true,
+        controlDisables = {
+            disableMovement = true,
+            disableCarMovement = true,
+            disableMouse = false,
+            disableCombat = true,
+        },
+        animation = {
+            animDict = "mp_suicide",
+            anim = "pill",
+        },
+        prop = {
+            model = "prop_cs_pills",
+        }
+    }, function(status)
+        if not status then
+              --     TriggerEvent('mythic_hospital:client:UsePainKiller', 3)
+           TriggerEvent('mythic_hospital:client:RemoveBleed')
+           TriggerEvent('mythic_hospital:client:ResetLimbs')
+          -- TriggerEvent('retro_scripts:notBleed')
+            --RegisterNetEvent('retro_scripts:notBleed')
+        end
+    end)
+end)
+
+RegisterNetEvent('retro_scripts:onCigSmoke')
+AddEventHandler('retro_scripts:onCigSmoke', function(prop_name)
+	
+
+		TriggerEvent("mythic_progbar:client:progress", {
+			name = "unique_action_name",
+			duration = 10000,
+			label = "Smoke Cig",
+			useWhileDead = false,
+			canCancel = true,
+			controlDisables = {
+				disableMovement = true,
+				disableCarMovement = true,
+				disableMouse = false,
+				disableCombat = true,
+			},
+			animation = {
+				animDict = "mp_suicide",
+				anim = "pill",
+			},
+			prop = {
+				model = "prop_cs_pills",
+			}
+		}, function(status)
+			if not status then
+			
+			end
+		end)
+
+		--[[
+	Citizen.CreateThread(function()
+			local playerPed = PlayerPedId()
+			local x,y,z = table.unpack(GetEntityCoords(playerPed))
+			local prop = CreateObject(GetHashKey(prop_name), x, y, z + 0.2, true, true, true)
+			local boneIndex = GetPedBoneIndex(playerPed, 28422)
+			AttachEntityToEntity(prop, playerPed, boneIndex, 0.008, -0.02, -0.3, 90.0, 270.0, 90.0, true, true, false, true, 1, true)
+
+			ESX.Streaming.RequestAnimDict('amb@code_human_wander_drinking@beer@male@base', function()
+				TaskPlayAnim(playerPed, 'amb@code_human_wander_drinking@beer@male@base', 'static', 1.0, -1.0, 2000, 0, 1, true, true, true)
+                exports["taskbar"]:taskBar(3000, "Drinking")
+				IsAnimated = false
+				ClearPedSecondaryTask(playerPed)
+				DeleteObject(prop)
+			end)
+		end)
+		]]--
+	
+
+	
+end)
+
 
 -- Cigarett 
 RegisterNetEvent('esx:playerLoaded')

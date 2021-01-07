@@ -8,17 +8,16 @@ commands = {}
 settings = {}
 settings.defaultSettings = {
 	['permissionDenied'] = GetConvar('es_permissionDenied', 'false'),
-	['startingCash'] = GetConvar('es_startingCash', '10000'),
-	['startingBank'] = GetConvar('es_startingBank', '10000'),
+	['startingCash'] = GetConvar('es_startingCash', '5000'),
+	['startingBank'] = GetConvar('es_startingBank', '5000'),
 	['enableRankDecorators'] = GetConvar('es_enableRankDecorators', 'false'),
-	['moneyIcon'] = GetConvar('es_moneyIcon', '<a href="https://imgur.com/1pkhIXC"><img src="https://i.imgur.com/1pkhIXC.png" title="source: imgur.com" /></a>'),
+	['moneyIcon'] = GetConvar('es_moneyIcon', '₪'),
 	['nativeMoneySystem'] = GetConvar('es_nativeMoneySystem', '0'),
 	['commandDelimeter'] = GetConvar('es_commandDelimeter', '/'),
 	['enableLogging'] = GetConvar('es_enableLogging', 'false'),
-	['enableCustomData'] = GetConvar('es_enableCustomData', 'false'),
-	['defaultDatabase'] = GetConvar('es_defaultDatabase', '1'),
-	['disableCommandHandler'] = GetConvar('es_disableCommandHandler', 'false'),
-	['identifierUsed'] = GetConvar('es_identifierUsed', 'steam')
+        ['enableCustomData'] = GetConvar('es_enableCustomData', '1'),
+        ['defaultDatabase'] = GetConvar('es_defaultDatabase', '0'),
+	['disableCommandHandler'] = GetConvar('es_disableCommandHandler', 'false')
 }
 settings.sessionSettings = {}
 commandSuggestions = {}

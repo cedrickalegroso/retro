@@ -26,11 +26,15 @@ function CreateStatus(name, default, color, visible, tickCallback)
 	end
 
 	self.add = function(val)
-		if self.val + val > Config.StatusMax then
+--		print(val)
+		
+if self.val + val > Config.StatusMax then
 			self.val = Config.StatusMax
 		else
 			self.val = self.val + val
 		end
+		
+		
 	end
 
 	self.remove = function(val)

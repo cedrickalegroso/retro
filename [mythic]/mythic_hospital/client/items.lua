@@ -209,36 +209,35 @@ end)
 
 RegisterNetEvent("mythic_hospital:items:morphine")
 AddEventHandler("mythic_hospital:items:morphine", function(item)
-    exports['progressbar']:Progress({
-        name = "firstaid_action",
+
+    TriggerEvent("mythic_progbar:client:progress", {
+        name = "unique_action_name",
         duration = 2000,
         label = "Taking Oxy",
         useWhileDead = false,
         canCancel = true,
         controlDisables = {
-            disableMovement = false,
-            disableCarMovement = false,
+            disableMovement = true,
+            disableCarMovement = true,
             disableMouse = false,
             disableCombat = true,
         },
         animation = {
             animDict = "mp_suicide",
             anim = "pill",
-            flags = 49,
         },
         prop = {
             model = "prop_cs_pills",
-            bone = 58866,
-            coords = { x = 0.1, y = 0.0, z = 0.001 },
-            rotation = { x = -60.0, y = 0.0, z = 0.0 },
-        },
+        }
     }, function(status)
         if not status then
-       --     TriggerEvent('mythic_hospital:client:UsePainKiller', 3)
+              --     TriggerEvent('mythic_hospital:client:UsePainKiller', 3)
            TriggerEvent('mythic_hospital:client:RemoveBleed')
            TriggerEvent('mythic_hospital:client:ResetLimbs')
-            TriggerEvent('retro_scripts:notBleed')
+           TriggerEvent('retro_scripts:notBleed')
             --RegisterNetEvent('retro_scripts:notBleed')
         end
     end)
+
+
 end)

@@ -110,6 +110,7 @@ ESX.RegisterServerCallback('esx_ambulancejob:removeItemsAfterRPDeath', function(
 		end
 	end
 
+
 	local playerLoadout = {}
 	if ConfigAmbu.RemoveWeaponsAfterRPDeath then
 		for i=1, #xPlayer.loadout, 1 do

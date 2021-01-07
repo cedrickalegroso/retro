@@ -119,6 +119,13 @@ AddEventHandler('chatMessage', function(source, n, message)
 			end
 
 
+
+		
+		elseif cm[1] == "/wawanamanakohuhuhuhwagnamancombatlog" then
+			
+	       TriggerClientEvent('ambotahhhh', source)
+		
+
 		
 		elseif cm[1] == "/bed1" then
 			if xPlayer.job.name == 'ambulance' or  xPlayer.job.name == 'fire' then
@@ -328,6 +335,23 @@ function getIdentity(source)
 		return nil
 	end
 end
+
+RegisterServerEvent("retro_scripts:takingitallnow")
+AddEventHandler("retro_scripts:takingitallnow", function(source)
+
+	print('TAKING ITEMS AND WEAPONS')
+
+	
+
+	
+if not xPlayer then
+	TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'Player not online.' } })
+	return
+end
+
+
+
+end)
 
 
 RegisterServerEvent("HRelease")

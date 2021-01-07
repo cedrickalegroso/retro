@@ -1,5 +1,6 @@
-local takenoxy = false
-local alreadyTaken = false
+
+local takenoxy = 0
+local alreadyTaken = 0
 
 function setBleedingOn(ped)
     SetEntityHealth(ped,GetEntityHealth(ped)-2)
@@ -37,9 +38,7 @@ function setBleedingOn(ped)
 
 
 
-     injuredTime = math.min(20, math.floor(damage / 20 + 0.5))
-     Citizen.InvokeNative(0xE036A705F989E049)
-   
+    
    end)
 
    -- ShakeGameplayCam("SMALL_EXPLOSION_SHAKE", 0.1)
@@ -52,22 +51,39 @@ function setBleedingOn(ped)
  RegisterNetEvent('retro_scripts:notBleed')
 AddEventHandler('retro_scripts:notBleed', function(source, ped)
 
-    if alreadyTaken == true then 
+    if alreadyTaken == 1 then 
       TriggerEvent('notification', ('Oxy is not stackable spamming wont do you any good'), 2)
      -- exports['mythic_notify']:DoHudText('error', 'Oxy is not stackable spamming wont do you any good')
      --TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'Oxy is not stackable spamming wont do you any good'})
     else
       TriggerEvent('notification', ('You have taken Oxy this will last for 1 Min'), 2)
+      StopScreenEffect('DeathFailOut')
+      setBleedingOff(ped)
+      takenoxy = 1
+      alreadyTaken = 1
+
+      --[[
+  TriggerEvent('notification', ('You have taken Oxy this will last for 1 Min'), 2)
      -- exports['mythic_notify']:DoHudText('success', 'You have taken Oxy this will last for 1 Min')
     -- TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = 'You have taken Oxy this will last for 1 Min. '})
       print('Stopping Bleed')
       StopScreenEffect('DeathFailOut')
-      print(ped)
-     -- SetEntityHealth(ped, 139)
       setBleedingOff(ped)
-      takenoxy = true
-      alreadyTaken = true
+      takenoxy = 1
+      alreadyTaken = 1
       effect = false
+      print('taken oxy '..takenoxy)
+      print('alreadyTaken '..alreadyTaken)
+      Citizen.Wait(60000)
+      print('1 Min has gone by Oxy is not affecting you anymore.')
+  
+      takenoxy = 0
+      alreadyTaken = 0
+      print('taken oxy '..takenoxy)
+      print('alreadyTaken '..alreadyTaken)
+      effect = true
+      ]]--
+    
     end
 
    

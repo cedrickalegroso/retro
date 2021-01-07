@@ -81,7 +81,10 @@ Config.Shops = {
 		--	{name = "WEAPON_MINISMG", ammo = 25},
         },
         Items = {
-            {name = 'bread'},
+			{name = 'bread'},
+			{name = 'stress'},
+			{name = 'cigarette'},
+			{name = 'vape'},
 			{name = 'rccola'},
 			{name = 'pepsibp'},
 			{name = 'yakult'},

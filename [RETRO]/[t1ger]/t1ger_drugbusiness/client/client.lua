@@ -149,8 +149,32 @@ Citizen.CreateThread(function()
 									while not HasAnimDictLoaded("timetable@jimmy@doorknock@") do
 										Citizen.Wait(10)
 									end
-									TaskPlayAnim(player, "timetable@jimmy@doorknock@", "knockdoor_idle", 8.0, 8.0, -1, 4, 0, 0, 0, 0 )    
-									exports['progressBars']:startUI(((Config.WaitTimeUntilRaid * 1000)), Lang['prog_bar_raid_door'])
+									TriggerEvent("mythic_progbar:client:progress", {
+										name = "unique_action_name",
+										duration = 2000,
+										label = "RAIDING DOOR",
+										useWhileDead = false,
+										canCancel = true,
+										controlDisables = {
+											disableMovement = true,
+											disableCarMovement = true,
+											disableMouse = false,
+											disableCombat = true,
+										},
+										animation = {
+											animDict = "timetable@jimmy@doorknock@",
+											anim = "knockdoor_idle",
+										},
+										prop = {
+											model = "",
+										}
+									}, function(status)
+										if not status then
+											-- Do Something If Event Wasn't Cancelled
+										end
+									end)
+									--TaskPlayAnim(player, "timetable@jimmy@doorknock@", "knockdoor_idle", 8.0, 8.0, -1, 4, 0, 0, 0, 0 )    
+									--exports['progressBars']:startUI(((Config.WaitTimeUntilRaid * 1000)), Lang['prog_bar_raid_door'])
 									Citizen.Wait((Config.WaitTimeUntilRaid * 1000))
 									Wait(150)
 									ClearPedTasks(player)
@@ -196,7 +220,7 @@ function GainAccessToLab(id,val)
 	FreezeEntityPosition(player, true)
 	TaskStartScenarioInPlace(player, 'WORLD_HUMAN_STAND_MOBILE', -1, true)
 	TriggerServerEvent('t1ger_drugbusiness:alertLabOwner', id, "player")
-	exports['progressBars']:startUI(((Config.WaitTimeUntilHack * 1000)), Lang['prog_bar_pre_hack'])
+	--exports['progressBars']:startUI(((Config.WaitTimeUntilHack * 1000)), Lang['prog_bar_pre_hack'])
 	Citizen.Wait((Config.WaitTimeUntilHack * 1000))
 	TriggerEvent("mhacking:show")
 	TriggerEvent("mhacking:start",Config.mHackingBlocks,Config.mHackingSeconds,hackingCallback)
@@ -332,7 +356,31 @@ function SpawnDrugLab(id,val)
     local player = GetPlayerPed(-1)
     local coords = GetEntityCoords(player)
     local shellPos = GetSafeSpawn(val.pos)
-    exports['progressBars']:startUI((2000), "ENTERING DRUG LAB")
+	--exports['progressBars']:startUI((2000), "ENTERING DRUG LAB")
+	TriggerEvent("mythic_progbar:client:progress", {
+        name = "unique_action_name",
+        duration = 2000,
+        label = "ENTERING DRUG LAB",
+        useWhileDead = false,
+        canCancel = true,
+        controlDisables = {
+            disableMovement = true,
+            disableCarMovement = true,
+            disableMouse = false,
+            disableCombat = true,
+        },
+        animation = {
+            animDict = "timetable@jimmy@doorknock@",
+            anim = "knockdoor_idle",
+        },
+        prop = {
+            model = "",
+        }
+    }, function(status)
+        if not status then
+            -- Do Something If Event Wasn't Cancelled
+        end
+    end)
     Citizen.Wait(2000)
     -- Spawning the shell:
     local prop = Config.DrugLabs[id].prop
@@ -413,7 +461,31 @@ function SpawnDrugLab(id,val)
 				if IsControlJustPressed(0, Config.KeyToLeaveLab) then
                     inDruglab = entry
                     local exit = Config.DrugLabs[id].pos
-                    exports['progressBars']:startUI((2000), "LEAVING DRUG LAB")
+					--exports['progressBars']:startUI((2000), "LEAVING DRUG LAB")
+					TriggerEvent("mythic_progbar:client:progress", {
+						name = "unique_action_name",
+						duration = 2000,
+						label = "LEAVING DRUG LAB",
+						useWhileDead = false,
+						canCancel = true,
+						controlDisables = {
+							disableMovement = true,
+							disableCarMovement = true,
+							disableMouse = false,
+							disableCombat = true,
+						},
+						animation = {
+							animDict = "timetable@jimmy@doorknock@",
+							anim = "knockdoor_idle",
+						},
+						prop = {
+							model = "",
+						}
+					}, function(status)
+						if not status then
+							-- Do Something If Event Wasn't Cancelled
+						end
+					end)
                     Citizen.Wait(2000)
                     DoScreenFadeOut(800)
                     while not IsScreenFadedOut() do
@@ -441,8 +513,33 @@ function OpenLaptopFunction(pos, heading, id, val)
 	while not HasAnimDictLoaded(animDict) do
 		Citizen.Wait(10)
 	end
-	TaskPlayAnimAdvanced(player, animDict, animName, pos[1], pos[2], pos[3], 0.0, 0.0, heading, 3.0, 1.0, -1, 30, 1.0, 0, 0 )
-	exports['progressBars']:startUI((2000), Lang['prog_bar_using_laptop'])
+--	TaskPlayAnimAdvanced(player, animDict, animName, pos[1], pos[2], pos[3], 0.0, 0.0, heading, 3.0, 1.0, -1, 30, 1.0, 0, 0 )
+	--exports['progressBars']:startUI((2000), Lang['prog_bar_using_laptop'])
+	TriggerEvent("mythic_progbar:client:progress", {
+		name = "unique_action_name",
+		duration = 2000,
+		label = "USING LAPTOP",
+		useWhileDead = false,
+		canCancel = true,
+		controlDisables = {
+			disableMovement = true,
+			disableCarMovement = true,
+			disableMouse = false,
+			disableCombat = true,
+		},
+		animation = {
+			animDict = "mp_fbi_heist",
+			anim = "loop",
+		},
+		prop = {
+			model = "",
+		}
+	}, function(status)
+		if not status then
+			-- Do Something If Event Wasn't Cancelled
+		end
+	end)
+
 	Citizen.Wait(2000)
 	if isCop then 
 		OpenPoliceSeizeMenu(id, val)
@@ -477,7 +574,31 @@ function RobDrugLabMenu(id, val)
 					function(data, menu)
 						if(data.current.value == 'ply_seize_stuff') then
 							menu.close()
-							exports['progressBars']:startUI(3000, Lang['prog_bar_transfer'])
+							--exports['progressBars']:startUI(3000, Lang['prog_bar_transfer'])
+							TriggerEvent("mythic_progbar:client:progress", {
+								name = "unique_action_name",
+								duration = 3000,
+								label = "USING LAPTOP",
+								useWhileDead = false,
+								canCancel = true,
+								controlDisables = {
+									disableMovement = true,
+									disableCarMovement = true,
+									disableMouse = false,
+									disableCombat = true,
+								},
+								animation = {
+									animDict = "mp_fbi_heist",
+									anim = "loop",
+								},
+								prop = {
+									model = "",
+								}
+							}, function(status)
+								if not status then
+									-- Do Something If Event Wasn't Cancelled
+								end
+							end)
 							TriggerServerEvent('t1ger_drugbusiness:robStockSupplies', id, plyLabID)
 							Wait(3000)
 							ShowNotifyESX(Lang['lab_robbery_done'])
@@ -518,7 +639,31 @@ function OpenPoliceSeizeMenu(id, val)
 					function(data, menu)
 						if(data.current.value == 'police_seize_stuff') then
 							menu.close()
-							exports['progressBars']:startUI(1500, Lang['prog_bar_transfer'])
+							--exports['progressBars']:startUI(1500, Lang['prog_bar_transfer'])
+							TriggerEvent("mythic_progbar:client:progress", {
+								name = "unique_action_name",
+								duration = 1500,
+								label = "TRANSEFERRING",
+								useWhileDead = false,
+								canCancel = true,
+								controlDisables = {
+									disableMovement = true,
+									disableCarMovement = true,
+									disableMouse = false,
+									disableCombat = true,
+								},
+								animation = {
+									animDict = "mp_fbi_heist",
+									anim = "loop",
+								},
+								prop = {
+									model = "",
+								}
+							}, function(status)
+								if not status then
+									-- Do Something If Event Wasn't Cancelled
+								end
+							end)
 							Wait(1500)
 							TriggerServerEvent('t1ger_drugbusiness:seizeStockSupplies', id)
 							inLaptop = false
@@ -703,7 +848,31 @@ function StockSellData()
 	local stockPrice = (Config.StockLevelPrice * stockLevel)
 	local stockValue = math.floor(stockPrice * multiplier)
 	
-	exports['progressBars']:startUI(1000, "Retrieving Data")
+	--exports['progressBars']:startUI(1000, "Retrieving Data")
+	TriggerEvent("mythic_progbar:client:progress", {
+		name = "unique_action_name",
+		duration = 1000,
+		label = "Retrieving Data",
+		useWhileDead = false,
+		canCancel = true,
+		controlDisables = {
+			disableMovement = true,
+			disableCarMovement = true,
+			disableMouse = false,
+			disableCombat = true,
+		},
+		animation = {
+			animDict = "mp_fbi_heist",
+			anim = "loop",
+		},
+		prop = {
+			model = "",
+		}
+	}, function(status)
+		if not status then
+			-- Do Something If Event Wasn't Cancelled
+		end
+	end)
 	Wait(1000)
 	OpenLaptopSellMenu(stockLevel, stockValue)
 end
@@ -1197,7 +1366,31 @@ function StealJobVehicle(val)
 	FreezeEntityPosition(player, true)
 	TaskPlayAnimAdvanced(player, animDict, animName, val.anim.pos[1], val.anim.pos[2], val.anim.pos[3], 0.0, 0.0, val.anim.h, 3.0, 1.0, -1, 31, 0, 0, 0 )
 
-	exports['progressBars']:startUI(5000, Lang['progbar_stealing'])
+	--exports['progressBars']:startUI(5000, Lang['progbar_stealing']).
+	TriggerEvent("mythic_progbar:client:progress", {
+		name = "unique_action_name",
+		duration = 1000,
+		label = "Stealing",
+		useWhileDead = false,
+		canCancel = true,
+		controlDisables = {
+			disableMovement = true,
+			disableCarMovement = true,
+			disableMouse = false,
+			disableCombat = true,
+		},
+		animation = {
+			animDict = "mp_fbi_heist",
+			anim = "loop",
+		},
+		prop = {
+			model = "",
+		}
+	}, function(status)
+		if not status then
+			-- Do Something If Event Wasn't Cancelled
+		end
+	end)
 	Citizen.Wait(5000)
 	
 	ClearPedTasks(player)

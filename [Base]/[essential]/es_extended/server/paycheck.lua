@@ -6,8 +6,8 @@ ESX.StartPayCheck = function()
 		for i=1, #xPlayers, 1 do
 			local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
 			local job     = xPlayer.job.grade_name
-			local job2     = xPlayer.job2.grade_name
 			local salary  = xPlayer.job.grade_salary
+			local job2     = xPlayer.job2.grade_name
 			local salary2  = xPlayer.job2.grade_salary
 
 
@@ -39,7 +39,6 @@ ESX.StartPayCheck = function()
 				end
 			end
 
-			
 			if salary2 > 0 then
 				if job2 == 'unemployed' then -- unemployed
 					xPlayer.addAccountMoney('bank', salary2)

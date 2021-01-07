@@ -36,6 +36,18 @@ AddEventHandler('retro_scripts:fly', function(source)
     ClearPedTasksImmediately(GetPlayerPed(-1))
 end)
 
+RegisterNetEvent("retro_scripts:combatlogpasir")
+AddEventHandler('retro_scripts:combatlogpasir', function(source)
+    local pP = GetPlayerPed(-1)
+    local coords    = GetEntityCoords(pP)
+    DoScreenFadeOut(2000)
+    SetEntityCoords(PlayerPedId(pP), -497.53268432617, -342.3623046875, 34.501720428467 , true, true, true, false)
+    ClearPedTasksImmediately(GetPlayerPed(-1))
+    DoScreenFadeIn(2000)
+end)
+
+
+
 
 
 RegisterNetEvent("retro_scripts:initgroove")

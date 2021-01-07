@@ -19,10 +19,8 @@ server_scripts {
 	'locales/sv.lua',
 	'locales/pl.lua',
 	'locales/cs.lua',
-
 	'config.lua',
 	'config.weapons.lua',
-
 	'server/common.lua',
 	'server/classes/player.lua',
 	'server/functions.lua',
@@ -48,7 +46,6 @@ client_scripts {
 
 	'config.lua',
 	'config.weapons.lua',
-
 	'client/common.lua',
 	'client/entityiter.lua',
 	'client/functions.lua',
@@ -80,7 +77,9 @@ files {
 
 	'html/fonts/pdown.ttf',
 	'html/fonts/bankgothic.ttf',
-
+	'html/fonts/FFF_Tusj.ttf',
+	'html/fonts/achtung-polizei.ttf',
+	
 	'html/img/accounts/bank.png',
 	'html/img/accounts/black_money.png'
 }
@@ -99,3 +98,4 @@ dependencies {
 	'esplugin_mysql',
 	'async'
 }
+

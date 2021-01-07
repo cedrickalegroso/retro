@@ -453,7 +453,11 @@ AddEventHandler('loaf_housing:spawnHouse', function(coords, furniture)
     local placed_furniture = {}
     for k, v in pairs(OwnedHouse['furniture']) do
         local model = GetHashKey(v['object'])
-        while not HasModelLoaded(model) do RequestModel(model) Wait(0) end
+        RequestModel(model)
+        while not HasModelLoaded(model) do
+            Citizen.Wait(10)
+        end
+      --  while not HasModelLoaded(model) do RequestModel(model) Wait(0) end
         local object = CreateObject(model, GetOffsetFromEntityInWorldCoords(house, vector3(v['offset'][1], v['offset'][2], v['offset'][3])), false, false, false)
         SetEntityHeading(object, v['heading'])
         FreezeEntityPosition(object, true)
@@ -465,6 +469,7 @@ AddEventHandler('loaf_housing:spawnHouse', function(coords, furniture)
     local storage = GetOffsetFromEntityInWorldCoords(house, ConfigLOAF.Offsets[prop]['storage'])
     TriggerServerEvent('loaf_housing:setInstanceCoords', exit, coords, prop, OwnedHouse['furniture'])
     DoScreenFadeOut(750)
+    Citizen.Wait(2000)
     while not IsScreenFadedOut() do Wait(0) end
     for i = 1, 25 do
         SetEntityCoords(PlayerPedId(), exit)
@@ -474,6 +479,7 @@ AddEventHandler('loaf_housing:spawnHouse', function(coords, furniture)
         SetEntityCoords(PlayerPedId(), exit)
         Wait(50)
     end
+    Citizen.Wait(2000)
     DoScreenFadeIn(1500)
     local in_house = true
     ClearPedWetness(PlayerPedId())

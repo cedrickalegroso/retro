@@ -1,5 +1,5 @@
 $(document).on('keydown', function() {
-    switch(event.keyCode) {
+    switch (event.keyCode) {
         case 27: // ESC
             //Inventory.Close();
             break;
@@ -24,7 +24,7 @@ var CurrentProx = 0;
     };
 
     EVHud.Show = function(data) {
-        if(data.type == "cash") {
+        if (data.type == "cash") {
             $(".money-cash").fadeIn(150);
             //$(".money-cash").css("display", "block");
             $("#cash").html(data.cash);
@@ -32,12 +32,12 @@ var CurrentProx = 0;
                 $(".money-cash").fadeOut(750);
             }, 3500)
         } //else if(data.type == "bank") {
-            // $(".money-bank").fadeIn(150);
-            // $(".money-bank").css("display", "block");
-            // $("#bank").html(data.bank);
-            // setTimeout(function() {
-            //     $(".money-bank").fadeOut(750);
-            // }, 3500)
+        // $(".money-bank").fadeIn(150);
+        // $(".money-bank").css("display", "block");
+        // $("#bank").html(data.bank);
+        // setTimeout(function() {
+        //     $(".money-bank").fadeOut(750);
+        // }, 3500)
         //}
     };
 
@@ -80,7 +80,7 @@ var CurrentProx = 0;
         $(".ui-foodbar").find('.ui-smallbarfill').css("height", data.hunger + "%");
         $(".ui-thirstbar").find('.ui-smallbarfill').css("height", data.thirst + "%");
         $(".ui-drunkbar").find('.ui-smallbarfill').css("height", data.drunk + "%");
-        $(".ui-bleedbar").find('.ui-smallbarfill').css("height", data.bleeding + "%");
+        $(".ui-bleedbar").find('.ui-smallbarfill').css("height", data.stress + "%");
 
         $('.time-text').html(data.time.hour + ':' + data.time.minute);
         $("#fuel-amount").html((data.fuel).toFixed(0));
@@ -125,14 +125,14 @@ var CurrentProx = 0;
 
     EVHud.SetTalkingState = function(data) {
         if (!data.IsTalking) {
-            $(".voice-block").animate({"background-color": "rgb(255, 255, 255)"}, 150);
+            $(".voice-block").animate({ "background-color": "rgb(255, 255, 255)" }, 150);
         } else {
-            $(".voice-block").animate({"background-color": "rgb(255, 50, 50)"}, 150);
+            $(".voice-block").animate({ "background-color": "rgb(255, 50, 50)" }, 150);
         }
     }
 
     EVHud.Update = function(data) {
-        if(data.type == "cash") {
+        if (data.type == "cash") {
             $(".money-cash").css("display", "block");
             $("#cash").html(data.cash);
             if (data.minus) {
@@ -178,7 +178,7 @@ var CurrentProx = 0;
 
     window.onload = function(e) {
         window.addEventListener('message', function(event) {
-            switch(event.data.action) {
+            switch (event.data.action) {
                 case "open":
                     EVHud.Open(event.data);
                     break;

@@ -1,4 +1,4 @@
-function CreateExtendedPlayer(player, accounts, inventory, job,job2, loadout, name, lastPosition)
+function CreateExtendedPlayer(player, accounts, inventory, job, job2, loadout, name, lastPosition)
 	local self = {}
 
 	self.player       = player
@@ -325,9 +325,8 @@ function CreateExtendedPlayer(player, accounts, inventory, job,job2, loadout, na
 		local item     = self.getInventoryItem(name)
 		local newCount = item.count + count
 		item.count     = newCount
-
-		TriggerEvent('esx:onAddInventoryItem', self.source, item, count)
 		TriggerClientEvent('esx:addInventoryItem', self.source, item, count)
+		TriggerEvent('esx:onAddInventoryItem', self.source, item, count)
 	end
 
 	self.removeInventoryItem = function(name, count)
@@ -348,6 +347,9 @@ function CreateExtendedPlayer(player, accounts, inventory, job,job2, loadout, na
 			TriggerEvent('esx:onRemoveInventoryItem', self.source, item, oldCount - item.count)
 			TriggerClientEvent('esx:removeInventoryItem', self.source, item, oldCount - item.count)
 		else
+			if currentWeight[source] == currentMaxWeight[source] or currentWeight[source] > currentMaxWeight[source] then
+				return
+			end
 			TriggerEvent('esx:onAddInventoryItem', self.source, item, item.count - oldCount)
 			TriggerClientEvent('esx:addInventoryItem', self.source, item, item.count - oldCount)
 		end
@@ -386,6 +388,7 @@ function CreateExtendedPlayer(player, accounts, inventory, job,job2, loadout, na
 			print(('es_extended: ignoring setJob for %s due to job not found!'):format(self.source))
 		end
 	end
+
 
 	self.setJob2 = function(job2, grade2)
 		grade2 = tostring(grade2)
@@ -523,6 +526,18 @@ function CreateExtendedPlayer(player, accounts, inventory, job,job2, loadout, na
 		end
 
 		return nil
+	end
+	
+	self.triggerEvent = function(eventName, ...)
+		TriggerClientEvent(eventName, self.source, ...)
+	end
+
+	self.showNotification = function(msg, flash, saveToBrief, hudColorIndex)
+		self.triggerEvent('esx:showNotification', msg, flash, saveToBrief, hudColorIndex)
+	end
+
+	self.showHelpNotification = function(msg, thisFrame, beep, duration)
+		self.triggerEvent('esx:showHelpNotification', msg, thisFrame, beep, duration)
 	end
 
 	return self

@@ -15,12 +15,7 @@ Keys = {
 AddEventHandler('playerSpawned', function()
 
 
-	HideHudComponentThisFrame(7) -- Area
-	HideHudComponentThisFrame(9) -- Street
-	HideHudComponentThisFrame(6) -- Vehicle
-	HideHudComponentThisFrame(3) -- SP Cash
-	HideHudComponentThisFrame(4) -- MP Cash
-	HideHudComponentThisFrame(13) -- Cash changes!
+
 end)
 
 
@@ -37,6 +32,13 @@ Citizen.CreateThread(function()
 
     ESX.PlayerData = ESX.GetPlayerData()
 
+    HideHudComponentThisFrame(7) -- Area
+	HideHudComponentThisFrame(9) -- Street
+	HideHudComponentThisFrame(6) -- Vehicle
+	HideHudComponentThisFrame(3) -- SP Cash
+	HideHudComponentThisFrame(4) -- MP Cash
+	HideHudComponentThisFrame(13) -- Cash changes!
+
     TriggerServerEvent("ev-hud:server:requestTable")
 end)
 
@@ -48,6 +50,7 @@ local cruiseOn = false
 local bleedingPercentage = 0
 local hunger = 100
 local thirst = 100
+local stress = 0
 local drunk = 0
 
 function CalculateTimeToDisplay()
@@ -89,6 +92,7 @@ Citizen.CreateThread(function()
                 armor = GetPedArmour(GetPlayerPed(-1)),
                 thirst = thirst,
                 hunger = hunger,
+                stress = stress,
                 drunk = drunk,
                 bleeding = bleedingPercentage,
                 direction = GetDirectionText(GetEntityHeading(GetPlayerPed(-1))),
@@ -188,9 +192,12 @@ Citizen.CreateThread(function()
 		TriggerEvent('esx_status:getStatus', 'hunger', function(h)
             TriggerEvent('esx_status:getStatus', 'thirst', function(t)
                 TriggerEvent('esx_status:getStatus', 'drunk', function(d)
+                    TriggerEvent('esx_status:getStatus', 'stress', function(w)
                     hunger = h.getPercent()
                     thirst = t.getPercent()
                     drunk = d.getPercent()
+                    stress = w.getPercent()
+                 end)
 				end)
 			end)
         end)
@@ -222,7 +229,7 @@ Citizen.CreateThread(function()
             TriggerEvent("ev-hud:client:UpdateDrivingMeters", true, math.floor(vehiclesKHM[plate]))
         end
 
-        if IsControlJustReleased(0, 47) and IsPedInAnyVehicle(PlayerPedId()) then
+        if IsControlJustReleased(0, 29) and IsPedInAnyVehicle(PlayerPedId()) then
             seatbeltOn = not seatbeltOn
              if not seatbeltOn then
                 TriggerEvent("seatbelt:client:ToggleSeatbelt",false)

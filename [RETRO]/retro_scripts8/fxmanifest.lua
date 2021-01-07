@@ -23,9 +23,11 @@ server_scripts {
 
   'jsfour-idcard/server.lua',
 
- -- 'jsfour-licenseplate/server.lua',
+ --'jsfour-licenseplate/server.lua',
 
   'esx_outlawalert/server/main.lua',
+
+  'sv_stress.lua',
 
 
   --'JAM_Pillbox/config.lua',
@@ -54,7 +56,7 @@ client_scripts {
   'jsfour-idcard/client.lua',
   'bleed.lua',
 
-  --'jsfour-licenseplate/client.lua',
+ -- 'jsfour-licenseplate/client.lua',
 
   'esx_outlawalert/client/main.lua',
 
@@ -75,7 +77,10 @@ client_scripts {
   'esx_bike/translations/en.lua',
   'esx_bike/translations/cz.lua',
   --'warmenu.lua',
-  'esx_bike/client.lua'
+  'esx_bike/client.lua',
+
+
+  'stress.lua'
  
   
 }

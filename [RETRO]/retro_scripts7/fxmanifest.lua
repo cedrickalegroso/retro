@@ -17,7 +17,7 @@ server_scripts {
   'locales/en.lua',
 
    --ambu
-   'esx_ambulancejob/server/main.lua',
+  'esx_ambulancejob/server/main.lua',
 
 
 
@@ -47,7 +47,7 @@ client_scripts {
   'cl_avr.lua',
 
    --ambu
-   'esx_ambulancejob/client/job.lua',
+ 'esx_ambulancejob/client/job.lua',
   'esx_ambulancejob/client/main.lua',
 
    --popo

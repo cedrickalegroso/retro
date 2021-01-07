@@ -15,7 +15,7 @@ RegisterServerEvent('giveIDCard')
 AddEventHandler('giveIDCard', function()
 	local xPlayer = ESX.GetPlayerFromId(source)
 
-	xPlayer.addInventoryItem('idcard', 1)
+--	xPlayer.addInventoryItem('idcard', 1)
 end)
 
 

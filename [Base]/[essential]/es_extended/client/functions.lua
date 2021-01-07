@@ -260,14 +260,6 @@ ESX.UI.Menu.IsOpen = function(type, namespace, name)
 	return ESX.UI.Menu.GetOpened(type, namespace, name) ~= nil
 end
 
-ESX.UI.ShowInventoryItemNotification = function(add, item, count)
-	SendNUIMessage({
-		action = 'inventoryNotification',
-		add    = add,
-		item   = item,
-		count  = count
-	})
-end
 
 ESX.Game.GetPedMugshot = function(ped)
 	local mugshot = RegisterPedheadshot(ped)
@@ -503,7 +495,7 @@ ESX.Game.GetClosestPlayer = function(coords)
 	for i=1, #players, 1 do
 		local target = GetPlayerPed(players[i])
 
-		if not usePlayerPed or (usePlayerPed and players[i] ~= playerId) then
+		if (not usePlayerPed or (usePlayerPed and players[i] ~= playerId)) and (IsEntityVisible(target)) then
 			local targetCoords = GetEntityCoords(target)
 			local distance     = GetDistanceBetweenCoords(targetCoords, coords.x, coords.y, coords.z, true)
 
@@ -1095,7 +1087,7 @@ ESX.ShowInventory = function()
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'inventory',
 	{
 		title    = _U('inventory'),
-		align    = 'bottom-right',
+		align    = 'top-left',
 		elements = elements,
 	}, function(data, menu)
 		menu.close()
@@ -1124,7 +1116,7 @@ ESX.ShowInventory = function()
 		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'inventory_item',
 		{
 			title    = data.current.label,
-			align    = 'bottom-right',
+			align    = 'top-left',
 			elements = elements,
 		}, function(data1, menu1)
 
@@ -1159,7 +1151,7 @@ ESX.ShowInventory = function()
 				ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'give_item_to',
 				{
 					title    = _U('give_to'),
-					align    = 'bottom-right',
+					align    = 'top-left',
 					elements = elements
 				}, function(data2, menu2)
 

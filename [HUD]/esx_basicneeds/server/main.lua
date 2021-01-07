@@ -8,8 +8,31 @@ ESX.RegisterUsableItem('bread', function(source)
 	xPlayer.removeInventoryItem('bread', 1)
 
 	TriggerClientEvent('esx_status:add', source, 'hunger', 500000)
+	TriggerClientEvent('esx_status:add', source, 'stress', 500000)
 	TriggerClientEvent('esx_basicneeds:onEat', source)
 	TriggerClientEvent('notification', source, _U('used_bread'))
+end)
+
+ESX.RegisterUsableItem('cigarette', function(source)
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+	xPlayer.removeInventoryItem('cigarette', 1)
+
+--	TriggerClientEvent('esx_status:add', source, 'hunger', 500000)
+	TriggerClientEvent('esx_status:remove', source, 'stress', 100000)
+	TriggerClientEvent('retro_scripts:onCigSmoke', source)
+	--TriggerClientEvent('notification', source, _U('used_bread'))
+end)
+
+ESX.RegisterUsableItem('stress', function(source)
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+	xPlayer.removeInventoryItem('stress', 1)
+
+--	TriggerClientEvent('esx_status:add', source, 'hunger', 500000)
+	TriggerClientEvent('esx_status:remove', source, 'stress', 500000)
+	TriggerClientEvent('retro_scripts:takePill', source)
+	--TriggerClientEvent('notification', source, _U('used_bread'))
 end)
 
 ESX.RegisterUsableItem('cupcake', function(source)
@@ -18,6 +41,7 @@ ESX.RegisterUsableItem('cupcake', function(source)
 	xPlayer.removeInventoryItem('cupcake', 1)
 
 	TriggerClientEvent('esx_status:add', source, 'hunger', 150000)
+	TriggerClientEvent('esx_status:remove', source, 'stress', 100000)
 	TriggerClientEvent('esx_basicneeds:onEatCupCake', source)
 	TriggerClientEvent('notification', source, _U('used_cupcake'))
 end)
@@ -322,6 +346,7 @@ ESX.RegisterUsableItem('water', function(source)
 	xPlayer.removeInventoryItem('water', 1)
 
 	TriggerClientEvent('esx_status:add', source, 'thirst', 500000)
+	TriggerClientEvent('esx_status:remove', source, 'stress', 200000)
 	TriggerClientEvent('esx_basicneeds:onDrink', source)
 	TriggerClientEvent('notification', source, _U('used_water'))
 end)

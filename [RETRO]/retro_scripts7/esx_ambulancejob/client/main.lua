@@ -60,8 +60,8 @@ AddEventHandler('playerSpawned', function()
 					Citizen.Wait(1000)
 				end
 
-				--ESX.ShowNotification(_U('combatlog_message'))
-				exports['mythic_notify']:DoCustomHudText('inform', _U('combatlog_message'), 5000)
+				ESX.ShowNotification(_U('combatlog_message'))
+				--exports['mythic_notify']:DoCustomHudText('inform', _U('combatlog_message'), 5000)
 				RemoveItemsAfterRPDeath()
 			end
 		end)

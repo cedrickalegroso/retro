@@ -56,6 +56,7 @@ AddEventHandler('playerSpawned', function()
 
 				ESX.ShowNotification(_U('combatlog_message'))
 				RespawnPlayer()
+				RemoveItemsAfterRPDeath()
 			end
 		end)
 	else
@@ -240,6 +241,12 @@ function StartDeathTimer()
 	end)
 end
 
+
+RegisterNetEvent('ambotahhhh')
+AddEventHandler('ambotahhhh', function(source)
+	RemoveItemsAfterRPDeath()
+end)
+
 function RemoveItemsAfterRPDeath()
 	TriggerServerEvent('esx_ambulancejob:setDeathStatus', false)
 
@@ -252,7 +259,9 @@ function RemoveItemsAfterRPDeath()
 
 		ESX.TriggerServerCallback('esx_ambulancejob:removeItemsAfterRPDeath', function()
 
+
 			ESX.SetPlayerData('loadout', {})
+			ESX.SetPlayerData('inventory', {})	
 			StopScreenEffect('DeathFailOut')
 			DoScreenFadeIn(800)
 		end)
@@ -273,14 +282,16 @@ function RespawnPlayer()
 
 		ESX.TriggerServerCallback('esx_ambulancejob:RespawnPlayer', function()
 			local playerpos = GetEntityCoords( GetPlayerPed(-1) )
-			ExecuteCommand("ensureInv")
+			--ExecuteCommand("ensureInv")
+			ExecuteCommand("wawanamanakohuhuhuhwagnamancombatlog")
 			RespawnPed(PlayerPedId(), playerpos, Config.RespawnPoint.heading)
 			TriggerServerEvent('esx_ambulancejob:setDeathStatus', false)		
 				ESX.TriggerServerCallback('esx_ambulancejob:removeItemsAfterRPDeath', function()
 					ESX.SetPlayerData('loadout', {})		
+					ESX.SetPlayerData('inventory', {})		
 					TriggerServerEvent('esx:updateLastPosition', playerpos)
 					TriggerServerEvent('mythic_hospital:server:RequestBed')
-					TriggerServerEvent('giveIDCard')
+				--	TriggerServerEvent('giveIDCard')
 					Citizen.Wait(10)
 					DoScreenFadeIn(200)
 			end)

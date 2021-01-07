@@ -64,7 +64,7 @@ end
 RegisterNUICallback('fail', function()
    
   --  print('lock pick fail')
-    TriggerServerEvent("retro_scripts:takelockpick")
+   -- TriggerServerEvent("retro_scripts:takelockpick")
   --TriggerEvent('retro_scripts:startengine')
     lockpick(false)
 end)

@@ -32,7 +32,15 @@ RegisterCommand("hotwirecar", function(source)
     local _source = source
     local xPlayer = ESX.GetPlayerFromId(_source)
 
-    TriggerClientEvent("retro_scripts:starthotwire", source)
+   
+    if  xPlayer.getInventoryItem('lockpick').count > 0 then 
+        TriggerClientEvent("retro_scripts:starthotwire", source)
+    else 
+        --TriggerEvent('notification', ('You need to have a lockpick to hotwire a car!'), 2)
+        TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'You need to have a lockpick to hotwire a car!'})
+    end
+
+    
 end)
 
     
