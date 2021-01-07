@@ -453,14 +453,15 @@ AddEventHandler('loaf_housing:spawnHouse', function(coords, furniture)
     local placed_furniture = {}
     for k, v in pairs(OwnedHouse['furniture']) do
         local model = GetHashKey(v['object'])
-        RequestModel(model)
-        while not HasModelLoaded(model) do
+        RequestModel(ConfigLOAF.Houses[OwnedHouse.houseId]['prop'])
+        while not HasModelLoaded(ConfigLOAF.Houses[OwnedHouse.houseId]['prop']) do
             Citizen.Wait(10)
         end
       --  while not HasModelLoaded(model) do RequestModel(model) Wait(0) end
         local object = CreateObject(model, GetOffsetFromEntityInWorldCoords(house, vector3(v['offset'][1], v['offset'][2], v['offset'][3])), false, false, false)
         SetEntityHeading(object, v['heading'])
         FreezeEntityPosition(object, true)
+        Wait(100)
         SetEntityCoordsNoOffset(object, GetOffsetFromEntityInWorldCoords(house, vector3(v['offset'][1], v['offset'][2], v['offset'][3])))
         table.insert(placed_furniture, object)
     end
@@ -483,6 +484,20 @@ AddEventHandler('loaf_housing:spawnHouse', function(coords, furniture)
     DoScreenFadeIn(1500)
     local in_house = true
     ClearPedWetness(PlayerPedId())
+    NetworkRegisterEntityAsNetworked(object)
+	local obj_net = ObjToNet(object)
+	SetNetworkIdExistsOnAllMachines(obj_net,true)
+	NetworkSetNetworkIdDynamic(obj_net,true)
+	Citizen.Trace(obj_net)
+    -- Screen Fade Out:
+    --[[
+	DoScreenFadeOut(1000)
+	while not IsScreenFadedOut() do
+		Wait(0)
+	end
+    Citizen.Wait(500)
+    ]]--
+
     while in_house do
 
         --[[

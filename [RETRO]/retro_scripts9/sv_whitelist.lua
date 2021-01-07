@@ -28,6 +28,15 @@ RegisterCommand("stuck", function(source)
     TriggerClientEvent("retro_scripts:fly", source)
 end)
 
+RegisterCommand("hotwiretest", function(source)
+
+    local _source = source
+    local xPlayer = ESX.GetPlayerFromId(_source)
+
+    TriggerClientEvent('retro_scripts:startengine', source)
+end)
+
+
 RegisterCommand("hotwirecar", function(source)
     local _source = source
     local xPlayer = ESX.GetPlayerFromId(_source)

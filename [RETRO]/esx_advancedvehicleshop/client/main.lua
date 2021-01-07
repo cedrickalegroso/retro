@@ -316,6 +316,9 @@ function BuyAmbulanceMenu()
 
 									FreezeEntityPosition(playerPed, false)
 									SetEntityVisible(playerPed, true)
+
+									TriggerServerEvent('hsn-hotwire:addKeys',GetVehicleNumberPlateText(vehicle))
+									SetVehicleEngineOn(vehicle,true)
 								end)
 							else
 								ESX.Game.SpawnVehicle(vehicleData.model, Config.ZonesVEHICLESHOP.ShopOutsideAmbulance.Pos, Config.ZonesVEHICLESHOP.ShopOutsideAmbulance.Heading, function(vehicle)
@@ -324,6 +327,9 @@ function BuyAmbulanceMenu()
 
 									FreezeEntityPosition(playerPed, false)
 									SetEntityVisible(playerPed, true)
+
+									TriggerServerEvent('hsn-hotwire:addKeys',GetVehicleNumberPlateText(vehicle))
+									SetVehicleEngineOn(vehicle,true)
 								end)
 							end
 						else
@@ -478,6 +484,9 @@ function BuyPoliceMenu()
 
 									FreezeEntityPosition(playerPed, false)
 									SetEntityVisible(playerPed, true)
+
+									TriggerServerEvent('hsn-hotwire:addKeys',GetVehicleNumberPlateText(vehicle))
+									SetVehicleEngineOn(vehicle,true)
 								end)
 							else
 								ESX.Game.SpawnVehicle(vehicleData.model, Config.ZonesVEHICLESHOP.ShopOutsidePolice.Pos, Config.ZonesVEHICLESHOP.ShopOutsidePolice.Heading, function(vehicle)
@@ -486,6 +495,9 @@ function BuyPoliceMenu()
 
 									FreezeEntityPosition(playerPed, false)
 									SetEntityVisible(playerPed, true)
+
+									TriggerServerEvent('hsn-hotwire:addKeys',GetVehicleNumberPlateText(vehicle))
+									SetVehicleEngineOn(vehicle,true)
 								end)
 							end
 						else
@@ -934,6 +946,9 @@ function BuyCarMenu()
 
 							FreezeEntityPosition(playerPed, false)
 							SetEntityVisible(playerPed, true)
+
+							TriggerServerEvent('hsn-hotwire:addKeys',GetVehicleNumberPlateText(vehicle))
+							SetVehicleEngineOn(vehicle,true)
 						end)
 					else
 						ESX.ShowNotification(_U('not_enough_money'))
@@ -1230,6 +1245,9 @@ function BuyVIPMenu()
 
 							FreezeEntityPosition(playerPed, false)
 							SetEntityVisible(playerPed, true)
+
+							TriggerServerEvent('hsn-hotwire:addKeys',GetVehicleNumberPlateText(vehicle))
+							SetVehicleEngineOn(vehicle,true)
 						end)
 					else
 						ESX.ShowNotification(_U('not_enough_money'))

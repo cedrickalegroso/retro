@@ -10,7 +10,13 @@ RegisterCommand('redeem', function(source, args, rawCommand)
         local type = result[1].type
         local amount = result[1].amount
         if type == 'money' then
+            xPlayer.addMoney(amount)
+            TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = 'Succsesfully Redeemed A Code Of ' .. amount .. '₪', length = 5000, style = { ['background-color'] = ' rgb(21, 100, 15, 0.95)', ['color'] = '#fff' } })
+        elseif type == 'bank' then 
             xPlayer.addAccountMoney('bank', amount)
+            TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = 'Succsesfully Redeemed A Code Of ' .. amount .. '₪', length = 5000, style = { ['background-color'] = ' rgb(21, 100, 15, 0.95)', ['color'] = '#fff' } })
+        elseif type == 'dirty' then 
+            xPlayer.addAccountMoney('black_money', amount)
             TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = 'Succsesfully Redeemed A Code Of ' .. amount .. '₪', length = 5000, style = { ['background-color'] = ' rgb(21, 100, 15, 0.95)', ['color'] = '#fff' } })
         else
             xPlayer.addInventoryItem(type, amount)

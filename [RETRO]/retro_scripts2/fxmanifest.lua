@@ -60,7 +60,7 @@ server_scripts {
   'esx_duty/server/main.lua',
 
   --Jail
- -- 'esx_qallejail/server/server.lua',
+  'esx_qallejail/server/server.lua',
 
   --Ruski
   'esx_ruskiarrest/server/main.lua',
@@ -130,8 +130,8 @@ client_scripts {
 
 
   --Jail
---	'esx_qallejail/client/utils.lua',
---  'esx_qallejail/client/client.lua',
+	'esx_qallejail/client/utils.lua',
+  'esx_qallejail/client/client.lua',
   
   --Ruski
   'esx_ruskiarrest/client/main.lua',

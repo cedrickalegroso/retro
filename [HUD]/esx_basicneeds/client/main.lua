@@ -100,13 +100,13 @@ AddEventHandler('esx_status:loaded', function(status)
 
 			if stressVal >= 750000 then
 				DoScreenFadeOut(1000)
-				StartScreenEffect('DeathFailOut', 0, true)
+				--StartScreenEffect('DeathFailOut', 0, true)
 				DoScreenFadeIn(2000)
 				Citizen.Wait(3000)
 				ShakeGameplayCam('LARGE_EXPLOSION_SHAKE', 0.20)
 			elseif stressVal >= 700000 then
 				DoScreenFadeOut(1000)
-				StartScreenEffect('DeathFailOut', 0, true)
+				--StartScreenEffect('DeathFailOut', 0, true)
 				DoScreenFadeIn(2000)
 				Citizen.Wait(3000)
 				Citizen.Wait(4000)
@@ -119,7 +119,7 @@ AddEventHandler('esx_status:loaded', function(status)
 				ShakeGameplayCam('LARGE_EXPLOSION_SHAKE', 0.03)
 			elseif stressVal <= 350000 then
 				Citizen.Wait(6000)
-				StopScreenEffect('DeathFailOut', 0, true)
+				--StopScreenEffect('DeathFailOut', 0, true)
 				--ShakeGameplayCam('LARGE_EXPLOSION_SHAKE', 0.03)
 			end
 		end

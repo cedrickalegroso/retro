@@ -73,8 +73,15 @@ function StartDriveTest(type)
 		local playerPed   = PlayerPedId()
 		TaskWarpPedIntoVehicle(playerPed, vehicle, -1)
 		SetVehicleFuelLevel(vehicle, 100.0)
+
+		TriggerServerEvent('hsn-hotwire:addKeys',GetVehicleNumberPlateText(vehicle))
+		SetVehicleEngineOn(vehicle,true)
+		
+		--SetVehicleEngineOn(vehicle,true)
 		DecorSetFloat(vehicle, "_FUEL_LEVEL", GetVehicleFuelLevel(vehicle))
 	end)
+
+	TriggerEvent('retro_scripts:startengineOverried', source)
 
 	TriggerServerEvent('esx_dmvschool:pay', Config.Prices[type])
 end

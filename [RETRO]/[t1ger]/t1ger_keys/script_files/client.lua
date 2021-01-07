@@ -549,8 +549,35 @@ function LockpickCarFunction(k,v,success)
 				SetVehicleAlarmTimeLeft(lockedVeh, (v.CarAlarmTime * 1000))
 				StartVehicleAlarm(lockedVeh)
 			end
-			exports['progressBars']:startUI((v.LockpickTime * 1000), v.ProgressBarText)
-			Citizen.Wait(v.LockpickTime * 1000)
+		--	exports['progressBars']:startUI((v.LockpickTime * 1000), v.ProgressBarText)
+
+
+			TriggerEvent("mythic_progbar:client:progress", {
+				name = "unique_action_name",
+				duration = v.LockpickTime * 1000,
+				label = "Lockpicking Vehicle",
+				useWhileDead = false,
+				canCancel = false,
+				controlDisables = {
+					disableMovement = true,
+					disableCarMovement = true,
+					disableMouse = false,
+					disableCombat = true,
+				},
+				animation = {
+					animDict = "anim@amb@clubhouse@tutorial@bkr_tut_ig3@",
+					anim = "machinic_loop_mechandplayer",
+				},
+				prop = {
+					model = "",
+				}
+			}, function(status)
+				if not status then
+					-- Do Something If Event Wasn't Cancelled
+				end
+			end)
+
+			
 			
 			if not success then
 				ShowNotifyESX(Lang['lockpick_fail'])
@@ -621,7 +648,7 @@ function HotwireCarFunction()
 					end
 					FreezeEntityPosition(plyPed, true)
 					TaskPlayAnim(plyPed, v.AnimDict, v.AnimName, 8.0, -8.0, -1, 49, 0, 0, 0)
-					exports['progressBars']:startUI((v.HotwireTime * 1000), v.ProgressBarText)
+				--	exports['progressBars']:startUI((v.HotwireTime * 1000), v.ProgressBarText)
 					Citizen.Wait(v.HotwireTime * 1000)
 					ClearPedTasks(plyPed)
 					FreezeEntityPosition(plyPed, false)
@@ -712,7 +739,11 @@ function StealingVehicle(plyPed)
 					Citizen.Wait(1400)
 					ClearPedTasks(entity)
 					ShowNotifyESX(Lang['npc_give_keys'])
-					TriggerServerEvent('t1ger_keys:stolenCarKeys', GetVehicleNumberPlateText(robCar))
+
+					TriggerServerEvent('hsn-hotwire:addKeys',GetVehicleNumberPlateText(robCar))
+					SetVehicleEngineOn(vehicle,true)
+
+					--TriggerServerEvent('t1ger_keys:stolenCarKeys', GetVehicleNumberPlateText(robCar))
 				else
 					ShowNotifyESX(Lang['npc_ran_away'])
 				end
@@ -749,7 +780,7 @@ function SearchCarFunction()
 					end
 					FreezeEntityPosition(plyPed, true)
 					TaskPlayAnim(plyPed, v.AnimDict, v.AnimName, 8.0, -8.0, -1, 49, 0, 0, 0)
-					exports['progressBars']:startUI((v.HotwireTime * 1000), v.ProgressBarText)
+				--	exports['progressBars']:startUI((v.HotwireTime * 1000), v.ProgressBarText)
 					Citizen.Wait(v.HotwireTime * 1000)
 					ClearPedTasks(plyPed)
 					FreezeEntityPosition(plyPed, false)

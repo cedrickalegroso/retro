@@ -78,6 +78,25 @@ RegisterNUICallback('exit', function()
     lockpick(false)
 end)
 
+RegisterNetEvent('retro_scripts:startengineOverried')
+AddEventHandler('retro_scripts:startengineOverried',function(source)
+    print('lock pick overried')
+   
+    if IsPedInAnyVehicle(PlayerPedId(),false)  then
+        print('user  in veh')
+        local vehicle = GetVehiclePedIsIn(PlayerPedId())
+        print('veh '..vehicle)
+        local Plate = GetVehicleNumberPlateText(vehicle)
+        local vehicleCoords = GetOffsetFromEntityInWorldCoords(vehicle, 0.0, 1.25, 0.35)
+    
+        TriggerServerEvent('hsn-hotwire:addKeys',Plate)
+        SetVehicleEngineOn(vehicle,true)
+    else 
+        print('user not in veh')
+    end
+   
+end)
+
 RegisterNetEvent('retro_scripts:startengine')
 AddEventHandler('retro_scripts:startengine',function()
     print('lock pick goods')

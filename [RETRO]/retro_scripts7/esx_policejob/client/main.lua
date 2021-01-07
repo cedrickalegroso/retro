@@ -543,18 +543,18 @@ function OpenPoliceActionsMenu()
 
 
 					if action == 'identity_card' then
-						TriggerServerEvent('esx_policejob:message', GetPlayerServerId(source), 'You are being searched by the Police')
+						TriggerServerEvent('esx_policejob:message', GetPlayerServerId(closestPlayer), 'You are being searched by the Police')
 					OpenIdentityCardMenuPolice(closestPlayer)
 					elseif action == 'body_search' then
-						TriggerServerEvent('esx_policejob:message', GetPlayerServerId(source), _U('being_searched'))
+						TriggerServerEvent('esx_policejob:message', GetPlayerServerId(closestPlayer), _U('being_searched'))
 						OpenBodySearchMenuPolice(closestPlayer)						
 					elseif action == 'handcuff' then
-						TriggerServerEvent('esx_policejob:message', GetPlayerServerId(source), 'You are being dragged by the Police')
+						TriggerServerEvent('esx_policejob:message', GetPlayerServerId(closestPlayer), 'You are being dragged by the Police')
 						TriggerServerEvent('esx_ruski_areszt:startAreszt', GetPlayerServerId(closestPlayer))			
 						Citizen.Wait(3000)							
-						TriggerServerEvent('esx_policejob:haRETROndcuff', GetPlayerServerId(closestPlayer))
+						TriggerServerEvent('esx_policejob:handcuff', GetPlayerServerId(closestPlayer))
 					elseif action == 'uncuff' then						
-						TriggerServerEvent('esx_policejob:haRETROndcuff', GetPlayerServerId(closestPlayer))
+						TriggerServerEvent('esx_policejob:handcuff', GetPlayerServerId(closestPlayer))
 					elseif action == 'comserve' then						
 						SendToCommunityService(GetPlayerServerId(closestPlayer))
 					elseif action == 'jail' then						
@@ -1210,9 +1210,9 @@ function OpenFineCategoryMenu(player, category)
 			menu.close()
 
 			if ConfigPOPO.EnablePlayerManagement then
-				TriggerServerEvent('esx_biRETROlling:sendBill', GetPlayerServerId(player), 'society_police', _U('fine_total', label), amount)
+				TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(player), 'society_police', _U('fine_total', label), amount)
 			else
-				TriggerServerEvent('esx_biRETROlling:sendBill', GetPlayerServerId(player), '', _U('fine_total', label), amount)
+				TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(player), '', _U('fine_total', label), amount)
 			end
 
 			ESX.SetTimeout(300, function()
@@ -1669,8 +1669,8 @@ AddEventHandler('esx_policejob:hasExitedEntityZone', function(entity)
 	end
 end)
 
-RegisterNetEvent('esx_policejob:haRETROndcuff')
-AddEventHandler('esx_policejob:haRETROndcuff', function()
+RegisterNetEvent('esx_policejob:handcuff')
+AddEventHandler('esx_policejob:handcuff', function()
 	IsHandcuffed    = not IsHandcuffed
 	local playerPed = PlayerPedId()
 

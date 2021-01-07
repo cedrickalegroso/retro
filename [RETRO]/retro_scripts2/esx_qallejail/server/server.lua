@@ -53,8 +53,8 @@ RegisterCommand("unjail", function(src, args)
 	end
 end)
 
-RegisterServerEvent("esx-qalle-jail:jailPRETROlayer")
-AddEventHandler("esx-qalle-jail:jailPRETROlayer", function(targetSrc, jailTime, jailReason)
+RegisterServerEvent("esx-qalle-jail:jailPlayer")
+AddEventHandler("esx-qalle-jail:jailPlayer", function(targetSrc, jailTime, jailReason)
 	local src = source
 	local targetSrc = tonumber(targetSrc)
 
@@ -106,7 +106,7 @@ AddEventHandler("esx-qalle-jail:prisonWorkReward", function()
 end)
 
 function JailPlayer(jailPlayer, jailTime)
-	TriggerClientEvent("esx-qalle-jail:jailPRETROlayer", jailPlayer, jailTime)
+	TriggerClientEvent("esx-qalle-jail:jailPlayer", jailPlayer, jailTime)
 
 	EditJailTime(jailPlayer, jailTime)
 end

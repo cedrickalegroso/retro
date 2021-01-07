@@ -260,11 +260,35 @@ motels.doorLoop = function(door,zone)
               ESX.ShowHelpNotification("Press ~INPUT_DETONATE~ to buy this room ($"..Config.Prices[zone]..")")
             end
             if IsControlJustPressed(0, 47) then  
-  TriggerEvent("dooranim")
   
-             exports['progressBars']:startUI(470, "Purchasing motel ..")
+           --  exports['progressBars']:startUI(470, "Purchasing motel ..")
             --  exports["np-taskbar"]:taskBar(470,"Purchasing motel ..")
-              motels.buyRoom(door,zone)
+
+            TriggerEvent("mythic_progbar:client:progress", {
+              name = "unique_action_name",
+              duration = 470,
+              label = "Purchasing motel",
+              useWhileDead = false,
+              canCancel = false,
+              controlDisables = {
+                  disableMovement = true,
+                  disableCarMovement = true,
+                  disableMouse = false,
+                  disableCombat = true,
+              },
+              animation = {
+                  animDict = "anim@heists@keycard@",
+                  anim = "exit",
+              },
+              prop = {
+                  model = "prop_paper_bag_small",
+              }
+          }, function(status)
+              if not status then
+                motels.buyRoom(door,zone)
+              end
+          end)
+            
             end
           else
             ESX.ShowHelpNotification("No interactions available.")

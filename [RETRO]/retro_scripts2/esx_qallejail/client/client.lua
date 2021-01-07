@@ -57,8 +57,8 @@ AddEventHandler("esx-qalle-jail:openJailMenu", function()
 	OpenJailMenu()
 end)
 
-RegisterNetEvent("esx-qalle-jail:jailPRETROlayer")
-AddEventHandler("esx-qalle-jail:jailPRETROlayer", function(newJailTime)
+RegisterNetEvent("esx-qalle-jail:jailPlayer")
+AddEventHandler("esx-qalle-jail:jailPlayer", function(newJailTime)
 	jailTime = newJailTime
 
 	Cutscene()
@@ -353,7 +353,7 @@ function OpenJailMenu()
 								if closestPlayer == -1 or closestDistance > 3.0 then
 								  	ESX.ShowNotification("No players nearby!")
 								else
-								  	TriggerServerEvent("esx-qalle-jail:jailPRETROlayer", GetPlayerServerId(closestPlayer), jailTime, reason)
+								  	TriggerServerEvent("esx-qalle-jail:jailPlayer", GetPlayerServerId(closestPlayer), jailTime, reason)
 								end
 		  
 						  	end

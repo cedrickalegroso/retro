@@ -176,7 +176,7 @@ function KeyPad1Complete(success)
 					NotifyPoliceFunction(v.name)
 				else
 					if v.powerBox.hackSuccess.enable then
-						local newTime = robTime + (v.powerBox.hackSuccess.time * 1000)
+						local newTime = 1 + (v.powerBox.hackSuccess.time * 1000)
 						ShowNotifyESX(Lang['extra_free_time_added']:format(tonumber(newTime/1000)))
 						TriggerServerEvent('t1ger_bankrobbery:addRobTimeSV', newTime)
 					end
@@ -729,14 +729,63 @@ function disablePowerFunction(k,v)
 	Citizen.Wait(500)
 	SetEntityCoords(player, v.powerBox.animPos[1], v.powerBox.animPos[2], v.powerBox.animPos[3]-0.975, false, false, false, false)
 	SetEntityHeading(player, v.powerBox.animHeading)
-	TaskStartScenarioInPlace(player, "WORLD_HUMAN_HAMMERING", 0, true)
-	exports['progressBars']:startUI((4 * 1000), "OPENING POWER BOX")
-	Citizen.Wait(4 * 1000)
-	exports['progressBars']:closeUI()
+	--TaskStartScenarioInPlace(player, "WORLD_HUMAN_HAMMERING", 0, true)
+	--exports['progressBars']:startUI((4 * 1000), "OPENING POWER BOX")
+	TriggerEvent("mythic_progbar:client:progress", {
+        name = "unique_action_name",
+        duration = 4 * 1000,
+        label = "OPENING POWER BOX",
+        useWhileDead = false,
+        canCancel = false,
+        controlDisables = {
+            disableMovement = true,
+            disableCarMovement = true,
+            disableMouse = false,
+            disableCombat = true,
+        },
+        animation = {
+            animDict = "WORLD_HUMAN_HAMMERING",
+            anim = "WORLD_HUMAN_HAMMERING",
+        },
+        prop = {
+            model = "prop_paper_bag_small",
+        }
+    }, function(status)
+        if not status then
+            -- Do Something If Event Wasn't Cancelled
+        end
+    end)
+
+
 	Wait(250)
-	TaskStartScenarioInPlace(player, "prop_human_parking_meter", 0, true)
-	exports['progressBars']:startUI((4 * 1000), "CUTTING WIRES")
-	Citizen.Wait(4 * 1000)
+	--TaskStartScenarioInPlace(player, "prop_human_parking_meter", 0, true)
+	--exports['progressBars']:startUI((4 * 1000), "CUTTING WIRES")
+
+	TriggerEvent("mythic_progbar:client:progress", {
+        name = "unique_action_name",
+        duration = 4 * 1000,
+        label = "CUTTING WIRES",
+        useWhileDead = false,
+        canCancel = false,
+        controlDisables = {
+            disableMovement = true,
+            disableCarMovement = true,
+            disableMouse = false,
+            disableCombat = true,
+        },
+        animation = {
+            animDict = "prop_human_parking_meter",
+            anim = "prop_human_parking_meter",
+        },
+        prop = {
+            model = "prop_paper_bag_small",
+        }
+    }, function(status)
+        if not status then
+            -- Do Something If Event Wasn't Cancelled
+        end
+    end)
+--	Citizen.Wait(4 * 1000)
 
 	TriggerServerEvent('t1ger_bankrobbery:powerBoxSV', k, true, (v.powerBox.freeTime * 1000))
 	TriggerServerEvent('t1ger_bankrobbery:inUseSV', true)
@@ -796,8 +845,32 @@ function crackPacificSafe(k,v)
 	FreezeEntityPosition(player, true)
 	SetEntityHeading(player, GetEntityHeading(safeObj))
 	TaskPlayAnim(player, animDict, animName, 1.0, 1.0, -1, 2, 0, 0, 0)
-	exports['progressBars']:startUI((5 * 1000), "OPENING SAFE")
-	Citizen.Wait(5 * 1000)
+	--exports['progressBars']:startUI((5 * 1000), "OPENING SAFE")
+	TriggerEvent("mythic_progbar:client:progress", {
+        name = "unique_action_name",
+        duration = 5 * 1000,
+        label = "OPENING SAFE",
+        useWhileDead = false,
+        canCancel = false,
+        controlDisables = {
+            disableMovement = true,
+            disableCarMovement = true,
+            disableMouse = false,
+            disableCombat = true,
+        },
+        animation = {
+            animDict = "prop_human_parking_meter",
+            anim = "prop_human_parking_meter",
+        },
+        prop = {
+            model = "prop_paper_bag_small",
+        }
+    }, function(status)
+        if not status then
+            -- Do Something If Event Wasn't Cancelled
+        end
+    end)
+	--Citizen.Wait(5 * 1000)
 	TriggerServerEvent('t1ger_bankrobbery:pacificSafeSV', k, true)
 	TriggerServerEvent('t1ger_bankrobbery:giveItem', Config.AccessCard)
 	ShowNotifyESX(Lang['found_access_card'])
@@ -909,8 +982,32 @@ function lockpickDeskDoor(k,v,cashDoor)
 	FreezeEntityPosition(player, true)
 	SetEntityHeading(player, GetEntityHeading(cashDoor))
 	TaskPlayAnim(player, animDict, animName, 3.0, 1.0, -1, 31, 0, 0, 0)
-	exports['progressBars']:startUI((5 * 1000), "LOCKPICKING")
-	Citizen.Wait(5 * 1000)
+	--exports['progressBars']:startUI((5 * 1000), "LOCKPICKING")
+	TriggerEvent("mythic_progbar:client:progress", {
+        name = "unique_action_name",
+        duration = 5 * 1000,
+        label = "LOCKPICKING",
+        useWhileDead = false,
+        canCancel = false,
+        controlDisables = {
+            disableMovement = true,
+            disableCarMovement = true,
+            disableMouse = false,
+            disableCombat = true,
+        },
+        animation = {
+            animDict = "prop_human_parking_meter",
+            anim = "prop_human_parking_meter",
+        },
+        prop = {
+            model = "prop_paper_bag_small",
+        }
+    }, function(status)
+        if not status then
+            -- Do Something If Event Wasn't Cancelled
+        end
+    end)
+	--Citizen.Wait(5 * 1000)
 	TriggerServerEvent('t1ger_bankrobbery:deskDoorSV', k, true)
 	if k == 8 and not v.powerBox.disabled then 
 		TriggerServerEvent('t1ger_bankrobbery:inUseSV', true)
@@ -970,8 +1067,34 @@ function GrabCashAnim(k,desk,num)
 		SetEntityHeading(player, GetEntityHeading(grabHeading))
 	end
 	TaskPlayAnim(player, animDict, animName, 1.0, -1.0, -1, 2, 0, 0, 0, 0)
-	exports['progressBars']:startUI(7500, "ROBBING CASH")
-	Citizen.Wait(7500)
+	--exports['progressBars']:startUI(7500, "ROBBING CASH")
+
+	TriggerEvent("mythic_progbar:client:progress", {
+        name = "unique_action_name",
+        duration = 7500,
+        label = "ROBBING CASH",
+        useWhileDead = false,
+        canCancel = false,
+        controlDisables = {
+            disableMovement = true,
+            disableCarMovement = true,
+            disableMouse = false,
+            disableCombat = true,
+        },
+        animation = {
+            animDict = "prop_human_parking_meter",
+            anim = "prop_human_parking_meter",
+        },
+        prop = {
+            model = "prop_paper_bag_small",
+        }
+    }, function(status)
+        if not status then
+            -- Do Something If Event Wasn't Cancelled
+        end
+	end)
+	
+	--Citizen.Wait(7500)
 	ClearPedTasks(player)
 	TriggerServerEvent('t1ger_bankrobbery:deskCashSV', k, num, true)
 end

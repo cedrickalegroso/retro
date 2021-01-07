@@ -90,13 +90,21 @@ Citizen.CreateThread(function()
         local ped = GetPlayerPed(-1)
 		local weapon = GetSelectedPedWeapon(ped)
 
-		if weaponstress[weapon] == nil then
-			weapon = 5000
-		end
+		--print(weaponstress[weapon])
+
+		if weaponstress[weapon] == nill then
+			print('weapon nill seeting it 3500 to default')
+
+			weaponstress[weapon] = 3500
+
+           print(weaponstress[weapon]  )
+		end 
+
+		
 		
 		if IsPedShooting(ped) then
-			TriggerServerEvent("stress:add", weaponstress[weapon] * 100)
-		  print(weaponstress[weapon])
+			TriggerServerEvent("stress:add", weaponstress[weapon] )
+		  print(weaponstress[weapon ]  * 5 )
 		  
 		end
 	end
