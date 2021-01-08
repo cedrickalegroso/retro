@@ -8,7 +8,7 @@ ESX.RegisterUsableItem('bread', function(source)
 	xPlayer.removeInventoryItem('bread', 1)
 
 	TriggerClientEvent('esx_status:add', source, 'hunger', 500000)
-	TriggerClientEvent('esx_status:add', source, 'stress', 500000)
+	--TriggerClientEvent('esx_status:add', source, 'stress', 500000)
 	TriggerClientEvent('esx_basicneeds:onEat', source)
 	TriggerClientEvent('notification', source, _U('used_bread'))
 end)

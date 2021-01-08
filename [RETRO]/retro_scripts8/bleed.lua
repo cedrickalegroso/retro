@@ -57,10 +57,15 @@ AddEventHandler('retro_scripts:notBleed', function(source, ped)
      --TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'Oxy is not stackable spamming wont do you any good'})
     else
       TriggerEvent('notification', ('You have taken Oxy this will last for 1 Min'), 2)
+      print('Stopping Bleed')
       StopScreenEffect('DeathFailOut')
       setBleedingOff(ped)
       takenoxy = 1
       alreadyTaken = 1
+      effect = false
+      print('taken oxy '..takenoxy)
+      print('alreadyTaken '..alreadyTaken)
+      Citizen.Wait(60000)
 
       --[[
   TriggerEvent('notification', ('You have taken Oxy this will last for 1 Min'), 2)
