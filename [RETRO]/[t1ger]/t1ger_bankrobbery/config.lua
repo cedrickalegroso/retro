@@ -16,14 +16,14 @@ Config.AlertBlipColor = 3			-- set blip color
 
 -- Minigames:
 Config.mHacking = true				-- set to false to disable mhacking at the first keypad. // MUST ADD YOUR OWN THEN!!
-Config.utkFingerPrint = false		-- set to false to disable utku fingerprint at the second keypad. // MUST ADD YOUR OWN THEN!!
+Config.utkFingerPrint = true		-- set to false to disable utku fingerprint at the second keypad. // MUST ADD YOUR OWN THEN!!
 Config.ChanceHackerDeviceBack = 50	-- set chance in % of getting hackerDevice back upon successful hacking.
 
 -- Items:
 Config.HackItem = "hackerDevice"
 Config.LockPick = "lockpick"
 Config.HammerWireCutter = "shovel"
-Config.AccessCard = "accesscard"
+Config.AccessCard = "pacificID"
 
 -- Buttons:
 Config.KeyHackTerminal = 38			-- Button for first keypad
@@ -38,9 +38,9 @@ Config.HasItemLabel = true			-- set to false if your ESX vers. doesnt support it
 -- Banks:
 Config.Banks = {
     [1] = {
-        name = "Fleeca Bank [Legion Square]",
+        name = "Fleeca Bank [Legion Square]", postal = "8170",
         blip = {enable = true, bName = "Fleeca Bank [Legion Square]", display = 4, sprite = 431, color = 5, scale = 0.7},
-        inUse = false, minCops = 0,
+        inUse = true, minCops = 0,
         vault = { pos = {147.349,-1046.24,29.3681}, model = 2121050683, oHeadMin = 124.0, oHeadMax = 154.0, cHeadMin = 235.0, cHeadMax = 265.0 },
         door = { pos = {149.561, -1047.35, 29.34634}, model = -1591004109 },
         keypads = {
@@ -56,7 +56,7 @@ Config.Banks = {
 		powerBox = {pos = {135.60,-1046.45,29.63}, disabled = true, animPos = {135.34,-1047.09,29.15}, animHeading = 340.66, freeTime = 60, hackSuccess = {enable = true, time = 30}}
     },
     [2] = {
-        name = "Fleeca Bank [Alta]",
+        name = "Fleeca Bank [Alta]",postal = "7193",
         blip = {enable = true, bName = "Fleeca Bank [Alta]", display = 4, sprite = 431, color = 5, scale = 0.7},
         inUse = false, minCops = 0,
         vault = { pos = {311.6992,-284.5561,54.1648}, model = 2121050683, oHeadMin = 124.0, oHeadMax = 154.0, cHeadMin = 235.0, cHeadMax = 265.0 },
@@ -74,7 +74,7 @@ Config.Banks = {
 		powerBox = {pos = {258.66,-308.09,49.65}, disabled = false, animPos = {258.92,-307.33,49.65}, animHeading = 162.16, freeTime = 60, hackSuccess = {enable = true, time = 30}}
 	},
 	[3] = {
-		name = "Fleeca Bank [Burton]",
+		name = "Fleeca Bank [Burton]",postal = "7185",
 		blip = { enable = true, bName = "Fleeca Bank [Burton]", display = 4, sprite = 431, color = 5, scale = 0.7 },
 		inUse = false, minCops = 0,
 		vault = { pos = {-353.32,-55.47687,49.03565}, model = 2121050683, oHeadMin = 124.0, oHeadMax = 154.0, cHeadMin = 235.0, cHeadMax = 265.0 },
@@ -92,7 +92,7 @@ Config.Banks = {
 		powerBox = {pos = {-355.77,-50.22,54.42}, disabled = false, animPos = {-356.54,-49.91,54.42}, animHeading = 249.03, freeTime = 60, hackSuccess = {enable = true, time = 30}}
 	},
 	[4] = {
-		name = "Fleeca Bank [Rockford Hills]",
+		name = "Fleeca Bank [Rockford Hills]",postal = "7175",
 		blip = { enable = true, bName = "Fleeca Bank [Rockford Hills]", display = 4, sprite = 431, color = 5, scale = 0.7 },
 		inUse = false, minCops = 0,
 		vault = { pos = {-1210.31,-336.334,37.781}, model = 2121050683, oHeadMin = 170.0, oHeadMax = 200.0, cHeadMin = 277.0, cHeadMax = 307.0 },
@@ -110,7 +110,7 @@ Config.Banks = {
 		powerBox = {pos = {-1217.14,-332.99,42.12}, disabled = false, animPos = {-1216.5,-332.63,42.12}, animHeading = 119.32, freeTime = 60, hackSuccess = {enable = true, time = 30}}
 	},
 	[5] = {
-		name = "Fleeca Bank [Grand Senora Desert]",
+		name = "Fleeca Bank [Grand Senora Desert]",postal = "4024",
 		blip = { enable = true, bName = "Fleeca Bank [Grand Senora Desert]", display = 4, sprite = 431, color = 5, scale = 0.7 },
 		inUse = false, minCops = 0,
 		vault = { pos = {1175.544,2712.855,38.088}, model = 2121050683, oHeadMin = 320.0, oHeadMax = 350.0, cHeadMin = 80.0, cHeadMax = 110.0 },
@@ -128,7 +128,7 @@ Config.Banks = {
 		powerBox = {pos = {1158.18,2708.96,37.98}, disabled = false, animPos = {1157.47,2708.92,37.98}, animHeading = 269.46, freeTime = 60, hackSuccess = {enable = true, time = 30}}
 	},
 	[6] = {
-		name = "Fleeca Bank [Great Ocean Highway]",
+		name = "Fleeca Bank [Great Ocean Highway]",postal = "5070",
 		blip = { enable = true, bName = "Fleeca Bank [Great Ocean Highway]", display = 4, sprite = 431, color = 5, scale = 0.7 },
 		inUse = false, minCops = 0,
 		vault = { pos = {-2956.473,482.2,15.99}, model = -63539571, oHeadMin = 230.0, oHeadMax = 260.0, cHeadMin = 340.0, cHeadMax = 370.0 },
@@ -146,7 +146,7 @@ Config.Banks = {
 		powerBox = {pos = {-2948.05,481.05,15.44}, disabled = false, animPos = {-2947.25,480.95,15.26}, animHeading = 90.32, freeTime = 60, hackSuccess = {enable = true, time = 30}}
 	},
 	[7] = {
-		name = "Blaine County Savings Bank",
+		name = "Blaine County Savings Bank",postal = "1055",
 		blip = { enable = true, bName = "BCS Bank", display = 4, sprite = 431, color = 5, scale = 0.7 },
 		inUse = false, minCops = 0,
 		vault = { pos = {-105.9,6472.11,31.9}, model = -1185205679, oHeadMin = 140.0, oHeadMax = 170.0, cHeadMin = 30.0, cHeadMax = 60.0 },
@@ -164,7 +164,7 @@ Config.Banks = {
 		powerBox = {pos = {-109.45,6483.29,31.47}, disabled = false, animPos = {-110.0,6483.8,31.47}, animHeading = 224.89, freeTime = 60, hackSuccess = {enable = true, time = 30}}
 	},
 	[8] = {
-		name = "Pacific Standard Public Deposit Bank",
+		name = "Pacific Standard Public Deposit Bank", postal = "7090",
 		blip = { enable = true, bName = "PSPD Bank", display = 4, sprite = 431, color = 5, scale = 0.7 },
 		inUse = false, minCops = 0,
 		vault = { pos = {252.8114,228.4967,102.0833}, model = 961976194, oHeadMin = 20.0, oHeadMax = 40.0, cHeadMin = 150.0, cHeadMax = 165.0 },

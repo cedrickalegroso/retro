@@ -56,6 +56,8 @@ client_scripts {
 
  'cl_pvp.lua',
 
+ 'cl_acc.lua',
+
  'cl_discrich.lua',
  
  'esx-ecobottles/client/main.lua',

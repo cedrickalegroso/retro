@@ -21,5 +21,6 @@ client_scripts {
 	'config.lua',
 	'client/client.lua',
 	'client/utils.lua',
+	--'drill.lua',
 	'client/protection_cl.lua',
 }

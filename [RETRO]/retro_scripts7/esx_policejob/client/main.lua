@@ -734,6 +734,14 @@ function OpenPoliceActionsMenu()
 							{label = 'Postal 3051',		value = 'cctv14'},
 							{label = 'Postal 3008',		value = 'cctv15'},
 							{label = 'Postal 1000',		value = 'cctv16'},
+							{label = 'Postal 8170',		value = 'cctv17'},
+							{label = 'Postal 7090',		value = 'cctv18'},
+							{label = 'Postal 1055',		value = 'cctv19'},
+							{label = 'Postal 5070',		value = 'cctv20'},
+							{label = 'Postal 4024',		value = 'cctv21'},
+							{label = 'Postal 7175',		value = 'cctv22'},
+							{label = 'Postal 7185',		value = 'cctv23'},
+							{label = 'Postal 7193',		value = 'cctv24'},
 						
 					
 						}
@@ -742,6 +750,30 @@ function OpenPoliceActionsMenu()
 					
 						if action == 'cctv1' then
 							ExecuteCommand('policetv 12')
+							menu.close()
+						elseif action == 'cctv24' then
+							ExecuteCommand('policetv 36')
+							menu.close()
+						elseif action == 'cctv23' then
+							ExecuteCommand('policetv 35')
+							menu.close()
+						elseif action == 'cctv22' then
+							ExecuteCommand('policetv 34')
+							menu.close()
+						elseif action == 'cctv21' then
+							ExecuteCommand('policetv 33')
+							menu.close()
+						elseif action == 'cctv20' then
+							ExecuteCommand('policetv 32')
+							menu.close()
+						elseif action == 'cctv19' then
+							ExecuteCommand('policetv 31')
+							menu.close()
+						elseif action == 'cctv18' then
+							ExecuteCommand('policetv 29')
+							menu.close()
+						elseif action == 'cctv17' then
+							ExecuteCommand('policetv 28')
 							menu.close()
 						elseif action == 'cctvhp' then
 							ExecuteCommand('policetv 1')

@@ -565,7 +565,7 @@ CreateThread(function()
 	print('^9R::::::R     R:::::RE::::::::::::::::::::E      T:::::::::T      R::::::R     R:::::R OO:::::::::::::OO         CC:::::::::::::::CI::::::::I      T:::::::::T          YYYY:::::YYYY         S::::::SSSSSS:::::S2::::::2222222:::::2')
 	print('^9R::::::R     R:::::RE::::::::::::::::::::E      T:::::::::T      R::::::R     R:::::R   OO:::::::::OO             CCC::::::::::::CI::::::::I      T:::::::::T          Y:::::::::::Y         S:::::::::::::::SS 2::::::::::::::::::2')
 	print('^9RRRRRRRR     RRRRRRREEEEEEEEEEEEEEEEEEEEEE      TTTTTTTTTTT      RRRRRRRR     RRRRRRR     OOOOOOOOO                  CCCCCCCCCCCCCIIIIIIIIII      TTTTTTTTTTT          YYYYYYYYYYYYY          SSSSSSSSSSSSSSS   22222222222222222222^0')
-	print(' SERVER IS LIVE | RUNNING VERSION 0.5 | CEDRICK ALEGROSO ')
+	print(' SERVER IS LIVE | RUNNING VERSION 1 | CEDRICK ALEGROSO ')
 end)                                                                                                                                                                                      
 
 TriggerEvent("es:addGroup", "jobmaster", "user", function(group) end)

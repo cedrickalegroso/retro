@@ -20,6 +20,46 @@ AddEventHandler('t1ger_bankrobbery:SafeDataSV', function(type, id, state)
 	TriggerClientEvent('t1ger_bankrobbery:SafeDataCL', -1, type, id, state)
 end)
 
+RegisterServerEvent('retro_scripts:callcopsonbankrob')
+AddEventHandler('retro_scripts:callcopsonbankrob', function(i, j)
+
+	TriggerEvent('InteractSound_SV:PlayOnAll','demo',0.5)
+
+	TriggerEvent('isPriority')
+
+
+	Citizen.Wait(5000)
+
+
+    TriggerClientEvent('chat:addMessage', -1, {
+        template = '<div class="chat-message system"><b> 👮 RCPD : </b> ^1Bank Robbery in progress at '..j..' Postal Code '..i..'  ^3EMS AND MECHANIC STANDBY!  </div>',
+        args = { fal, msg }
+	})
+
+	Citizen.Wait(2500)
+
+	TriggerClientEvent('chat:addMessage', -1, {
+        template = '<div class="chat-message system"><b> 👮 RCPD : </b> ^1Bank Robbery in progress at '..j..' Postal Code '..i..'  ^3EMS AND MECHANIC STANDBY!  </div>',
+        args = { fal, msg }
+	})
+
+	Citizen.Wait(2500)
+
+	TriggerClientEvent('chat:addMessage', -1, {
+        template = '<div class="chat-message system"><b> 👮 RCPD : </b> ^1Bank Robbery in progress at '..j..' Postal Code '..i..'  ^3EMS AND MECHANIC STANDBY!  </div>',
+        args = { fal, msg }
+	})
+	
+	
+	
+	
+	
+
+
+	
+
+end)
+
 RegisterServerEvent('t1ger_bankrobbery:ResetCurrentBankSV')
 AddEventHandler('t1ger_bankrobbery:ResetCurrentBankSV', function()
 	local xPlayer = ESX.GetPlayerFromId(source)

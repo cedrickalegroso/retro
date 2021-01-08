@@ -94,7 +94,7 @@ function openPropertyInventory()
     Citizen.Wait(250)
     loadPlayerInventory()
 
-    cb("ok")
+  --  cb("ok")
 
 end
 

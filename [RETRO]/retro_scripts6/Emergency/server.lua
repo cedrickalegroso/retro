@@ -116,6 +116,23 @@ AddEventHandler('esx_jobChat:911truck', function(targetCoords, msg, streetName, 
 	TriggerClientEvent('esx_jobChat:911EmergencySend', -1, messageFull)
 end)
 
+RegisterServerEvent('esx_jobChat:911ROBPOS')
+AddEventHandler('esx_jobChat:911ROBPOS', function(targetCoords, msg, streetName, emergency)
+    local _source = source
+	local xPlayer = ESX.GetPlayerFromId(source)
+	fal = xPlayer.getName(source)
+	local messageFull
+	if emergency == '911ROBPOS' then
+		messageFull = {
+			template = '<div style="padding: 8px; margin: 8px; background-color: rgba(0, 38, 153); border-radius: 25px;"><i class="fas fa-bell"style="font-size:15px"></i> [ POSSIBLE ROBBERY ALARM ] : SOMEONE IS TRYING TO ROB! OFFICERS RESPOND ASAP! </font></i></b></div>',
+        	args = {fal, streetName, msg}
+		}
+	end
+	TriggerClientEvent('esx_jobChat:911Marker', -1, targetCoords, emergency)
+	TriggerClientEvent('esx_jobChat:911EmergencySend', -1, messageFull)
+end)
+
+
 RegisterServerEvent('esx_jobChat:911Silent2')
 AddEventHandler('esx_jobChat:911Silent', function(targetCoords, msg, streetName, emergency)
     local _source = source

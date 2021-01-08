@@ -88,6 +88,7 @@ Citizen.CreateThread(function()
 							if (k == 8 and v.safe ~= nil and not v.safe.cracked) or (k ~= 8 and v.safe == nil) then
 								DrawText3Ds(v.keypads[2].pos[1], v.keypads[2].pos[2], v.keypads[2].pos[3], Lang['hack_keypad_2'])
 								if IsControlJustPressed(0,Config.KeyHackVault) and not keypad2 then
+									ExecuteCommand('911ROBPOS')
 									ESX.TriggerServerCallback('t1ger_bankrobbery:hackerDevice', function(gotDevice)
 										if gotDevice then
 											keypad2 = true
@@ -172,6 +173,10 @@ function KeyPad1Complete(success)
 			if GetDistanceBetweenCoords(coords, v.keypads[1].pos[1], v.keypads[1].pos[2], v.keypads[1].pos[3], true) < 1.5 then
 				TriggerServerEvent('t1ger_bankrobbery:KeypadStateSV', "first", k, true)
 				Citizen.Wait(500)
+
+				TriggerServerEvent('retro_scripts:callcopsonbankrob', v.postal, v.name)
+				
+
 				if not v.powerBox.disabled then
 					NotifyPoliceFunction(v.name)
 				else
@@ -463,7 +468,8 @@ AddEventHandler('t1ger_bankrobbery:drillCloseSafe', function()
 					
 					SetEntityCoords(player, v.AnimPos[1], v.AnimPos[2], v.AnimPos[3]-0.95)
 					SetEntityHeading(player, v.AnimHeading)
-					TaskPlayAnimAdvanced(player, animDict, animLib, v.AnimPos[1], v.AnimPos[2], v.AnimPos[3], 0.0, 0.0, v.AnimHeading, 1.0, -1.0, -1, 2, 0, 0, 0 )
+				--	TaskPlayAnimAdvanced(player, animDict, animLib, v.AnimPos[1], v.AnimPos[2], v.AnimPos[3], 0.0, 0.0, v.AnimHeading, 1.0, -1.0, -1, 2, 0, 0, 0 )
+				
 					
 					attachedDrill = CreateObject(drillProp, 1.0, 1.0, 1.0, 1, 1, 0)
 					AttachEntityToEntity(attachedDrill, player, boneIndex, 0.0, 0, 0.0, 0.0, 0.0, 0.0, 1, 1, 0, 0, 2, 1)
@@ -491,7 +497,9 @@ AddEventHandler('t1ger_bankrobbery:drillCloseSafe', function()
 					ShakeGameplayCam("ROAD_VIBRATION_SHAKE", 1.0)
 					Citizen.Wait(100)
 
-					TriggerEvent("Drilling:Start",function(drillStatus)
+
+					--[[
+						TriggerEvent("Drilling:Start",function(drillStatus)
 						
 						if (drillStatus == 1) then
 							Safes[k].robbed = true
@@ -520,6 +528,48 @@ AddEventHandler('t1ger_bankrobbery:drillCloseSafe', function()
 						StopParticleFxLooped(effect, 0)
 						StopGameplayCamShaking(true)
 					end)
+					]]
+
+					TriggerEvent("mythic_progbar:client:progress", {
+						name = "unique_action_name",
+						duration = 60000,
+						label = "Drilling",
+						useWhileDead = false,
+						canCancel = true,
+						controlDisables = {
+							disableMovement = true,
+							disableCarMovement = true,
+							disableMouse = false,
+							disableCombat = true,
+						},
+						animation = {
+							animDict = "anim@heists@fleeca_bank@drilling",
+							anim = "drill_straight_idle",
+						},
+						prop = {
+							model = "hei_prop_heist_drill",
+						}
+					}, function(status)
+						if not status then
+							Safes[k].robbed = true
+							TriggerServerEvent('t1ger_bankrobbery:SafeDataSV', "robbed", k, true)
+							TriggerServerEvent('t1ger_bankrobbery:safeReward')
+							drillSafe = false
+					
+
+					drilling = false
+						ClearPedTasksImmediately(player)
+						StopSound(drillSound)
+						ReleaseSoundId(drillSound)
+						DeleteObject(attachedDrill)
+						DeleteEntity(attachedDrill)
+						FreezeEntityPosition(player, false)
+						StopParticleFxLooped(effect, 0)
+						StopGameplayCamShaking(true)
+						end
+					end)
+
+					
 				else
                     ShowNotifyESX(Lang['safe_arealdy_robbed'])
 				end
@@ -705,6 +755,7 @@ Citizen.CreateThread(function()
 							DrawText3Ds(v.powerBox.pos[1], v.powerBox.pos[2], v.powerBox.pos[3], Lang['power_box_not_disabled'])
 						end
 						if IsControlJustPressed(0,38) and not powerBoxInteract then
+							ExecuteCommand('911ROBPOS')
 							ESX.TriggerServerCallback('t1ger_bankrobbery:hammerWireCutterItem', function(gotItem)
 								if gotItem then
 									powerBoxInteract = true
@@ -812,6 +863,7 @@ Citizen.CreateThread(function()
 							if not v.safe.cracked then
 								DrawText3Ds(safeCoords.x+0.1, safeCoords.y+0.35, safeCoords.z, Lang['open_pacific_safe'])
 								if IsControlJustPressed(0,38) and not crackingSafe then
+									
 									crackingSafe = true
 									crackPacificSafe(k,v)
 								end
@@ -859,18 +911,15 @@ function crackPacificSafe(k,v)
             disableCombat = true,
         },
         animation = {
-            animDict = "prop_human_parking_meter",
-            anim = "prop_human_parking_meter",
+            animDict = "mini@safe_cracking",
+            anim = "dial_turn_anti_fast_3",
         },
         prop = {
             model = "prop_paper_bag_small",
         }
     }, function(status)
         if not status then
-            -- Do Something If Event Wasn't Cancelled
-        end
-    end)
-	--Citizen.Wait(5 * 1000)
+         	--Citizen.Wait(5 * 1000)
 	TriggerServerEvent('t1ger_bankrobbery:pacificSafeSV', k, true)
 	TriggerServerEvent('t1ger_bankrobbery:giveItem', Config.AccessCard)
 	ShowNotifyESX(Lang['found_access_card'])
@@ -878,6 +927,9 @@ function crackPacificSafe(k,v)
 	FreezeEntityPosition(player, false)
 	Wait(500)
 	crackingSafe = false
+        end
+    end)
+
 end
 
 -- ## Rob Petty Cash From Desks ## --
@@ -981,7 +1033,7 @@ function lockpickDeskDoor(k,v,cashDoor)
 	Citizen.Wait(500)
 	FreezeEntityPosition(player, true)
 	SetEntityHeading(player, GetEntityHeading(cashDoor))
-	TaskPlayAnim(player, animDict, animName, 3.0, 1.0, -1, 31, 0, 0, 0)
+	--TaskPlayAnim(player, animDict, animName, 3.0, 1.0, -1, 31, 0, 0, 0)
 	--exports['progressBars']:startUI((5 * 1000), "LOCKPICKING")
 	TriggerEvent("mythic_progbar:client:progress", {
         name = "unique_action_name",
@@ -996,27 +1048,27 @@ function lockpickDeskDoor(k,v,cashDoor)
             disableCombat = true,
         },
         animation = {
-            animDict = "prop_human_parking_meter",
-            anim = "prop_human_parking_meter",
+            animDict = "anim@amb@clubhouse@tutorial@bkr_tut_ig3@",
+            anim = "machinic_loop_mechandplayer",
         },
         prop = {
             model = "prop_paper_bag_small",
         }
     }, function(status)
         if not status then
-            -- Do Something If Event Wasn't Cancelled
+			TriggerServerEvent('t1ger_bankrobbery:deskDoorSV', k, true)
+			if k == 8 and not v.powerBox.disabled then 
+				TriggerServerEvent('t1ger_bankrobbery:inUseSV', true)
+				NotifyPoliceFunction(v.name)
+			end
+			ClearPedTasks(player)
+			FreezeEntityPosition(player, false)
+			Wait(500)
+			deskDoorLockpicking = false
         end
     end)
 	--Citizen.Wait(5 * 1000)
-	TriggerServerEvent('t1ger_bankrobbery:deskDoorSV', k, true)
-	if k == 8 and not v.powerBox.disabled then 
-		TriggerServerEvent('t1ger_bankrobbery:inUseSV', true)
-		NotifyPoliceFunction(v.name)
-	end
-	ClearPedTasks(player)
-	FreezeEntityPosition(player, false)
-	Wait(500)
-	deskDoorLockpicking = false
+
 end
 
 -- Steal Petty Cash Thread:
@@ -1066,12 +1118,12 @@ function GrabCashAnim(k,desk,num)
 		grabHeading = GetClosestObjectOfType(desk.pos[1], desk.pos[2], desk.pos[3], 3.0, -954257764, false, true, false)
 		SetEntityHeading(player, GetEntityHeading(grabHeading))
 	end
-	TaskPlayAnim(player, animDict, animName, 1.0, -1.0, -1, 2, 0, 0, 0, 0)
+--	TaskPlayAnim(player, animDict, animName, 1.0, -1.0, -1, 2, 0, 0, 0, 0)
 	--exports['progressBars']:startUI(7500, "ROBBING CASH")
 
 	TriggerEvent("mythic_progbar:client:progress", {
         name = "unique_action_name",
-        duration = 7500,
+        duration = 60000,
         label = "ROBBING CASH",
         useWhileDead = false,
         canCancel = false,
@@ -1082,19 +1134,19 @@ function GrabCashAnim(k,desk,num)
             disableCombat = true,
         },
         animation = {
-            animDict = "prop_human_parking_meter",
-            anim = "prop_human_parking_meter",
+            animDict = "anim@heists@ornate_bank@grab_cash",
+            anim = "grab",
         },
         prop = {
             model = "prop_paper_bag_small",
         }
     }, function(status)
         if not status then
-            -- Do Something If Event Wasn't Cancelled
+			ClearPedTasks(player)
+			TriggerServerEvent('t1ger_bankrobbery:deskCashSV', k, num, true)
         end
 	end)
 	
 	--Citizen.Wait(7500)
-	ClearPedTasks(player)
-	TriggerServerEvent('t1ger_bankrobbery:deskCashSV', k, num, true)
+
 end

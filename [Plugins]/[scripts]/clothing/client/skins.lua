@@ -87,8 +87,14 @@ end
 
 --player_zero player_one player_two
 fr_skins = {
+    
     'mp_f_freemode_01',
-    'a_f_m_beach_01',
+  
+}
+
+
+--[[
+  'a_f_m_beach_01',
     'a_f_m_bevhills_01',
     'a_f_m_bevhills_02',
     'a_f_m_bodybuild_01',
@@ -226,7 +232,8 @@ fr_skins = {
     'ig_paige',
     'a_f_y_femaleagent',
     'a_f_y_hippie_01'
-}
+    ]]--
+
 
 --101 grills
 --429 male
@@ -234,7 +241,12 @@ fr_skins = {
 frm_skins = {
     'mp_m_freemode_01',
     'mp_f_freemode_01',
-    'ig_trafficwarden',
+ 
+}
+
+
+--[[
+   'ig_trafficwarden',
     'ig_bankman',
     'ig_barry',
     'ig_bestmen',
@@ -727,4 +739,4 @@ frm_skins = {
     'ig_paige',
     'a_f_y_femaleagent',
     'a_f_y_hippie_01'
-}
+]]--

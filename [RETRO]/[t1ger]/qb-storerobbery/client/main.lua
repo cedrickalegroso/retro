@@ -121,7 +121,7 @@ Citizen.CreateThread(function()
                                             streetLabel = streetLabel .. " " .. street2
                                         end
 
-                                        ExecuteCommand('911')
+                                        ExecuteCommand('911ROBPOS')
 
                                      --   TriggerServerEvent("qb-storerobbery:server:callCops", "safe", currentSafe, streetLabel, pos)
                                         copsCalled = true
