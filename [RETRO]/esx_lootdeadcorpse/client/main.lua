@@ -9,35 +9,8 @@ Citizen.CreateThread(function()
 		Citizen.Wait(0)
 	end
 
-	while ESX.GetPlayerData().job == nil do
-		Citizen.Wait(10)
-	end
-
-	PlayerData = ESX.GetPlayerData()
 end)
     
-Citizen.CreateThread(function()
-RegisterNetEvent('esx:setJob')
-AddEventHandler('esx:setJob', function(job)
-	PlayerData.job = job
-end)
-		while true do
-			Citizen.Wait(20)
-		--	if PlayerData.job and ( PlayerData.job.name == "jobname-here" or PlayerData.job.name == "jobname-here" then -- comment this line if you want to allow all player to loot
-			--	if IsControlJustReleased(0, 38) then		
-				local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
-					if IsPlayerDead(closestPlayer) then 
-				--		if closestPlayer ~= -1 and closestDistance <= 5.0 then
-					--	OpenBodySearchMenu(closestPlayer)
-				--		end
-					end
-				--end
-		--	end -- comment this line if you want to allow all player to loot
-		end
-    
-end)
-
-
 
 RegisterNetEvent('retro_scripts:showloot')
 AddEventHandler('retro_scripts:showloot', function(healType, quiet)

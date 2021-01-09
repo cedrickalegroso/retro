@@ -99,51 +99,33 @@ end
 --Marijuana
 RegisterNetEvent('esx_drugeffects:onMarijuana')
 AddEventHandler('esx_drugeffects:onMarijuana', function()
-  local playerPed = GetPlayerPed(-1)
+ local playerPed = GetPlayerPed(-1)
 
-  local player = PlayerId()
-  SetRunSprintMultiplierForPlayer(player, 1.3)
+    RequestAnimSet("move_m@hipster@a") 
+    while not HasAnimSetLoaded("move_m@hipster@a") do
+      Citizen.Wait(0)
+    end    
 
-  RequestAnimSet("move_m@hipster@a") 
-  while not HasAnimSetLoaded("move_m@hipster@a") do
-    Citizen.Wait(0)
-  end    
+    TaskStartScenarioInPlace(playerPed, "WORLD_HUMAN_SMOKING_POT", 0, 1)
+    Citizen.Wait(3000)
+    ClearPedTasksImmediately(playerPed)
+    SetTimecycleModifier("spectator5")
+    SetPedMotionBlur(playerPed, true)
+    SetPedMovementClipset(playerPed, "move_m@hipster@a", true)
+   -- SetPedIsDrug(playerPed, true)
 
-  TaskStartScenarioInPlace(playerPed, "WORLD_HUMAN_SMOKING_POT", 0, 1)
-  Citizen.Wait(3000)
-  ClearPedTasksImmediately(playerPed)
-  SetTimecycleModifier("spectator5")
-  SetPedMotionBlur(playerPed, true)
-  SetPedMovementClipset(playerPed, "move_m@hipster@a", true)
-  SetPedIsDrug(playerPed, true)
-
-  print('GG')
-
-  Wait(30000)
-
-
-
-  SetRunSprintMultiplierForPlayer(player, 1.0)		
-
-  --[[
-
-
-  TaskStartScenarioInPlace(playerPed, "WORLD_HUMAN_SMOKING_POT", 0, 1)
-  Citizen.Wait(3000)
-  ClearPedTasksImmediately(playerPed)
-  SetTimecycleModifier("spectator5")
-  SetPedMotionBlur(playerPed, true)
-  SetPedMovementClipset(playerPed, "move_m@hipster@a", true)
-  SetPedIsDrug(playerPed, true)
-  ]]--
-
- 
-
-
-  
-
+   ESX.ShowNotification('You are drugged and can run a little bit faster.')
 
     --Efects
+    local player = PlayerId()
+    
+    SetRunSprintMultiplierForPlayer(player, 1.3)
+
+    print('start count')
+    Wait(16000)
+    print('stop count')
+
+    SetRunSprintMultiplierForPlayer(player, 1.0)
 
 end)
 
