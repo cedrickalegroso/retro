@@ -40,6 +40,8 @@ server_scripts {
 
 	'gamz-food/server/main.lua',
 
+	--'DiscordWhitelist/server.lua',
+
 	'esx_bike/translations/en.lua',
 	'esx_bike/translations/cz.lua',
 	'esx_bike/server.lua'

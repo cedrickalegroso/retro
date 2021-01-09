@@ -50,18 +50,20 @@ AddEventHandler('esx_armour:armor', function()
           anim = "enter",
       },
       prop = {
-          model = "prop_paper_bag_small",
+          model = "p_para_bag_xmas_s",
       }
   }, function(status)
       if not status then
-        TriggerEvent('skinchanger:getSkin', function(skin)
+        TriggerEvent('skinchanger:getSkin', function(source, skin)
+
+
 
 
           if skin.sex == 0 then
-            TriggerEvent('skinchanger:loadClothes', skin, {['bproof_1'] = 7,  ['bproof_2'] = 1})
+            TriggerEvent('clothing:loadClothes', skin, {['bproof_1'] = 7,  ['bproof_2'] = 1})
             SetPedArmour(GetPlayerPed(-1), 100)
           else
-            TriggerEvent('skinchanger:loadClothes', skin, {['bproof_1'] = 7,  ['bproof_2'] = 1})
+            TriggerEvent('clothing:loadClothes', skin, {['bproof_1'] = 7,  ['bproof_2'] = 1})
             SetPedArmour(GetPlayerPed(-1), 100)
           end
           
@@ -114,10 +116,10 @@ AddEventHandler('esx_armour:armor2', function(source)
 
 
 
-    print('using')
+   -- print('using')
 
 
-    TaskStartScenarioInPlace(playerPed, 'try_tie_negative_a', 0, false)
+   -- TaskStartScenarioInPlace(playerPed, 'try_tie_negative_a', 0, false)
 
 
 
@@ -146,19 +148,21 @@ AddEventHandler('esx_armour:armor2', function(source)
           anim = "enter",
       },
       prop = {
-          model = "prop_paper_bag_small",
+          model = "p_para_bag_xmas_s",
       }
   }, function(status)
       if not status then
         TriggerEvent('skinchanger:getSkin', function(skin)
 
+          print('get skin')
+          SetPedArmour(GetPlayerPed(-1), 100)
 
           if skin.sex == 0 then
-            TriggerEvent('skinchanger:loadClothes', skin, {['bproof_1'] = 7,  ['bproof_2'] = 1})
-            SetPedArmour(GetPlayerPed(-1), 100)
+            TriggerEvent('clothing:loadClothes', skin, {['bproof_1'] = 7,  ['bproof_2'] = 1})
+            
           else
-            TriggerEvent('skinchanger:loadClothes', skin, {['bproof_1'] = 7,  ['bproof_2'] = 1})
-            SetPedArmour(GetPlayerPed(-1), 100)
+            TriggerEvent('clothing:loadClothes', skin, {['bproof_1'] = 7,  ['bproof_2'] = 1})
+            
           end
           
         end)

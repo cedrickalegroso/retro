@@ -62,11 +62,10 @@ AddEventHandler('retro_scripts:notBleed', function(source, ped)
       setBleedingOff(ped)
       takenoxy = 1
       alreadyTaken = 1
-      effect = false
-      print('taken oxy '..takenoxy)
-      print('alreadyTaken '..alreadyTaken)
       Citizen.Wait(60000)
-
+      print('1 Min has gone by Oxy is not affecting you anymore.')
+      takenoxy = 0
+      alreadyTaken = 0
       --[[
   TriggerEvent('notification', ('You have taken Oxy this will last for 1 Min'), 2)
      -- exports['mythic_notify']:DoHudText('success', 'You have taken Oxy this will last for 1 Min')
@@ -101,6 +100,7 @@ end)
     effect = false
  --   SetEntityHealth(ped, 150)
     StopScreenEffect('Rampage')
+    StopScreenEffect('DeathFailOut')
     SetPlayerHealthRechargeMultiplier(PlayerId(), 0.0)
  end
  
@@ -112,11 +112,10 @@ end)
  local player = GetPlayerPed(-1)
  local Health = GetEntityHealth(player)
  
- if takenoxy == true then
+ if takenoxy == 1 then
    setBleedingOff(player)
    Citizen.Wait(60000)
-   takenoxy = true
-   alreadyTaken = true
+ 
  else 
    if Health <= 139   then
       setBleedingOn(player)

