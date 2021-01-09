@@ -18,7 +18,7 @@ Config.AlarmPriceFactor = 1 		-- set factor of alarm price, so say it's 10% of v
 
 -- Stealing NPC Cars Settings:
 Config.HandsUpTime = 6					-- set the time NPC stands with their hands up
-Config.PedGivesKeyChance = 50			-- set the chance of NPC giving keys upon threatening
+Config.PedGivesKeyChance = 30			-- set the chance of NPC giving keys upon threatening
 Config.AlertTime = {min = 1, max = 8}	-- set min and max seconds, from car is successfully robbed, to police receive call from NPC
 
 -- Police Settings:

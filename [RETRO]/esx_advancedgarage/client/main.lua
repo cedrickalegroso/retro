@@ -1649,6 +1649,9 @@ function SpawnVehicle(vehicle, plate)
 		local carplate = GetVehicleNumberPlateText(callback_vehicle)
 		table.insert(vehInstance, {vehicleentity = callback_vehicle, plate = carplate})
 		TaskWarpPedIntoVehicle(GetPlayerPed(-1), callback_vehicle, -1)
+
+		TriggerServerEvent('hsn-hotwire:addKeys',GetVehicleNumberPlateText(callback_vehicle))
+		SetVehicleEngineOn(vehicle,true)
 	end)
 
 	TriggerServerEvent('esx_advancedgarage:setVehicleState', plate, false)
@@ -1667,6 +1670,9 @@ function SpawnVehicle2(vehicle, plate)
 		local carplate = GetVehicleNumberPlateText(callback_vehicle)
 		table.insert(vehInstance, {vehicleentity = callback_vehicle, plate = carplate})
 		TaskWarpPedIntoVehicle(GetPlayerPed(-1), callback_vehicle, -1)
+
+		TriggerServerEvent('hsn-hotwire:addKeys',GetVehicleNumberPlateText(callback_vehicle))
+		SetVehicleEngineOn(vehicle,true)
 	end)
 
 	TriggerServerEvent('esx_advancedgarage:setVehicleState', plate, false)

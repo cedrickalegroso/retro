@@ -110,8 +110,22 @@ Citizen.CreateThread(function()
 		Citizen.Wait(0)
 
 		if IsControlJustReleased(0, 303) and IsInputDisabled(0) then
+
+			local ply = GetPlayerPed(-1)
+			local lib = "anim@mp_player_intmenu@key_fob@"
+			local anim = "fob_click"
+		
+			ESX.Streaming.RequestAnimDict(lib, function()
+				TaskPlayAnim(ply, lib, anim, 8.0, -8.0, -1, 0, 0, false, false, false)
+			end)
+			
 			ToggleVehicleLock()
+			
 			Citizen.Wait(300)
+
+
+
+
 	
 		-- D-pad down on controllers works, too!
 		elseif IsControlJustReleased(0, 173) and not IsInputDisabled(0) then
