@@ -13,6 +13,16 @@ ESX.RegisterUsableItem('bread', function(source)
 	TriggerClientEvent('notification', source, _U('used_bread'))
 end)
 
+Citizen.CreateThread(function()
+	Citizen.Wait(5*1000)
+	SetMapName("Retro City Map")
+end)
+
+Citizen.CreateThread(function()
+	Citizen.Wait(5*1000)
+	SetGameType("Role-Play")
+end)
+
 ESX.RegisterUsableItem('cigarette', function(source)
 	local xPlayer = ESX.GetPlayerFromId(source)
 
