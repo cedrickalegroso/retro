@@ -377,15 +377,8 @@ Config.Stash = {
         show3D = true
     },
 
-    ['Bed Stash'] = {
-        coords = vector3(326.19635009766,-202.39517211914,11.044961929321),
-        size = vector3(1.0, 1.0, 1.0),
-        job = 'all',
-        markerType = 2,
-        markerColour = { r = 255, g = 255, b = 255 },
-        msg = 'Press ~r~[E]~h~ To access Bed Stash',
-        show3D = true
-    },
+    
+
 
     ['Drawer'] = {
         coords = vector3(324.58142089844,-201.2045135498,11.044960975647),

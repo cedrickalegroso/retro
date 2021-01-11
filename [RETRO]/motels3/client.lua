@@ -408,7 +408,7 @@ motels.getClosestAction = function(room)
   closest = "exit"
   actText = "Press "..(Config.DrawTextInsteadOfMarker and "[~r~E~s~]" or "~INPUT_PICKUP~").." to leave."
 
-  --[[
+
     local inventDist = utils.vecDist(room.inventory, pos)
   if not closestDist or inventDist < closestDist then
     closestDist = inventDist
@@ -424,7 +424,6 @@ motels.getClosestAction = function(room)
   end
 
 
-  ]]--
 
   
   if closest and closestDist and actText then
@@ -548,22 +547,35 @@ motels.sellRoom = function(door,zone)
 end
 
 motels.openInventory = function(zone,door)  
+
+  print(motels.plyData.identifier)
+ 
   if Config.UseDiscInventory then
     if motels.ownedRooms[motels.curRoom.entry] or (motels.plyData and motels.plyData.job and motels.plyData.job.name == Config.PoliceJobName) then
       local homeMotel = (Config.UseHomeMotel and Config.HomeMotel and Config.Motels[Config.HomeMotel] and Config.HomeMotel == zone or false)
       TriggerEvent('retro-inventory:Motel', {
         type = 'motels',
-        owner = "m-"..(homeMotel and "home" or zone).."-"..(homeMotel and motels.id or door.x..","..door.y..","..door.z)
+        owner = plyData.identifier
       })
     else
       ESX.ShowNotification("You don't own this inventory.")
     end
   else
+    print('weww')
   --  print('llegoaqui')
-     ESX.TriggerServerCallback('motels:getInventory', function(inventory)
+  --[[
+  ESX.TriggerServerCallback('motels:getInventory', function(inventory)
        TriggerEvent("esx_inventoryhud:openPropertyInventory", inventory, false, {zone = zone, door = door})
     end,zone,door)
     TriggerEvent('loaf:iteminventory')  
+     TriggerEvent('retro-inventory:Motel', {
+    type = 'motels',
+    owner = plyData.identifier
+  })
+  ]]--
+ 
+   
+  TriggerEvent('retro-inventory:Motel', motels.plyData.identifier )
   end
 end
 

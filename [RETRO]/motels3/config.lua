@@ -12,7 +12,7 @@ Config = {
 
   ShowOtherHomeDoors = false,
 
-  UseDiscInventory = true,
+  UseDiscInventory = false,
   MotelsInventorySlots = 100,
 
   -- Distance to perform action/draw marker.

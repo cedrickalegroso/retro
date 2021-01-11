@@ -239,9 +239,7 @@ fr_skins = {
 --429 male
 
 frm_skins = {
-    'mp_m_freemode_01',
-    'mp_f_freemode_01',
- 
+    'mp_m_freemode_01', 
 }
 
 

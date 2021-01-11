@@ -51,8 +51,6 @@ Citizen.CreateThread(function()
                 openInventory(stashSecondaryInventory)
             end,
             shouldDraw = function()
-        
-                   
            
                
                 return ESX.PlayerData.job.name == v.job or v.job == 'all'
@@ -73,6 +71,7 @@ local MotelSecondaryInventory = {
   
 RegisterNetEvent('retro-inventory:Motel')
 AddEventHandler('retro-inventory:Motel', function(owner)
+    print(owner)
     MotelSecondaryInventory.owner = owner
     openInventory(MotelSecondaryInventory)
 end)
