@@ -23,7 +23,7 @@ end)
 			type = 'default'
 			title = 'title',
 			name = 'name',
-			align = 'top-left'
+			align = 'bottom-right'
 			options = {
 				{
 					label = 'label',
@@ -70,13 +70,13 @@ function OpenDefaultMenu(menu)
 
     ESX.UI.Menu.Open(getOrElse(menu.type, 'default'), GetCurrentResourceName(), getOrElse(menu.name, getOrElse(menu.title, 'default-menu-name')), {
         title = getOrElse(menu.title, 'default-menu-title'),
-        align = getOrElse(menu.align, 'top-left'),
+        align = getOrElse(menu.align, 'bottom-right'),
         elements = getOrElse(elements, emptyMenu)
     }, function(data, m)
         if getOrElse(actions[data.current.value], nil) then
             actions[data.current.value](data.current, m)
         else
-            TriggerEvent('notification', 'This menu has no action!', 2)
+            exports['mythic_notify']:SendAlert('error', 'This menu has no action!')
         end
     end, function(data, m)
         if getOrElse(menu.close, nil) then
@@ -100,7 +100,7 @@ function OpenDialogMenu(menu)
                     menu.action(data.value)
                     m.close()
                 else
-                    TriggerEvent('notification', 'This menu has no action!', 2)
+                    exports['mythic_notify']:SendAlert('error', 'This menu has no action!')
                 end
             end,
             function(data, m)

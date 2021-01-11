@@ -20,7 +20,7 @@ files {
     -- client/html/sounds/ ... .ogg
     'client/html/sounds/demo.ogg',
     'client/html/sounds/cuff.ogg',
-	
+	'client/html/sounds/pow.ogg',
 	'client/html/sounds/lock.ogg',
 	'client/html/sounds/unlock.ogg',
 	'client/html/sounds/lock2.ogg',

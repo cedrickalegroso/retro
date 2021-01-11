@@ -408,7 +408,8 @@ motels.getClosestAction = function(room)
   closest = "exit"
   actText = "Press "..(Config.DrawTextInsteadOfMarker and "[~r~E~s~]" or "~INPUT_PICKUP~").." to leave."
 
-  local inventDist = utils.vecDist(room.inventory, pos)
+  --[[
+    local inventDist = utils.vecDist(room.inventory, pos)
   if not closestDist or inventDist < closestDist then
     closestDist = inventDist
     closest = "inventory"
@@ -422,6 +423,10 @@ motels.getClosestAction = function(room)
     actText = "Press "..(Config.DrawTextInsteadOfMarker and "[~r~E~s~]" or "~INPUT_PICKUP~").." to access your wardrobe."
   end
 
+
+  ]]--
+
+  
   if closest and closestDist and actText then
     return closest,closestDist,actText
   else
@@ -546,7 +551,7 @@ motels.openInventory = function(zone,door)
   if Config.UseDiscInventory then
     if motels.ownedRooms[motels.curRoom.entry] or (motels.plyData and motels.plyData.job and motels.plyData.job.name == Config.PoliceJobName) then
       local homeMotel = (Config.UseHomeMotel and Config.HomeMotel and Config.Motels[Config.HomeMotel] and Config.HomeMotel == zone or false)
-      TriggerEvent('disc-inventoryhud:openInventory', {
+      TriggerEvent('retro-inventory:Motel', {
         type = 'motels',
         owner = "m-"..(homeMotel and "home" or zone).."-"..(homeMotel and motels.id or door.x..","..door.y..","..door.z)
       })

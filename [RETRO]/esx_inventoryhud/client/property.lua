@@ -92,7 +92,7 @@ function openPropertyInventory()
     Citizen.Wait(250)
     refreshPropertyInventory()
     Citizen.Wait(250)
-    loadPlayerInventory()
+ --   loadPlayerInventory()
 
   --  cb("ok")
 

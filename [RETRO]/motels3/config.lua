@@ -1,6 +1,6 @@
 motels = {}
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj; end)
-Citizen.CreateThread(function(...) while not ESX do TriggerEvent('esx:getShRETROaredObjRETROect',function(obj) ESX = obj; end); Citizen.Wait(0); end; end)
+Citizen.CreateThread(function(...) while not ESX do TriggerEvent('esx:getSharedObject',function(obj) ESX = obj; end); Citizen.Wait(0); end; end)
 
 Config = {  
   -- Don't change this. Notifies you of updates.
@@ -12,7 +12,7 @@ Config = {
 
   ShowOtherHomeDoors = false,
 
-  UseDiscInventory = false,
+  UseDiscInventory = true,
   MotelsInventorySlots = 100,
 
   -- Distance to perform action/draw marker.
@@ -45,15 +45,15 @@ Config = {
 
   -- Purchase room prices.
   Prices = {
-    PinkCage = 5000,
-    Bilingsgate = 2500,
-    Motoa = 3500,
-    Rancho = 1250,
-    VonCrastenburg = 2500,
-    DreamView = 5000,
-    CrownJewels = 1000,
+    PinkCage = 20000,
+    Bilingsgate = 7500,
+    Motoa = 8500,
+    Rancho = 6250,
+    VonCrastenburg = 7500,
+    DreamView = 85000,
+    CrownJewels = 7500,
     BayviewLodge = 5000,
-    Eastern = 2500,
+    Eastern = 7500,
   },
 
   Motels = {

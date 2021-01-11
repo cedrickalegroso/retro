@@ -153,11 +153,15 @@ ConfigAmbu.Hospitals = {
 		AmbulanceActions = {
 			vector3(-510.49713134766,-312.13687133789,41.320701599121)
 		},
-		
 
-		Pharmacies = {
+		--[[
+Pharmacies = {
 			vector3(-452.1975402832,-324.78527832031,33.910823822021) --pillbox
 		},
+		]]--
+		
+
+		
 
 	
 		Vehicles = {
@@ -442,11 +446,13 @@ ConfigPOPO.PoliceStations = {
 		},
 
 	
-
-		Armories = {
+--[[
+Armories = {
 			{ x = 451.699, y = -980.356, z = 29.689 },
 		},
 
+]]--
+		
 		Vehicles = {
 			{
 				Spawner    = { x = 0, y = 0, z = 0},

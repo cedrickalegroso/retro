@@ -2,7 +2,7 @@ Config = {}
 
 Config.Locale = 'en'
 Config.OpenControl = 289
-Config.TrunkOpenControl = 0
+Config.TrunkOpenControl = 104
 Config.DeleteDropsOnStart = true
 Config.HotKeyCooldown = 1000
 Config.CheckLicense = true
