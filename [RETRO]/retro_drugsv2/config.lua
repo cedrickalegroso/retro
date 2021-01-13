@@ -127,7 +127,7 @@ Config.Drugs = {
 		-- Translated name
 		['Oranges'] = {
 			Item			= 'orange',				 	-- Item to pickup
-			ItemTransform	= 'packed_Orange', 			-- Item to transform
+			ItemTransform	= 'packaged_orange', 			-- Item to transform
 			AlertCops		= false, 					-- Alert police?
 			RequiredCops	= 0, 						-- How many cops need to the action start??
 			QToProcess		= 5,						-- Quantity necessary to process
@@ -156,7 +156,7 @@ Config.Drugs = {
 		-- Translated name
 		['Banana'] = {
 			Item			= 'banana',				 	-- Item to pickup
-			ItemTransform	= 'packed_banana', 			-- Item to transform
+			ItemTransform	= 'packaged_banana', 			-- Item to transform
 			AlertCops		= false, 					-- Alert police?
 			RequiredCops	= 0, 						-- How many cops need to the action start??
 			QToProcess		= 5,						-- Quantity necessary to process
