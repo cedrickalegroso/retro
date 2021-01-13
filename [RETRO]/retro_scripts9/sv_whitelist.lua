@@ -28,6 +28,11 @@ RegisterCommand("stuck", function(source)
     TriggerClientEvent("retro_scripts:fly", source)
 end)
 
+RegisterServerEvent('retro_scripts:updateEmsBlips')
+AddEventHandler('retro_scripts:updateEmsBlips', function()
+	TriggerClientEvent('retro_scripts:updateEmsBlips', -1)
+end)
+
 
 
 RegisterCommand("hotwirecar", function(source)

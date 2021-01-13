@@ -40,7 +40,7 @@ function OpenActionMenuInteraction(target)
 	table.insert(elements, {label = ('Call Mech'), value = 'call11'})
 	table.insert(elements, {label = ('Call Cops'), value = 'call2'})
 	table.insert(elements, {label = ('Hide In Trunk'), value = 'hide'})
-	table.insert(elements, {label = ('Loot Dead Body'), value = 'loot'})
+	table.insert(elements, {label = ('Search'), value = 'loot'})
 	table.insert(elements, {label = ('PiggyBack'), value = 'piggyback'})
 	table.insert(elements, {label = ('Carry'), value = 'carry'})
 	table.insert(elements, {label = ('TakeHostage'), value = 'takehostage'})
@@ -128,7 +128,7 @@ function OpenActionMenuInteraction(target)
 		end	
 
 		if data.current.value == 'loot' then
-			ExecuteCommand('lootdeadbody')
+			ExecuteCommand('search')
 			menu.close()
 		end	
 
