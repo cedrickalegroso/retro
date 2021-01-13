@@ -480,6 +480,36 @@ ConfigGamz.Zones = {
         }
     }, 
 
+    ["Fridge "] = {
+
+        ["coords"] = vector3(2537.25390625,6143.8525390625,164.27233886719),
+
+        ["drink"] = {
+            ["Coca Cola"] = {
+                ["price"] = 25,
+                ["prop"] = "prop_ecola_can"
+            },
+
+            ["Sparkling Water"] = {
+                ["price"] = 15,
+                ["prop"] = "prop_ld_flow_bottle"
+            } 
+        },
+        
+        ["eatable"] = {
+            ["Burger"] = {
+                ["price"] = 25,
+                ["prop"] = "prop_cs_burger_01"
+            },
+
+            ["Hotdog"] = {
+                ["price"] = 25,
+                ["prop"] = "prop_cs_hotdog_01"
+            }
+
+        }
+    }, 
+
     ["Gyro Day"] = {
         ["coords"] = vector3(461.50152587891, -699.02325439453, 27.402139663696)
     }
