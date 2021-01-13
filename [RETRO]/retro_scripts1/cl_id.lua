@@ -33,6 +33,7 @@ local mechanicblips = {
         Citizen.Wait(10)
     end
     if PlayerData.job.name == 'police' then 
+        print('police blips')
         for _, info in pairs(policeblips) do 
         info.blip = AddBlipForCoord(info.x, info.y, info.z)
       SetBlipSprite(info.blip, info.id)
@@ -54,6 +55,7 @@ Citizen.CreateThread(function()
         Citizen.Wait(10)
     end
     if PlayerData.job.name == 'groove' then 
+        print('groove blips')
         for _, info in pairs(mechanicblips) do 
         info.blip = AddBlipForCoord(info.x, info.y, info.z)
       SetBlipSprite(info.blip, info.id)
@@ -75,6 +77,7 @@ end)
         Citizen.Wait(10)
     end
     if PlayerData.job.name == 'ambulance' then 
+        print('ambulance blips')
         for _, info in pairs(ambulanceblips) do 
         info.blip = AddBlipForCoord(info.x, info.y, info.z)
       SetBlipSprite(info.blip, info.id)
