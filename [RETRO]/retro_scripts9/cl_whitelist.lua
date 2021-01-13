@@ -6,7 +6,7 @@ RegisterNetEvent('esx:setJob')
 AddEventHandler('esx:setJob', function(job)
     PlayerData.job = job
     
-    print('debug '..PlayerData.job)
+    print('debug '..job)
 	
 	Citizen.Wait(5000)
 	TriggerServerEvent('retro_scripts:updateEmsBlips')
