@@ -46,7 +46,7 @@ RegisterCommand('showbills', function()
 	end
 end, false)
 
-RegisterKeyMapping('showbills', _U('keymap_showbills'), 'keyboard', 'F7')
+--RegisterKeyMapping('showbills', _U('keymap_showbills'), 'keyboard', 'F7')
 
 AddEventHandler('esx:onPlayerDeath', function() isDead = true end)
 AddEventHandler('esx:onPlayerSpawn', function(spawn) isDead = false end)

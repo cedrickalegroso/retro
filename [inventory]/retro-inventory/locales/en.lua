@@ -4,12 +4,12 @@ Locales['en'] = {
     ['keyshop'] = "Press ~INPUT_CONTEXT~ to open Shop",
     ['keystash'] = "Press ~INPUT_CONTEXT~ to open Stash",
 -- Server side
-    ['drop'] = "זרוק",
+    ['drop'] = "Dropped",
     ['glove'] = "Glove Box",
-    ['player'] = "שחקן",
+    ['player'] = "Player",
     ['shop'] = "Shop",
     ['stash'] = "Stash",
     ['trunk'] = "Trunk-",
-    ['added'] = "נוסף",
+    ['added'] = "Added",
     ['removed'] = "Removed",
 } 

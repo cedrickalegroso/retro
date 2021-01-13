@@ -127,13 +127,13 @@ Config.Drugs = {
 		-- Translated name
 		['Oranges'] = {
 			Item			= 'orange',				 	-- Item to pickup
-			ItemTransform	= 'Packed_Orange', 			-- Item to transform
+			ItemTransform	= 'packed_Orange', 			-- Item to transform
 			AlertCops		= false, 					-- Alert police?
 			RequiredCops	= 0, 						-- How many cops need to the action start??
 			QToProcess		= 5,						-- Quantity necessary to process
 			QToSell			= 1,						-- Quantity necessary to sell
-			TimeToFarm		= 5,						-- Time to farm in seconds
-			TimeToProcess 	= 5,						-- Time to process in seconds
+			TimeToFarm		= 10,						-- Time to farm in seconds
+			TimeToProcess 	= 10,						-- Time to process in seconds
 			TimeToSell		= 15,						-- Time to sell in seconds
 			Usable			= false,						-- Can it be consumed?
 			UseEffect		= false,						-- Effect after consume
@@ -146,23 +146,23 @@ Config.Drugs = {
 				-- sellMin: Min receveid by selling
 				-- sellMax: Max received by selling
 				-- multiplierPolice: true/false Multiply the min/max based on cops online
-				--,,
-				Field 			= {x = 2596.5793457031,	y = 6185.77734375,	z = 166.88291931152,	name = _U('field', _U('coke')),			sprite = 0,	color = 0, callPolice = false, callPoliceChance = 100},
-				Processing 		= {x = 2600.0720214844,	y = 6182.033203125,	z = 168.23164367676,	name = _U('processing', _U('coke')),	sprite = 0,	color = 0, callPolice = false, callPoliceChance = 100},
+				--,,,,,,
+				Field 			= {x = 2588.8994140625,	y = 6160.6181640625,	z = 164.52153015137,	name = _U('field', _U('coke')),			sprite = 0,	color = 0, callPolice = false, callPoliceChance = 100},
+				Processing 		= {x = 2568.1750488281,	y = 6561.236328125,	z =27.576608657837,	name = _U('processing', _U('coke')),	sprite = 0,	color = 0, callPolice = false, callPoliceChance = 100},
 				--Dealer 			= {x = -1969.54,	y = -516.39,	z = 10.90, h = 45.24,	name = _U('dealer', _U('coke')),		sprite = 500,	color = 75, callPolice = false, callPoliceChance = 100, NPCHash = 653210662, sellMin = 200, sellMax = 500, multiplierPolice = true}
 			}
 		},
 
 		-- Translated name
 		['Banana'] = {
-			Item			= 'Banana',				 	-- Item to pickup
-			ItemTransform	= 'Packed_Banana', 			-- Item to transform
+			Item			= 'banana',				 	-- Item to pickup
+			ItemTransform	= 'packed_banana', 			-- Item to transform
 			AlertCops		= false, 					-- Alert police?
 			RequiredCops	= 0, 						-- How many cops need to the action start??
 			QToProcess		= 5,						-- Quantity necessary to process
 			QToSell			= 1,						-- Quantity necessary to sell
-			TimeToFarm		= 5,						-- Time to farm in seconds
-			TimeToProcess 	= 5,						-- Time to process in seconds
+			TimeToFarm		= 10,						-- Time to farm in seconds
+			TimeToProcess 	= 10,						-- Time to process in seconds
 			TimeToSell		= 15,						-- Time to sell in seconds
 			Usable			= false,						-- Can it be consumed?
 			UseEffect		= false,						-- Effect after consume
@@ -175,9 +175,9 @@ Config.Drugs = {
 				-- sellMin: Min receveid by selling
 				-- sellMax: Max received by selling
 				-- multiplierPolice: true/false Multiply the min/max based on cops online
-				--,, ,,,,
-				Field 			= {x = 22588.556640625,	y =6171.8427734375,	z = 165.73306274414,	name = _U('field', _U('coke')),			sprite = 0,	color = 0, callPolice = false, callPoliceChance = 100},
-				Processing 		= {x = 2590.9174804688,	y = 6166.978515625,	z = 166.16055297852,	name = _U('processing', _U('coke')),	sprite = 0,	color = 0, callPolice = false, callPoliceChance = 100},
+				--,, ,,,, ,, ,,
+				Field 			= {x = 2553.9230957031,	y =6177.572265625,	z = 162.21463012695,	name = _U('field', _U('coke')),			sprite = 0,	color = 0, callPolice = false, callPoliceChance = 100},
+				Processing 		= {x = 2568.6970214844,	y = 6564.3129882812,	z = 27.411443710327,	name = _U('processing', _U('coke')),	sprite = 0,	color = 0, callPolice = false, callPoliceChance = 100},
 				--Dealer 			= {x = -1969.54,	y = -516.39,	z = 10.90, h = 45.24,	name = _U('dealer', _U('coke')),		sprite = 500,	color = 75, callPolice = false, callPoliceChance = 100, NPCHash = 653210662, sellMin = 200, sellMax = 500, multiplierPolice = true}
 			}
 		},

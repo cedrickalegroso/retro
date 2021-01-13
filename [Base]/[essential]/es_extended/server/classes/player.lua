@@ -425,6 +425,7 @@ function CreateExtendedPlayer(player, accounts, inventory, job, job2, loadout, n
 		end
 	end
 
+	
 	self.addWeapon = function(weaponName, ammo)
 		local weaponLabel = ESX.GetWeaponLabel(weaponName)
 

@@ -37,6 +37,28 @@ end, function(source, args, user)
 	TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'Insufficient Permissions.' } })
 end, {help = _U('setjob'), params = {{name = "id", help = _U('id_param')}, {name = "job", help = _U('setjob_param2')}, {name = "grade_id", help = _U('setjob_param3')}}})
 
+
+TriggerEvent('es:addGroupCommand', 'setjob2', 'jobmaster', function(source, args, user)
+	if tonumber(args[1]) and args[2] and tonumber(args[3]) then
+		local xPlayer = ESX.GetPlayerFromId(args[1])
+
+		if xPlayer then
+			if ESX.DoesJobExist(args[2], args[3]) then
+				xPlayer.setJob2(args[2], args[3])
+			else
+				TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'That job does not exist.' } })
+			end
+
+		else
+			TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'Player not online.' } })
+		end
+	else
+		TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'Invalid usage.' } })
+	end
+end, function(source, args, user)
+	TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'Insufficient Permissions.' } })
+end, {help = _U('setjob'), params = {{name = "id", help = _U('id_param')}, {name = "job", help = _U('setjob_param2')}, {name = "grade_id", help = _U('setjob_param3')}}})
+
 TriggerEvent('es:addGroupCommand', 'loadipl', 'admin', function(source, args, user)
 	TriggerClientEvent('esx:loadIPL', -1, args[1])
 end, function(source, args, user)
@@ -91,7 +113,7 @@ end, function(source, args, user)
 	TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'Insufficient Permissions.' } })
 end, {help = _U('spawn_object'), params = {{name = "name"}}})
 
-TriggerEvent('es:addGroupCommand', 'setmoney', 'admin', function(source, args, user)
+TriggerEvent('es:addGroupCommand', 'setmoney', 'superadmin', function(source, args, user)
 	local _source = source
 	local target = tonumber(args[1])
 	local money_type = args[2]
@@ -125,29 +147,9 @@ end, function(source, args, user)
 end, {help = _U('setmoney'), params = {{name = "id", help = _U('id_param')}, {name = "money type", help = _U('money_type')}, {name = "amount", help = _U('money_amount')}}})
 
 
-TriggerEvent('es:addGroupCommand', 'setjob2', 'jobmaster', function(source, args, user)
-	if tonumber(args[1]) and args[2] and tonumber(args[3]) then
-		local xPlayer = ESX.GetPlayerFromId(args[1])
-
-		if xPlayer then
-			if ESX.DoesJobExist(args[2], args[3]) then
-				xPlayer.setJob2(args[2], args[3])
-			else
-				TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'That job does not exist.' } })
-			end
-
-		else
-			TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'Player not online.' } })
-		end
-	else
-		TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'Invalid usage.' } })
-	end
-end, function(source, args, user)
-	TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'Insufficient Permissions.' } })
-end, {help = _U('setjob'), params = {{name = "id", help = _U('id_param')}, {name = "job", help = _U('setjob_param2')}, {name = "grade_id", help = _U('setjob_param3')}}})
 
 
-TriggerEvent('es:addGroupCommand', 'giveaccountmoney', 'admin', function(source, args, user)
+TriggerEvent('es:addGroupCommand', 'giveaccountmoney', 'superadmin', function(source, args, user)
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(args[1])
 	local account = args[2]

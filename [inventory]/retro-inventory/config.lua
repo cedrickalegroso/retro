@@ -34,11 +34,13 @@ Config.ExtraVisionShops = {
         },
         items = {
             { name = "bread", price = 15, count = 1 },
+            { name = "phone", price = 2500, count = 1 },
+            { name = "radio", price = 1500, count = 1 },
             { name = "water", price = 10, count = 1 },
             { name = "whisky", price = 250, count = 1 },
-            { name = "cigarett", price = 50, count = 1 },
+          --  { name = "cigarett", price = 50, count = 1 },
             { name = "beer", price = 75, count = 1 },
-            { name = "lighter", price = 10, count = 1 },
+         --   { name = "lighter", price = 10, count = 1 },
             { name = "chips", price = 15, count = 1 },
             { name = "stress", price = 750, count = 1 },
             { name = "vape", price = 2500, count = 1 },
@@ -50,7 +52,7 @@ Config.ExtraVisionShops = {
             { name = "hersheys", price = 55, count = 1 },
             { name = "hotdog", price = 45, count = 1 },
             { name = "taco", price = 90, count = 1 },
-            { name = "orange", price = 30, count = 1 },
+          --  { name = "orange", price = 30, count = 1 },
             { name = "WEAPON_BAT", price = 500, count = 1},
             { name = "WEAPON_KNIFE", price = 450, count = 1},
         },
@@ -368,6 +370,22 @@ Config.PVault = {
     },
 }
 
+Config.j2Stash = {
+    ['Fruit Store Stash'] = {
+        coords = vector3(2558.3388671875,6185.2822265625,162.80799865723),
+        size = vector3(1.0, 1.0, 1.0),
+        job = 'gordo',
+        markerType = 2,
+        markerColour = { r = 255, g = 255, b = 255 },
+        msg = 'Press ~r~[E]~h~ To Open Stash',
+        show3D = true
+    },
+
+
+
+}
+
+
 Config.Stash = {
     ['police evidence'] = {
         coords = vector3(441.48764038086,-995.77563476562,30.689334869385),
@@ -379,8 +397,39 @@ Config.Stash = {
         show3D = true
     },
 
-    
+    ['Fruit Store Stash'] = {
+        coords = vector3(2560.4157714844,6184.0209960938,162.74548339844),
+        size = vector3(1.0, 1.0, 1.0),
+        job = 'gordo',
+        markerType = 2,
+        markerColour = { r = 255, g = 255, b = 255 },
+        msg = 'Press ~r~[E]~h~ To Open Fruit Store Stash',
+        show3D = true
+    },
 
+    ['Fruit Store Stash 2'] = {
+        coords = vector3(390.6403503418,-982.95776367188,29.422651290894),
+        size = vector3(1.0, 1.0, 1.0),
+        job = 'gordo',
+        markerType = 2,
+        markerColour = { r = 255, g = 255, b = 255 },
+        msg = 'Press ~r~[E]~h~ To Open Fruit Store Stash',
+        show3D = true
+    },
+
+    ['Fruit Store Stash 3'] = {
+        coords = vector3(-453.02810668945,-397.47616577148,33.510330200195),
+        size = vector3(1.0, 1.0, 1.0),
+        job = 'gordo',
+        markerType = 2,
+        markerColour = { r = 255, g = 255, b = 255 },
+        msg = 'Press ~r~[E]~h~ To Open Fruit Store Stash',
+        show3D = true
+    },
+
+   
+
+   
 
     ['Drawer'] = {
         coords = vector3(324.58142089844,-201.2045135498,11.044960975647),
