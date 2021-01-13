@@ -17,11 +17,15 @@ end)
 --==============ESX^^^^^^No TOUCHING!================---
 
 local policeblips = { 
-	 {title="MCPD", colour=25, id=140, x = 1525.29, y= 1710.02, z= 109.00}, 
+	 {title="RCPD", colour=25, id=140, x = 1525.29, y= 1710.02, z= 109.00}, 
 }
 
 local ambulanceblips = { 
 	 {title="EMS", colour=25, id=140, x = 1525.29, y= 1710.02, z= 109.00}, 
+}
+
+local mechanicblips = { 
+    {title="MECH", colour=25, id=140, x = 1525.29, y= 1710.02, z= 109.00}, 
 }
 --Police blips
  Citizen.CreateThread(function() 
@@ -30,6 +34,27 @@ local ambulanceblips = {
     end
     if PlayerData.job.name == 'police' then 
         for _, info in pairs(policeblips) do 
+        info.blip = AddBlipForCoord(info.x, info.y, info.z)
+      SetBlipSprite(info.blip, info.id)
+      SetBlipDisplay(info.blip, 4)
+      SetBlipScale(info.blip, 1.0)
+      SetBlipColour(info.blip, info.colour)
+      SetBlipAsShortRange(info.blip, false)
+      BeginTextCommandSetBlipName("STRING")
+      AddTextComponentString(info.title)
+      EndTextCommandSetBlipName(info.blip)
+      done = true
+    end
+end
+end)
+
+-- Ambulance blips
+Citizen.CreateThread(function() 
+    while not done do
+        Citizen.Wait(10)
+    end
+    if PlayerData.job.name == 'groove' then 
+        for _, info in pairs(mechanicblips) do 
         info.blip = AddBlipForCoord(info.x, info.y, info.z)
       SetBlipSprite(info.blip, info.id)
       SetBlipDisplay(info.blip, 4)
