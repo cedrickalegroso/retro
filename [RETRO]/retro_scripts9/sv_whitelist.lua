@@ -28,10 +28,22 @@ RegisterCommand("stuck", function(source)
     TriggerClientEvent("retro_scripts:fly", source)
 end)
 
-RegisterServerEvent('retro_scripts:updateEmsBlips')
-AddEventHandler('retro_scripts:updateEmsBlips', function()
+RegisterServerEvent('retro_scripts:updateEmsBlips1')
+AddEventHandler('retro_scripts:updateEmsBlips1', function()
 	TriggerClientEvent('retro_scripts:updateEmsBlips', -1)
 end)
+
+
+RegisterServerEvent('retro_scripts:updateGrooveBlips1')
+AddEventHandler('retro_scripts:updateGrooveBlips1', function()
+	TriggerClientEvent('retro_scripts:updateGrooveBlips', -1)
+end)
+
+RegisterServerEvent('retro_scripts:updatePoliceBlips1')
+AddEventHandler('retro_scripts:updatePoliceBlips1', function()
+	TriggerClientEvent('retro_scripts:updatePoliceBlips', -1)
+end)
+
 
 
 

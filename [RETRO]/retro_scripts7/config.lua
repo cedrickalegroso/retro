@@ -407,7 +407,7 @@ ConfigPOPO.EnableLicenses             = true -- enable if you're using esx_licen
 ConfigPOPO.EnableHandcuffTimer        = true -- enable handcuff timer? will unrestrain player after the time ends
 ConfigPOPO.HandcuffTimer              = 10 * 60000 -- 10 mins
 
-ConfigPOPO.EnableJobBlip              = true -- enable blips for colleagues, requires esx_society
+ConfigPOPO.EnableJobBlip              = false -- enable blips for colleagues, requires esx_society
 
 ConfigPOPO.MaxInService               = -1
 ConfigPOPO.Locale                     = 'fr'
