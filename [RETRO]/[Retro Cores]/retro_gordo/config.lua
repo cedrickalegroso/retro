@@ -45,25 +45,27 @@ Config.GordoStations = {
 
 		Vehicles = {
 		
-	{
-				Spawner = vector3(-2690.2463378906,-105.99501800537,17.009380340576),
-				InsideShop = vector3(-2993.8364257812,84.958503723145,11.607793807983),
+	   
+			{
+				Spawner = vector3(2598.3293457031,6181.4775390625,167.79460144043),
+				InsideShop = vector3(228.5, -993.5, -99.0),
 				SpawnPoints = {
-				--	{coords = vector3(-1922.2191162109,2044.7106933594,140.73471069336), heading = 90.0, radius = 6.0},
-				--	{coords = vector3(-1922.3537597656,2039.8934326172,140.73492431641), heading = 90.0, radius = 6.0},
-				--	{coords = vector3(-1923.8397216797,2036.5322265625,140.7347869873), heading = 90.0, radius = 6.0},
-				--	{coords = vector3(450.9, -1016.5, 28.1), heading = 90.0, radius = 6.0}
+					{coords = vector3(2595.3374023438,6184.1630859375,166.8225402832), heading = 51.0, radius = 6.0},
+				--	{coords = vector3(484.1, -1023.1, 27.5), heading = 302.5, radius = 6.0}
 				}
 			},
 
+			
+
+			
 			{
-				Spawner = vector3(473.3, -1018.8, 28.0),
+				Spawner = vector3(2354.7580566406,5884.0307617188,47.63334274292),
 				InsideShop = vector3(228.5, -993.5, -99.0),
 				SpawnPoints = {
-					{coords = vector3(475.9, -1021.6, 28.0), heading = 276.1, radius = 6.0},
-					{coords = vector3(484.1, -1023.1, 27.5), heading = 302.5, radius = 6.0}
+					{coords = vector3(2347.0007324219,5885.666015625,47.508060455322), heading = 33.0, radius = 6.0},
+				--	{coords = vector3(484.1, -1023.1, 27.5), heading = 302.5, radius = 6.0}
 				}
-			}
+			},
 		},
 			
 		
@@ -82,7 +84,7 @@ Config.GordoStations = {
 		},
 
 		BossActions = {
-			vector3(2531.9697265625,6148.578125,164.27220153809)
+			vector3(2539.7297363281,6148.4248046875,168.12159729004)
 		}
 
 	}
@@ -155,53 +157,49 @@ Config.AuthorizedVehicles = {
 	recruit = {
 		
 
-		{ model = 'baller5', label = 'Baller 5', price = 400 },
-		{ model = 'buffalo2', label = 'Buffalo', price = 400 },
+	--	{ model = 'Buzzard', label = 'buzzard', price = 400 },
+		{ model = 'surfer2', label = 'Jeep', price = 400 },
+		{ model = 'Guardian', label = 'guardian', price = 400 },
+		{ model = 'blazer', label = 'blazer', price = 400 },
+		{ model = 'pounder', label = 'Big Truck', price = 400 },
 	
-		{ model = 'buzzard2', label = 'Buzzard', price = 400 },
-		{ model = 'hakuchou2', label = 'hakuchou2', price = 400 },
-		{ model = 'volatus', label = 'volatus', price = 400 }
+	
 
 	},
 
 	officer = {
-		{ model = 'baller5', label = 'Baller 5', price = 400 },
-		{ model = 'buffalo2', label = 'Buffalo', price = 400 },
-	
-		{ model = 'buzzard2', label = 'Buzzard', price = 400 },
-		{ model = 'hakuchou2', label = 'hakuchou2', price = 400 },
-		{ model = 'volatus', label = 'volatus', price = 400 }
+		--	{ model = 'Buzzard', label = 'buzzard', price = 400 },
+		{ model = 'surfer2', label = 'Jeep', price = 400 },
+		{ model = 'Guardian', label = 'guardian', price = 400 },
+		{ model = 'blazer', label = 'blazer', price = 400 },
+		{ model = 'pounder', label = 'Big Truck', price = 400 },
 	},
 
 	sergeant = {
-		{ model = 'baller5', label = 'Baller 5', price = 400 },
-		{ model = 'buffalo2', label = 'Buffalo', price = 400 },
-	
-		{ model = 'buzzard2', label = 'Buzzard', price = 400 },
-		{ model = 'hakuchou2', label = 'hakuchou2', price = 400 },
-		{ model = 'volatus', label = 'volatus', price = 400 }
+		--	{ model = 'Buzzard', label = 'buzzard', price = 400 },
+		{ model = 'surfer2', label = 'Jeep', price = 400 },
+		{ model = 'Guardian', label = 'guardian', price = 400 },
+		{ model = 'blazer', label = 'blazer', price = 400 },
+		{ model = 'pounder', label = 'Big Truck', price = 400 },
 
 	},
 
 	lieutenant = {
-		{ model = 'baller5', label = 'Baller 5', price = 400 },
-		{ model = 'buffalo2', label = 'Buffalo', price = 400 },
-	
-		{ model = 'buzzard2', label = 'Buzzard', price = 400 },
-		{ model = 'hakuchou2', label = 'hakuchou2', price = 400 },
-		{ model = 'volatus', label = 'volatus', price = 400 }
+		--	{ model = 'Buzzard', label = 'buzzard', price = 400 },
+		{ model = 'surfer2', label = 'Jeep', price = 400 },
+		{ model = 'Guardian', label = 'guardian', price = 400 },
+		{ model = 'blazer', label = 'blazer', price = 400 },
+		{ model = 'pounder', label = 'Big Truck', price = 400 },
 
 
 	},
 
 	boss = {
-		    { model = 'baller5', label = 'Baller 5', price = 400 },
-			{ model = 'buffalo2', label = 'Buffalo', price = 400 },
-		
-			{ model = 'buzzard2', label = 'Buzzard', price = 400 },
-			{ model = 'hakuchou2', label = 'hakuchou2', price = 400 },
-			{ model = 'volatus', label = 'volatus', price = 400 }
-
+		{ model = 'Buzzard', label = 'buzzard', price = 400 },
+		{ model = 'surfer2', label = 'Jeep', price = 400 },
+		{ model = 'Guardian', label = 'guardian', price = 400 },
+		{ model = 'blazer', label = 'blazer', price = 400 },
+		{ model = 'pounder', label = 'Big Truck', price = 400 },
 	}
 }
 

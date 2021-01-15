@@ -49,7 +49,7 @@ function OpenVehicleSpawnerMenu(type, station, part, partNum)
 		elseif data.current.action == 'garage' then
 			local garage = {}
 
-			ESX.TriggerServerCallback('esx_advancedvehicleshop:retrieveJobVehicles', function(jobVehicles)
+			ESX.TriggerServerCallback('esx_advancedvehicleshop:retrieveJobVehicles2', function(jobVehicles)
 				if #jobVehicles > 0 then
 					local allVehicleProps = {}
 
@@ -93,7 +93,7 @@ function OpenVehicleSpawnerMenu(type, station, part, partNum)
 										local vehicleProps = allVehicleProps[data2.current.plate]
 										ESX.Game.SetVehicleProperties(vehicle, vehicleProps)
 
-										TriggerServerEvent('esx_advancedvehicleshop:setJobVehicleState', data2.current.plate, false)
+										TriggerServerEvent('esx_advancedvehicleshop:setJobVehicleState2', data2.current.plate, false)
 
 										local vehNet = NetworkGetNetworkIdFromEntity(vehicle)
 										local plate = GetVehicleNumberPlateText(vehicle)

@@ -38,6 +38,50 @@ ESX.RegisterUsableItem('coke', function(source)
 	TriggerClientEvent('esx_drugeffects:onCoke', source)
 end)
 
+ESX.RegisterUsableItem('packaged_apple', function(source)
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+	xPlayer.removeInventoryItem('packaged_apple', 1)
+
+	TriggerClientEvent('esx_status:add', source, 'hunger', 499000)
+	TriggerClientEvent('esx_status:add', source, 'thirst', 499000)
+	TriggerClientEvent('esx_drugeffects:onpackaged_apple', source)
+end)
+
+
+ESX.RegisterUsableItem('packaged_banana', function(source)
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+	xPlayer.removeInventoryItem('packaged_banana', 1)
+
+	TriggerClientEvent('esx_status:add', source, 'hunger', 499000)
+	TriggerClientEvent('esx_status:add', source, 'thirst', 499000)
+	TriggerClientEvent('esx_drugeffects:onpackaged_banana', source)
+end)
+
+
+ESX.RegisterUsableItem('packaged_grapes', function(source)
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+	xPlayer.removeInventoryItem('packaged_grapes', 1)
+
+	TriggerClientEvent('esx_status:add', source, 'hunger', 499000)
+	TriggerClientEvent('esx_status:add', source, 'thirst', 499000)
+	TriggerClientEvent('esx_drugeffects:onpackaged_grapes', source)
+end)
+
+
+ESX.RegisterUsableItem('packaged_orange', function(source)
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+	xPlayer.removeInventoryItem('packaged_orange', 1)
+
+	TriggerClientEvent('esx_status:add', source, 'hunger', 499000)
+	TriggerClientEvent('esx_status:add', source, 'thirst', 499000)
+	TriggerClientEvent('esx_drugeffects:onpackaged_orange', source)
+end)
+
+
 
 
 ESX.RegisterUsableItem('xanax', function(source)

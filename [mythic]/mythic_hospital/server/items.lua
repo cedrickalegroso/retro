@@ -38,13 +38,15 @@ ESX.RegisterUsableItem('vicodin', function(source)
 end)
 
 ESX.RegisterUsableItem('hydrocodone', function(source)
+
 	local xPlayer = ESX.GetPlayerFromId(source)
 	xPlayer.removeInventoryItem('hydrocodone', 1)
-	TriggerClientEvent('mythic_hospital:items:hydrocodone', source)
+	TriggerClientEvent("retro_scripts:notBlee", source)
+	TriggerClientEvent('mythic_hospital:items:morphine', source)
 	TriggerClientEvent("mythic_hospital:heal", source, "medkit")
 end)
 
-
+--[[
 RegisterCommand("wew", function(source)
 
 	print('Use Morph')
@@ -54,6 +56,8 @@ RegisterCommand("wew", function(source)
 	TriggerClientEvent("mythic_hospital:client:RemoveBleed", source)
     
 end)
+]]--
+
 
 ESX.RegisterUsableItem('oxy', function(source)
 	--print('Use oxy')

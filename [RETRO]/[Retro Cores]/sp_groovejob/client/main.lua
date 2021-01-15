@@ -651,7 +651,7 @@ function OpenMobilegrooveActionsMenu()
 				menu.close()
         end			
 			if data.current.value == 'meca1' then
-				Executecommand('rcmechotw')
+				ExecuteCommand('rcmechotw')
 				menu.close()
         end	
 			if data.current.value == 'fix_wheel' then

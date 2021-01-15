@@ -852,6 +852,27 @@ ESX.RegisterServerCallback('esx_advancedvehicleshop:retrieveJobVehicles', functi
 	end)
 end)
 
+
+ESX.RegisterServerCallback('esx_advancedvehicleshop:retrieveJobVehicles2', function(source, cb, type)
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+	MySQL.Async.fetchAll('SELECT * FROM owned_vehicles WHERE owner = @owner AND type = @type AND job = @job', {
+		['@owner'] = xPlayer.identifier,
+		['@type'] = type,
+		['@job'] = xPlayer.job2.name
+	}, function(result)
+		cb(result)
+
+		
+
+
+		print(result[1])
+
+	--	print(result[2].plate)
+	end)
+end)
+
+
 RegisterNetEvent('esx_advancedvehicleshop:setJobVehicleState')
 AddEventHandler('esx_advancedvehicleshop:setJobVehicleState', function(plate, state)
 	local xPlayer = ESX.GetPlayerFromId(source)
@@ -860,6 +881,23 @@ AddEventHandler('esx_advancedvehicleshop:setJobVehicleState', function(plate, st
 		['@stored'] = state,
 		['@plate'] = plate,
 		['@job'] = xPlayer.job.name
+	}, function(rowsChanged)
+		if rowsChanged == 0 then
+			print(('[esx_advancedvehicleshop] [^3WARNING^7] %s exploited the garage!'):format(xPlayer.identifier))
+		end
+	end)
+end)
+
+
+
+RegisterNetEvent('esx_advancedvehicleshop:setJobVehicleState2')
+AddEventHandler('esx_advancedvehicleshop:setJobVehicleState2', function(plate, state)
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+	MySQL.Async.execute('UPDATE owned_vehicles SET `stored` = @stored WHERE plate = @plate AND job = @job', {
+		['@stored'] = state,
+		['@plate'] = plate,
+		['@job'] = xPlayer.job2.name
 	}, function(rowsChanged)
 		if rowsChanged == 0 then
 			print(('[esx_advancedvehicleshop] [^3WARNING^7] %s exploited the garage!'):format(xPlayer.identifier))

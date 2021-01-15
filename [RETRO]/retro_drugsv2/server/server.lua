@@ -79,7 +79,7 @@ local function Transform(source, drug)
 			elseif itemQuantity < 0 then
 				TriggerClientEvent('esx:showNotification', source, _U('not_enough', drug))
 			else
-				xPlayer.removeInventoryItem(v.Item, 5)
+				xPlayer.removeInventoryItem(v.Item, v.QToProcess)
 				xPlayer.addInventoryItem(v.ItemTransform, 1)
 				Transform(source, drug)
 			end

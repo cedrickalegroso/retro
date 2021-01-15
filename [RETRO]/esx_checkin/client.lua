@@ -197,6 +197,8 @@ AddEventHandler('esx_checkin:checkIn', function()
 		FreezeEntityPosition(ped, false) 
 		ClearPedTasksImmediately(ped)
 		TriggerServerEvent('esx_checkin:takeMoney')
+		TriggerEvent('MF_SkeletalSystem:HealBones', "all")
+		TriggerEvent('esx_basicneeds:healPlayer')
 		TriggerEvent('notification', 'You have been treated by the RETRO CITY EMS.', 1)
 		SetEntityCoords(ped, -467.75576782227,-289.34811401367,34.91134262085, false, false, false, false)
 			end

@@ -32,8 +32,8 @@ AddEventHandler('esx:playerLoaded', function(xPlayer)
 	-- Job
 	local job = data.job
 	local job2 = data.job2
-	SendNUIMessage({action = "updatePraca", praca = job.label.." - "..job.grade_label})
-	SendNUIMessage({action = "updatePraca2", praca2 = job2.label.." - "..job2.grade_label})
+	SendNUIMessage({action = "updatePraca", praca = job.label.." - "..job.grade_label, praca2 = job2.label.." - "..job2.grade_label})
+	SendNUIMessage({action = "updatePraca", praca2 = job2.label.." - "..job2.grade_label})
 end)
 
 RegisterNetEvent('esx:setJob')
@@ -184,7 +184,7 @@ end
 
 function UpdatePlayerTable(connectedPlayers)
 	local formattedPlayerList, num = {}, 1
-	local ems, police, taxi, groove, guerrero, tamasakv2, cardealer, players, government, cuatro, vermillion, thelost = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	local ems, police, taxi, groove, guerrero, tamasakv2, cardealer, players, government, cuatro, vermillion, thelost, gordo = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
 	for k,v in pairs(connectedPlayers) do
 
@@ -192,28 +192,56 @@ function UpdatePlayerTable(connectedPlayers)
 
 		players = players + 1
 
-		if v.job == 'ambulance' then
+		if v.job == 'ambulance'  then
 			ems = ems + 1
-		elseif v.job == 'police' then
+		elseif v.job == 'police'  then
 			police = police + 1
-		elseif v.job == 'taxi' then
+		elseif v.job == 'taxi'  then
 			taxi = taxi + 1
-		elseif v.job == 'groove' then
+		elseif v.job == 'groove'  then
 			groove = groove + 1
-		elseif v.job == 'taxi' then
+		elseif v.job == 'taxi'  then
 			taxi = taxi + 1
-		elseif v.job == 'tamasakv2' then
+		elseif v.job == 'tamasakv2'  then
 			tamasakv2 = tamasakv2 + 1
 		elseif v.job == 'guerrero' then
 			guerrero = guerrero + 1
-		elseif v.job == 'cuatro' then
+		elseif v.job == 'cuatro'   then
 			cuatro = cuatro + 1
 		elseif v.job == 'government' then
 			government = government + 1
-		elseif v.job == 'vermillion' then
+		elseif v.job == 'vermillion'  then
 			vermillion = vermillion + 1
-		elseif v.job == 'thelost' then
+		elseif v.job == 'thelost'  then
 			thelost = thelost + 1
+		elseif v.job == 'gordo'  then
+			gordo = gordo + 1
+		end
+
+		if v.job2 == 'ambulance'  then
+			ems = ems + 1
+		elseif v.job2 == 'police'  then
+			police = police + 1
+		elseif v.job2 == 'taxi'  then
+			taxi = taxi + 1
+		elseif v.job2 == 'groove'  then
+			groove = groove + 1
+		elseif v.job2 == 'taxi'  then
+			taxi = taxi + 1
+		elseif v.job2 == 'tamasakv2'  then
+			tamasakv2 = tamasakv2 + 1
+		elseif v.job2 == 'guerrero' then
+			guerrero = guerrero + 1
+		elseif v.job2 == 'cuatro'   then
+			cuatro = cuatro + 1
+		elseif v.job2 == 'government' then
+			government = government + 1
+		elseif v.job2 == 'vermillion'  then
+			vermillion = vermillion + 1
+		elseif v.job2 == 'thelost'  then
+			thelost = thelost + 1
+		elseif v.job2 == 'gordo'  then
+			gordo = gordo + 1
 		end
 		
 	end
@@ -224,7 +252,7 @@ function UpdatePlayerTable(connectedPlayers)
 
 	SendNUIMessage({
 		action = 'updatePlayerJobs',
-		jobs   = {ems = ems, police = police, taxi = taxi,  guerrero = guerrero, tamasakv2 = tamasakv2,groove = groove,  cuatro = cuatro, government = government, vermillion = vermillion, thelost = thelost, cardealer = cardealer, player_count = players}
+		jobs   = {ems = ems,   police = police,    groove = groove, taxi = taxi, tamasakv2 = tamasakv2, guerrero = guerrero, cuatro = cuatro,government = government, vermillion = vermillion, thelost = thelost,    gordo = gordo,  player_count = players}
 	})
 
 	local pingpong = nil

@@ -199,6 +199,135 @@ function OpenBossMenu(society, close, options)
 
 end
 
+
+function OpenBossMenu2(society, close, options)
+	local isBoss = nil
+	local options  = options or {}
+	local elements = {}
+
+	ESX.TriggerServerCallback('esx_society:isBoss2', function(result)
+		isBoss = result
+	end, society)
+
+	while isBoss == nil do
+		Citizen.Wait(100)
+	end
+
+	if not isBoss then
+		return
+	end
+
+	local defaultOptions = {
+		withdraw  = true,
+		deposit   = true,
+		wash      = true,
+		employees = true,
+		grades    = true
+	}
+
+	for k,v in pairs(defaultOptions) do
+		if options[k] == nil then
+			options[k] = v
+		end
+	end
+
+	if options.withdraw then
+		table.insert(elements, {label = _U('withdraw_society_money'), value = 'withdraw_society_money'})
+	end
+
+	if options.deposit then
+		table.insert(elements, {label = _U('deposit_society_money'), value = 'deposit_money'})
+	end
+
+	if options.wash then
+		table.insert(elements, {label = _U('wash_money'), value = 'wash_money'})
+	end
+
+	if options.employees then
+		table.insert(elements, {label = _U('employee_management'), value = 'manage_employees'})
+	end
+
+	if options.grades then
+		table.insert(elements, {label = _U('salary_management'), value = 'manage_grades'})
+	end
+
+	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'boss_actions_' .. society, {
+		title    = _U('boss_menu'),
+		align    = 'top-left',
+		elements = elements
+	}, function(data, menu)
+
+		if data.current.value == 'withdraw_society_money' then
+
+			ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'withdraw_society_money_amount_' .. society, {
+				title = _U('withdraw_amount')
+			}, function(data, menu)
+
+				local amount = tonumber(data.value)
+
+				if amount == nil then
+					ESX.ShowNotification(_U('invalid_amount'))
+				else
+					menu.close()
+					TriggerServerEvent('esx_society:withdrawMoney', society, amount)
+				end
+
+			end, function(data, menu)
+				menu.close()
+			end)
+
+		elseif data.current.value == 'deposit_money' then
+
+			ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'deposit_money_amount_' .. society, {
+				title = _U('deposit_amount')
+			}, function(data, menu)
+
+				local amount = tonumber(data.value)
+
+				if amount == nil then
+					ESX.ShowNotification(_U('invalid_amount'))
+				else
+					menu.close()
+					TriggerServerEvent('esx_society:depositMoney', society, amount)
+				end
+
+			end, function(data, menu)
+				menu.close()
+			end)
+
+		elseif data.current.value == 'wash_money' then
+
+			ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'wash_money_amount_' .. society, {
+				title = _U('wash_money_amount')
+			}, function(data, menu)
+
+				local amount = tonumber(data.value)
+
+				if amount == nil then
+					ESX.ShowNotification(_U('invalid_amount'))
+				else
+					menu.close()
+					TriggerServerEvent('esx_society:washMoney', society, amount)
+				end
+
+			end, function(data, menu)
+				menu.close()
+			end)
+
+		elseif data.current.value == 'manage_employees' then
+			OpenManageEmployeesMenu(society)
+		elseif data.current.value == 'manage_grades' then
+			OpenManageGradesMenu(society)
+		end
+
+	end, function(data, menu)
+		if close then
+			close(data, menu)
+		end
+	end)
+
+end
+
 function OpenManageEmployeesMenu(society)
 
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'manage_employees_' .. society, {
@@ -407,5 +536,12 @@ function OpenManageGradesMenu(society)
 end
 
 AddEventHandler('esx_society:openBossMenu', function(society, close, options)
+	
 	OpenBossMenu(society, close, options)
+end)
+
+
+AddEventHandler('esx_society:openBossMenu2', function(society, close, options)
+	
+	OpenBossMenu2(society, close, options)
 end)

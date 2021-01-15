@@ -130,10 +130,10 @@ Config.Drugs = {
 			ItemTransform	= 'packaged_orange', 			-- Item to transform
 			AlertCops		= false, 					-- Alert police?
 			RequiredCops	= 0, 						-- How many cops need to the action start??
-			QToProcess		= 5,						-- Quantity necessary to process
+			QToProcess		= 1,						-- Quantity necessary to process
 			QToSell			= 1,						-- Quantity necessary to sell
-			TimeToFarm		= 10,						-- Time to farm in seconds
-			TimeToProcess 	= 10,						-- Time to process in seconds
+			TimeToFarm		= 5,						-- Time to farm in seconds
+			TimeToProcess 	= 5,						-- Time to process in seconds
 			TimeToSell		= 15,						-- Time to sell in seconds
 			Usable			= false,						-- Can it be consumed?
 			UseEffect		= false,						-- Effect after consume
@@ -159,10 +159,10 @@ Config.Drugs = {
 			ItemTransform	= 'packaged_banana', 			-- Item to transform
 			AlertCops		= false, 					-- Alert police?
 			RequiredCops	= 0, 						-- How many cops need to the action start??
-			QToProcess		= 5,						-- Quantity necessary to process
+			QToProcess		= 1,						-- Quantity necessary to process
 			QToSell			= 1,						-- Quantity necessary to sell
-			TimeToFarm		= 10,						-- Time to farm in seconds
-			TimeToProcess 	= 10,						-- Time to process in seconds
+			TimeToFarm		= 5,						-- Time to farm in seconds
+			TimeToProcess 	= 5,						-- Time to process in seconds
 			TimeToSell		= 15,						-- Time to sell in seconds
 			Usable			= false,						-- Can it be consumed?
 			UseEffect		= false,						-- Effect after consume
@@ -181,6 +181,68 @@ Config.Drugs = {
 				--Dealer 			= {x = -1969.54,	y = -516.39,	z = 10.90, h = 45.24,	name = _U('dealer', _U('coke')),		sprite = 500,	color = 75, callPolice = false, callPoliceChance = 100, NPCHash = 653210662, sellMin = 200, sellMax = 500, multiplierPolice = true}
 			}
 		},
+
+
+			-- Translated name
+			['Apple'] = {
+				Item			= 'apple',				 	-- Item to pickup
+				ItemTransform	= 'packaged_apple', 			-- Item to transform
+				AlertCops		= false, 					-- Alert police?
+				RequiredCops	= 0, 						-- How many cops need to the action start??
+				QToProcess		= 1,						-- Quantity necessary to process
+				QToSell			= 1,						-- Quantity necessary to sell
+				TimeToFarm		= 5,						-- Time to farm in seconds
+				TimeToProcess 	= 5,						-- Time to process in seconds
+				TimeToSell		= 15,						-- Time to sell in seconds
+				Usable			= false,						-- Can it be consumed?
+				UseEffect		= false,						-- Effect after consume
+				Zones 			= {
+					-- Field: Farm location
+					-- Processing: Process location
+					-- Dealer: Seller location
+					-- callPolice: true/false, call the police in the position?
+					-- callPoliceChance: chance in percentage to call the police
+					-- sellMin: Min receveid by selling
+					-- sellMax: Max received by selling
+					-- multiplierPolice: true/false Multiply the min/max based on cops online
+					--,, ,,,, ,, ,, ,,
+					Field 			= {x = 2604.5385742188,	y =6161.8159179688,	z = 171.14680480957,	name = _U('field', _U('coke')),			sprite = 0,	color = 0, callPolice = false, callPoliceChance = 100},
+					Processing 		= {x = 2570.3654785156,	y = 6570.94140625,	z = 25.888879776001,	name = _U('processing', _U('coke')),	sprite = 0,	color = 0, callPolice = false, callPoliceChance = 100},
+					--Dealer 			= {x = -1969.54,	y = -516.39,	z = 10.90, h = 45.24,	name = _U('dealer', _U('coke')),		sprite = 500,	color = 75, callPolice = false, callPoliceChance = 100, NPCHash = 653210662, sellMin = 200, sellMax = 500, multiplierPolice = true}
+				}
+			},
+
+				-- Translated name
+				['Grapes'] = {
+					Item			= 'grapes',				 	-- Item to pickup
+					ItemTransform	= 'packaged_grapes', 			-- Item to transform
+					AlertCops		= false, 					-- Alert police?
+					RequiredCops	= 0, 						-- How many cops need to the action start??
+					QToProcess		= 1,						-- Quantity necessary to process
+					QToSell			= 1,						-- Quantity necessary to sell
+					TimeToFarm		= 5,						-- Time to farm in seconds
+					TimeToProcess 	= 5,						-- Time to process in seconds
+					TimeToSell		= 15,						-- Time to sell in seconds
+					Usable			= false,						-- Can it be consumed?
+					UseEffect		= false,						-- Effect after consume
+					Zones 			= {
+						-- Field: Farm location
+						-- Processing: Process location
+						-- Dealer: Seller location
+						-- callPolice: true/false, call the police in the position?
+						-- callPoliceChance: chance in percentage to call the police
+						-- sellMin: Min receveid by selling
+						-- sellMax: Max received by selling
+						-- multiplierPolice: true/false Multiply the min/max based on cops online
+						--,,,,
+						Field 			= {x = 2562.2932128906,	y =6201.7807617188,	z = 157.16159057617,	name = _U('field', _U('coke')),			sprite = 0,	color = 0, callPolice = false, callPoliceChance = 100},
+						Processing 		= {x =2570.9338378906,	y = 6562.638671875,	z = 27.975006103516,	name = _U('processing', _U('coke')),	sprite = 0,	color = 0, callPolice = false, callPoliceChance = 100},
+						--Dealer 			= {x = -1969.54,	y = -516.39,	z = 10.90, h = 45.24,	name = _U('dealer', _U('coke')),		sprite = 500,	color = 75, callPolice = false, callPoliceChance = 100, NPCHash = 653210662, sellMin = 200, sellMax = 500, multiplierPolice = true}
+					}
+				},
+	
+
+			
 
 
 }

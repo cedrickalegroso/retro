@@ -6,8 +6,8 @@ if Config.MaxInService ~= -1 then
 	TriggerEvent('esx_service:activateService', 'gordo', Config.MaxInService)
 end
 
-TriggerEvent('esx_phone:registerNumber', 'gordo', _U('alert_vermillion'), true, true)
-TriggerEvent('esx_society:registerSociety', 'gordo', 'gordo', 'society_vermillion', 'society_vermillion', 'society_vermillion', {type = 'public'})
+TriggerEvent('esx_phone:registerNumber', 'gordo', _U('alert_gordo'), true, true)
+TriggerEvent('esx_society:registerSociety', 'gordo', 'gordo', 'society_gordo', 'society_gordo', 'society_gordo', {type = 'public'})
 
 RegisterServerEvent('retro_gordo:confiscatePlayerItem')
 AddEventHandler('retro_gordo:confiscatePlayerItem', function(target, itemType, itemName, amount)
@@ -106,7 +106,7 @@ AddEventHandler('retro_gordo:getStockItem', function(itemName, count)
 	local xPlayer = ESX.GetPlayerFromId(_source)
 	local sourceItem = xPlayer.getInventoryItem(itemName)
 
-	TriggerEvent('esx_addoninventory:getSharedInventory', 'society_vermillion', function(inventory)
+	TriggerEvent('esx_addoninventory:getSharedInventory', 'society_gordo', function(inventory)
 		local inventoryItem = inventory.getItem(itemName)
 
 		-- is there enough in the society?
@@ -138,7 +138,7 @@ AddEventHandler('retro_gordo:putStockItems', function(itemName, count)
 	local xPlayer = ESX.GetPlayerFromId(source)
 	local sourceItem = xPlayer.getInventoryItem(itemName)
 
-	TriggerEvent('esx_addoninventory:getSharedInventory', 'society_vermillion', function(inventory)
+	TriggerEvent('esx_addoninventory:getSharedInventory', 'society_gordo', function(inventory)
 		local inventoryItem = inventory.getItem(itemName)
 
 		-- does the player have enough of the item?
@@ -278,7 +278,7 @@ ESX.RegisterServerCallback('retro_gordo:getVehicleFromPlate', function(source, c
 end)
 
 ESX.RegisterServerCallback('retro_gordo:getArmoryWeapons', function(source, cb)
-	TriggerEvent('esx_datastore:getSharedDataStore', 'society_vermillion', function(store)
+	TriggerEvent('esx_datastore:getSharedDataStore', 'society_gordo', function(store)
 		local weapons = store.get('weapons')
 
 		if weapons == nil then
@@ -296,7 +296,7 @@ ESX.RegisterServerCallback('retro_gordo:addArmoryWeapon', function(source, cb, w
 		xPlayer.removeWeapon(weaponName)
 	end
 
-	TriggerEvent('esx_datastore:getSharedDataStore', 'society_vermillion', function(store)
+	TriggerEvent('esx_datastore:getSharedDataStore', 'society_gordo', function(store)
 		local weapons = store.get('weapons')
 
 		if weapons == nil then
@@ -329,7 +329,7 @@ ESX.RegisterServerCallback('retro_gordo:removeArmoryWeapon', function(source, cb
 	local xPlayer = ESX.GetPlayerFromId(source)
 	xPlayer.addWeapon(weaponName, 500)
 
-	TriggerEvent('esx_datastore:getSharedDataStore', 'society_vermillion', function(store)
+	TriggerEvent('esx_datastore:getSharedDataStore', 'society_gordo', function(store)
 
 		local weapons = store.get('weapons')
 
@@ -509,7 +509,7 @@ function getPriceFromHash(hashKey, jobGrade, type)
 end
 
 ESX.RegisterServerCallback('retro_gordo:getStockItems', function(source, cb)
-	TriggerEvent('esx_addoninventory:getSharedInventory', 'society_vermillion', function(inventory)
+	TriggerEvent('esx_addoninventory:getSharedInventory', 'society_gordo', function(inventory)
 		cb(inventory.items)
 	end)
 end)

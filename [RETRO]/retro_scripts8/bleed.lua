@@ -12,7 +12,7 @@ function setBleedingOn(ped)
   
    NetworkSetVoiceChannel(0)
    Citizen.CreateThread(function()
-     DoScreenFadeOut(100)
+     DoScreenFadeOut(1000)
      StartScreenEffect('DeathFailOut', 0, true)
    --  SetTimecycleModifier("hud_def_blur")
      SetCurrentPedWeapon(playerPed, GetHashKey('WEAPON_UNARMED'), true)

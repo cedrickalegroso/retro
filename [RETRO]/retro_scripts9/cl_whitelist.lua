@@ -18,14 +18,20 @@ Citizen.CreateThread(function()
     print('debug '.. ESX.PlayerData.job.name)
 
   if ESX.PlayerData.job.name == 'ambulance' then 
-	print('calling ems blips')
+--	print('calling ems blips')
 	TriggerServerEvent('retro_scripts:updateEmsBlips1')
+	Citizen.Wait(5000)
+	TriggerEvent('retro_scripts:initems')
   elseif ESX.PlayerData.job.name == 'groove' then 
-	print('calling groove blips')
+--	print('calling groove blips')
 	TriggerServerEvent('retro_scripts:updateGrooveBlips1')
+	Citizen.Wait(5000)
+	TriggerEvent('retro_scripts:initgroove')
   elseif ESX.PlayerData.job.name == 'police' then 
-	print('calling police blips')
+--	print('calling police blips')
 	TriggerServerEvent('retro_scripts:updatePoliceBlips1')
+	Citizen.Wait(5000)
+	TriggerEvent('retro_scripts:initpolice')
   end
 
 	
@@ -193,35 +199,54 @@ end)
 
 
 
+RegisterNetEvent("retro_scripts:initgroove")
+AddEventHandler('retro_scripts:initgroove', function(source)
+  --  print('[RETRO_SCRIPTS] initializing groove stuffs') 
+
+    --radio
+    exports["rp-radio"]:GivePlayerAccessToFrequency(3) 
+
+	ESX.ShowNotification('Whitelist Frequency for Mechanic activated ~g~FREQ #3 ')
+      --blips
+    --  TriggerEvent('retro_mechanic:updateBlip')
+
+
+      --notif
+     -- exports['mythic_notify']:DoHudText('inform', 'Whitelist Access for Groove activated')
+end)
+
 
 
 
 RegisterNetEvent("retro_scripts:initpolice")
 AddEventHandler('retro_scripts:initpolice', function(source)
-    print('[RETRO_SCRIPTS] initializing police stuffs') 
+  --  print('[RETRO_SCRIPTS] initializing police stuffs') 
 
     --radio
     exports["rp-radio"]:GivePlayerAccessToFrequency(2) 
 
+	ESX.ShowNotification('Whitelist Frequency for Police activated ~g~FREQ #2 ')
      --blips
-     TriggerEvent('esx_policejob:updateBlip')
+  --   TriggerEvent('esx_policejob:updateBlip')
 
     --notif
-    exports['mythic_notify']:DoHudText('inform', 'Whitelist Access for Police activated')
+    --exports['mythic_notify']:DoHudText('inform', 'Whitelist Access for Police activated')
 end)
 
 RegisterNetEvent("retro_scripts:initems")
 AddEventHandler('retro_scripts:initems', function(source)
-    print('[RETRO_SCRIPTS] initializing ems stuffs') 
+   -- print('[RETRO_SCRIPTS] initializing ems stuffs') 
 
     --radio
-    exports["rp-radio"]:GivePlayerAccessToFrequency(1) 
+	exports["rp-radio"]:GivePlayerAccessToFrequency(1) 
+	
+	ESX.ShowNotification('Whitelist Frequency for EMS activated ~g~FREQ #1 ')
 
     --blips
-    TriggerEvent('esx_ambulancejob:updateBlip')
+  --  TriggerEvent('esx_ambulancejob:updateBlip')
 
     --notif
-    exports['mythic_notify']:DoHudText('inform', 'Whitelist Access for EMS activated')
+   -- exports['mythic_notify']:DoHudText('inform', 'Whitelist Access for EMS activated')
 end)
 
 RegisterNetEvent("retro_scripts:fly")
@@ -246,22 +271,6 @@ end)
 
 
 
-
-RegisterNetEvent("retro_scripts:initgroove")
-AddEventHandler('retro_scripts:initgroove', function(source)
-    print('[RETRO_SCRIPTS] initializing groove stuffs') 
-
-    --radio
-    exports["rp-radio"]:GivePlayerAccessToFrequency(3) 
-
-
-      --blips
-      TriggerEvent('retro_mechanic:updateBlip')
-
-
-      --notif
-      exports['mythic_notify']:DoHudText('inform', 'Whitelist Access for Groove activated')
-end)
 
 
 Citizen.CreateThread(function()

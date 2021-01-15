@@ -30,20 +30,20 @@ Config.ExtraVisionShops = {
             vector3(1166.024, 2708.930, 37.177),
             vector3(1392.562, 3604.684, 34.0),
             vector3(2578.9194335938,6175.1259765625,164.32618713379),
-          
         },
         items = {
             { name = "bread", price = 15, count = 1 },
-            { name = "phone", price = 2500, count = 1 },
-            { name = "radio", price = 1500, count = 1 },
+            { name = "hifi", price = 500, count = 1 },
+            { name = "phone", price = 1500, count = 1 },
+            { name = "radio", price = 750, count = 1 },
             { name = "water", price = 10, count = 1 },
             { name = "whisky", price = 250, count = 1 },
           --  { name = "cigarett", price = 50, count = 1 },
             { name = "beer", price = 75, count = 1 },
          --   { name = "lighter", price = 10, count = 1 },
             { name = "chips", price = 15, count = 1 },
-            { name = "stress", price = 750, count = 1 },
-            { name = "vape", price = 2500, count = 1 },
+         --   { name = "stress", price = 750, count = 1 },
+            { name = "vape", price = 20000, count = 1 },
             { name = "rccola", price = 35, count = 1 },
             { name = "pepsibp", price = 55, count = 1 },
             { name = "yakult", price = 20, count = 1 },
@@ -64,6 +64,45 @@ Config.ExtraVisionShops = {
         job = 'all'
     },
 
+    ['RETRO CITY SHOP'] = {
+        coords = {
+            vector3(2542.6069335938,6139.423828125,164.27229309082),
+        },
+        items = {
+            { name = "bread", price = 15, count = 1 },
+         --   { name = "phone", price = 2500, count = 1 },
+         --   { name = "radio", price = 1500, count = 1 },
+            { name = "water", price = 10, count = 1 },
+         --   { name = "whisky", price = 250, count = 1 },
+          --  { name = "cigarett", price = 50, count = 1 },
+         --   { name = "beer", price = 75, count = 1 },
+         --   { name = "lighter", price = 10, count = 1 },
+            { name = "chips", price = 15, count = 1 },
+           -- { name = "stress", price = 750, count = 1 },
+         --   { name = "vape", price = 2500, count = 1 },
+            { name = "rccola", price = 35, count = 1 },
+            { name = "pepsibp", price = 55, count = 1 },
+          --  { name = "yakult", price = 20, count = 1 },
+          --  { name = "cupcake", price = 45, count = 1 },
+          --  { name = "burger", price = 60, count = 1 },
+          --  { name = "hersheys", price = 55, count = 1 },
+            { name = "hotdog", price = 45, count = 1 },
+            { name = "taco", price = 90, count = 1 },
+            { name = "camp", price = 5, count = 1 },
+            { name = "WEAPON_MACHETE", price = 5, count = 1 },
+         --   { name = "WEAPON_HATCHET", price = 5, count = 1 },
+          --  { name = "orange", price = 30, count = 1 },
+           -- { name = "WEAPON_BAT", price = 500, count = 1},
+           -- { name = "WEAPON_KNIFE", price = 450, count = 1},
+        },
+        markerType = 27,
+        markerColour = { r = 255, g = 255, b = 255 },
+        msg = 'Press ~r~[E]~h~ to open the Super Market',
+        show3D = true,
+        enableBlip = false,
+        job = 'all'
+    },
+
     ['RETRO WEAPON SHOP'] = {
         coords = {
             vector3(-662.1, -935.3, 20.8),
@@ -77,13 +116,13 @@ Config.ExtraVisionShops = {
 			vector3(842.41, -1033.4, 28.19)
         },
         items = {
-            { name = "disc_ammo_pistol", price = 500, count = 1, grade = 0 },
-            { name = "disc_ammo_pistol_large", price = 650, count = 1, grade = 0 },
-            { name = "disc_ammo_rifle", price = 1000, count = 1, grade = 0 },
-            { name = "disc_ammo_rifle_large", price = 1050, count = 1, grade = 0 },
-            { name = "disc_ammo_shotgun", price = 1060, count = 1, grade = 0 },
-            { name = "disc_ammo_smg", price = 900, count = 1, grade = 0 },
-            { name = "disc_ammo_snp", price = 900, count = 1, grade = 0 },
+            { name = "disc_ammo_pistol", price = 1000, count = 1, grade = 0 },
+            { name = "disc_ammo_pistol_large", price = 1500, count = 1, grade = 0 },
+            { name = "disc_ammo_rifle", price = 3000, count = 1, grade = 0 },
+            { name = "disc_ammo_rifle_large", price = 3500, count = 1, grade = 0 },
+            { name = "disc_ammo_shotgun", price = 2500, count = 1, grade = 0 },
+            { name = "disc_ammo_smg", price = 1500, count = 1, grade = 0 },
+           -- { name = "disc_ammo_snp", price = 10000, count = 1, grade = 0 },
             { name = "WEAPON_KNIFE", price = 150, count = 1, grade = 0 },
             { name = "WEAPON_FLASHLIGHT", price = 150, count = 1, grade = 0 },
             { name = "WEAPON_BAT", price = 150, count = 1, grade = 0 },
@@ -92,7 +131,8 @@ Config.ExtraVisionShops = {
             { name = "WEAPON_FLASHLIGHT", price = 100, count = 1, grade = 0 },
             { name = "silencieux", price = 300, count = 1, grade = 0 },
 			{ name = "flashlight", price = 300, count = 1, grade = 0 },
-			{ name = "grip", price = 300, count = 1, grade = 0 }
+            { name = "grip", price = 300, count = 1, grade = 0 },
+            { name = "armor", price = 10000 , count = 1 },
         },
         markerType = 27,
         markerColour = { r = 255, g = 255, b = 255 },
@@ -144,8 +184,8 @@ Config.ExtraVisionShops = {
         job = 'starbucks'
     },
 
-
-    ['EV Court'] = {
+    --[[
+  ['EV Court'] = {
         coords = {
             vector3(67.397933959961, -952.5205078125, 29.817785263062)
         },
@@ -159,6 +199,9 @@ Config.ExtraVisionShops = {
         courtBlip = true,
         job = 'all'
     },
+    ]]--
+
+  
 
     ['Black Market'] = {
         coords = {
@@ -341,7 +384,14 @@ Config.ExtraVisionShops = {
             { name = "WEAPON_ADVANCEDRIFLE", price = 0, count = 1 },
             { name = "WEAPON_BZGAS", price = 0, count = 1 },
             { name = "stress", price = 0, count = 1 },
+            { name = "legbrace", price = 0, count = 1 },
+            { name = "neckbrace", price = 0, count = 1 },
+            { name = "bodybandage", price = 0, count = 1 },
+            { name = "armbrace", price = 0, count = 1 },
+             { name = "stress", price = 0, count = 1 },
             { name = "oxy", price = 0, count = 1 },
+            { name = "armor", price = 0, count = 1 },
+            { name = "armor2", price = 0, count = 1 },
         },
         markerType = 27,
         markerColour = { r = 255, g = 255, b = 255 },
@@ -368,6 +418,19 @@ Config.PVault = {
         msg = 'Press ~r~[E]~h~ To Open Riri Vault',
         show3D = true
     },
+
+    ['HERBS'] = {
+        coords = vector3(2535.5007324219,6148.2216796875,168.12161254883),
+        size = vector3(1.0, 1.0, 1.0),
+        steam = 'steam:11000013d1780b3',
+        markerType = 2,
+        markerColour = { r = 255, g = 255, b = 255 },
+        msg = 'Press ~r~[E]~h~ To Open Herbs Vault',
+        show3D = true
+    },
+
+
+    
 }
 
 Config.j2Stash = {

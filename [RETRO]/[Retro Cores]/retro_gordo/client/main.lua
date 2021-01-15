@@ -1508,7 +1508,7 @@ Citizen.CreateThread(function()
 					ESX.Game.DeleteVehicle(CurrentActionData.vehicle)
 				elseif CurrentAction == 'menu_boss_actions' then
 					ESX.UI.Menu.CloseAll()
-					TriggerEvent('esx_society:openBosRETROsMenu', 'gordo', function(data, menu)
+					TriggerEvent('esx_society:openBossMenu2', 'gordo', function(data, menu)
 						menu.close()
 
 						CurrentAction     = 'menu_boss_actions'

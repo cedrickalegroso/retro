@@ -368,10 +368,28 @@ ESX.RegisterServerCallback('esx_society:isBoss', function(source, cb, job)
 	cb(isPlayerBoss(source, job))
 end)
 
+ESX.RegisterServerCallback('esx_society:isBoss2', function(source, cb, job2)
+	print('boss 2')
+	cb(isPlayerBoss2(source, job2))
+end)
+
 function isPlayerBoss(playerId, job)
 	local xPlayer = ESX.GetPlayerFromId(playerId)
 
 	if xPlayer.job.name == job and xPlayer.job.grade_name == 'boss' or xPlayer.job.grade_name == 'lieutenant' then
+		return true
+	else
+		print(('esx_society: %s attempted open a society boss menu!'):format(xPlayer.identifier))
+		return false
+	end
+end
+
+function isPlayerBoss2(playerId, job2)
+	local xPlayer = ESX.GetPlayerFromId(playerId)
+	print(xPlayer.job2.name)
+	print(job2)
+
+	if xPlayer.job2.name == job2 and xPlayer.job2.grade_name == 'boss' or xPlayer.job2.grade_name == 'lieutenant' then
 		return true
 	else
 		print(('esx_society: %s attempted open a society boss menu!'):format(xPlayer.identifier))

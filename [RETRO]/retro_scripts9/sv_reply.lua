@@ -51,7 +51,7 @@ AddEventHandler('chatMessage', function(source, color, msg)
 		end
 	end	
 	
-	if cm[1] == "/adminrep" then
+	if cm[1] == "/admin" then
 		CancelEvent()
 		if tablelength(cm) > 1 then
 			local names1 = GetPlayerName(source)

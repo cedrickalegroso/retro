@@ -30,8 +30,8 @@ AddEventHandler('eon:campfire', function()
 end)
 
 RegisterCommand('camp', function(source, args, rawCommand)
-    ESX.TriggerServerCallback('camp:item', function(qtty,deletecamp)
-        if qtty > 0 and deletecamp ~= 0  then
+  --  ESX.TriggerServerCallback('camp:item', function(qtty,deletecamp)
+       -- if qtty > 0 and deletecamp ~= 0  then
             if prevtent ~= 0 then
                 SetEntityAsMissionEntity(prevtent)
                 DeleteObject(prevtent)
@@ -53,10 +53,10 @@ RegisterCommand('camp', function(source, args, rawCommand)
             camping = true
 
 
-        else 
-            exports['mythic_notify']:DoHudText('error', 'You need camping equipment to camp!')
-        end
-    end)
+     --   else 
+    --        exports['mythic_notify']:DoHudText('error', 'You need camping equipment to camp!')
+    --    end
+  --  end)
 end, false)                   
       
 --kampkaldır
@@ -89,16 +89,16 @@ end)
 ---------------------------------
 function OpenCamp()
 
-    TaskStartScenarioInPlace(PlayerPedId(), "world_human_gardener_plant", 0, true)
-    exports['progressBars']:startUI(31000, "Setting up Camp")
-    Citizen.Wait(30000)
-    exports['mythic_notify']:DoHudText('success', 'Setting up camp success.')
+  --  TaskStartScenarioInPlace(PlayerPedId(), "world_human_gardener_plant", 0, true)
+  --  exports['progressBars']:startUI(31000, "Setting up Camp")
+  --  Citizen.Wait(30000)
+  --  exports['mythic_notify']:DoHudText('success', 'Setting up camp success.')
 
-    --[[
- TaskStartScenarioInPlace(PlayerPedId(), "world_human_gardener_plant", 0, true)
-    exports['progressBars']:startUI(31000, "Kamp kuruyorsun..")
-    Citizen.Wait(30000)
-    exports['mythic_notify']:DoHudText('success', 'Kamp kuruldu.')
+    
+ --TaskStartScenarioInPlace(PlayerPedId(), "world_human_gardener_plant", 0, true)
+   -- exports['progressBars']:startUI(31000, "Kamp kuruyorsun..")
+   -- Citizen.Wait(30000)
+--    exports['mythic_notify']:DoHudText('success', 'Kamp kuruldu.')
 
 
       TriggerEvent("mythic_progbar:client:progress", {
@@ -122,20 +122,48 @@ function OpenCamp()
         }
     }, function(status)
         if not status then
-            exports['mythic_notify']:DoHudText('success', 'Setting up camp success.')
+            ESX.ShowNotification('~g~ Setting up camp success.')
+          --  exports['mythic_notify']:DoHudText('success', 'Setting up camp success.')
         end
     end)
-    ]]--
+  
    
     --ClearPedTasks(PlayerPedId())
 
   
 end
 function CloseCamp()
-    TaskStartScenarioInPlace(PlayerPedId(), "world_human_gardener_plant", 0, true)
-    exports['progressBars']:startUI(31000, "Removing Camp")
-    Citizen.Wait(30000)
-    exports['mythic_notify']:DoHudText('success', 'Camo removed successfuly.')
+   -- TaskStartScenarioInPlace(PlayerPedId(), "world_human_gardener_plant", 0, true)
+   -- exports['progressBars']:startUI(31000, "Removing Camp")
+  --  Citizen.Wait(30000)
+  --  exports['mythic_notify']:DoHudText('success', 'Camo removed successfuly.')
     --ClearPedTasks(PlayerPedId())
+
+    
+    TriggerEvent("mythic_progbar:client:progress", {
+        name = "unique_action_name",
+        duration = 31000,
+        label = "Setting up Camp",
+        useWhileDead = false,
+        canCancel = true,
+        controlDisables = {
+            disableMovement = true,
+            disableCarMovement = true,
+            disableMouse = false,
+            disableCombat = true,
+        },
+        animation = {
+            animDict = "amb@world_human_gardener_plant@male@base",
+            anim = "base",
+        },
+        prop = {
+            model = "",
+        }
+    }, function(status)
+        if not status then
+            ESX.ShowNotification('~g~ Camp removed successfuly.')
+          --  exports['mythic_notify']:DoHudText('success', 'Setting up camp success.')
+        end
+    end)
 end
 ----------------------------------

@@ -30,7 +30,7 @@ server_scripts {
 
   --'sv_des.lua',
 
-  --'sv_reply.lua',
+  'sv_reply.lua',
 
   'sv_whitelist.lua',
 
@@ -38,9 +38,9 @@ server_scripts {
 
   --'esx-vehicle/server.lua',
 
-  'esx_inventoryhud_glovebox/server/classes/c_glovebox.lua',
-  'esx_inventoryhud_glovebox/server/glovebox.lua',
-  'esx_inventoryhud_glovebox/server/esx_glovebox-sv.lua'
+ -- 'esx_inventoryhud_glovebox/server/classes/c_glovebox.lua',
+ --- 'esx_inventoryhud_glovebox/server/glovebox.lua',
+ -- 'esx_inventoryhud_glovebox/server/esx_glovebox-sv.lua'
   --'esx_drugeffects/server/main.lua'
 
 }
@@ -64,7 +64,7 @@ client_scripts {
 
   --'Log/client/main.lua',
 
- -- 'cl_reply.lua',
+ 'cl_reply.lua',
 
   --'cl_time.lua',
   

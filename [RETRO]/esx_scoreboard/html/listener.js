@@ -5,6 +5,7 @@ $(function() {
 
         if (event.data.action == "updatePraca") {
             $('#praca').html(event.data.praca);
+            $('#praca2').html(event.data.praca2);
         }
 
         if (event.data.action == "updatePraca2") {
@@ -59,6 +60,8 @@ $(function() {
 
                 $('#cuatro').html(jobs.cuatro);
 
+
+  $('#gordo').html(jobs.gordo);
 
                 $('#groove').html(jobs.groove);
                 $('#cardealer').html(jobs.cardealer);

@@ -15,7 +15,7 @@ function OpenVehicleSpawnerMenu(type, station, part, partNum)
 	}}, function(data, menu)
 		if data.current.action == 'buy_vehicle' then
 			local shopElements = {}
-			local shopCoords = Config.VermillionStations[station][part][partNum].InsideShop
+			local shopCoords = Config.GordoStations[station][part][partNum].InsideShop
 			local authorizedVehicles = Config.AuthorizedVehicles[PlayerData.job.grade_name]
 
 			if authorizedVehicles then
@@ -49,7 +49,7 @@ function OpenVehicleSpawnerMenu(type, station, part, partNum)
 		elseif data.current.action == 'garage' then
 			local garage = {}
 
-			ESX.TriggerServerCallback('esx_advancedvehicleshop:retrieveJobVehicles', function(jobVehicles)
+			ESX.TriggerServerCallback('esx_advancedvehicleshop:retrieveJobVehicles2', function(jobVehicles)
 				if #jobVehicles > 0 then
 					local allVehicleProps = {}
 
@@ -93,11 +93,15 @@ function OpenVehicleSpawnerMenu(type, station, part, partNum)
 										local vehicleProps = allVehicleProps[data2.current.plate]
 										ESX.Game.SetVehicleProperties(vehicle, vehicleProps)
 
-										TriggerServerEvent('esx_advancedvehicleshop:setJobVehicleState', data2.current.plate, false)
+										TriggerServerEvent('esx_advancedvehicleshop:setJobVehicleState2', data2.current.plate, false)
 
 										local vehNet = NetworkGetNetworkIdFromEntity(vehicle)
 										local plate = GetVehicleNumberPlateText(vehicle)
-										TriggerServerEvent("SOSAY_Locking:GiveKeys", vehNet, plate)
+										--TriggerServerEvent("SOSAY_Locking:GiveKeys", vehNet, plate)
+
+										TriggerServerEvent('hsn-hotwire:addKeys',plate)
+										SetVehicleEngineOn(vehicle,true)
+										
 										ESX.ShowNotification(_U('garage_released'))
 									end)
 								end
@@ -141,7 +145,7 @@ function StoreNearbyVehicle(playerCoords)
 		return
 	end
 
-	ESX.TriggerServerCallback('retro_vermillion:storeNearbyVehicle', function(storeSuccess, foundNum)
+	ESX.TriggerServerCallback('retro_gordo:storeNearbyVehicle', function(storeSuccess, foundNum)
 		if storeSuccess then
 			local vehicleId = vehiclePlates[foundNum]
 			local attempts = 0
@@ -190,7 +194,7 @@ function StoreNearbyVehicle(playerCoords)
 end
 
 function GetAvailableVehicleSpawnPoint(station, part, partNum)
-	local spawnPoints = Config.VermillionStations[station][part][partNum].SpawnPoints
+	local spawnPoints = Config.GordoStations[station][part][partNum].SpawnPoints
 	local found, foundSpawnPoint = false, nil
 
 	for i=1, #spawnPoints, 1 do
@@ -230,7 +234,7 @@ function OpenShopMenu(elements, restoreCoords, shopCoords)
 				local props    = ESX.Game.GetVehicleProperties(vehicle)
 				props.plate    = newPlate
 
-				ESX.TriggerServerCallback('retro_vermillion:buyJobVehicle', function (bought)
+				ESX.TriggerServerCallback('retro_gordo:buyJobVehicle', function (bought)
 					if bought then
 						ESX.ShowNotification(_U('vehicleshop_bought', data.current.name, ESX.Math.GroupDigits(data.current.price)))
 

@@ -53,6 +53,7 @@ function AddPlayerToScoreboard(xPlayer, update)
 	connectedPlayers[playerId].id = playerId
 	connectedPlayers[playerId].name = xPlayer.getName()
 	connectedPlayers[playerId].job = xPlayer.job.name
+	connectedPlayers[playerId].job2 = xPlayer.job2.name
 
 	if update then
 		TriggerClientEvent('esx_scoreboard:updateConnectedPlayers', -1, connectedPlayers)

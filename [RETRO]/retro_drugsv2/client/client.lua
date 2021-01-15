@@ -18,6 +18,8 @@ local isInZone                  = false
 local CurrentAction             = nil
 local CurrentActionMsg          = ''
 local CurrentActionData         = {}
+local isFrozen;
+
 
 function mysplit (inputstr, sep)
 	if sep == nil then
@@ -48,6 +50,18 @@ AddEventHandler('retro_Scripts:callCopsonSells', function(source)
 	ExecuteCommand('911DRUGSELL')
 end)
 
+RegisterNetEvent('freeze:freezePlayer')
+AddEventHandler('freeze:freezePlayer', function()
+    isFrozen = not isFrozen
+end)
+
+Citizen.CreateThread(function()
+    while true do
+        FreezeEntityPosition(GetPlayerPed(-1), isFrozen)
+
+        Citizen.Wait(0)
+    end
+end)
 
 
 AddEventHandler('esx_drugs:hasEnteredMarker', function(zone)
@@ -251,8 +265,21 @@ Citizen.CreateThread(function()
 					TaskStartScenarioInPlace(playerPed, 'world_human_gardener_plant', 0, false)
 					--callPolice(cops.AlertCops, cops.Zones[action[2]].callPolice, cops.Zones[action[2]].callPoliceChance, PlayerCoords)
 				elseif action[2] == "Processing" then
+
+	--	RequestAnimSet("mini@repair") 
+			--		while not HasAnimSetLoaded("mini@repair") do
+		--			  Citizen.Wait(0)
+			--		end    
+
+			
+
+
 					TriggerServerEvent('esx_drugs:startTransform', action[1])
-					TaskStartScenarioInPlace(playerPed, 'world_human_gardener_plant', 0, false)
+					ExecuteCommand('e mechanic') 
+					TriggerEvent('freeze:freezePlayer')
+
+				--	TaskStartScenarioInPlace(playerPed, "fixing_a_ped", 0, 1)
+					--TaskStartScenarioInPlace(playerPed, 'world_human_gardener_plant', 0, false)
 					--callPolice(cops.AlertCops, cops.Zones[action[2]].callPolice, cops.Zones[action[2]].callPoliceChance, PlayerCoords)
 				elseif action[2] == "Dealer" then
 					TriggerServerEvent('esx_drugs:starRETROtSell', action[1])
@@ -265,7 +292,17 @@ Citizen.CreateThread(function()
 				CurrentAction = nil
 			end
 		elseif CurrentAction == nil and IsControlJustReleased(0, Keys[Config.KeyStopAction]) then
+			
+			if isFrozen == true then 
+				TriggerEvent('freeze:freezePlayer')
+			end
+			
 			TriggerEvent('esx_drugs:hasExitedMarker', lastZone)
+			
 		end
 	end
+end)
+
+RegisterCommand('drugsfreeze', function() 
+	TriggerEvent('freeze:freezePlayer')
 end)

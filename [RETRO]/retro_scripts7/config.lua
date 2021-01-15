@@ -446,12 +446,12 @@ ConfigPOPO.PoliceStations = {
 		},
 
 	
---[[
+
 Armories = {
-			{ x = 451.699, y = -980.356, z = 29.689 },
+		--	{ x = 451.699, y = -980.356, z = 29.689 },
 		},
 
-]]--
+
 		
 		Vehicles = {
 			{

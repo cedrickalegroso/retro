@@ -1,4 +1,10 @@
 
+ESX = nil
+
+
+TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+
+
 RegisterCommand("whitelistaccess", function(source)
 
     local _source = source

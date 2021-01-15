@@ -224,3 +224,171 @@ AddEventHandler('esx_drugeffects:onCoke', function()
    
 
 end)
+
+
+
+RegisterNetEvent('esx_drugeffects:onpackaged_apple')
+AddEventHandler('esx_drugeffects:onpackaged_apple', function()
+  local playerPed = GetPlayerPed(-1)
+  local maxHealth = GetEntityMaxHealth(playerPed)
+  local player = PlayerId()
+  local health = GetEntityHealth(playerPed)
+  local newHealth = math.min(maxHealth , math.floor(health + maxHealth/8))
+
+  TriggerEvent("mythic_progbar:client:progress", {
+		name = "unique_action_name",
+		duration = 5000,
+		label = "Eating Apple",
+		useWhileDead = false,
+		canCancel = true,
+		controlDisables = {
+			disableMovement = false,
+			disableCarMovement = true,
+			disableMouse = false,
+			disableCombat = true,
+		},
+		animation = {
+			animDict = "mp_player_inteat@burger",
+			anim = "mp_player_int_eat_burger_fp",
+		},
+		prop = {
+			model = "prop_paper_bag_small",
+		}
+	}, function(status)
+    if not status then
+      ESX.ShowNotification('Your regained health and gained Armor')
+      SetEntityHealth(playerPed, newHealth)
+      SetPedArmour(playerPed, 30)
+		end
+	end)
+ 
+ 
+   
+
+end)
+
+
+
+RegisterNetEvent('esx_drugeffects:onpackaged_banana')
+AddEventHandler('esx_drugeffects:onpackaged_banana', function()
+  local playerPed = GetPlayerPed(-1)
+  local maxHealth = GetEntityMaxHealth(playerPed)
+  local player = PlayerId()
+  local health = GetEntityHealth(playerPed)
+  local newHealth = math.min(maxHealth , math.floor(health + maxHealth/8))
+
+  TriggerEvent("mythic_progbar:client:progress", {
+		name = "unique_action_name",
+		duration = 5000,
+		label = "Eating Banana",
+		useWhileDead = false,
+		canCancel = true,
+		controlDisables = {
+			disableMovement = false,
+			disableCarMovement = true,
+			disableMouse = false,
+			disableCombat = true,
+		},
+		animation = {
+			animDict = "mp_player_inteat@burger",
+			anim = "mp_player_int_eat_burger_fp",
+		},
+		prop = {
+			model = "prop_paper_bag_small",
+		}
+	}, function(status)
+    if not status then
+      ESX.ShowNotification('You regained Health.')
+      SetEntityHealth(playerPed, newHealth)
+		end
+	end)
+ 
+ -- SetPedArmour(playerPed, 30)
+   
+
+end)
+
+RegisterNetEvent('esx_drugeffects:onpackaged_grapes')
+AddEventHandler('esx_drugeffects:onpackaged_grapes', function()
+  local playerPed = GetPlayerPed(-1)
+  local maxHealth = GetEntityMaxHealth(playerPed)
+  local player = PlayerId()
+  local health = GetEntityHealth(playerPed)
+  local newHealth = math.min(maxHealth , math.floor(health + maxHealth/8))
+
+
+  TriggerEvent("mythic_progbar:client:progress", {
+		name = "unique_action_name",
+		duration = 5000,
+		label = "Eating Grapes",
+		useWhileDead = false,
+		canCancel = true,
+		controlDisables = {
+			disableMovement = false,
+			disableCarMovement = true,
+			disableMouse = false,
+			disableCombat = true,
+		},
+		animation = {
+			animDict = "mp_player_inteat@burger",
+			anim = "mp_player_int_eat_burger_fp",
+		},
+		prop = {
+			model = "prop_paper_bag_small",
+		}
+	}, function(status)
+    if not status then
+      ESX.ShowNotification('You gained Armor.')
+      AddArmourToPed(playerPed, 25)
+		end
+	end)
+  
+   
+
+end)
+
+
+RegisterNetEvent('esx_drugeffects:onpackaged_orange')
+AddEventHandler('esx_drugeffects:onpackaged_orange', function()
+ local playerPed = GetPlayerPed(-1)
+
+ TriggerEvent("mythic_progbar:client:progress", {
+  name = "unique_action_name",
+  duration = 5000,
+  label = "Eating Orange",
+  useWhileDead = false,
+  canCancel = true,
+  controlDisables = {
+    disableMovement = false,
+    disableCarMovement = true,
+    disableMouse = false,
+    disableCombat = true,
+  },
+  animation = {
+    animDict = "mp_player_inteat@burger",
+    anim = "mp_player_int_eat_burger_fp",
+  },
+  prop = {
+    model = "prop_paper_bag_small",
+  }
+}, function(status)
+  if not status then
+    --Efects
+    local player = PlayerId()
+    ESX.ShowNotification('You can now run a little bit faster')
+    
+    SetRunSprintMultiplierForPlayer(player, 1.3)
+
+    print('start count')
+    Wait(16000)
+    print('stop count')
+
+    ESX.ShowNotification('Your run speed goes back to normal again')
+    SetRunSprintMultiplierForPlayer(player, 1.0)
+  end
+end)
+
+
+  
+
+end)
