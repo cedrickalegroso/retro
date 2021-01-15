@@ -170,6 +170,8 @@ AddEventHandler('es:playerLoaded', function(source, _player)
 							userData.job.skin_female = json.decode(gradeObject.skin_female)
 						end
 
+
+						
 						userData.job2 = {}
 
 						userData.job2.id    = jobObject2.id
