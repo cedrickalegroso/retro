@@ -121,7 +121,7 @@ Citizen.CreateThread(function()
                                             streetLabel = streetLabel .. " " .. street2
                                         end
 
-                                        ExecuteCommand('911ROBPOS')
+                                        ExecuteCommand('robpos911')
 
                                      --   TriggerServerEvent("qb-storerobbery:server:callCops", "safe", currentSafe, streetLabel, pos)
                                         copsCalled = true
@@ -195,8 +195,7 @@ AddEventHandler('lockpicks:UseLockpick', function(isAdvanced)
 
                      --   print(postal)
 
-                        ExecuteCommand('911')
-
+                     ExecuteCommand('robpos911')
                     --    TriggerServerEvent("retro_scripts:callcopsnew", "cashier", currentRegister, streetLabel, pos, storename, postal)
                         copsCalled = true
                     end

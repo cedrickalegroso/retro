@@ -23,8 +23,10 @@ AddEventHandler("stress:add", function (value)
 	end
 end)
 
+
+
 RegisterServerEvent("stress:remove") -- stres azalttır // remove stress
-AddEventHandler("stress:remove", function (value)
+AddEventHandler("stress:remove", function (value, source)
    -- print('[RETRO CITY DEBUG]:Stress Remove')
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
@@ -35,3 +37,4 @@ AddEventHandler("stress:remove", function (value)
 		SaveLog("Stress removed : "..value, playername)
 	end
 end)
+

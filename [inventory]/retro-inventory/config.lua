@@ -11,7 +11,8 @@ Config.OpenAnim = true
 
 Config.ExtraVisionShops = {
 
-    ['RETRO CITY SHOP'] = {
+  
+    ['RETRO  SHOP'] = {
         coords = {
             vector3(2557.458, 382.282, 106.622),
             vector3(3038.939, 585.954, 106.622),
@@ -29,79 +30,20 @@ Config.ExtraVisionShops = {
             vector3(373.74, 325.96, 103.57),
             vector3(1166.024, 2708.930, 37.177),
             vector3(1392.562, 3604.684, 34.0),
-            vector3(2578.9194335938,6175.1259765625,164.32618713379),
         },
         items = {
-            { name = "bread", price = 15, count = 1 },
-            { name = "hifi", price = 500, count = 1 },
-            { name = "phone", price = 1500, count = 1 },
-            { name = "radio", price = 750, count = 1 },
-            { name = "water", price = 10, count = 1 },
-            { name = "whisky", price = 250, count = 1 },
-          --  { name = "cigarett", price = 50, count = 1 },
-            { name = "beer", price = 75, count = 1 },
-         --   { name = "lighter", price = 10, count = 1 },
-            { name = "chips", price = 15, count = 1 },
-         --   { name = "stress", price = 750, count = 1 },
-            { name = "vape", price = 20000, count = 1 },
-            { name = "rccola", price = 35, count = 1 },
-            { name = "pepsibp", price = 55, count = 1 },
-            { name = "yakult", price = 20, count = 1 },
-            { name = "cupcake", price = 45, count = 1 },
-            { name = "burger", price = 60, count = 1 },
-            { name = "hersheys", price = 55, count = 1 },
-            { name = "hotdog", price = 45, count = 1 },
-            { name = "taco", price = 90, count = 1 },
-          --  { name = "orange", price = 30, count = 1 },
-            { name = "WEAPON_BAT", price = 500, count = 1},
-            { name = "WEAPON_KNIFE", price = 450, count = 1},
+    
         },
         markerType = 27,
         markerColour = { r = 255, g = 255, b = 255 },
-        msg = 'Press ~r~[E]~h~ to open the Super Market',
+        msg = 'Press ~r~[E]~h~ To Weapon Shop',
         show3D = true,
-        enableBlip = true,
+        weaponBlip = true,
         job = 'all'
     },
 
-    ['RETRO CITY SHOP'] = {
-        coords = {
-            vector3(2542.6069335938,6139.423828125,164.27229309082),
-        },
-        items = {
-            { name = "bread", price = 15, count = 1 },
-         --   { name = "phone", price = 2500, count = 1 },
-         --   { name = "radio", price = 1500, count = 1 },
-            { name = "water", price = 10, count = 1 },
-         --   { name = "whisky", price = 250, count = 1 },
-          --  { name = "cigarett", price = 50, count = 1 },
-         --   { name = "beer", price = 75, count = 1 },
-         --   { name = "lighter", price = 10, count = 1 },
-            { name = "chips", price = 15, count = 1 },
-           -- { name = "stress", price = 750, count = 1 },
-         --   { name = "vape", price = 2500, count = 1 },
-            { name = "rccola", price = 35, count = 1 },
-            { name = "pepsibp", price = 55, count = 1 },
-          --  { name = "yakult", price = 20, count = 1 },
-          --  { name = "cupcake", price = 45, count = 1 },
-          --  { name = "burger", price = 60, count = 1 },
-          --  { name = "hersheys", price = 55, count = 1 },
-            { name = "hotdog", price = 45, count = 1 },
-            { name = "taco", price = 90, count = 1 },
-            { name = "camp", price = 5, count = 1 },
-            { name = "WEAPON_MACHETE", price = 5, count = 1 },
-         --   { name = "WEAPON_HATCHET", price = 5, count = 1 },
-          --  { name = "orange", price = 30, count = 1 },
-           -- { name = "WEAPON_BAT", price = 500, count = 1},
-           -- { name = "WEAPON_KNIFE", price = 450, count = 1},
-        },
-        markerType = 27,
-        markerColour = { r = 255, g = 255, b = 255 },
-        msg = 'Press ~r~[E]~h~ to open the Super Market',
-        show3D = true,
-        enableBlip = false,
-        job = 'all'
-    },
+
+   
 
     ['RETRO WEAPON SHOP'] = {
         coords = {
@@ -184,7 +126,7 @@ Config.ExtraVisionShops = {
         job = 'starbucks'
     },
 
-    --[[
+    
   ['EV Court'] = {
         coords = {
             vector3(67.397933959961, -952.5205078125, 29.817785263062)
@@ -199,7 +141,7 @@ Config.ExtraVisionShops = {
         courtBlip = true,
         job = 'all'
     },
-    ]]--
+    
 
   
 
@@ -245,6 +187,101 @@ Config.ExtraVisionShops = {
     },
 
     --[[
+
+      ['RETRO CITY SHOP MAIN'] = {
+        coords = {
+            vector3(2557.458, 382.282, 106.622),
+            vector3(3038.939, 585.954, 106.622),
+            vector3(-3038.939, 1001.462, 7.908),
+            vector3(547.431, 2671.710, 42.156),
+            vector3(1961.464, 3740.672, 32.343),
+            vector3(2678.916, 3280.671, 55.241),
+            vector3(1729.563, 6414.126, 36.037),
+            vector3(26.18, -1347.37, 29.5),
+            vector3(-48.519, -1757.514, 29.421),
+            vector3(-707.501, -914.260, 19.215),
+            vector3(-1820.523, 792.518, 138.118),
+            vector3(1698.388, 4924.404, 42.063),
+            vector3(-1222.98, -907.04, 12.33),
+            vector3(373.74, 325.96, 103.57),
+            vector3(1166.024, 2708.930, 37.177),
+            vector3(1392.562, 3604.684, 34.0),
+           -- vector3(2578.9194335938,6175.1259765625,164.32618713379),
+        },
+        items = {
+            { name = "bread", price = 15, count = 1 },
+          
+        },
+        markerType = 27,
+        markerColour = { r = 255, g = 255, b = 255 },
+        msg = 'Press ~r~[E]~h~ to open the Super Market',
+        show3D = true,
+        enableBlip = true,
+        job = 'all'
+    },
+
+
+      { name = "hifi", price = 500, count = 1 },
+            { name = "phone", price = 1500, count = 1 },
+            { name = "radio", price = 750, count = 1 },
+            { name = "water", price = 10, count = 1 },
+            { name = "whisky", price = 250, count = 1 },
+          --  { name = "cigarett", price = 50, count = 1 },
+            { name = "beer", price = 75, count = 1 },
+         --   { name = "lighter", price = 10, count = 1 },
+            { name = "chips", price = 15, count = 1 },
+         --   { name = "stress", price = 750, count = 1 },
+            { name = "vape", price = 20000, count = 1 },
+            { name = "rccola", price = 35, count = 1 },
+            { name = "pepsibp", price = 55, count = 1 },
+            { name = "yakult", price = 20, count = 1 },
+            { name = "cupcake", price = 45, count = 1 },
+            { name = "burger", price = 60, count = 1 },
+            { name = "hersheys", price = 55, count = 1 },
+            { name = "hotdog", price = 45, count = 1 },
+            { name = "taco", price = 90, count = 1 },
+          --  { name = "orange", price = 30, count = 1 },
+            { name = "WEAPON_BAT", price = 500, count = 1},
+            { name = "WEAPON_KNIFE", price = 450, count = 1},
+
+     ['RETRO CITY SHOP'] = {
+        coords = {
+            vector3(2542.6069335938,6139.423828125,164.27229309082),
+        },
+        items = {
+            { name = "bread", price = 15, count = 1 },
+         --   { name = "phone", price = 2500, count = 1 },
+         --   { name = "radio", price = 1500, count = 1 },
+            { name = "water", price = 10, count = 1 },
+         --   { name = "whisky", price = 250, count = 1 },
+          --  { name = "cigarett", price = 50, count = 1 },
+         --   { name = "beer", price = 75, count = 1 },
+         --   { name = "lighter", price = 10, count = 1 },
+            { name = "chips", price = 15, count = 1 },
+           -- { name = "stress", price = 750, count = 1 },
+         --   { name = "vape", price = 2500, count = 1 },
+            { name = "rccola", price = 35, count = 1 },
+            { name = "pepsibp", price = 55, count = 1 },
+          --  { name = "yakult", price = 20, count = 1 },
+          --  { name = "cupcake", price = 45, count = 1 },
+          --  { name = "burger", price = 60, count = 1 },
+          --  { name = "hersheys", price = 55, count = 1 },
+            { name = "hotdog", price = 45, count = 1 },
+            { name = "taco", price = 90, count = 1 },
+            { name = "camp", price = 5, count = 1 },
+            { name = "WEAPON_MACHETE", price = 5, count = 1 },
+         --   { name = "WEAPON_HATCHET", price = 5, count = 1 },
+          --  { name = "orange", price = 30, count = 1 },
+           -- { name = "WEAPON_BAT", price = 500, count = 1},
+           -- { name = "WEAPON_KNIFE", price = 450, count = 1},
+        },
+        markerType = 27,
+        markerColour = { r = 255, g = 255, b = 255 },
+        msg = 'Press ~r~[E]~h~ to open the Super Market',
+        show3D = true,
+        enableBlip = true,
+        job = 'all'
+    },
 
      ['Biton Armor'] = {
         coords = {
@@ -354,16 +391,19 @@ Config.ExtraVisionShops = {
     },
 
 
+ 
+
+    
+
 
     ]]--
-   
 
     ['GOVERNMENT STOCK'] = {
         coords = {
             vector3(-527.52410888672,-189.33833312988,42.783916473389)
         },
         items = {
-            { name = "medkit", price = 0, count = 1 },
+            { name = "medikit", price = 0, count = 1 },
             { name = "bandage", price = 0, count = 1 },
             { name = "disc_ammo_pistol", price = 0, count = 1, grade = 0 },
             { name = "disc_ammo_pistol_large", price = 0, count = 1, grade = 0 },
@@ -400,8 +440,7 @@ Config.ExtraVisionShops = {
         enableBlip = false,
         job = 'government'
     },
-
-    
+   
 
 
  

@@ -40,6 +40,7 @@ function OpenActionMenuInteraction(target)
 	table.insert(elements, {label = ('Call Mech'), value = 'call11'})
 	table.insert(elements, {label = ('Call Cops'), value = 'call2'})
 	table.insert(elements, {label = ('Hide In Trunk'), value = 'hide'})
+	table.insert(elements, {label = ('Check Wallet'), value = 'wallet'})
 	table.insert(elements, {label = ('Search'), value = 'loot'})
 	table.insert(elements, {label = ('PiggyBack'), value = 'piggyback'})
 	table.insert(elements, {label = ('Carry'), value = 'carry'})
@@ -97,6 +98,14 @@ function OpenActionMenuInteraction(target)
 
 			menu.close()
 		end
+
+		if data.current.value == 'wallet' then
+			
+			TriggerEvent('retro_scripts:openWallet', source)
+		--	ExecuteCommand('piggyback')
+
+		menu.close()
+       	end
 		
 			if data.current.value == 'piggyback' then
 			

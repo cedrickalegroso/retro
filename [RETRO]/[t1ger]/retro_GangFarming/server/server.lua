@@ -121,7 +121,10 @@ local function Sell(source, drug)
 				TriggerClientEvent('esx:showNotification', source, _U('not_enough', drug))
 			else
 				xPlayer.removeInventoryItem(v.ItemTransform, 1)
-				if CopsConnected == 0 then
+
+				xPlayer.addMoney(200)
+				--[[
+if CopsConnected == 0 then
 					xPlayer.addAccountMoney('black_money', 250)
 					--TriggerClientEvent('esx:showNotification', source, _U('sold_one_meth'))
 				elseif CopsConnected == 1 then
@@ -142,10 +145,13 @@ local function Sell(source, drug)
 				elseif CopsConnected >= 6 then
 					xPlayer.addAccountMoney('black_money', 10000)
 					--TriggerClientEvent('esx:showNotification', source, _U('sold_one_meth'))
-				end
-				TriggerClientEvent('esx:showNotification', source, _U('sold_one', drug))
+					end
+				]]--
+				
+				
+				TriggerClientEvent('esx:showNotification', source, _U('sold_one', v.ItemTransform))
 				--ExecuteCommand('911Silent')
-				TriggerClientEvent('_Scripts:callCopsonSells', source)
+				--TriggerClientEvent('_Scripts:callCopsonSells', source)
 			
 				Sell(source, drug)
 			end

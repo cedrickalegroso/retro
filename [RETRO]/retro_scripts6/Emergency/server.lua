@@ -33,7 +33,7 @@ AddEventHandler('esx_jobChat:chat', function(job, msg)
 	fal = xPlayer.getName(source)
 	jobName = string.upper(job)
 	local messageFull = {
-        template = '<div style="padding: 8px; margin: 8px; background-color: rgba(77, 0, 153); border-radius: 25px;"><i class="far fa-building"style="font-size:15px"></i> [{0}] {1} : {2}</font></i></b></div>',
+        template = '<div style="padding: 8px; margin: 8px; background-color: rgba(77, 0, 153); border-radius: 10px;"><i class="far fa-building"style="font-size:15px"></i> [{0}] {1} : {2}</font></i></b></div>',
         args = {jobName, fal , msg,}
     }
     TriggerClientEvent('esx_jobChat:Send', -1, messageFull, job)
@@ -51,7 +51,7 @@ AddEventHandler('esx_jobChat:311', function(targetCoords, msg, streetName, emerg
 	local messageFull
 	if emergency == '311' then
 		messageFull = {
-			template = '<div style="padding: 8px; margin: 8px; background-color: rgba(255, 51, 51); border-radius: 25px;"><i class="fas fa-bell"style="font-size:15px"></i> [ICU]: {0} | Location : {1} | {2}</font></i></b></div>',
+			template = '<div style="padding: 8px; margin: 8px; background-color: rgba(255, 51, 51); border-radius: 10px;"><i class="fas fa-bell"style="font-size:15px"></i> [ICU]: {0} | Location : {1} | {2}</font></i></b></div>',
         	args = {fal, streetName, msg, ped}
 		}
 	end
@@ -72,7 +72,7 @@ AddEventHandler('esx_jobChat:911', function(targetCoords, msg, streetName, emerg
 	local messageFull
 	if emergency == '911' then
 		messageFull = {
-			template = '<div style="padding: 8px; margin: 8px; background-color: rgba(0, 38, 153); border-radius: 25px;"><i class="fas fa-bell"style="font-size:15px"></i> [911] : {0} | Location : {1} | {2}</font></i></b></div>',
+			template = '<div style="padding: 8px; margin: 8px; background-color: rgba(0, 38, 153, 0.3); border-radius: 10px;"><i class="fas fa-bell"style="font-size:15px"></i> ⚠️ [911] | Location : {1} | {2}</font></i></b></div>',
         	args = {fal, streetName, msg}
 		}
 	end
@@ -89,7 +89,23 @@ AddEventHandler('esx_jobChat:911Silent', function(targetCoords, msg, streetName,
 	local messageFull
 	if emergency == '911Silent' then
 		messageFull = {
-			template = '<div style="padding: 8px; margin: 8px; background-color: rgba(0, 38, 153); border-radius: 25px;"><i class="fas fa-bell"style="font-size:15px"></i> [DRUG SELL NOTIFICATION] : Someone is selling drugs </font></i></b></div>',
+			template = '<div style="padding: 8px; margin: 8px; background-color: rgba(0, 38, 153, 0.3); border-radius: 10px;"><i class="fas fa-bell"style="font-size:15px"></i> ⚠️ [DRUG SELL NOTIFICATION] : Someone is selling drugs </font></i></b></div>',
+        	args = {fal, streetName, msg}
+		}
+	end
+	TriggerClientEvent('esx_jobChat:911Marker', -1, targetCoords, emergency)
+	TriggerClientEvent('esx_jobChat:911EmergencySend', -1, messageFull)
+end)
+
+RegisterServerEvent('esx_jobChat:911robpos')
+AddEventHandler('esx_jobChat:911robpos', function(targetCoords, msg, streetName, emergency)
+    local _source = source
+	local xPlayer = ESX.GetPlayerFromId(source)
+	fal = xPlayer.getName(source)
+	local messageFull
+	if emergency == '911robpos' then
+		messageFull = {
+			template = '<div style="padding: 8px; margin: 8px; background-color: rgba(0, 38, 153, 0.3); border-radius: 10px;"><i class="fas fa-bell"style="font-size:15px"></i> ⚠️ [POSSIBLE ROBBERRY] : Someone is trying to lockpick the register </font></i></b></div>',
         	args = {fal, streetName, msg}
 		}
 	end
@@ -108,7 +124,7 @@ AddEventHandler('esx_jobChat:911truck', function(targetCoords, msg, streetName, 
 	local messageFull
 	if emergency == '911truck' then
 		messageFull = {
-			template = '<div style="padding: 8px; margin: 8px; background-color: rgba(0, 38, 153); border-radius: 25px;"><i class="fas fa-bell"style="font-size:15px"></i> [ARMORED TRUCK ROBBERY ] : SOMEONE IS ROBBING THE TRUCK </font></i></b></div>',
+			template = '<div style="padding: 8px; margin: 8px; background-color: rgba(0, 38, 153, 0.3); border-radius: 10px;"><i class="fas fa-bell"style="font-size:15px"></i> ⚠️ [ARMORED TRUCK ROBBERY ] : SOMEONE IS ROBBING THE TRUCK </font></i></b></div>',
         	args = {fal, streetName, msg}
 		}
 	end
@@ -116,6 +132,7 @@ AddEventHandler('esx_jobChat:911truck', function(targetCoords, msg, streetName, 
 	TriggerClientEvent('esx_jobChat:911EmergencySend', -1, messageFull)
 end)
 
+--[[
 RegisterServerEvent('esx_jobChat:911ROBPOS')
 AddEventHandler('esx_jobChat:911ROBPOS', function(targetCoords, msg, streetName, emergency)
     local _source = source
@@ -124,13 +141,15 @@ AddEventHandler('esx_jobChat:911ROBPOS', function(targetCoords, msg, streetName,
 	local messageFull
 	if emergency == '911ROBPOS' then
 		messageFull = {
-			template = '<div style="padding: 8px; margin: 8px; background-color: rgba(0, 38, 153); border-radius: 25px;"><i class="fas fa-bell"style="font-size:15px"></i> [ POSSIBLE ROBBERY ALARM ] : SOMEONE IS TRYING TO ROB! OFFICERS RESPOND ASAP! </font></i></b></div>',
+			template = '<div style="padding: 8px; margin: 8px; background-color: rgba(0, 38, 153, 0.3); border-radius: 10px;"><i class="fas fa-bell"style="font-size:15px"></i> [ POSSIBLE ROBBERY ALARM ] : SOMEONE IS TRYING TO ROB! OFFICERS RESPOND ASAP! </font></i></b></div>',
         	args = {fal, streetName, msg}
 		}
 	end
 	TriggerClientEvent('esx_jobChat:911Marker', -1, targetCoords, emergency)
 	TriggerClientEvent('esx_jobChat:911EmergencySend', -1, messageFull)
 end)
+
+]]--
 
 
 RegisterServerEvent('esx_jobChat:911Silent2')
@@ -141,7 +160,7 @@ AddEventHandler('esx_jobChat:911Silent', function(targetCoords, msg, streetName,
 	local messageFull
 	if emergency == '911Silent' then
 		messageFull = {
-			template = '<div style="padding: 8px; margin: 8px; background-color: rgba(0, 38, 153); border-radius: 25px;"><i class="fas fa-bell"style="font-size:15px"></i> [ILLEGAL DRUG IMPORT ] : SOMEONE IS TRYING TO SHIP A DRUG VAN </font></i></b></div>',
+			template = '<div style="padding: 8px; margin: 8px; background-color: rgba(0, 38, 153, 0.3); border-radius: 10px;"><i class="fas fa-bell"style="font-size:15px"></i> ⚠️ [ILLEGAL DRUG IMPORT ] : SOMEONE IS TRYING TO SHIP A DRUG VAN </font></i></b></div>',
         	args = {fal, streetName, msg}
 		}
 	end
@@ -160,7 +179,7 @@ AddEventHandler('esx_jobChat:mech', function(targetCoords, msg, streetName, emer
 	local messageFull
 	if emergency == 'mech' then
 		messageFull = {
-			template = '<div style="padding: 8px; margin: 8px; background-color: rgba(128, 64, 0); border-radius: 25px;"><i class="fas fa-bell"style="font-size:15px"></i> [MECH] : {0} | Location : {1} | {2}</font></i></b></div>',
+			template = '<div style="padding: 8px; margin: 8px; background-color: rgba(128, 64, 0); border-radius: 10px;"><i class="fas fa-bell"style="font-size:15px"></i> [MECH] : {0} | Location : {1} | {2}</font></i></b></div>',
         	args = {fal, streetName, msg}
 		}
 	end

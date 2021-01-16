@@ -201,18 +201,43 @@ AddEventHandler('esx_mechanicjob:onHijack', function()
 
 			TaskStartScenarioInPlace(playerPed, 'WORLD_HUMAN_WELDING', 0, true)
 
-			Citizen.CreateThread(function()
-				Citizen.Wait(10000)
-				if chance <= 66 then
-					SetVehicleDoorsLocked(vehicle, 1)
-					SetVehicleDoorsLockedForAllPlayers(vehicle, false)
-					ClearPedTasksImmediately(playerPed)
-					ESX.ShowNotification(_U('veh_unlocked'))
-				else
-					ESX.ShowNotification(_U('hijack_failed'))
-					ClearPedTasksImmediately(playerPed)
+			TriggerEvent("mythic_progbar:client:progress", {
+				name = "unique_action_name",
+				duration = 10000,
+				label = "Unlocking",
+				useWhileDead = false,
+				canCancel = true,
+				controlDisables = {
+					disableMovement = true,
+					disableCarMovement = true,
+					disableMouse = false,
+					disableCombat = true,
+				},
+				animation = {
+					animDict = "",
+					anim = "",
+				},
+				prop = {
+					model = "",
+				}
+			}, function(status)
+				if not status then
+					Citizen.CreateThread(function()
+						Citizen.Wait(10000)
+						if chance <= 66 then
+							SetVehicleDoorsLocked(vehicle, 1)
+							SetVehicleDoorsLockedForAllPlayers(vehicle, false)
+							ClearPedTasksImmediately(playerPed)
+							ESX.ShowNotification(_U('veh_unlocked'))
+						else
+							ESX.ShowNotification(_U('hijack_failed'))
+							ClearPedTasksImmediately(playerPed)
+						end
+					end)
 				end
 			end)
+
+		
 		end
 	end
 end)
@@ -699,14 +724,38 @@ function OpenMobilegrooveActionsMenu()
 			IsBusy = true
 			TaskStartScenarioInPlace(playerPed, "WORLD_HUMAN_WELDING", 0, true)
 			Citizen.CreateThread(function()
-				exports['progressBars']:startUI(10000, "Lock picking")
-				Citizen.Wait(10000)
-
-				SetVehicleDoorsLocked(vehicle, 1)
+			--	exports['progressBars']:startUI(10000, "Lock picking")
+			TriggerEvent("mythic_progbar:client:progress", {
+				name = "unique_action_name",
+				duration = 10000,
+				label = "Lock picking",
+				useWhileDead = false,
+				canCancel = true,
+				controlDisables = {
+					disableMovement = true,
+					disableCarMovement = true,
+					disableMouse = false,
+					disableCombat = true,
+				},
+				animation = {
+					animDict = "missheistdockssetup1clipboard@idle_a",
+					anim = "idle_a",
+				},
+				prop = {
+					model = "prop_paper_bag_small",
+				}
+			}, function(status)
+				if not status then
+					SetVehicleDoorsLocked(vehicle, 1)
 				SetVehicleDoorsLockedForAllPlayers(vehicle, false)
 				ClearPedTasksImmediately(playerPed)
 
 				ESX.ShowNotification(_U('vehicle_unlocked'))
+				end
+			end)
+				--Citizen.Wait(10000)
+
+			
 				IsBusy = false
 			end)
 		else
@@ -1049,17 +1098,44 @@ AddEventHandler('esx_groovejob:onHijack', function()
 			TaskStartScenarioInPlace(playerPed, "WORLD_HUMAN_WELDING", 0, true)
 
 			Citizen.CreateThread(function()
-				exports['progressBars']:startUI(10000, "Lock picking")
-				Citizen.Wait(10000)
-				if chance <= 66 then
-					SetVehicleDoorsLocked(vehicle, 1)
-					SetVehicleDoorsLockedForAllPlayers(vehicle, false)
-					ClearPedTasksImmediately(playerPed)
-					ESX.ShowNotification(_U('veh_unlocked'))
-				else
-					ESX.ShowNotification(_U('hijack_failed'))
-					ClearPedTasksImmediately(playerPed)
+			--	exports['progressBars']:startUI(10000, "Lock picking")
+
+
+			--	Citizen.Wait(10000)
+
+			TriggerEvent("mythic_progbar:client:progress", {
+				name = "unique_action_name",
+				duration = 10000,
+				label = "Lock picking",
+				useWhileDead = false,
+				canCancel = true,
+				controlDisables = {
+					disableMovement = true,
+					disableCarMovement = true,
+					disableMouse = false,
+					disableCombat = true,
+				},
+				animation = {
+					animDict = "@",
+					anim = "",
+				},
+				prop = {
+					model = "",
+				}
+			}, function(status)
+				if not status then
+					if chance <= 66 then
+						SetVehicleDoorsLocked(vehicle, 1)
+						SetVehicleDoorsLockedForAllPlayers(vehicle, false)
+						ClearPedTasksImmediately(playerPed)
+						ESX.ShowNotification(_U('veh_unlocked'))
+					else
+						ESX.ShowNotification(_U('hijack_failed'))
+						ClearPedTasksImmediately(playerPed)
+					end
 				end
+			end)
+			
 			end)
 
 		end

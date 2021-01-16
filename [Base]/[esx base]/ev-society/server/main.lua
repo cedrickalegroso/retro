@@ -1,7 +1,7 @@
 ESX = nil
 local Jobs = {}
 local RegisteredSocieties = {}
-local url = "https://discordapp.com/api/webhooks/742399607392436349/CXr9zv72SGHwW_E-8S5wM3W4iCRYmNIr0PoPPHC3MULRrQfhYN0Ygh_0TIyvqwdoI4gq"
+local url = ""
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
@@ -82,7 +82,20 @@ AddEventHandler('esx_society:withdrawMoney', function(society, amount)
 	local society = GetSociety(society)
 	amount = ESX.Math.Round(tonumber(amount))
 
-	if xPlayer.job.name == society.name then
+	TriggerEvent('esx_addonaccount:getSharedAccount', society.account, function(account)
+			if amount > 0 and account.money >= amount then
+				account.removeMoney(amount)
+				xPlayer.addMoney(amount)
+
+				log(GetPlayerName(xPlayer.source) .. '(' .. xPlayer.source .. ') withdraw $' .. amount .. ' from ' .. society.account)
+
+				xPlayer.showNotification(_U('have_withdrawn', ESX.Math.GroupDigits(amount)))
+			else
+				xPlayer.showNotification(_U('invalid_amount'))
+			end
+		end)
+	--[[
+if xPlayer.job.name == society.name then
 		TriggerEvent('esx_addonaccount:getSharedAccount', society.account, function(account)
 			if amount > 0 and account.money >= amount then
 				account.removeMoney(amount)
@@ -98,6 +111,9 @@ AddEventHandler('esx_society:withdrawMoney', function(society, amount)
 	else
 		print(('esx_society: %s attempted to call withdrawMoney!'):format(xPlayer.identifier))
 	end
+	]]--
+
+	
 end)
 
 RegisterServerEvent('esx_society:depositMoney')
@@ -106,6 +122,19 @@ AddEventHandler('esx_society:depositMoney', function(society, amount)
 	local society = GetSociety(society)
 	amount = ESX.Math.Round(tonumber(amount))
 
+	if amount > 0 and xPlayer.getMoney() >= amount then
+		TriggerEvent('esx_addonaccount:getSharedAccount', society.account, function(account)
+			xPlayer.removeMoney(amount)
+			account.addMoney(amount)
+			log(GetPlayerName(xPlayer.source) .. '(' .. xPlayer.source .. ') deposit $' .. amount .. ' to ' .. society.account)
+
+		end)
+
+		xPlayer.showNotification(_U('have_deposited', ESX.Math.GroupDigits(amount)))
+	else
+		xPlayer.showNotification(_U('invalid_amount'))
+	end
+	--[[
 	if xPlayer.job.name == society.name then
 		if amount > 0 and xPlayer.getMoney() >= amount then
 			TriggerEvent('esx_addonaccount:getSharedAccount', society.account, function(account)
@@ -122,6 +151,9 @@ AddEventHandler('esx_society:depositMoney', function(society, amount)
 	else
 		print(('esx_society: %s attempted to call depositMoney!'):format(xPlayer.identifier))
 	end
+	]]--
+
+
 end)
 
 RegisterServerEvent('esx_society:washMoney')

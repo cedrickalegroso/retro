@@ -19,7 +19,7 @@ var docHeight = document.documentElement.clientHeight;
 var offset = [76, 81];
 var cursorX = docWidth / 2;
 var cursorY = docHeight / 2;
-var street = 'ev-inventory';
+var street = 'retro-inventory';
 
 var currentMaxWeight = 250;
 var currentOtherMaxWeight = 250;

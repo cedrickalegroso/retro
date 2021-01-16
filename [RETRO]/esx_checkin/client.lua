@@ -19,19 +19,24 @@ AddEventHandler('esx:setJob', function(job)
 	PlayerData.job = job 
 end) 
 
--- Set Ped 
+--[[
 Citizen.CreateThread(function()
+
 	local hash = GetHashKey('s_m_m_paramedic_01')
 	while not HasModelLoaded(hash) do
 		RequestModel(hash)
 		Wait(20)
 	end 
 	
+
 	local ped = CreatePed(21, hash, -434.92080688477,-323.99914550781, 34.910774230957 -1, 150.0, true, true)
 	FreezeEntityPosition(ped, true)
     SetEntityInvincible(ped, true)
     TaskStartScenarioInPlace(ped, 'WORLD_HUMAN_GUARD_STAND', 0, true)
 end)
+]]--
+-- Set Ped 
+
 
 -- Draw 3D text 
 Citizen.CreateThread(function ()
@@ -61,7 +66,7 @@ Citizen.CreateThread(function ()
 							anim = "idle_a",
 						},
 						prop = {
-							model = "prop_paper_bag_small",
+							model = "prop_fib_clipboard",
 						}
 					}, function(status)
 						if not status then

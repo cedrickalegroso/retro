@@ -86,7 +86,26 @@ RegisterCommand('911DRUGSELL', function(source, args, rawCommand)
     }, msg, streetName, emergency)
 end, false)
 
+RegisterCommand('robpos911', function(source, args, rawCommand)
+	--TriggerEvent("chatMessage"," [911] " , {26, 83, 255},   "A notice has been sent to the Authorities" )
+		
+	msg = table.concat(args, " ")
+	
+	PedPosition		= GetEntityCoords(GetPlayerPed(-1))
+	
+    local playerCoords = GetEntityCoords(PlayerPedId())
+		streetName,_ = GetStreetNameAtCoord(playerCoords.x, playerCoords.y, playerCoords.z)
+        streetName = GetStreetNameFromHashKey(streetName)
+	local msg = rawCommand:sub(4)
+	local emergency = '911robpos'
+    TriggerServerEvent('esx_jobChat:911robpos',{
+        x = ESX.Math.Round(playerCoords.x, 1),
+        y = ESX.Math.Round(playerCoords.y, 1),
+        z = ESX.Math.Round(playerCoords.z, 1)
+    }, msg, streetName, emergency)
+end, false)
 
+--[[
 RegisterCommand('911ROBPOS', function(source, args, rawCommand)
 	--TriggerEvent("chatMessage"," [911] " , {26, 83, 255},   "A notice has been sent to the Authorities" )
 		
@@ -105,6 +124,9 @@ RegisterCommand('911ROBPOS', function(source, args, rawCommand)
         z = ESX.Math.Round(playerCoords.z, 1)
     }, msg, streetName, emergency)
 end, false)
+]]--
+
+
 
 
 

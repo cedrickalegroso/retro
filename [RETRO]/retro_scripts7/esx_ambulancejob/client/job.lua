@@ -119,7 +119,9 @@ function OpenMobileAmbulanceActionsMenu()
 		elements = {
 			{label = _U('ems_menu'), value = 'citizen_interaction'},
 			{label = 'EMS QUICK CHAT', value = 'qchat'},
-			{label = 'EMS UNCONCIOUS PATIENT MENU', value = 'skeletal'}
+			{label = 'Skeletal System', value = 'Skel'},
+			{label = 'EMS UNCONCIOUS PATIENT MENU', value = 'skeletal'},
+			
 		}
 	}, function(data, menu)
 
@@ -152,7 +154,29 @@ function OpenMobileAmbulanceActionsMenu()
 			
 			end)
 
-	
+		elseif data.current.value == 'Skel' then
+
+			ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'armory', {
+				title    = 'EMS SKELETAL SYSTEM',
+				align    = 'top-left',
+				elements = {
+					{label = 'Heal Other Skelly', value = 'healOther'},
+					{label = 'Check Other Skelly', value = 'CheckOther'},
+					{label = 'Check Own Skelly', value = 'CheckOwn'},
+				}
+			}, function(data, menu)
+		
+				if data.current.value == 'healOther' then
+					ExecuteCommand('useItemOther')
+					menu.close()
+				elseif data.current.value == 'CheckOther' then
+					ExecuteCommand('checkOther')
+					menu.close()
+				elseif data.current.value == 'CheckOwn' then
+					ExecuteCommand('openSkelly')
+					menu.close()
+				end
+			end)
 
 		elseif data.current.value == 'qchat' then
 

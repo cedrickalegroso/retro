@@ -38,7 +38,7 @@ Config.GordoStations = {
 		},
 
 		Armories = {
-			vector3(-2712.7006835938,-108.9271774292,21.846572875977)
+			vector3(0,0,-500)
 		},
 
 
@@ -50,7 +50,7 @@ Config.GordoStations = {
 				Spawner = vector3(2598.3293457031,6181.4775390625,167.79460144043),
 				InsideShop = vector3(228.5, -993.5, -99.0),
 				SpawnPoints = {
-					{coords = vector3(2595.3374023438,6184.1630859375,166.8225402832), heading = 51.0, radius = 6.0},
+					{coords = vector3(2595.3374023438,6184.1630859375,166.8225402832), heading = 117.0, radius = 6.0},
 				--	{coords = vector3(484.1, -1023.1, 27.5), heading = 302.5, radius = 6.0}
 				}
 			},
@@ -84,7 +84,7 @@ Config.GordoStations = {
 		},
 
 		BossActions = {
-			vector3(2539.7297363281,6148.4248046875,168.12159729004)
+			vector3(2532.03515625,6148.048828125,164.27221679688)
 		}
 
 	}

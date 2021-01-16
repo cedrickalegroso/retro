@@ -21,7 +21,7 @@ Config.Drugs = {
 			QToSell			= 1,						-- Quantity necessary to sell
 			TimeToFarm		= 5,						-- Time to farm in seconds
 			TimeToProcess 	= 5,						-- Time to process in seconds
-			TimeToSell		= 15,						-- Time to sell in seconds
+			TimeToSell		= 5,						-- Time to sell in seconds
 			Usable			= false,						-- Can it be consumed?
 			UseEffect		= false,						-- Effect after consume
 			Zones 			= {
@@ -50,7 +50,7 @@ Config.Drugs = {
 			QToSell			= 1,						-- Quantity necessary to sell
 			TimeToFarm		= 5,						-- Time to farm in seconds
 			TimeToProcess 	= 5,						-- Time to process in seconds
-			TimeToSell		= 15,						-- Time to sell in seconds
+			TimeToSell		= 5,						-- Time to sell in seconds
 			Usable			= false,						-- Can it be consumed?
 			UseEffect		= false,						-- Effect after consume
 			Zones 			= {
@@ -80,7 +80,7 @@ Config.Drugs = {
 				QToSell			= 1,						-- Quantity necessary to sell
 				TimeToFarm		= 5,						-- Time to farm in seconds
 				TimeToProcess 	= 5,						-- Time to process in seconds
-				TimeToSell		= 15,						-- Time to sell in seconds
+				TimeToSell		= 5,						-- Time to sell in seconds
 				Usable			= false,						-- Can it be consumed?
 				UseEffect		= false,						-- Effect after consume
 				Zones 			= {
@@ -109,7 +109,7 @@ Config.Drugs = {
 					QToSell			= 1,						-- Quantity necessary to sell
 					TimeToFarm		= 5,						-- Time to farm in seconds
 					TimeToProcess 	= 5,						-- Time to process in seconds
-					TimeToSell		= 15,						-- Time to sell in seconds
+					TimeToSell		= 5,						-- Time to sell in seconds
 					Usable			= false,						-- Can it be consumed?
 					UseEffect		= false,						-- Effect after consume
 					Zones 			= {
@@ -121,10 +121,10 @@ Config.Drugs = {
 						-- sellMin: Min receveid by selling
 						-- sellMax: Max received by selling
 						-- multiplierPolice: true/false Multiply the min/max based on cops online
-						--,,,,
+						--,,,, ,,
 						Field 			= {x = 2562.2932128906,	y =6201.7807617188,	z = 157.16159057617,	name = _U('field', _U('coke')),			sprite = 0,	color = 0, callPolice = false, callPoliceChance = 100},
 						Processing 		= {x =2570.9338378906,	y = 6562.638671875,	z = 27.975006103516,	name = _U('processing', _U('coke')),	sprite = 0,	color = 0, callPolice = false, callPoliceChance = 100},
-						--Dealer 			= {x = -1969.54,	y = -516.39,	z = 10.90, h = 45.24,	name = _U('dealer', _U('coke')),		sprite = 500,	color = 75, callPolice = false, callPoliceChance = 100, NPCHash = 653210662, sellMin = 200, sellMax = 500, multiplierPolice = true}
+						Dealer 			= {x = -456.96496582031,	y = -395.41470336914,	z = 32.646511077881, h = 11.0,	name = _U('dealer', _U('coke')),		sprite = 0,	color = 0, callPolice = false, callPoliceChance = 100, NPCHash = 1777626099, sellMin = 200, sellMax = 500, multiplierPolice = true}
 					}
 				},
 	

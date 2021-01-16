@@ -82,7 +82,7 @@ ESX.RegisterServerCallback('ev-inventory:doesInvTypeExists', function(source, cb
     cb(InvType[type] ~= nil)
 end)
 
-RegisterCommand('ensureInv', function(source)
+RegisterCommand('refreshInv', function(source)
     local owner = ESX.GetPlayerFromId(source).identifier
     MySQL.Async.fetchAll('DELETE FROM disc_inventory WHERE data = @data AND owner = @owner', { ['@data'] = "null", ['@owner'] = owner })
     ensureInventories(source)

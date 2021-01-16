@@ -10,7 +10,7 @@ function setBleedingOn(ped)
    end
 
   
-   NetworkSetVoiceChannel(0)
+  -- NetworkSetVoiceChannel(0)
    Citizen.CreateThread(function()
      DoScreenFadeOut(1000)
      StartScreenEffect('DeathFailOut', 0, true)
