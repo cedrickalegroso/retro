@@ -7,7 +7,6 @@ body {
     background: url('img/bg/bg-body-test.jpg');
     font-family: 'Edo';
     color: white;
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 #wrapperHUD {
@@ -21,7 +20,7 @@ body {
     flex-direction: row;
     height: 50vh;
     width: 18vw;
-    background: url(img/bg/moon.png);
+    background-color: rgba(0, 0, 0, 0.3);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100%;
@@ -43,10 +42,14 @@ body {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border: 3px solid rgba(255, 255, 255, 0.1);
     border-left: none;
     border-right: none;
-    border-radius: 25px;
+    /*
+      text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+      background: url(img/bg/moon.png);
+     border: 3px solid rgba(255, 255, 255, 0.1);
+     border-radius: 25px;
+    */
 }
 
 #walletDiv {
@@ -70,6 +73,15 @@ body {
 #wallet,
 #blackMoney,
 #society {
+    display: block;
+    font-family: 'Edo';
+    color: white;
+    font-size: 30px;
+    width: 200px;
+    height: 35px;
+}
+
+#society2 {
     display: block;
     font-family: 'Edo';
     color: white;

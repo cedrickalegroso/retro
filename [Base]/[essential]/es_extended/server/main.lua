@@ -146,7 +146,7 @@ AddEventHandler('es:playerLoaded', function(source, _player)
 
 					if ESX.DoesJobExist(job, grade, job2, job2_grade) then
 						local jobObject, gradeObject = ESX.Jobs[job], ESX.Jobs[job].grades[grade]
-						local jobObject2, gradeObject2 = ESX.Jobs[job2], ESX.Jobs[job2].grades[grade2]
+						local job2Object, grade2Object = ESX.Jobs[job2], ESX.Jobs[job2].grades[grade2]
 
 						userData.job = {}
 
@@ -174,25 +174,26 @@ AddEventHandler('es:playerLoaded', function(source, _player)
 						
 						userData.job2 = {}
 
-						userData.job2.id    = jobObject2.id
-						userData.job2.name  = jobObject2.name
-						userData.job2.label = jobObject2.label
+						userData.job2.id = job2Object.id
+			userData.job2.name = job2Object.name
+			userData.job2.label = job2Object.label
 
-						userData.job2.grade        = tonumber(grade2)
-						userData.job2.grade_name   = gradeObject2.name
-						userData.job2.grade_label  = gradeObject2.label
-						userData.job2.grade_salary = gradeObject2.salary
+			userData.job2.grade = tonumber(grade2)
+			userData.job2.grade_name = grade2Object.name
+			userData.job2.grade_label = grade2Object.label
+			userData.job2.grade_salary = grade2Object.salary
 
-						userData.job2.skin_male    = {}
-						userData.job2.skin_female  = {}
+			userData.job2.skin_male = {}
+			userData.job2.skin_female = {}
 
-						if gradeObject2.skin_male ~= nil then
-							userData.job2.skin_male = json.decode(gradeObject2.skin_male)
-						end
-			
-						if gradeObject2.skin_female ~= nil then
-							userData.job2.skin_female = json.decode(gradeObject2.skin_female)
-						end
+			if grade2Object.skin_male then
+				userData.job2.skin_male = json.decode(grade2Object.skin_male)
+			end
+
+			if grade2Object.skin_female then
+				userData.job2.skin_female = json.decode(grade2Object.skin_female)
+			end
+
 					else
 						print(('es_extended: %s had an unknown job [job: %s, grade: %s], setting as unemployed!'):format(player.getIdentifier(), job, grade))
 
@@ -240,7 +241,7 @@ AddEventHandler('es:playerLoaded', function(source, _player)
 
 		-- Run Tasks
 		Async.parallel(tasks, function(results)
-			local xPlayer = CreateExtendedPlayer(player, userData.accounts, userData.inventory, userData.job, userData.job2, userData.loadout, userData.playerName, userData.lastPosition)
+			local xPlayer = CreateExtendedPlayer(player, userData.accounts, userData.inventory, userData.job,   userData.job2, userData.loadout, userData.playerName, userData.lastPosition)
 
 			xPlayer.getMissingAccounts(function(missingAccounts)
 				if #missingAccounts > 0 then
@@ -277,7 +278,6 @@ AddEventHandler('es:playerLoaded', function(source, _player)
 
 	end)
 end)
-
 AddEventHandler('playerDropped', function(reason)
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
@@ -548,6 +548,7 @@ ESX.RegisterServerCallback('esx:getOtherPlayerData', function(source, cb, target
 		money        = xPlayer.getMoney()
 	})
 end)
+
 
 CreateThread(function()
 	Wait(4000)

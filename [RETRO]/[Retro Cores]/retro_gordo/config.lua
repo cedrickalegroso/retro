@@ -26,7 +26,7 @@ Config.GordoStations = {
 	LSPD = {
 
 		Blip = {
-			Coords  = vector3(2536.4860839844,6148.4282226562,164.29905700684),
+			Coords  = vector3(2531.8713378906,6147.99609375,164.27220153809),
 			Sprite  = 181,
 			Display = 4,
 			Scale   = 1.0,

@@ -1,7 +1,7 @@
 Config              	= {}
 Config.MarkerType   	= 1
 Config.DrawDistance 	= 100.0
-Config.ZoneSize     	= {x = 2.5, y = 2.5, z = 0.5}
+Config.ZoneSize     	= {x = 5.5, y = 5.5, z = 0.5}
 Config.MarkerColor  	= {r = 100, g = 204, b = 100}
 Config.KeyStopAction 	= 'C'
 -- Show blip in map?
@@ -92,10 +92,10 @@ Config.Drugs = {
 					-- sellMin: Min receveid by selling
 					-- sellMax: Max received by selling
 					-- multiplierPolice: true/false Multiply the min/max based on cops online
-					--,, ,,,, ,, ,, ,, ,,26.745601654053 -52.402187347412,-1818.9405517578,26.74603843689
+					--,, ,,,, ,, ,, ,, ,,-51.568267822266,-1817.5913085938,26.749603271484
 					Field 			= {x = 2604.5385742188,	y =6161.8159179688,	z = 171.14680480957,	name = _U('field', _U('coke')),			sprite = 0,	color = 0, callPolice = false, callPoliceChance = 100},
 					Processing 		= {x = 2570.3654785156,	y = 6570.94140625,	z = 25.888879776001,	name = _U('processing', _U('coke')),	sprite = 0,	color = 0, callPolice = false, callPoliceChance = 100},
-				 Dealer 			= {x = -52.731342315674,	y = -1819.2249755859,	z = 319.90, h = 45.24,	name = _U('dealer', _U('coke')),		sprite = 500,	color = 75, callPolice = false, callPoliceChance = 100, NPCHash = -1806291497, sellMin = 200, sellMax = 500, multiplierPolice = true}
+				 Dealer 			= {x = -51.568267822266,	y = -1817.5913085938,	z = 25.749603271484, h = 45.24,	name = _U('dealer', _U('coke')),		sprite = 0,	color = 75, callPolice = false, callPoliceChance = 100, NPCHash = 1777626099, sellMin = 200, sellMax = 500, multiplierPolice = true}
 				}
 			},
 	

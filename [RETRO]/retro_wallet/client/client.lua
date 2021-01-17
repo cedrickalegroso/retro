@@ -21,13 +21,18 @@ end)
 
 RegisterNetEvent("allcity_wallet:setValues")
 
-AddEventHandler("allcity_wallet:setValues", function(wallet, bank, black_money, society)
+AddEventHandler("allcity_wallet:setValues", function(wallet, bank, black_money, society, society2)
+
+    print(' wal ' ..wallet)
+    print(' soc ' ..society)
+  print(' soc2 ' ..society2)
 
 	SendNUIMessage({
 		wallet = wallet,
 		bank = bank,
 		black_money = black_money,
-		society = society
+        society = society,
+        society2 = society2
 		})	
 
 end)

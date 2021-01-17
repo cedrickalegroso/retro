@@ -34,6 +34,8 @@ AddEventHandler('ev-inventory:search', function()
             secondarySearchInventory.owner = identifier
             openInventory(secondarySearchInventory)
         end, GetPlayerServerId(closestPlayer))
+    else
+        ESX.ShowNotification('~r~ No Players nearby')
     end
 end)
 
@@ -47,7 +49,11 @@ AddEventHandler('ev-inventory:steal', function()
                 secondaryStealInventory.owner = identifier
                 openInventory(secondaryStealInventory)
             end, GetPlayerServerId(closestPlayer))
+        else 
+            ESX.ShowNotification('~r~ The person you are trying to steal needs to surrender first')
         end
+    else
+        ESX.ShowNotification('~r~ No Players nearby')
     end
 end)
 
@@ -61,7 +67,11 @@ AddEventHandler('ev-inventory:loot', function()
                 secondaryStealInventory.owner = identifier
                 openInventory(secondaryStealInventory)
             end, GetPlayerServerId(closestPlayer))
+        else 
+            ESX.ShowNotification('~r~ The person you are trying to steal needs to surrender first')
         end
+    else 
+        ESX.ShowNotification('~r~ No Players nearby')
     end
 end)
 

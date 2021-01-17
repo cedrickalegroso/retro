@@ -274,6 +274,56 @@ ESX.RegisterServerCallback('esx_society:getEmployees', function(source, cb, soci
 	end
 end)
 
+
+ESX.RegisterServerCallback('esx_society:getEmployees2', function(source, cb, society)
+	if Config.EnableESXIdentity then
+
+		MySQL.Async.fetchAll('SELECT firstname, lastname, identifier, job2, job2_grade FROM users WHERE job2 = @job2 ORDER BY job_grade DESC', {
+			['@job2'] = society
+		}, function (results)
+			local employees = {}
+
+			for i=1, #results, 1 do
+				table.insert(employees, {
+					name       = results[i].firstname .. ' ' .. results[i].lastname,
+					identifier = results[i].identifier,
+					job2 = {
+						name        = results[i].job2,
+						label       = Jobs[results[i].job2].label,
+						grade       = results[i].job2_grade,
+					--	grade_name  = Jobs[results[i].job].grades[tostring(results[i].job_grade)].name,
+					--	grade_label = Jobs[results[i].job].grades[tostring(results[i].job_grade)].label
+					}
+				})
+			end
+
+			cb(employees)
+		end)
+	else
+		MySQL.Async.fetchAll('SELECT name, identifier, job2, job2_grade FROM users WHERE job2 = @job2 ORDER BY job_grade DESC', {
+			['@job2'] = society
+		}, function (result)
+			local employees = {}
+
+			for i=1, #result, 1 do
+				table.insert(employees, {
+					name       = result[i].name,
+					identifier = result[i].identifier,
+					job = {
+						name        = result[i].job2,
+						label       = Jobs[result[i].job2].label,
+						grade       = result[i].job2_grade,
+						grade_name  = Jobs[result[i].job2].grades[tostring(result[i].job2_grade)].name,
+						grade_label = Jobs[result[i].job2].grades[tostring(result[i].job2_grade)].label
+					}
+				})
+			end
+
+			cb(employees)
+		end)
+	end
+end)
+
 ESX.RegisterServerCallback('esx_society:getJob', function(source, cb, society)
 	local job    = json.decode(json.encode(Jobs[society]))
 	local grades = {}
@@ -290,6 +340,28 @@ ESX.RegisterServerCallback('esx_society:getJob', function(source, cb, society)
 
 	cb(job)
 end)
+
+
+
+---SECONDJOB INCLUDED
+ESX.RegisterServerCallback('esx_society:getJob2', function(source, cb, society)
+
+	local job2    = json.decode(json.encode(Jobs[society]))
+	local grades = {}
+  
+	for k,v in pairs(job2.grades) do
+	  table.insert(grades, v)
+	end
+  
+	table.sort(grades, function(a, b)
+	  return a.grade < b.grade
+	end)
+  
+	job2.grades = grades
+  
+	cb(job2)
+  
+  end)
 
 ESX.RegisterServerCallback('esx_society:setJob', function(source, cb, identifier, job, grade, type)
 	local xPlayer = ESX.GetPlayerFromId(source)
@@ -332,6 +404,49 @@ ESX.RegisterServerCallback('esx_society:setJob', function(source, cb, identifier
 		print(('esx_society: %s attempted to setJob'):format(xPlayer.identifier))
 		cb()
 	end
+end)
+
+ESX.RegisterServerCallback('esx_society:setJob2', function(source, cb, identifier, job, grade, type)
+	local xPlayer = ESX.GetPlayerFromId(source)
+	local isBoss = xPlayer.job2.grade2_name == 'boss' or xPlayer.job2.grade2_name == 'lieutenant'
+--	local isBoss2 = xPlayer.job.grade_name == 'lieutenant'
+
+--	if isBoss then
+		local xTarget = ESX.GetPlayerFromIdentifier(identifier)
+
+		if xTarget then
+			xTarget.setJob(job2, grade2)
+
+			if type == 'hire' then
+				xTarget.showNotification(_U('you_have_been_hired', job))
+				log(GetPlayerName(xPlayer.source) .. '(' .. xPlayer.source .. ') hired ' .. GetPlayerName(xTarget.source) .. '(' .. xPlayer.source ..') [' .. xTarget.getJob().label .. ']')
+
+			elseif type == 'promote' then
+				xTarget.showNotification(_U('you_have_been_promoted'))
+				log(GetPlayerName(xPlayer.source) .. '(' .. xPlayer.source .. ') promoted ' .. GetPlayerName(xTarget.source) .. '(' .. xPlayer.source ..') [' .. xTarget.getJob().label .. ']')
+
+			elseif type == 'fire' then
+				log(GetPlayerName(xPlayer.source) .. '(' .. xPlayer.source .. ') fired ' .. GetPlayerName(xTarget.source) .. '(' .. xPlayer.source ..') [' .. xTarget.getJob().label .. ']')
+
+				xTarget.showNotification(_U('you_have_been_fired', xTarget.getJob().label))
+
+				
+			end
+
+			cb()
+		else
+			MySQL.Async.execute('UPDATE users SET job2 = @job2, job2_grade = @job2_grade WHERE identifier = @identifier', {
+				['@job2']        = job2,
+				['@job_grade2']  = grade2,
+				['@identifier'] = identifier
+			}, function(rowsChanged)
+				cb()
+			end)
+		end
+--	else
+	--	print(('esx_society: %s attempted to setJob'):format(xPlayer.identifier))
+	----	cb()
+	--end
 end)
 
 ESX.RegisterServerCallback('esx_society:setJobSalary', function(source, cb, job, grade, salary)

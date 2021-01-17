@@ -391,39 +391,77 @@ function CreateExtendedPlayer(player, accounts, inventory, job, job2, loadout, n
 		end
 	end
 
+	self.setJob2 = function(job2, grade2)
+		grade2 = tostring(grade2)
+		local lastJob2 = json.decode(json.encode(self.job2))
+
+		if ESX.DoesJobExist(job2, grade2) then
+			local job2Object, grade2Object = ESX.Jobs[job2], ESX.Jobs[job2].grades[grade2]
+
+			self.job2.id = job2Object.id
+			self.job2.name = job2Object.name
+			self.job2.label = job2Object.label
+
+			self.job2.grade = tonumber(grade2)
+			self.job2.grade_name = grade2Object.name
+			self.job2.grade_label = grade2Object.label
+			self.job2.grade_salary = grade2Object.salary
+
+			if grade2Object.skin_male ~= nil then
+				self.job2.skin_male = json.decode(grade2Object.skin_male)
+			else
+				self.job.skin_male = {}
+			end
+
+			if grade2Object.skin_female ~= nil then
+				self.job2.skin_female = json.decode(grade2Object.skin_female)
+			else
+				self.job.skin_female = {}
+			end
+
+			TriggerEvent('esx:setJob2', self.source, self.job2, lastJob2)
+			self.triggerEvent('esx:setJob2', self.job2)
+		else
+			print(('[^3WARNING^7] Ignoring invalid .setJob() usage for "%s"'):format(self.identifier))
+		end
+	end
+
+	--[[
 	self.setJob2 = function(job, grade)
-		grade = tostring(grade)
-		local lastJob = json.decode(json.encode(self.job))
+		grade2 = tostring(grade)
+		local lastJob2 = json.decode(json.encode(self.job2))
 
 		if ESX.DoesJobExist(job, grade) then
-			local jobObject, gradeObject = ESX.Jobs[job], ESX.Jobs[job].grades[grade]
+			local jobObject, gradeObject = ESX.Jobs[job], ESX.Jobs[job].grades[grade2]
 
-			self.job.id    = jobObject.id
-			self.job.name  = jobObject.name
-			self.job.label = jobObject.label
+			self.job2.id    = jobObject.id
+			self.job2.name  = jobObject.name
+			self.job2.label = jobObject.label
 
-			self.job.grade        = tonumber(grade)
-			self.job.grade_name   = gradeObject.name
-			self.job.grade_label  = gradeObject.label
-			self.job.grade_salary = gradeObject.salary
+			self.job2.grade        = tonumber(grade)
+			self.job2.grade_name   = gradeObject.name
+			self.job2.grade_label  = gradeObject.label
+			self.job2.grade_salary = gradeObject.salary
 
-			self.job.skin_male    = {}
-			self.job.skin_female  = {}
+			self.job2.skin_male    = {}
+			self.job2.skin_female  = {}
 
 			if gradeObject.skin_male ~= nil then
-				self.job.skin_male = json.decode(gradeObject.skin_male)
+				self.job2.skin_male = json.decode(gradeObject.skin_male)
 			end
 
 			if gradeObject.skin_female ~= nil then
-				self.job.skin_female = json.decode(gradeObject.skin_female)
+				self.job2.skin_female = json.decode(gradeObject.skin_female)
 			end
 
-			TriggerEvent('esx:setJob2', self.source, self.job, lastJob)
-			TriggerClientEvent('esx:setJob2', self.source, self.job)
+			TriggerEvent('esx:setJob2', self.source, self.job2, lastJob2)
+			TriggerClientEvent('esx:setJob2', self.source, self.job2)
 		else
 			print(('es_extended: ignoring setJob2 for %s due to job not found!'):format(self.source))
 		end
 	end
+
+	]]--
 
 
 	self.addWeapon = function(weaponName, ammo)

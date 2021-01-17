@@ -229,11 +229,7 @@ end)
 
 RegisterNetEvent('esx_drugeffects:onpackaged_apple')
 AddEventHandler('esx_drugeffects:onpackaged_apple', function()
-  local playerPed = GetPlayerPed(-1)
-  local maxHealth = GetEntityMaxHealth(playerPed)
-  local player = PlayerId()
-  local health = GetEntityHealth(playerPed)
-  local newHealth = math.min(maxHealth , math.floor(health + maxHealth/8))
+ 
 
   TriggerEvent("mythic_progbar:client:progress", {
 		name = "unique_action_name",
@@ -256,9 +252,16 @@ AddEventHandler('esx_drugeffects:onpackaged_apple', function()
 		}
 	}, function(status)
     if not status then
+      local playerPed = GetPlayerPed(-1)
+      local maxHealth = GetEntityMaxHealth(playerPed)
+      local player = PlayerId()
+      local health = GetEntityHealth(playerPed)
+      local newHealth = math.min(maxHealth , math.floor(health + maxHealth/8))
       ESX.ShowNotification('Your regained health and gained Armor')
       SetEntityHealth(playerPed, newHealth)
       SetPedArmour(playerPed, 30)
+
+      ClearPedTasksImmediately()
 		end
 	end)
  
@@ -271,11 +274,7 @@ end)
 
 RegisterNetEvent('esx_drugeffects:onpackaged_banana')
 AddEventHandler('esx_drugeffects:onpackaged_banana', function()
-  local playerPed = GetPlayerPed(-1)
-  local maxHealth = GetEntityMaxHealth(playerPed)
-  local player = PlayerId()
-  local health = GetEntityHealth(playerPed)
-  local newHealth = math.min(maxHealth , math.floor(health + maxHealth/8))
+
 
   TriggerEvent("mythic_progbar:client:progress", {
 		name = "unique_action_name",
@@ -298,8 +297,14 @@ AddEventHandler('esx_drugeffects:onpackaged_banana', function()
 		}
 	}, function(status)
     if not status then
+      local playerPed = GetPlayerPed(-1)
+      local maxHealth = GetEntityMaxHealth(playerPed)
+      local player = PlayerId()
+      local health = GetEntityHealth(playerPed)
+      local newHealth = math.min(maxHealth , math.floor(health + maxHealth/8))
       ESX.ShowNotification('You regained Health.')
       SetEntityHealth(playerPed, newHealth)
+      ClearPedTasksImmediately()
 		end
 	end)
  
@@ -310,11 +315,7 @@ end)
 
 RegisterNetEvent('esx_drugeffects:onpackaged_grapes')
 AddEventHandler('esx_drugeffects:onpackaged_grapes', function()
-  local playerPed = GetPlayerPed(-1)
-  local maxHealth = GetEntityMaxHealth(playerPed)
-  local player = PlayerId()
-  local health = GetEntityHealth(playerPed)
-  local newHealth = math.min(maxHealth , math.floor(health + maxHealth/8))
+
 
 
   TriggerEvent("mythic_progbar:client:progress", {
@@ -338,8 +339,16 @@ AddEventHandler('esx_drugeffects:onpackaged_grapes', function()
 		}
 	}, function(status)
     if not status then
+      local playerPed = GetPlayerPed(-1)
+      local maxHealth = GetEntityMaxHealth(playerPed)
+      local player = PlayerId()
+      local health = GetEntityHealth(playerPed)
+      local newHealth = math.min(maxHealth , math.floor(health + maxHealth/8))
+
       ESX.ShowNotification('You gained Armor.')
       AddArmourToPed(playerPed, 25)
+
+      ClearPedTasksImmediately()
 		end
 	end)
   
@@ -385,6 +394,7 @@ AddEventHandler('esx_drugeffects:onpackaged_orange', function()
 
     ESX.ShowNotification('Your run speed goes back to normal again')
     SetRunSprintMultiplierForPlayer(player, 1.0)
+    ClearPedTasksImmediately()
   end
 end)
 

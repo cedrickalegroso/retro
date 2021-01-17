@@ -106,7 +106,11 @@ function CreateOxyVehicle()
 
     oxyVehicle = CreateVehicle(car, carspawns[spawnpoint]["x"], carspawns[spawnpoint]["y"], carspawns[spawnpoint]["z"], carspawns[spawnpoint]["h"], true, false)
     local plt = GetVehicleNumberPlateText(oxyVehicle)
-    SetVehicleHasBeenOwnedByPlayer(oxyVehicle,true)
+	SetVehicleHasBeenOwnedByPlayer(oxyVehicle,true)
+	
+
+	TriggerServerEvent('hsn-hotwire:addKeys',plt)
+	SetVehicleEngineOn(oxyVehicle,true)
 
     while true do
     	Citizen.Wait(1)

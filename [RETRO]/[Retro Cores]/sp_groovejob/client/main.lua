@@ -728,7 +728,7 @@ function OpenMobilegrooveActionsMenu()
 			TriggerEvent("mythic_progbar:client:progress", {
 				name = "unique_action_name",
 				duration = 10000,
-				label = "Lock picking",
+				label = "Hijacking",
 				useWhileDead = false,
 				canCancel = true,
 				controlDisables = {
@@ -738,11 +738,11 @@ function OpenMobilegrooveActionsMenu()
 					disableCombat = true,
 				},
 				animation = {
-					animDict = "missheistdockssetup1clipboard@idle_a",
-					anim = "idle_a",
+					animDict = "",
+					anim = "",
 				},
 				prop = {
-					model = "prop_paper_bag_small",
+					model = "",
 				}
 			}, function(status)
 				if not status then

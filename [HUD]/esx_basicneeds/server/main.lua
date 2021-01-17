@@ -346,7 +346,7 @@ ESX.RegisterUsableItem('chips', function(source)
 	xPlayer.removeInventoryItem('chips', 1)
 
 	TriggerClientEvent('esx_status:add', source, 'hunger', 150000)
-	TriggerClientEvent('esx_basicneeds:onEatNoProp', source)
+	TriggerClientEvent('esx_basicneeds:onEatChips', source)
 	TriggerClientEvent('notification', source, _U('used_chips'))
 end)
 

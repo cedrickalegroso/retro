@@ -333,7 +333,36 @@ AddEventHandler('esx_basicneeds:onEatChips', function(prop_name)
 		prop_name = prop_name or 'v_ret_ml_chips4'
 		IsAnimated = true
 
-		Citizen.CreateThread(function()
+		
+		TriggerEvent("mythic_progbar:client:progress", {
+			name = "unique_action_name",
+			duration = 5000,
+			label = "Eating Chips",
+			useWhileDead = false,
+			canCancel = true,
+			controlDisables = {
+				disableMovement = true,
+				disableCarMovement = true,
+				disableMouse = false,
+				disableCombat = true,
+			},
+			animation = {
+				animDict = "mp_player_inteat@burger",
+				anim = "mp_player_int_eat_burger_fp",
+			},
+			prop = {
+				model = "v_ret_ml_chips4",
+			}
+		}, function(status)
+			if not status then
+				IsAnimated = false
+			ClearPedSecondaryTask(playerPed)
+			DeleteObject(prop)
+			end
+		end)
+
+		--[[
+	Citizen.CreateThread(function()
 			local playerPed = PlayerPedId()
 			local x,y,z = table.unpack(GetEntityCoords(playerPed))
 			local prop = CreateObject(GetHashKey(prop_name), x, y, z + 0.2, true, true, true)
@@ -348,6 +377,9 @@ AddEventHandler('esx_basicneeds:onEatChips', function(prop_name)
 				DeleteObject(prop)
 			end)
 		end)
+		]]--
+
+	
 
 	end
 end)
@@ -642,22 +674,51 @@ RegisterNetEvent('esx_basicneeds:onDrinkTaco')
 AddEventHandler('esx_basicneeds:onDrinkTaco', function()
 	local prop_name = 'prop_taco_01'
 	local playerPed = GetPlayerPed(-1)
+	--[[
 	Citizen.CreateThread(function()
 		local playerPed = PlayerPedId()
 		local x,y,z = table.unpack(GetEntityCoords(playerPed))
 		local prop = CreateObject(GetHashKey(prop_name), x, y, z + 0.2, true, true, true)
-		local boneIndex = GetPedBoneIndex(playerPed, 18905)
-		AttachEntityToEntity(prop, playerPed, boneIndex, 0.12, 0.028, 0.001, 10.0, 175.0, 0.0, true, true, false, true, 1, true)
+	--	local boneIndex = GetPedBoneIndex(playerPed, 18905)
+	--	AttachEntityToEntity(prop, playerPed, boneIndex, 0.12, 0.028, 0.001, 10.0, 175.0, 0.0, true, true, false, true, 1, true)
+	--	exports['taskbar']:taskBar(4500, "Eating Taco")
+	--	ESX.Streaming.RequestAnimDict('mp_player_inteat@burger', function()
+		--	TaskPlayAnim(playerPed, 'mp_player_inteat@burger', 'mp_player_int_eat_burger_fp', 8.0, -8, -1, 49, 0, 0, 0, 0)
+					
+	end)
+end)
+	]]--
 
-		ESX.Streaming.RequestAnimDict('mp_player_inteat@burger', function()
-			TaskPlayAnim(playerPed, 'mp_player_inteat@burger', 'mp_player_int_eat_burger_fp', 8.0, -8, -1, 49, 0, 0, 0, 0)
 
-			exports['taskbar']:taskBar(4500, "Eating Taco")
-			IsAnimated = false
+		TriggerEvent("mythic_progbar:client:progress", {
+			name = "unique_action_name",
+			duration = 5000,
+			label = "Eating Taco",
+			useWhileDead = false,
+			canCancel = true,
+			controlDisables = {
+				disableMovement = true,
+				disableCarMovement = true,
+				disableMouse = false,
+				disableCombat = true,
+			},
+			animation = {
+				animDict = "mp_player_inteat@burger",
+				anim = "mp_player_int_eat_burger_fp",
+			},
+			prop = {
+				model = "ng_proc_food_ornge1a",
+			}
+		}, function(status)
+			if not status then
+				IsAnimated = false
 			ClearPedSecondaryTask(playerPed)
 			DeleteObject(prop)
+			end
 		end)
-	end)
+
+	
+
 end)
 
 

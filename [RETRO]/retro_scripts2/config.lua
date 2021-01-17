@@ -1742,6 +1742,19 @@ Config.DoorListLOCK = {
 	},
 
 
+	
+
+	{
+		objHash = GetHashKey('hei_heist_apart2_door'),
+		objHeading = 200.0,
+		objCoords = vector3(2540.3525390625,6154.9926757812,164.27241516113),
+		textCoords = vector3(2540.3525390625,6154.9926757812,164.27241516113),
+		authorizedJobs = {'police'},
+		locked = true,
+		maxDistance = 1.25
+	},
+	
+
 
 		-- Armory
 		{
@@ -2018,18 +2031,8 @@ Config.DoorListLOCK = {
 
 	
 	
-	
 
-	{
-		objHash = 1366334172,
-		objHeading = 111.0,
-		objCoords = vector3(2540.2824707031,6154.7783203125,164.27221679688),
-		textCoords = vector3(2540.2824707031,6154.7783203125,164.27221679688),
-		authorizedJobs = {'ambulance'},
-		locked = true,
-		maxDistance = 1.25
-	},
-	--
+
 	-- Bolingbroke Penitentiary
 	--
 

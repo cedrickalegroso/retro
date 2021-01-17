@@ -67,12 +67,19 @@ AddEventHandler('allcity_wallet:getMoneys', function()
 		local black_money 	= getBlackMoneyFromUser(_source)
 
 		local society 		= nil
+		local society2 		= nil
 
 		local user_identifier = nil
 		user_identifier = xPlayer.getIdentifier()
 
 		local grade_name 	= xPlayer.job.grade_name
 		local job_name 		= xPlayer.job.name
+
+		local grade2_name 	= xPlayer.job2.grade_name
+		local job2_name 	= xPlayer.job2.name
+
+
+	
 
 		if grade_name == 'boss' then
 	 		local mySociety = nil
@@ -89,6 +96,22 @@ AddEventHandler('allcity_wallet:getMoneys', function()
 		end
 
 		
+		if grade2_name == 'boss' then
+			local mySociety = nil
+		   TriggerEvent('esx_society:getSociety', job2_name, function(_society)
+			   mySociety = _society
+		   end)
+
+			 if mySociety ~= nil then
+
+			   TriggerEvent('esx_addonaccount:getSharedAccount', mySociety.account, function(account)
+					 society2 = account.money
+			   end)
+			 end
+	   end
+	
+
+		
 		-- MySQL.Async.fetchAll(
 	 --        'SELECT job_grades.name, job_grades.job_name FROM job_grades JOIN users ON users.job = job_grades.job_name AND users.job_grade = job_grades.grade WHERE users.identifier = @identifier',
 	 --        {['@identifier'] = user_identifier},
@@ -98,7 +121,7 @@ AddEventHandler('allcity_wallet:getMoneys', function()
 	 --        	end
 	 --        end)	
 
-	    TriggerClientEvent("allcity_wallet:setValues", _source, wallet, bank, black_money, society)
+	    TriggerClientEvent("allcity_wallet:setValues", _source, wallet, bank, black_money, society, society2)
 	end
 
 end)

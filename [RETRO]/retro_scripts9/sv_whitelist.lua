@@ -147,6 +147,8 @@ end)
 
 
 
+--[[
+
 RegisterCommand("rewardregister", function(source)
 
     local _source = source
@@ -210,39 +212,6 @@ AddEventHandler('retro_scripts:loginrewardstart', function(source)
     end)
 
 end)
-
-
---[[
-
-
-RegisterServerEvent('retro_scripts:loginrewardend')
-AddEventHandler('retro_scripts:loginrewardend', function(user)
-	local _source = user
-    local player = getIdentity(_source)
-    local min = os.time()
-    MySQL.Async.fetchAll('SELECT * FROM retro_rewards WHERE id = @id ', {
-        ['@id'] = player.license,
-    }, function(result)
-
-       -- print(result)
-
-       if result[1] ~= 0 then
-                
-        MySQL.Async.execute('UPDATE retro_rewards SET `isonline` = @isonline  WHERE id = @id', {
-            ['@id'] = player.license,
-            ['@isonline'] = 0,
-        }, function(rowsChanged)
-            if rowsChanged == 0 then
-             
-            end
-        end)
-    end
-    end)
-
-end)
-
-]]--
-
 
 
 
@@ -461,6 +430,42 @@ RegisterCommand("dailyreward", function(source)
     end)
     
 end)
+
+
+]]--
+
+--[[
+
+
+RegisterServerEvent('retro_scripts:loginrewardend')
+AddEventHandler('retro_scripts:loginrewardend', function(user)
+	local _source = user
+    local player = getIdentity(_source)
+    local min = os.time()
+    MySQL.Async.fetchAll('SELECT * FROM retro_rewards WHERE id = @id ', {
+        ['@id'] = player.license,
+    }, function(result)
+
+       -- print(result)
+
+       if result[1] ~= 0 then
+                
+        MySQL.Async.execute('UPDATE retro_rewards SET `isonline` = @isonline  WHERE id = @id', {
+            ['@id'] = player.license,
+            ['@isonline'] = 0,
+        }, function(rowsChanged)
+            if rowsChanged == 0 then
+             
+            end
+        end)
+    end
+    end)
+
+end)
+
+]]--
+
+
 
 
      

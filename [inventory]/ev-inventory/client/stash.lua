@@ -12,7 +12,7 @@ local j2StashSecondaryInventory = {
     type = 'j2Stash',
     owner = ''
 }
-
+--[[
 Citizen.CreateThread(function()
     while not ESXLoaded do
         Citizen.Wait(10)
@@ -41,6 +41,8 @@ Citizen.CreateThread(function()
         TriggerEvent('disc-base:registerMarker', marker)
     end
 end)
+]]--
+
 
 Citizen.CreateThread(function()
     while not ESXLoaded do

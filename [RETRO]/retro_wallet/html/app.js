@@ -4,12 +4,14 @@ window.addEventListener('message', function(event) {
     let blackMoney = event.data.black_money;
     let bank = event.data.bank;
     let society = event.data.society;
+    let society2 = event.data.society2;
     let control = event.data.control;
 
     $("#bank").text(bank);
     $("#wallet").text(wallet);
     $("#blackMoney").text(blackMoney);
     $("#society").text(society);
+    $("#society2").text(society2);
 
     let display = false;
 
@@ -26,7 +28,7 @@ window.addEventListener('message', function(event) {
 
             });
         window.setTimeout(function() {
-            $('#bank, #wallet, #blackMoney, #society').fadeIn(500);
+            $('#bank, #wallet, #blackMoney, #society, #society2').fadeIn(500);
         }, 300);
 
         window.setTimeout(function() {
@@ -40,7 +42,7 @@ window.addEventListener('message', function(event) {
 
                 });
             window.setTimeout(function() {
-                $('#bank, #wallet, #blackMoney, #society').fadeOut(300);
+                $('#bank, #wallet, #blackMoney, #society, #society2').fadeOut(300);
             }, 300);
 
         }, 3000)

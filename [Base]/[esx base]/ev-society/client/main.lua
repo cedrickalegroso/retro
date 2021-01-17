@@ -53,6 +53,17 @@ function EnableSocietyMoneyHUDElement()
 	TriggerEvent('esx_society:toggleSocietyHud', true)
 end
 
+---SECONDJOB INCLUDED
+function EnableSociety2MoneyHUDElement()
+
+	local society2MoneyHUDElementTpl = '<div><img src="' .. base64MoneyIcon .. '" style="width:20px; height:20px; vertical-align:middle;">&nbsp;{{money}}</div>'
+  
+	ESX.UI.HUD.RegisterElement('society2_money', 3, 0, society2MoneyHUDElementTpl, {
+	  money = 0
+	})
+  
+  end
+
 function DisableSocietyMoneyHUDElement()
 	if ESX.GetConfig().EnableHud then
 		ESX.UI.HUD.RemoveElement('society_money')
@@ -60,6 +71,11 @@ function DisableSocietyMoneyHUDElement()
 
 	TriggerEvent('esx_society:toggleSocietyHud', false)
 end
+
+---SECONDJOB INCLUDED
+function DisableSociety2MoneyHUDElement()
+	ESX.UI.HUD.RemoveElement('society2_money')
+  end
 
 function UpdateSocietyMoneyHUDElement(money)
 	if ESX.GetConfig().EnableHud then
@@ -70,6 +86,14 @@ function UpdateSocietyMoneyHUDElement(money)
 
 	TriggerEvent('esx_society:setSocietyMoney', money)
 end
+
+function UpdateSociety2MoneyHUDElement(money)
+
+	ESX.UI.HUD.UpdateElement('society2_money', {
+	  money = money
+	})
+  
+  end
 
 function OpenBossMenu(society, close, options)
 	local isBoss = nil
@@ -315,7 +339,7 @@ function OpenBossMenu2(society, close, options)
 			end)
 
 		elseif data.current.value == 'manage_employees' then
-			OpenManageEmployeesMenu(society)
+			OpenManageEmployeesMenu2(society)
 		elseif data.current.value == 'manage_grades' then
 			OpenManageGradesMenu(society)
 		end
@@ -350,6 +374,75 @@ function OpenManageEmployeesMenu(society)
 	end, function(data, menu)
 		menu.close()
 	end)
+end
+
+
+function OpenManageEmployeesMenu2(society)
+
+	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'manage_employees_' .. society, {
+		title    = _U('employee_management'),
+		align    = 'top-left',
+		elements = {
+			{label = _U('employee_list'), value = 'employee_list'},
+			{label = _U('recruit'),       value = 'recruit'}
+		}
+	}, function(data, menu)
+
+		if data.current.value == 'employee_list' then
+			OpenEmployeeList2(society)
+		end
+
+		if data.current.value == 'recruit' then
+			OpenRecruitMenu2(society)
+		end
+
+	end, function(data, menu)
+		menu.close()
+	end)
+end
+
+function OpenEmployeeList2(society)
+
+	ESX.TriggerServerCallback('esx_society:getEmployees2', function(employees)
+
+		local elements = {
+			head = {_U('employee'), _U('grade'), _U('actions')},
+			rows = {}
+		}
+
+		for i=1, #employees, 1 do
+			local gradeLabel = (employees[i].job2.grade2_label == '' and employees[i].job2.label or employees[i].job2.grade2_label)
+
+			table.insert(elements.rows, {
+				data = employees[i],
+				cols = {
+					employees[i].name,
+					gradeLabel,
+					'{{' .. _U('promote') .. '|promote}} {{' .. _U('fire') .. '|fire}}'
+				}
+			})
+		end
+
+		ESX.UI.Menu.Open('list', GetCurrentResourceName(), 'employee_list_' .. society, elements, function(data, menu)
+			local employee = data.data
+
+			if data.value == 'promote' then
+				menu.close()
+				OpenPromoteMenu2(society, employee)
+			elseif data.value == 'fire' then
+				ESX.ShowNotification(_U('you_have_fired', employee.name))
+
+				ESX.TriggerServerCallback('esx_society:setJob2', function()
+					OpenEmployeeList2(society)
+				end, employee.identifier, 'unemployed2', 0, 'fire')
+			end
+		end, function(data, menu)
+			menu.close()
+			OpenManageEmployeesMenu(society)
+		end)
+
+	end, society)
+
 end
 
 function OpenEmployeeList(society)
@@ -448,6 +541,59 @@ function OpenRecruitMenu(society)
 
 end
 
+function OpenRecruitMenu2(society)
+
+	ESX.TriggerServerCallback('esx_society:getOnlinePlayers', function(players)
+
+		local elements = {}
+
+		for i=1, #players, 1 do
+			if players[i].job.name ~= society then
+				table.insert(elements, {
+					label = players[i].name,
+					value = players[i].source,
+					name = players[i].name,
+					identifier = players[i].identifier
+				})
+			end
+		end
+
+		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'recruit_' .. society, {
+			title    = _U('recruiting'),
+			align    = 'top-left',
+			elements = elements
+		}, function(data, menu)
+
+			ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'recruit_confirm_' .. society, {
+				title    = _U('do_you_want_to_recruit', data.current.name),
+				align    = 'top-left',
+				elements = {
+					{label = _U('no'),  value = 'no'},
+					{label = _U('yes'), value = 'yes'}
+				}
+			}, function(data2, menu2)
+				menu2.close()
+
+				if data2.current.value == 'yes' then
+					ESX.ShowNotification(_U('you_have_hired', data.current.name))
+
+					ESX.TriggerServerCallback('esx_society:setJob2', function()
+						print(society)
+						OpenRecruitMenu2(society)
+					end, data.current.identifier, society, 1, 'hire')
+				end
+			end, function(data2, menu2)
+				menu2.close()
+			end)
+
+		end, function(data, menu)
+			menu.close()
+		end)
+
+	end)
+
+end
+
 function OpenPromoteMenu(society, employee)
 
 	ESX.TriggerServerCallback('esx_society:getJob', function(job)
@@ -483,6 +629,45 @@ function OpenPromoteMenu(society, employee)
 	end, society)
 
 end
+
+function OpenPromoteMenu2(society, employee)
+
+	print('Promote 2')
+
+	ESX.TriggerServerCallback('esx_society:getJob2', function(job2)
+
+		local elements = {}
+
+		for i=1, #job2.grades, 1 do
+			local gradeLabel = (job2.grades[i].label == '' and job2.label or job2.grades[i].label)
+
+			table.insert(elements, {
+				label = gradeLabel,
+				value = job2.grades[i].grade,
+				selected = (employee.job2.grade == job2.grades[i].grade)
+			})
+		end
+
+		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'promote_employee_' .. society, {
+			title    = _U('promote_employee', employee.name),
+			align    = 'top-left',
+			elements = elements
+		}, function(data, menu)
+			menu.close()
+			ESX.ShowNotification(_U('you_have_promoted', employee.name, data.current.label))
+
+			ESX.TriggerServerCallback('esx_society:setJob2', function()
+				OpenEmployeeList2(society)
+			end, employee.identifier, society, data.current.value, 'promote')
+		end, function(data, menu)
+			menu.close()
+			OpenEmployeeList2(society)
+		end)
+
+	end, society)
+
+end
+
 
 function OpenManageGradesMenu(society)
 
