@@ -264,15 +264,15 @@ function OpenBossMenu2(society, close, options)
 	end
 
 	if options.wash then
-		table.insert(elements, {label = _U('wash_money'), value = 'wash_money'})
+	--	table.insert(elements, {label = _U('wash_money'), value = 'wash_money'})
 	end
 
 	if options.employees then
-		table.insert(elements, {label = _U('employee_management'), value = 'manage_employees'})
+	--	table.insert(elements, {label = _U('employee_management'), value = 'manage_employees'})
 	end
 
 	if options.grades then
-		table.insert(elements, {label = _U('salary_management'), value = 'manage_grades'})
+	--	table.insert(elements, {label = _U('salary_management'), value = 'manage_grades'})
 	end
 
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'boss_actions_' .. society, {
