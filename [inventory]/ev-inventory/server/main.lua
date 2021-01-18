@@ -103,7 +103,7 @@ end)
 
 AddEventHandler('esx:playerLoaded', function(data)
     local player = ESX.GetPlayerFromId(data)
-   -- ensurePlayerInventory(player)
+    ensurePlayerInventory(player)
 end)
 
 Citizen.CreateThread(function()

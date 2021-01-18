@@ -28,11 +28,11 @@
 
     <div class="ui">
 
-  <p style="text-align: center; position: relative; background-color: black; padding-left: 5%; padding-right: 5%;"> Items Mixed Up / Duplicated? close inventory then Flex [T] then type the "/refreshInv" command to refresh inventory. Note even that they are dupilcated it would still be invalid because it would always check the Database for the right item
-                count. It's better to refresh inventory to avoid confusion. </p>
+        <p style="text-align: center; position: relative; background-color: black; padding-left: 5%; padding-right: 5%;"> Items Mixed Up / Duplicated? close inventory then Flex [T] then type the "/refreshInv" command to refresh inventory. Note even that they are dupilcated it would still be invalid because it would always check the Database for the right item count.
+            It's better to refresh inventory to avoid confusion. </p>
         <div class="inventory" id="inventory">
 
-          
+
             <div class="inventory-wrapper">
 
                 <div class="left-data" id="player-left-data">
@@ -52,6 +52,7 @@
                     <input class="control" id="search" type="text" placeholder="Search" />
                     <input type="number" class="control" id="count" value="1" onClick="this.select();">
                     <div id="use" class='buttondude sans Use'>USE</div>
+                    <div id="give" class='buttondude sans Use'>Give</div>
                     </br>
                     </br>
                     <div id="close-ui" class='closeUi' onclick="closeInventory()">Close</div>
