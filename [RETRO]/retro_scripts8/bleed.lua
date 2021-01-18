@@ -62,7 +62,7 @@ AddEventHandler('retro_scripts:notBleed', function(source, ped)
       setBleedingOff(ped)
       takenoxy = 1
       alreadyTaken = 1
-      Citizen.Wait(60000)
+      Citizen.Wait(90000)
       print('1 Min has gone by Oxy is not affecting you anymore.')
       takenoxy = 0
       alreadyTaken = 0
