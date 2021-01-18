@@ -45,7 +45,7 @@ ESX.RegisterUsableItem('packaged_apple', function(source)
 
 	TriggerClientEvent('esx_status:add', source, 'hunger', 499000)
 	TriggerClientEvent('esx_status:add', source, 'thirst', 499000)
-	--TriggerClientEvent('esx_drugeffects:onpackaged_apple', source)
+	TriggerClientEvent('esx_drugeffects:onpackaged_apple', source)
 	TriggerEvent("stress:remove", 100000, source)
 end)
 
