@@ -970,6 +970,12 @@ function OpenHelicopterSpawnerMenu(hospital, partNum)
 				SetVehicleLivery(vehicle, 0)
 			end)
 
+			TriggerServerEvent('hsn-hotwire:addKeys',vehicle)
+			SetVehicleEngineOn(vehicle,true)
+
+
+
+
 		elseif data.current.action == 'store_garage' then
 			local vehicles, vehiclePlates = ESX.Game.GetVehiclesInArea(playerCoords, 50.0), {}
 
