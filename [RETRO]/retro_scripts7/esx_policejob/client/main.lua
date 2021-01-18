@@ -514,7 +514,7 @@ function OpenPoliceActionsMenu()
 				{label = 'Community Service',		value = 'comserve'},
 				{label = 'Jail',		value = 'jail'},
 				{label = _U('handcuff'),		value = 'handcuff'},
-				{label = 'uncuff',		value = 'handcuff'},
+				{label = 'uncuff',		value = 'uncuff'},
 				{label = _U('drag'),			value = 'drag'},
 				{label = _U('put_in_vehicle'),	value = 'put_in_vehicle'},
 				{label = _U('out_the_vehicle'),	value = 'out_the_vehicle'},
@@ -550,8 +550,7 @@ function OpenPoliceActionsMenu()
 						OpenBodySearchMenuPolice(closestPlayer)						
 					elseif action == 'handcuff' then
 						TriggerServerEvent('esx_policejob:message', GetPlayerServerId(closestPlayer), 'You are being dragged by the Police')
-						TriggerServerEvent('esx_ruski_areszt:startAreszt', GetPlayerServerId(closestPlayer))			
-						Citizen.Wait(3000)							
+						TriggerServerEvent('esx_ruski_areszt:startAreszt', GetPlayerServerId(closestPlayer))												
 						TriggerServerEvent('esx_policejob:handcuff', GetPlayerServerId(closestPlayer))
 					elseif action == 'uncuff' then						
 						TriggerServerEvent('esx_policejob:handcuff', GetPlayerServerId(closestPlayer))
