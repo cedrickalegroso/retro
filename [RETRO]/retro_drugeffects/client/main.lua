@@ -257,9 +257,7 @@ AddEventHandler('esx_drugeffects:onpackaged_apple', function()
       local player = PlayerId()
       local health = GetEntityHealth(playerPed)
       local newHealth = math.min(maxHealth , math.floor(health + maxHealth/8))
-      ESX.ShowNotification('Your regained health and gained Armor')
-      SetEntityHealth(playerPed, newHealth)
-      SetPedArmour(playerPed, 30)
+      ESX.ShowNotification('You lessen your stress')
 
       ClearPedTasksImmediately()
 		end
