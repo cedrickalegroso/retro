@@ -108,15 +108,6 @@ AddEventHandler('esx_communityservice:sendToCommunityService', function(target, 
 
 	print('Comserv '..identifier)
 
-	for i=1, #identifier.inventory, 1 do
-		if identifier.inventory[i].count > 0 then
-			identifier.setInventoryItem(identifier.inventory[i].name, 0)
-		end
-	end
-
-	for i=1, #identifier.loadout, 1 do
-		identifier.removeWeapon(identifier.loadout[i].name)
-	end
 
 	MySQL.Async.fetchAll('SELECT * FROM communityservice WHERE identifier = @identifier', {
 		['@identifier'] = identifier
