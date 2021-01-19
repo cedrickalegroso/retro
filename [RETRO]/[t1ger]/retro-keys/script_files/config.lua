@@ -5,7 +5,7 @@
 Config = {}
 
 -- Locksmith Settings:
-Config.RegisterKeyPrice 	= 300		
+Config.RegisterKeyPrice 	= 1500		
 Config.KeyPayBankMoney		= true	-- set to false to pay with cash instead of bank moeny
 
 -- Dependencies:
@@ -24,7 +24,7 @@ Config.AlertTime = {min = 1, max = 8}	-- set min and max seconds, from car is su
 -- Police Settings:
 Config.AllowedJobs = {"police", "ambulance"}
 Config.AlertBlip = {{
-	Enable 	= true,			-- enable or disable blip on map on police notify
+	Enable 	= false,			-- enable or disable blip on map on police notify
 	Time 	= 30,			-- miliseconds that blip is active on map (this value is multiplied with 4 in the script)
 	Radius 	= 50.0,			-- set radius of the police notify blip
 	Alpha 	= 250,			-- set alpha of the blip
@@ -94,7 +94,7 @@ Config.LockpickItem = {{
 	ChanceThree 		= 10,					-- Lockpicking success chance in percent (Alarm II)
 	EnableAlarmSound 	= true,					-- Enable/Disable car clarm upon lockpicking 
 	CarAlarmTime 		= 40,					-- Set duration of car alarm upon lockpicking, in seconds.
-	PoliceAlert			= true,					-- Enable/Disable police alert upon lockpicking
+	PoliceAlert			= false,					-- Enable/Disable police alert upon lockpicking
 	AnimDict			= "anim@amb@clubhouse@tutorial@bkr_tut_ig3@",
 	AnimName			= "machinic_loop_mechandplayer",
 }}
