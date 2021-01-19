@@ -1648,7 +1648,7 @@ function SpawnVehicle(vehicle, plate)
 		--SetVehicleBodyHealth(callback_vehicle, 1000) -- Might not be needed
 		local carplate = GetVehicleNumberPlateText(callback_vehicle)
 		table.insert(vehInstance, {vehicleentity = callback_vehicle, plate = carplate})
-		TaskWarpPedIntoVehicle(GetPlayerPed(-1), callback_vehicle, -1)
+		--TaskWarpPedIntoVehicle(GetPlayerPed(-1), callback_vehicle, -1)
 
 		TriggerServerEvent('hsn-hotwire:addKeys',GetVehicleNumberPlateText(callback_vehicle))
 		SetVehicleEngineOn(vehicle,true)
@@ -1669,7 +1669,7 @@ function SpawnVehicle2(vehicle, plate)
 		--SetVehicleBodyHealth(callback_vehicle, 1000) -- Might not be needed
 		local carplate = GetVehicleNumberPlateText(callback_vehicle)
 		table.insert(vehInstance, {vehicleentity = callback_vehicle, plate = carplate})
-		TaskWarpPedIntoVehicle(GetPlayerPed(-1), callback_vehicle, -1)
+		--TaskWarpPedIntoVehicle(GetPlayerPed(-1), callback_vehicle, -1)
 
 		TriggerServerEvent('hsn-hotwire:addKeys',GetVehicleNumberPlateText(callback_vehicle))
 		SetVehicleEngineOn(vehicle,true)
