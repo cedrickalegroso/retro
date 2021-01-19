@@ -72,7 +72,7 @@ function ToggleVehicleLock()
 			local vehicleLabel = GetDisplayNameFromVehicleModel(GetEntityModel(vehicle))
 			vehicleLabel = GetLabelText(vehicleLabel)
 
-			TriggerServerEvent('InteractSound_SV:PlayOnAll','unlock2',0.5)
+			TriggerEvent('InteractSound_CL:PlayOnOne','unlock2',0.5)
 
 			if lockStatus == 1 then -- unlocked
 				SetVehicleDoorsLocked(vehicle, 2, false)
