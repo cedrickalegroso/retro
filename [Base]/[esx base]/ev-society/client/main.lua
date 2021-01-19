@@ -24,14 +24,24 @@ AddEventHandler('esx:setJob', function(job)
 end)
 
 function RefreshBussHUD()
-	DisableSocietyMoneyHUDElement()
+  DisableSocietyMoneyHUDElement()
+  
 	if ESX.PlayerData.job.grade_name == 'boss' or ESX.PlayerData.job.grade_name == 'lieutenant' then
 		EnableSocietyMoneyHUDElement()
 
 		ESX.TriggerServerCallback('esx_society:getSocietyMoney', function(money)
 			UpdateSocietyMoneyHUDElement(money)
 		end, ESX.PlayerData.job.name)
-	end
+  end
+
+  if ESX.PlayerData.job2.grade_name == 'boss' then
+		EnableSociety2MoneyHUDElement()
+
+		ESX.TriggerServerCallback('esx_society:getSocietyMoney', function(money)
+			UpdateSociety2MoneyHUDElement(money)
+		end, ESX.PlayerData.job2.name)
+  end
+  
 end
 
 RegisterNetEvent('esx_addonaccount:setMoney')
@@ -44,11 +54,11 @@ end)
 function EnableSocietyMoneyHUDElement()
 	local societyMoneyHUDElementTpl = '<div><img src="' .. base64MoneyIcon .. '" style="width:20px; height:20px; vertical-align:middle;">&nbsp;{{money}}</div>'
 
-	if ESX.GetConfig().EnableHud then
+--	if ESX.GetConfig().EnableHud then
 		ESX.UI.HUD.RegisterElement('society_money', 3, 0, societyMoneyHUDElementTpl, {
 			money = 0
 		})
-	end
+--	end
 
 	TriggerEvent('esx_society:toggleSocietyHud', true)
 end
@@ -78,11 +88,19 @@ function DisableSociety2MoneyHUDElement()
   end
 
 function UpdateSocietyMoneyHUDElement(money)
-	if ESX.GetConfig().EnableHud then
+	
+  --[[
+if ESX.GetConfig().EnableHud then
 		ESX.UI.HUD.UpdateElement('society_money', {
 			money = ESX.Math.GroupDigits(money)
 		})
-	end
+  end
+  
+  ]]--
+ 
+  ESX.UI.HUD.UpdateElement('society_money', {
+    money = ESX.Math.GroupDigits(money)
+  })
 
 	TriggerEvent('esx_society:setSocietyMoney', money)
 end
