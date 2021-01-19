@@ -72,9 +72,10 @@ function ToggleVehicleLock()
 			local vehicleLabel = GetDisplayNameFromVehicleModel(GetEntityModel(vehicle))
 			vehicleLabel = GetLabelText(vehicleLabel)
 
-			TriggerEvent('InteractSound_CL:PlayOnOne','unlock2',0.5)
+			
 
 			if lockStatus == 1 then -- unlocked
+				TriggerEvent('InteractSound_CL:PlayWithinDistance', source, 5.0, 'lock2',0.5)
 				SetVehicleDoorsLocked(vehicle, 2, false)
 				PlayVehicleDoorCloseSound(vehicle, 1)
 
@@ -89,6 +90,7 @@ function ToggleVehicleLock()
 				ESX.ShowNotification(vehicleLabel..' ~r~Locked~s~ ')
 			--	TriggerServerEvent('retro_scripts:playlocksound')
 			elseif lockStatus == 2 then -- locked
+				TriggerEvent('InteractSound_CL:PlayWithinDistance', source, 5.0, 'unlock2',0.5)
 				SetVehicleDoorsLocked(vehicle, 1)
 				PlayVehicleDoorOpenSound(vehicle, 0)
 
