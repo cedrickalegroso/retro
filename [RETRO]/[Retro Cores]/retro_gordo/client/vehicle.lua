@@ -16,24 +16,45 @@ function OpenVehicleSpawnerMenu(type, station, part, partNum)
 		if data.current.action == 'buy_vehicle' then
 			local shopElements = {}
 			local shopCoords = Config.GordoStations[station][part][partNum].InsideShop
-			local authorizedVehicles = Config.AuthorizedVehicles[PlayerData.job.grade_name]
+			local authorizedVehicles = Config.AuthorizedVehicles[PlayerData.job2.grade_name]
+			local authorizedHeli = Config.AuthorizedHelicopters[PlayerData.job2.grade_name]
+			
 
 			if authorizedVehicles then
 				if #authorizedVehicles > 0 then
-					for k,vehicle in ipairs(authorizedVehicles) do
-						if IsModelInCdimage(vehicle.model) then
-							local vehicleLabel = GetLabelText(GetDisplayNameFromVehicleModel(vehicle.model))
-
-							table.insert(shopElements, {
-								label = ('%s - <span style="color:green;">%s</span>'):format(vehicleLabel, _U('shop_item', ESX.Math.GroupDigits(vehicle.price))),
-								name  = vehicleLabel,
-								model = vehicle.model,
-								price = vehicle.price,
-								props = vehicle.props,
-								type  = type
-							})
+					print(type)
+					if type == 'helicopter' then 
+						for k,vehicle in ipairs(authorizedHeli) do
+							if IsModelInCdimage(vehicle.model) then
+								local vehicleLabel = GetLabelText(GetDisplayNameFromVehicleModel(vehicle.model))
+	
+								table.insert(shopElements, {
+									label = ('%s - <span style="color:green;">%s</span>'):format(vehicleLabel, _U('shop_item', ESX.Math.GroupDigits(vehicle.price))),
+									name  = vehicleLabel,
+									model = vehicle.model,
+									price = vehicle.price,
+									props = vehicle.props,
+									type  = type
+								})
+							end
+						end
+					else 
+						for k,vehicle in ipairs(authorizedVehicles) do
+							if IsModelInCdimage(vehicle.model) then
+								local vehicleLabel = GetLabelText(GetDisplayNameFromVehicleModel(vehicle.model))
+	
+								table.insert(shopElements, {
+									label = ('%s - <span style="color:green;">%s</span>'):format(vehicleLabel, _U('shop_item', ESX.Math.GroupDigits(vehicle.price))),
+									name  = vehicleLabel,
+									model = vehicle.model,
+									price = vehicle.price,
+									props = vehicle.props,
+									type  = type
+								})
+							end
 						end
 					end
+					
 
 					if #shopElements > 0 then
 						OpenShopMenu(shopElements, playerCoords, shopCoords)

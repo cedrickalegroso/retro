@@ -43,21 +43,7 @@ Config.GordoStations = {
 
 
 
-		Vehicles = {
-		
-	   
-			{
-				Spawner = vector3(2598.3293457031,6181.4775390625,167.79460144043),
-				InsideShop = vector3(228.5, -993.5, -99.0),
-				SpawnPoints = {
-					{coords = vector3(2595.3374023438,6184.1630859375,166.8225402832), heading = 117.0, radius = 6.0},
-				--	{coords = vector3(484.1, -1023.1, 27.5), heading = 302.5, radius = 6.0}
-				}
-			},
-
-			
-
-			
+		Vehicles = {	
 			{
 				Spawner = vector3(2354.7580566406,5884.0307617188,47.63334274292),
 				InsideShop = vector3(228.5, -993.5, -99.0),
@@ -73,10 +59,10 @@ Config.GordoStations = {
 		Helicopters = {
 			
 	{
-				Spawner = vector3(-2720.0949707031,-61.464767456055,18.85729598999),
+				Spawner = vector3(2596.1574707031,6197.6577148438,165.56037902832),
 				InsideShop = vector3(-1878.6215820312,3003.4211425781,32.810466766357),
 				SpawnPoints = {
-					{coords = vector3(-2726.9990234375,-59.13060760498,18.899234771729), heading = 92.6, radius = 10.0}
+					{coords = vector3(2593.1765136719,6202.7036132812,165.56037902832), heading = 92.6, radius = 10.0}
 				}
 			}
 			
@@ -195,7 +181,6 @@ Config.AuthorizedVehicles = {
 	},
 
 	boss = {
-		{ model = 'Buzzard', label = 'buzzard', price = 400 },
 		{ model = 'surfer2', label = 'Jeep', price = 400 },
 		{ model = 'Guardian', label = 'guardian', price = 400 },
 		{ model = 'blazer', label = 'blazer', price = 400 },
@@ -209,11 +194,11 @@ Config.AuthorizedHelicopters = {
 	tyro = {},
 
 	soldier = {
-		{ model = 'buzzard2', label = 'Gang Buzzard',  price = 400 }
+	--	{ model = 'buzzard2', label = 'Gang Buzzard',  price = 400 }
 	},
 
 	captain = {
-		{ model = 'buzzard2', label = 'Gang Buzzard',  price = 400 }
+	--	{ model = 'buzzard2', label = 'Gang Buzzard',  price = 400 }
 	},
 
 	boss = {
