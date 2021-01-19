@@ -70,6 +70,8 @@ Citizen.CreateThread(function ()
 						}
 					}, function(status)
 						if not status then
+							ExecuteCommand('huhuhuhuhsakitkatawanpahilot')
+							Citizen.Wait(500)
 							TriggerServerEvent('esx_checkin:keyPressed')
 						end
 					end)
@@ -197,6 +199,10 @@ AddEventHandler('esx_checkin:checkIn', function()
 		}, function(status)
 			if not status then
 				--	exports['mythic_notify']:DoCustomHudText('inform', _U('notificationText1'), Config.BedTime * 1000)
+
+				--TriggerEvent('MF_SkeletalSystem:HealBones',ped,"all");
+
+			
 
 		--Citizen.Wait(Config.BedTime * 1000)
 		FreezeEntityPosition(ped, false) 
