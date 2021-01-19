@@ -36,7 +36,7 @@ failAudio.controls = false;
 failAudio.volume = 0.1;
 failAudio.src = './fail2.wav';
 
-window.addEventListener("message", function (event) {
+window.addEventListener("message", function(event) {
 
 
     if (event.data.action == "display") {
@@ -73,8 +73,8 @@ window.addEventListener("message", function (event) {
         var element = $("<div class='added-item-slot' id='added-item-image'><div class='item-bg' style ='background-image: url(img/items/" + event.data.item.name + ".png')'><div class='label'><p><span id='iLabel'>" + event.data.item.label + "</span></p></div></div></div>");
         $("#added-item").html("");
         $("#added-item").append(element).hide().fadeIn(100);
-        setTimeout(function () {
-            $(element).fadeOut(100, function () { $(this).remove(); });
+        setTimeout(function() {
+            $(element).fadeOut(100, function() { $(this).remove(); });
         }, 2500);
     } else if (event.data.action == "setItems") {
         firstTier = event.data.invTier;
@@ -83,7 +83,7 @@ window.addEventListener("message", function (event) {
 
         if ($('#search').val() !== '') {
             SearchInventory($('#search').val());
-         }
+        }
 
     } else if (event.data.action == "setSecondInventoryItems") {
         secondTier = event.data.invTier;
@@ -92,14 +92,14 @@ window.addEventListener("message", function (event) {
 
         if ($('#search').val() !== '') {
             SearchInventory($('#search').val());
-         }
+        }
 
     } else if (event.data.action == "setInfoText") {
         $(".info-div").html(event.data.text);
     } else if (event.data.action == "nearPlayersGive" || event.data.action == "nearPlayersPay") {
         givingItem = event.data.originItem;
         $('.near-players-wrapper').find('.popup-body').html('');
-        $.each(event.data.players, function (index, player) {
+        $.each(event.data.players, function(index, player) {
             $('.near-players-list .popup-body').append(`<div class="player" data-id="${player.id}" data-action="${event.data.action}">${player.id} - ${player.name}</div>`);
         });
         $('.near-players-wrapper').fadeIn();
@@ -154,7 +154,9 @@ function closeInventory() {
 function inventorySetup(invOwner, items, money, invTier) {
     setupPlayerSlots();
     $('#player-inv-label').html('Personal Inventory');
-    $('#player-inv-id').html('Weight: ' + currentWeight + ' / ' + currentMaxWeight);
+    /* $('#player-inv-id').html(' Weight: ' + currentWeight + ' / ' + currentMaxWeight); */
+    $('#player-cash').html('Cash: $' + formatCurrency(money.cash) + ' ');
+    $('#player-black').html('Dirty Money: $' + formatCurrency(money.black_money) + ' ');
     $('#inventoryOne').data('invOwner', invOwner);
     $('#inventoryOne').data('invTier', invTier);
 
@@ -163,8 +165,8 @@ function inventorySetup(invOwner, items, money, invTier) {
     $('#black_money').html('<img src="img/black_money.png" class="moneyIcon"> $' + formatCurrency(money.black_money));
 
     firstUsed = 0;
-    $.each(items, function (index, item) {
-        var slot = $('#inventoryOne').find('.slot').filter(function () {
+    $.each(items, function(index, item) {
+        var slot = $('#inventoryOne').find('.slot').filter(function() {
             return $(this).data('slot') === item.slot;
         });
         firstUsed++;
@@ -176,7 +178,7 @@ function inventorySetup(invOwner, items, money, invTier) {
     $('#player-used').html(firstUsed);
     $("#inventoryOne > .slot:lt(4) .item").append('<div class="item-keybind"></div>');
 
-    $('#inventoryOne .item-keybind').each(function (index) {
+    $('#inventoryOne .item-keybind').each(function(index) {
         $(this).html(index + 1);
     })
 }
@@ -190,19 +192,19 @@ function secondInventorySetup(invOwner, items, invTier, money) {
     $('#second-title').html(secondTier.label);
 
     console.log();
-    if ( secondTier.label == 'Player') {
+    if (secondTier.label == 'Player') {
         $('#other-inv-id').html('Weight: ' + currentOtherWeight + ' / ' + currentOtherMaxWeight);
         $('#other-inv-label').html('Player Inventory');
-    } else if ( secondTier.name.search('trunk') == 0) {
+    } else if (secondTier.name.search('trunk') == 0) {
         $('#other-inv-id').html('');
         $('#other-inv-label').html('Trunk-' + invOwner);
-    } else if ( secondTier.name == 'drop') {
+    } else if (secondTier.name == 'drop') {
         $('#other-inv-id').html(street);
         $('#other-inv-label').html("Ground");
     }
     secondUsed = 0;
-    $.each(items, function (index, item) {
-        var slot = $('#inventoryTwo').find('.slot').filter(function () {
+    $.each(items, function(index, item) {
+        var slot = $('#inventoryTwo').find('.slot').filter(function() {
             return $(this).data('slot') === item.slot;
         });
         secondUsed++;
@@ -253,7 +255,7 @@ function setupSecondarySlots(owner) {
     }
 }
 
-document.addEventListener('mousemove', function (event) {
+document.addEventListener('mousemove', function(event) {
     event.preventDefault();
     cursorX = event.clientX;
     cursorY = event.clientY;
@@ -265,7 +267,7 @@ document.addEventListener('mousemove', function (event) {
     }
 }, true);
 
-$('#count').on('keyup blur', function (e) {
+$('#count').on('keyup blur', function(e) {
     if ((e.which == 8 || e.which == undefined || e.which == 0)) {
         e.preventDefault();
     }
@@ -277,9 +279,9 @@ $('#count').on('keyup blur', function (e) {
     }
 });
 
-$(document).ready(function () {
+$(document).ready(function() {
 
-    $('#inventoryOne, #inventoryTwo').on('click', '.slot', function (e) {
+    $('#inventoryOne, #inventoryTwo').on('click', '.slot', function(e) {
         if (locked) {
             return
         }
@@ -295,8 +297,7 @@ $(document).ready(function () {
                 } else {
                     AttemptDropInEmptySlot(origDrag, $(this), parseInt($("#count").val()));
                 }
-            } else {
-            }
+            } else {}
             EndDragging();
         } else {
             if (itemData !== undefined) {
@@ -338,11 +339,11 @@ $(document).ready(function () {
 
     });
 
-    $('.close-ui').click(function (event, ui) {
+    $('.close-ui').click(function(event, ui) {
         closeInventory();
     });
 
-    $('#use').click(function (event, ui) {
+    $('#use').click(function(event, ui) {
         if (dragging) {
             itemData = $(draggingItem).find('.item').data("item");
             if (itemData.usable) {
@@ -354,35 +355,34 @@ $(document).ready(function () {
                 }));
 
                 closeInventory();
-                
+
                 EndDragging();
-            } else {
-            }
+            } else {}
         }
     });
-    
+
     $('#search').on('keyup keydown blur', function(e) {
         SearchInventory($(this).val());
-     });
-     
-     $('#search-reset').on('click', function() {
+    });
+
+    $('#search-reset').on('click', function() {
         SearchInventory('');
         $('#search').val('');
     });
 
-    $("#use").mouseenter(function () {
+    $("#use").mouseenter(function() {
         if (draggingItem != null && !$(this).hasClass('disabled')) {
             $(this).addClass('hover');
         }
-    }).mouseleave(function () {
+    }).mouseleave(function() {
         $(this).removeClass('hover');
     });
 
-    $("#take").mouseenter(function () {
+    $("#take").mouseenter(function() {
         $(this).addClass('hover');
-    }).mouseleave(function () {
+    }).mouseleave(function() {
         $(this).removeClass('hover');
-    }).click(function (event, ui) {
+    }).click(function(event, ui) {
         $('.near-players-wrapper').find('.popup-body').html('');
         $('.near-players-wrapper').find('.popup-body').html('');
         $('.near-players-list .popup-body').append(`<div class="cashtake" data-id="cash">Cash</div>`);
@@ -391,11 +391,11 @@ $(document).ready(function () {
         EndDragging();
     });
 
-    $("#store").mouseenter(function () {
+    $("#store").mouseenter(function() {
         $(this).addClass('hover');
-    }).mouseleave(function () {
+    }).mouseleave(function() {
         $(this).removeClass('hover');
-    }).click(function (event, ui) {
+    }).click(function(event, ui) {
         $('.near-players-wrapper').find('.popup-body').html('');
         $('.near-players-wrapper').find('.popup-body').html('');
         $('.near-players-list .popup-body').append(`<div class="cashstore" data-id="cash">Cash</div>`);
@@ -404,7 +404,7 @@ $(document).ready(function () {
         EndDragging();
     });
 
-    $('#give').click(function (event, ui) {
+    $('#give').click(function(event, ui) {
         if (draggingItem != null && dragging) {
             itemData = $(draggingItem).find('.item').data("item");
             let dropCount = parseInt($("#count").val());
@@ -419,26 +419,25 @@ $(document).ready(function () {
                     action: 'give'
                 }));
 
-            } else {
-            }
+            } else {}
         }
     });
-    
-    $("#give").mouseenter(function () {
+
+    $("#give").mouseenter(function() {
         if (!$(this).hasClass('disabled')) {
             $(this).addClass('hover');
         }
-    }).mouseleave(function () {
+    }).mouseleave(function() {
         $(this).removeClass('hover');
     });
 
-    $("#pay").mouseenter(function () {
+    $("#pay").mouseenter(function() {
         if (!$(this).hasClass('disabled')) {
             $(this).addClass('hover');
         }
-    }).mouseleave(function () {
+    }).mouseleave(function() {
         $(this).removeClass('hover');
-    }).click(function (event, ui) {
+    }).click(function(event, ui) {
         $('.near-players-wrapper').find('.popup-body').html('');
         $('.near-players-list .popup-body').append(`<div class="cashchoice" data-id="cash">Cash</div>`);
         $('.near-players-list .popup-body').append(`<div class="cashchoice" data-id="black_money">Black Money</div>`);
@@ -446,13 +445,13 @@ $(document).ready(function () {
         EndDragging();
     });
 
-    $("#seize").mouseenter(function () {
+    $("#seize").mouseenter(function() {
         if (!$(this).hasClass('disabled')) {
             $(this).addClass('hover');
         }
-    }).mouseleave(function () {
+    }).mouseleave(function() {
         $(this).removeClass('hover');
-    }).click(function (event, ui) {
+    }).click(function(event, ui) {
         InventoryLog('Seizing Cash from ' + destinationOwner);
         $.post("http://ev-inventory/SeizeCash", JSON.stringify({
             target: destinationOwner
@@ -460,20 +459,20 @@ $(document).ready(function () {
     });
 
 
-    $("#steal").mouseenter(function () {
+    $("#steal").mouseenter(function() {
         if (!$(this).hasClass('disabled')) {
             $(this).addClass('hover');
         }
-    }).mouseleave(function () {
+    }).mouseleave(function() {
         $(this).removeClass('hover');
-    }).click(function (event, ui) {
+    }).click(function(event, ui) {
         InventoryLog('Stealing Cash from ' + destinationOwner);
         $.post("http://ev-inventory/StealCash", JSON.stringify({
             target: destinationOwner
         }));
     });
 
-    $('#drop').click(function (event, ui) {
+    $('#drop').click(function(event, ui) {
         if (dragging) {
             itemData = $(draggingItem).find('.item').data("item");
             let dropCount = parseInt($("#count").val());
@@ -488,21 +487,20 @@ $(document).ready(function () {
                     item: itemData,
                     qty: dropCount
                 }));
-            } else {
-            }
+            } else {}
             EndDragging();
         }
     });
 
-    $("#drop").mouseenter(function () {
+    $("#drop").mouseenter(function() {
         if (!$(this).hasClass('disabled')) {
             $(this).addClass('hover');
         }
-    }).mouseleave(function () {
+    }).mouseleave(function() {
         $(this).removeClass('hover');
     });
 
-    $('#inventoryOne, #inventoryTwo').on('mouseenter', '.slot', function () {
+    $('#inventoryOne, #inventoryTwo').on('mouseenter', '.slot', function() {
 
         $('.Information').find('.info-name').html("");
         $('.Information').find('.info-uniqueness').html("");
@@ -555,7 +553,7 @@ $(document).ready(function () {
         }
     });
 
-    $('#inventoryOne, #inventoryTwo').on('mouseleave', '.slot', function () {
+    $('#inventoryOne, #inventoryTwo').on('mouseleave', '.slot', function() {
         $('.Information').find('.info-name').html("");
         $('.Information').find('.info-uniqueness').html("");
         $('.Information').find('.info-meta').html("");
@@ -563,7 +561,7 @@ $(document).ready(function () {
 
     });
 
-    $("body").on("keyup", function (key) {
+    $("body").on("keyup", function(key) {
         if (Config.closeKeys.includes(key.which)) {
             closeInventory();
         }
@@ -576,33 +574,33 @@ $(document).ready(function () {
     });
 });
 
-$('.popup-body').on('click', '.cashchoice', function () {
+$('.popup-body').on('click', '.cashchoice', function() {
     $.post("http://ev-inventory/GetNearPlayers", JSON.stringify({
         action: 'pay',
         originItem: $(this).data("id")
     }));
 });
 
-$('.popup-body').on('click', '.cashstore', function () {
+$('.popup-body').on('click', '.cashstore', function() {
     $.post("http://ev-inventory/CashStore", JSON.stringify({
         action: 'cashstore',
         item: $(this).data("id"),
         count: parseInt($("#count").val()),
         owner: destinationOwner,
         destinationTier: secondTier
-    }), function(status){
+    }), function(status) {
         $('.near-players-wrapper').fadeOut();
     });
 });
 
-$('.popup-body').on('click', '.cashtake', function () {
+$('.popup-body').on('click', '.cashtake', function() {
     $.post("http://ev-inventory/CashTake", JSON.stringify({
         action: 'cashtake',
         item: $(this).data("id"),
         count: parseInt($("#count").val()),
         owner: destinationOwner,
         destinationTier: secondTier
-    }), function(status){
+    }), function(status) {
         $('.near-players-wrapper').fadeOut();
     });
 });
@@ -665,11 +663,11 @@ function AttemptDropInEmptySlot(origin, destination, moveQty) {
     } else {
         if (result === 1) {
             origin.addClass('error');
-            setTimeout(function () {
+            setTimeout(function() {
                 origin.removeClass('error');
             }, 1000);
             destination.addClass('error');
-            setTimeout(function () {
+            setTimeout(function() {
                 destination.removeClass('error');
             }, 1000);
             InventoryLog("Destination Inventory Owner Was Undefined");
@@ -808,11 +806,11 @@ function AttemptDropInOccupiedSlot(origin, destination, moveQty) {
     } else {
         if (result === 1) {
             origin.addClass('error');
-            setTimeout(function () {
+            setTimeout(function() {
                 origin.removeClass('error');
             }, 1000);
             destination.addClass('error');
-            setTimeout(function () {
+            setTimeout(function() {
                 destination.removeClass('error');
             }, 1000);
             InventoryLog("Destination Inventory Owner Was Undefined");
@@ -831,8 +829,7 @@ function ErrorCheck(origin, destination, moveQty) {
     var sameInventory = (originOwner === destinationOwner);
     var status = -1;
 
-    if (sameInventory) {
-    } else if (originOwner === $('#inventoryOne').data('invOwner') && destinationOwner === $('#inventoryTwo').data('invOwner')) {
+    if (sameInventory) {} else if (originOwner === $('#inventoryOne').data('invOwner') && destinationOwner === $('#inventoryTwo').data('invOwner')) {
         var item = origin.find('.item').data('item');
     } else {
         var item = origin.find('.item').data('item');
@@ -874,7 +871,7 @@ function DisplayMoveError(origin, destination, error) {
     if (errorHighlightTimer != null) {
         clearTimeout(errorHighlightTimer);
     }
-    errorHighlightTimer = setTimeout(function () {
+    errorHighlightTimer = setTimeout(function() {
         origin.removeClass('error');
         destination.removeClass('error');
     }, 1000);
@@ -882,14 +879,14 @@ function DisplayMoveError(origin, destination, error) {
     InventoryLog(error);
 }
 
-$('.exit-popup').on('click', function () {
+$('.exit-popup').on('click', function() {
     givingItem = null;
-    $('.near-players-wrapper').fadeOut('normal').promise().then(function () {
+    $('.near-players-wrapper').fadeOut('normal').promise().then(function() {
         $(this).find('.popup-body').html('');
     });
 });
 
-$('.popup-body').on('click', '.player', function () {
+$('.popup-body').on('click', '.player', function() {
 
     let target = $(this).data('id');
     let action = $(this).data('action');
@@ -905,7 +902,7 @@ $('.popup-body').on('click', '.player', function () {
                 target: target,
                 originItem: givingItem,
                 count: count
-            }), function (status) {
+            }), function(status) {
                 if (status) {
                     $('.near-players-wrapper').fadeOut();
 
@@ -923,7 +920,7 @@ $('.popup-body').on('click', '.player', function () {
             target: target,
             item: givingItem,
             count: count
-        }), function (status) {
+        }), function(status) {
             if (status) {
                 $('.near-players-wrapper').fadeOut();
             }
@@ -936,13 +933,13 @@ var alertTimer = null;
 function ItemAdded(alerts) {
     clearTimeout(alertTimer);
 
-    $.each(alerts, function (index, data) {
+    $.each(alerts, function(index, data) {
 
         var element = $("<div class='added-item-slot' id='added-item-image'><div class='item-bg' style ='background-image: url(img/items/" + data.item.itemId + ".png')'><div class='label'><p><span id='iLabel'>" + data.qty + "x " + data.item.label + "</span></p></div></div></div>");
         $("#added-item").html("");
         $("#added-item").append(element).hide().fadeIn(200);
-        setTimeout(function () {
-            $(element).fadeOut(200, function () { $(this).remove(); });
+        setTimeout(function() {
+            $(element).fadeOut(200, function() { $(this).remove(); });
         }, 2500);
     });
 
@@ -951,8 +948,8 @@ function ItemAdded(alerts) {
 function ItemUsed(alerts) {
     clearTimeout(alertTimer);
 
-    $.each(alerts, function (index, data) {
-        
+    $.each(alerts, function(index, data) {
+
         console.log(data.message + ' ' + data.item.label);
         UseBar(data, data.message)
     });
@@ -980,7 +977,7 @@ function ActionBar(items, timer) {
 
         $("#action-bar").fadeIn(500);
 
-        setTimeout(function () {
+        setTimeout(function() {
             $("#action-bar").fadeOut(1000);
         }, 4000);
 
@@ -998,7 +995,7 @@ function ActionBarUsed(index) {
         } else {
             $(`.slot-${index - 1}`).addClass('used');
         }
-        usedActionTimer = setTimeout(function () {
+        usedActionTimer = setTimeout(function() {
             $(`.slot-${index - 1}`).removeClass('used');
             $(`.slot-${index - 1}`).removeClass('empty-used');
         }, 1000)
@@ -1022,11 +1019,11 @@ function SearchInventory(searchVal) {
     if (searchVal !== '') {
         $.each(
             $('#search')
-                .parent()
-                .parent()
-                .parent()
-                .find('#inventoryOne, #inventoryTwo')
-                .children(),
+            .parent()
+            .parent()
+            .parent()
+            .find('#inventoryOne, #inventoryTwo')
+            .children(),
             function(index, slot) {
                 let item = $(slot).find('.item').data('item');
 
@@ -1048,11 +1045,11 @@ function SearchInventory(searchVal) {
     } else {
         $.each(
             $('#search')
-                .parent()
-                .parent()
-                .parent()
-                .find('#inventoryOne, #inventoryTwo')
-                .children(),
+            .parent()
+            .parent()
+            .parent()
+            .find('#inventoryOne, #inventoryTwo')
+            .children(),
             function(index, slot) {
                 $(slot).removeClass('search-non-match');
             }
