@@ -72,6 +72,8 @@ function ToggleVehicleLock()
 			local vehicleLabel = GetDisplayNameFromVehicleModel(GetEntityModel(vehicle))
 			vehicleLabel = GetLabelText(vehicleLabel)
 
+			TriggerServerEvent('InteractSound_SV:PlayOnAll','unlock2',0.5)
+
 			if lockStatus == 1 then -- unlocked
 				SetVehicleDoorsLocked(vehicle, 2, false)
 				PlayVehicleDoorCloseSound(vehicle, 1)
@@ -115,7 +117,7 @@ Citizen.CreateThread(function()
 			local lib = "anim@mp_player_intmenu@key_fob@"
 			local anim = "fob_click"
 		
-			TriggerServerEvent('InteractSound_SV:PlayOnAll','unlock2',0.5)
+			
 
 
 			ESX.Streaming.RequestAnimDict(lib, function()
