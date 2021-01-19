@@ -115,6 +115,9 @@ Citizen.CreateThread(function()
 			local lib = "anim@mp_player_intmenu@key_fob@"
 			local anim = "fob_click"
 		
+			TriggerServerEvent('InteractSound_SV:PlayOnAll','unlock2',0.5)
+
+
 			ESX.Streaming.RequestAnimDict(lib, function()
 				TaskPlayAnim(ply, lib, anim, 8.0, -8.0, -1, 0, 0, false, false, false)
 			end)
@@ -126,11 +129,15 @@ Citizen.CreateThread(function()
 
 
 
-	
+
+			--[[
+
 		-- D-pad down on controllers works, too!
 		elseif IsControlJustReleased(0, 173) and not IsInputDisabled(0) then
 			ToggleVehicleLock()
 			Citizen.Wait(300)
+			]]--
+	
 		end
 	end
 end)
