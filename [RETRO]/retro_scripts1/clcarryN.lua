@@ -101,9 +101,13 @@ function OpenActionMenuInteraction(target)
 
 		if data.current.value == 'wallet' then
 			
-			TriggerEvent('retro_scripts:openWallet', source)
+		--	TriggerEvent('retro_scripts:openWallet', source)
 		--	ExecuteCommand('piggyback')
 
+		  
+		  
+		 ESX.ShowNotification('~g~You may now use your inventory to check your cash.')
+		  Citizen.wait(1000)
 		menu.close()
        	end
 		
