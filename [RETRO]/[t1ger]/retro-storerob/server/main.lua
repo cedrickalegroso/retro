@@ -146,10 +146,6 @@ AddEventHandler('qb-storerobbery:server:SafeReward', function(safe)
 end)
 
 
-RegisterCommand("testsound", function(source)
-    TriggerEvent('InteractSound_SV:PlayOnAll','pow',0.5)
-    
-end)
 
 
 RegisterServerEvent('retro_scripts:callcopsnew')
