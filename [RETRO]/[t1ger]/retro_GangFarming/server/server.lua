@@ -183,6 +183,22 @@ ESX.RegisterServerCallback('esx_GangFarm:getInventoryItem', function(source, cb,
 	cb(oItem)
 end)
 
+ESX.RegisterServerCallback('esx_GangFarm:getFarmerJob', function(source, cb, canFarm)
+	print('reached call back')
+	local xPlayer = ESX.GetPlayerFromId(source)
+	local job2 = xPlayer.getJob2().name
+	print(job2)
+
+	local canFarm = false 
+
+	if job2 == 'gordo' then 
+		canFarm = true 
+	end
+
+	
+	cb(canFarm)
+end)
+
 for k,v in pairs(Config.Drugs) do
 	if v.Usable then
 		ESX.RegisterUsableItem(v.Item, function(source)

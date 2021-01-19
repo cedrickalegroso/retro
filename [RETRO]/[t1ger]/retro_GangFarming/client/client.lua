@@ -73,9 +73,18 @@ AddEventHandler('esx_GangFarm:hasEnteredMarker', function(zone)
 	ESX.UI.Menu.CloseAll()
 	local v = Config.Drugs[""..action[1]..""]
 	if action[2] == 'Field' then
-		CurrentAction     = zone
-		CurrentActionMsg  = _U('press_collect', action[1])
-		CurrentActionData = {}
+		print('calling call back')
+		local canFarm = false
+		ESX.TriggerServerCallback('esx_GangFarm:getFarmerJob', function(canFarm)
+			if canFarm == false then 
+                 return
+			end
+
+			CurrentAction     = zone
+			CurrentActionMsg  = _U('press_collect', action[1])
+			CurrentActionData = {}
+			
+		end, v.Item)		
 	end
 	
 	if action[2] == 'Processing' then
