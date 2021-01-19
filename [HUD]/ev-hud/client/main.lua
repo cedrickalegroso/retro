@@ -232,10 +232,14 @@ Citizen.CreateThread(function()
         if IsControlJustReleased(0, 29) and IsPedInAnyVehicle(PlayerPedId()) then
             seatbeltOn = not seatbeltOn
              if not seatbeltOn then
+                print('belt on')
+                TriggerEvent('InteractSound_CL:PlayWithinDistance', source, 2.0, 'unbuckle',0.5)
                 TriggerEvent("seatbelt:client:ToggleSeatbelt",false)
                 TriggerEvent("notification",'Seat Belt Disabled',2)
             else
                 DisableControlAction(0, 75)
+                print('belt off')
+                TriggerEvent('InteractSound_CL:PlayWithinDistance', source, 2.0, 'buckle',0.5)
 				TriggerEvent("seatbelt:client:ToggleSeatbelt",true)
 				TriggerEvent("notification",'Seat Belt Enabled',1)
             end
