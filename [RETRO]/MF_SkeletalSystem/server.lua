@@ -194,6 +194,7 @@ function MFS:PlayerDropped(source)
   end
 end
 
+TriggerEvent("es:addGroupCommand",'huhuhuhuhsakitkatawanpahilot',"user",function(source,args) TriggerClientEvent('MF_SkeletalSystem:HealBones',source,"all"); end)
 TriggerEvent("es:addGroupCommand",'healSkelly',"admin",function(source,args) TriggerClientEvent('MF_SkeletalSystem:HealBones',source,"all"); end)
 ESX.RegisterServerCallback('MF_SkeletalSystem:GetStartData', function(source,cb) while not MFS.dS or not MFS.wDS do Citizen.Wait(0); end; cb(MFS.cS); end)
 AddEventHandler('playerConnected', function(...) MFS:DoLogin(source); end)
