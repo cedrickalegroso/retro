@@ -13,7 +13,7 @@ Config.ExtraVisionShops = {
 
     ['Retro Shops'] = {
         coords = {
-            vector3(2557.458, 382.282, 106.622),
+            --vector3(2557.458, 382.282, 106.622),
             vector3(3038.939, 585.954, 106.622),
             vector3(-3038.939, 1001.462, 7.908),
             vector3(547.431, 2671.710, 42.156),
@@ -149,7 +149,7 @@ Config.ExtraVisionShops = {
         items = {
             { name = "shovel", price = 650, count = 1 },
             { name = "lockpick", price = 10, count = 1 },
-            { name = "cashregbypass", price = 1450, count = 1 },
+            { name = "cashregbypass", price = 450, count = 1 },
             { name = "VaultDoorBypass", price = 2500, count = 1 }
         },
         markerType = 27,
