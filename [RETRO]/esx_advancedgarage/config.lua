@@ -14,7 +14,7 @@ Config.Main = {
 	Spacers = true, -- true = Shows Spacers in Menus.
 	PoundTimer = false, -- true = Uses Pound Timer
 	PoundWait = 5, -- How many Minutes someone must wait before Opening Pound Menu Again.
-	JPoundTimer = false, -- true = Uses Job Pound Timer
+	JPoundTimer = true, -- true = Uses Job Pound Timer
 	JPoundWait = 2.5, -- How many Minutes someone must wait before Opening Job Pound Menu Again.
 	DamageMult = false, -- true = Costs more to Store a Broken/Damaged Vehicle.
 	MultAmount = 999999999999999 -- Higher Number = Higher Repair Price.
@@ -118,7 +118,7 @@ Config.Boats = {
 Config.Cars = {
 	Garages = true, -- true = Allows use of Car Garages.
 	Blips = true, -- true = Use Car Blips.
-	PoundP = 5000, -- How much it Costs to get Vehicles from Car Pound.
+	PoundP = 15000, -- How much it Costs to get Vehicles from Car Pound.
 	Markers = {
 		Points = {Type = 36, r = 0, g = 255, b = 0, x = 1.0, y = 1.0, z = 1.0}, -- Green Color / Standard Size Circle.
 		Delete = {Type = 36, r = 255, g = 0, b = 0, x = 1.0, y = 1.0, z = 1.0}, -- Red Color / Big Size Circle.
