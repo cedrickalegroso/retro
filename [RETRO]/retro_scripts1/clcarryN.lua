@@ -93,7 +93,7 @@ function OpenActionMenuInteraction(target)
 				menu.close()
 			end
 
-			if data.current.value == 'hide' then
+			if data.current.value == 'billbaby' then
 			
 				ExecuteCommand('showbills')
 
