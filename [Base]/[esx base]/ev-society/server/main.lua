@@ -538,7 +538,8 @@ ESX.RegisterServerCallback('esx_society:getOnlinePlayers', function(source, cb)
 			source     = xPlayer.source,
 			identifier = xPlayer.identifier,
 			name       = xPlayer.name,
-			job        = xPlayer.job
+			job        = xPlayer.job,
+			job2        = xPlayer.job2,
 		})
 	end
 
