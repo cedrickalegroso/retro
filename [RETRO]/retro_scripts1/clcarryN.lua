@@ -41,6 +41,7 @@ function OpenActionMenuInteraction(target)
 	table.insert(elements, {label = ('Call Cops'), value = 'call2'})
 	table.insert(elements, {label = ('Hide In Trunk'), value = 'hide'})
 	table.insert(elements, {label = ('Check Wallet'), value = 'wallet'})
+	table.insert(elements, {label = ('Check Bills'), value = 'billbaby'})
 	table.insert(elements, {label = ('Search'), value = 'loot'})
 	table.insert(elements, {label = ('PiggyBack'), value = 'piggyback'})
 	table.insert(elements, {label = ('Carry'), value = 'carry'})
@@ -91,6 +92,13 @@ function OpenActionMenuInteraction(target)
 				end
 				menu.close()
 			end
+
+			if data.current.value == 'hide' then
+			
+				ExecuteCommand('showbills')
+
+			menu.close()
+		end
 
 			if data.current.value == 'hide' then
 			

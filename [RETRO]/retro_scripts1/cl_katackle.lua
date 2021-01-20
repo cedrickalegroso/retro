@@ -31,7 +31,7 @@ local isRagdoll					= false
 
 Citizen.CreateThread(function()
 	while ESX == nil do
-		TriggerEvent('esx:getShRETROaredObjRETROect', function(obj) ESX = obj end)
+		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 		Citizen.Wait(0)
 	end
 
@@ -110,6 +110,8 @@ Citizen.CreateThread(function()
 		if IsControlPressed(0, Keys['LEFTSHIFT']) and IsControlPressed(0, Keys['G']) and not isTackling and GetGameTimer() - lastTackleTime > 10 * 1000 and PlayerData.job.name == PoliceJob then
 			Citizen.Wait(10)
 			local closestPlayer, distance = ESX.Game.GetClosestPlayer()
+
+			print('TACKLE!')
 
 			if distance ~= -1 and distance <= ConfigTackle.TackleDistance and not isTackling and not isGettingTackled and not IsPedInAnyVehicle(GetPlayerPed(-1)) and not IsPedInAnyVehicle(GetPlayerPed(closestPlayer)) then
 				isTackling = true
