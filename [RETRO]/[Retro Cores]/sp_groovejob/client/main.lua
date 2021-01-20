@@ -724,7 +724,7 @@ function OpenMobilegrooveActionsMenu()
 			IsBusy = true
 			TaskStartScenarioInPlace(playerPed, "WORLD_HUMAN_WELDING", 0, true)
 			Citizen.CreateThread(function()
-			--	exports['progressBars']:startUI(10000, "Lock picking")
+			--	--exports['progressBars']:startU(10000, "Lock picking")
 			TriggerEvent("mythic_progbar:client:progress", {
 				name = "unique_action_name",
 				duration = 10000,
@@ -777,17 +777,43 @@ function OpenMobilegrooveActionsMenu()
 			IsBusy = true
 			TaskStartScenarioInPlace(playerPed, "PROP_HUMAN_BUM_BIN", 0, true)
 			Citizen.CreateThread(function()
-				exports['progressBars']:startUI(20000, "Repair")
-				Citizen.Wait(20000)
+				--exports['progressBars']:startU(20000, "Repair")
+			---	Citizen.Wait(20000)
 
-				SetVehicleFixed(vehicle)
-				SetVehicleDeformationFixed(vehicle)
-				SetVehicleUndriveable(vehicle, false)
-				SetVehicleEngineOn(vehicle, true, true)
-				ClearPedTasksImmediately(playerPed)
+			TriggerEvent("mythic_progbar:client:progress", {
+				name = "unique_action_name",
+				duration = 20000,
+				label = "Reparing",
+				useWhileDead = false,
+				canCancel = true,
+				controlDisables = {
+					disableMovement = true,
+					disableCarMovement = true,
+					disableMouse = false,
+					disableCombat = true,
+				},
+				animation = {
+					animDict = "",
+					anim = "",
+				},
+				prop = {
+					model = "",
+				}
+			}, function(status)
+				if not status then
+					SetVehicleFixed(vehicle)
+					SetVehicleDeformationFixed(vehicle)
+					SetVehicleUndriveable(vehicle, false)
+					SetVehicleEngineOn(vehicle, true, true)
+					ClearPedTasksImmediately(playerPed)
+	
+					ESX.ShowNotification(_U('vehicle_repaired'))
+					IsBusy = false
+			    	
+				end
+			end)
 
-				ESX.ShowNotification(_U('vehicle_repaired'))
-				IsBusy = false
+				
 			end)
 		else
 			ESX.ShowNotification(_U('no_vehicle_nearby'))
@@ -808,14 +834,38 @@ function OpenMobilegrooveActionsMenu()
 			IsBusy = true
 			TaskStartScenarioInPlace(playerPed, "WORLD_HUMAN_MAID_CLEAN", 0, true)
 			Citizen.CreateThread(function()
-				exports['progressBars']:startUI(10000, "Cleaning")
-				Citizen.Wait(10000)
-
-				SetVehicleDirtLevel(vehicle, 0)
+				--exports['progressBars']:startU(10000, "Cleaning")
+				TriggerEvent("mythic_progbar:client:progress", {
+					name = "unique_action_name",
+					duration = 10000,
+					label = "Cleaning",
+					useWhileDead = false,
+					canCancel = true,
+					controlDisables = {
+						disableMovement = true,
+						disableCarMovement = true,
+						disableMouse = false,
+						disableCombat = true,
+					},
+					animation = {
+						animDict = "",
+						anim = "",
+					},
+					prop = {
+						model = "",
+					}
+				}, function(status)
+					if not status then
+						SetVehicleDirtLevel(vehicle, 0)
 				ClearPedTasksImmediately(playerPed)
 
 				ESX.ShowNotification(_U('vehicle_cleaned'))
 				IsBusy = false
+						
+					end
+				end)
+
+			
 			end)
 		else
 			ESX.ShowNotification(_U('no_vehicle_nearby'))
@@ -1098,7 +1148,7 @@ AddEventHandler('esx_groovejob:onHijack', function()
 			TaskStartScenarioInPlace(playerPed, "WORLD_HUMAN_WELDING", 0, true)
 
 			Citizen.CreateThread(function()
-			--	exports['progressBars']:startUI(10000, "Lock picking")
+			--	--exports['progressBars']:startU(10000, "Lock picking")
 
 
 			--	Citizen.Wait(10000)
