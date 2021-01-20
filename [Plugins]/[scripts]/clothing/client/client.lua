@@ -14,7 +14,7 @@ local face_features = {"Nose_Width","Nose_Peak_Hight","Nose_Peak_Lenght","Nose_B
 local tatCategory = GetTatCategs()
 local tattooHashList = CreateHashList()
 
-local StoreCost = 0;
+local StoreCost = 50;
 local isService = false;
 local PlayerLoaded = false;
 local FirstSpawn = true;
