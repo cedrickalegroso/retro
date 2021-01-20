@@ -11,8 +11,8 @@ Config.UseBlips = true -- true = Use License Shop Blips
 Config.RequireDMV = true -- If true then it will require players to have Drivers Permit to buy other Licenses | false does the Opposite.
 
 Config.AdvancedVehicleShop = true -- Set to true if using esx_advancedvehicleshop
-Config.LicenseAircraft = 250000
-Config.LicenseBoating = 150000
+Config.LicenseAircraft = 150000
+Config.LicenseBoating = 75000
 
 Config.AdvancedWeaponShop = false -- Set to true if using esx_advancedweaponshop
 Config.LicenseMelee = 1
