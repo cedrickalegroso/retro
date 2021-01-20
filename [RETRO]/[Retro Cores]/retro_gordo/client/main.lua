@@ -1,4 +1,4 @@
-local CurrentActionData, handcuffTimer, dragStatus, blipsCops, currentTask = {}, {}, {}, {}, {}
+local CurrentActionData, handcuffTimer, dragStatus, blipsGORDO, currentTask = {}, {}, {}, {}, {}
 local HasAlreadyEnteredMarker, isDead, isHandcuffed, hasAlreadyJoined, playerInService = false, false, false, false, false
 local LastStation, LastPart, LastPartNum, LastEntity, CurrentAction, CurrentActionMsg
 dragStatus.isDragged, isInShopMenu = false, false
@@ -1544,7 +1544,7 @@ Citizen.CreateThread(function()
 end)
 
 -- Create blip for colleagues
-function createBlip(id)
+function createBlipGORDO(id)
 	local ped = GetPlayerPed(id)
 	local blip = GetBlipFromEntity(ped)
 
@@ -1557,7 +1557,7 @@ function createBlip(id)
 		SetBlipScale(blip, 0.7) -- set scale
 		SetBlipAsShortRange(blip, true)
 
-		table.insert(blipsCops, blip) -- add blip to array so we can remove it later
+		table.insert(blipsGORDO, blip) -- add blip to array so we can remove it later
 	end
 end
 
@@ -1565,30 +1565,22 @@ RegisterNetEvent('retro_gordo:updateBlip')
 AddEventHandler('retro_gordo:updateBlip', function()
 
 	-- Refresh all blips
-	for k, existingBlip in pairs(blipsCops) do
+	for k, existingBlip in pairs(blipsGORDO) do
 		RemoveBlip(existingBlip)
 	end
 
 	-- Clean the blip table
-	blipsCops = {}
+	blipsGORDO = {}
 
-	-- Enable blip?
-	if Config.EnableESXService and not playerInService then
-		return
-	end
-
-	if not Config.EnableJobBlip then
-		return
-	end
 
 	-- Is the player a cop? In that case show all the blips for other cops
-	if ESX.PlayerData.job2 and ESX.PlayerData.job2.name == 'gordo' then
+	if ESX.PlayerData.job2  ~= nil and ESX.PlayerData.job2.name == 'gordo' then
 		ESX.TriggerServerCallback('esx_society:getOnlinePlayers', function(players)
 			for i=1, #players, 1 do
 				if players[i].job2.name == 'gordo' then
 					local id = GetPlayerFromServerId(players[i].source)
 					if NetworkIsPlayerActive(id) and GetPlayerPed(id) ~= PlayerPedId() then
-						createBlip(id)
+						createBlipGORDO(id)
 					end
 				end
 			end
