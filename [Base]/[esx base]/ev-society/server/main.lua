@@ -116,6 +116,47 @@ if xPlayer.job.name == society.name then
 	
 end)
 
+RegisterServerEvent('esx_society:depositMoney2')
+AddEventHandler('esx_society:depositMoney2', function(society, amount)
+	local xPlayer = ESX.GetPlayerFromId(source)
+	local society = GetSociety(society)
+	amount = ESX.Math.Round(tonumber(amount))
+
+	if amount > 0 and xPlayer.getMoney() >= amount then
+		TriggerEvent('esx_addonaccount:getSharedAccount', society.account, function(account)
+			xPlayer.removeMoney(amount)
+			account.addMoney(amount)
+		--	log(GetPlayerName(xPlayer.source) .. '(' .. xPlayer.source .. ') deposit $' .. amount .. ' to ' .. society.account)
+
+		end)
+
+		xPlayer.showNotification(_U('have_deposited', ESX.Math.GroupDigits(amount)))
+	else
+		xPlayer.showNotification(_U('invalid_amount'))
+	end
+	--[[
+	if xPlayer.job.name == society.name then
+		if amount > 0 and xPlayer.getMoney() >= amount then
+			TriggerEvent('esx_addonaccount:getSharedAccount', society.account, function(account)
+				xPlayer.removeMoney(amount)
+				account.addMoney(amount)
+				log(GetPlayerName(xPlayer.source) .. '(' .. xPlayer.source .. ') deposit $' .. amount .. ' to ' .. society.account)
+
+			end)
+
+			xPlayer.showNotification(_U('have_deposited', ESX.Math.GroupDigits(amount)))
+		else
+			xPlayer.showNotification(_U('invalid_amount'))
+		end
+	else
+		print(('esx_society: %s attempted to call depositMoney!'):format(xPlayer.identifier))
+	end
+	]]--
+
+
+end)
+
+
 RegisterServerEvent('esx_society:depositMoney')
 AddEventHandler('esx_society:depositMoney', function(society, amount)
 	local xPlayer = ESX.GetPlayerFromId(source)
@@ -126,7 +167,7 @@ AddEventHandler('esx_society:depositMoney', function(society, amount)
 		TriggerEvent('esx_addonaccount:getSharedAccount', society.account, function(account)
 			xPlayer.removeMoney(amount)
 			account.addMoney(amount)
-			log(GetPlayerName(xPlayer.source) .. '(' .. xPlayer.source .. ') deposit $' .. amount .. ' to ' .. society.account)
+		--	log(GetPlayerName(xPlayer.source) .. '(' .. xPlayer.source .. ') deposit $' .. amount .. ' to ' .. society.account)
 
 		end)
 
@@ -410,6 +451,8 @@ ESX.RegisterServerCallback('esx_society:setJob2', function(source, cb, identifie
 	local xPlayer = ESX.GetPlayerFromId(source)
 	local isBoss = xPlayer.job2.grade2_name == 'boss' or xPlayer.job2.grade2_name == 'lieutenant'
 --	local isBoss2 = xPlayer.job.grade_name == 'lieutenant'
+
+print('hired')
 
 --	if isBoss then
 		local xTarget = ESX.GetPlayerFromIdentifier(identifier)

@@ -8,7 +8,7 @@ Citizen.CreateThread(function()
 		Citizen.Wait(0)
 	end
 
-	while ESX.GetPlayerData().job == nil do
+	while ESX.GetPlayerData().job == nil and ESX.GetPlayerData().job2 == nil do
 		Citizen.Wait(10)
 	end
 
@@ -23,6 +23,12 @@ AddEventHandler('esx:setJob', function(job)
 	RefreshBussHUD()
 end)
 
+RegisterNetEvent('esx:setJob2')
+AddEventHandler('esx:setJob2', function(job2)
+	ESX.PlayerData.job2 = job2
+	RefreshBussHUD()
+end)
+
 function RefreshBussHUD()
   DisableSocietyMoneyHUDElement()
   
@@ -32,16 +38,18 @@ function RefreshBussHUD()
 		ESX.TriggerServerCallback('esx_society:getSocietyMoney', function(money)
 			UpdateSocietyMoneyHUDElement(money)
 		end, ESX.PlayerData.job.name)
-  end
+	end
+	
 
-  if ESX.PlayerData.job2.grade_name == 'boss' then
+	if ESX.PlayerData.job2.grade_name == 'boss' or ESX.PlayerData.job2.grade_name == 'lieutenant' then
 		EnableSociety2MoneyHUDElement()
 
-		ESX.TriggerServerCallback('esx_society:getSocietyMoney', function(money)
-			UpdateSociety2MoneyHUDElement(money)
+		ESX.TriggerServerCallback('esx_society:getSocietyMoney', function(money2)
+			UpdateSociety2MoneyHUDElement(money2)
 		end, ESX.PlayerData.job2.name)
-  end
-  
+    end
+
+
 end
 
 RegisterNetEvent('esx_addonaccount:setMoney')
@@ -49,7 +57,13 @@ AddEventHandler('esx_addonaccount:setMoney', function(society, money)
 	if ESX.PlayerData.job and ESX.PlayerData.job.grade_name == 'boss' or ESX.PlayerData.job.grade_name == 'lieutenant' and 'society_' .. ESX.PlayerData.job.name == society then
 		UpdateSocietyMoneyHUDElement(money)
 	end
+
+	if ESX.PlayerData.job2 and ESX.PlayerData.job2.grade_name == 'boss' or ESX.PlayerData.job2.grade_name == 'lieutenant' and 'society_' .. ESX.PlayerData.job2.name == society then
+		UpdateSociety2MoneyHUDElement(money2)
+	end
 end)
+
+
 
 function EnableSocietyMoneyHUDElement()
 	local societyMoneyHUDElementTpl = '<div><img src="' .. base64MoneyIcon .. '" style="width:20px; height:20px; vertical-align:middle;">&nbsp;{{money}}</div>'
@@ -81,12 +95,11 @@ function DisableSocietyMoneyHUDElement()
 
 	TriggerEvent('esx_society:toggleSocietyHud', false)
 end
-
 ---SECONDJOB INCLUDED
 function DisableSociety2MoneyHUDElement()
 	ESX.UI.HUD.RemoveElement('society2_money')
   end
-
+  
 function UpdateSocietyMoneyHUDElement(money)
 	
   --[[
@@ -105,10 +118,13 @@ if ESX.GetConfig().EnableHud then
 	TriggerEvent('esx_society:setSocietyMoney', money)
 end
 
-function UpdateSociety2MoneyHUDElement(money)
+
+
+---SECONDJOB INCLUDED
+function UpdateSociety2MoneyHUDElement(money2)
 
 	ESX.UI.HUD.UpdateElement('society2_money', {
-	  money = money
+	  money = money2
 	})
   
   end
@@ -286,7 +302,7 @@ function OpenBossMenu2(society, close, options)
 	end
 
 	if options.employees then
-	--	table.insert(elements, {label = _U('employee_management'), value = 'manage_employees'})
+		table.insert(elements, {label = _U('employee_management'), value = 'manage_employees'})
 	end
 
 	if options.grades then
@@ -320,9 +336,13 @@ function OpenBossMenu2(society, close, options)
 
 		elseif data.current.value == 'deposit_money' then
 
+			print(society)
+
 			ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'deposit_money_amount_' .. society, {
 				title = _U('deposit_amount')
 			}, function(data, menu)
+
+			
 
 				local amount = tonumber(data.value)
 
@@ -330,7 +350,7 @@ function OpenBossMenu2(society, close, options)
 					ESX.ShowNotification(_U('invalid_amount'))
 				else
 					menu.close()
-					TriggerServerEvent('esx_society:depositMoney', society, amount)
+					TriggerServerEvent('esx_society:depositMoney2', society, amount)
 				end
 
 			end, function(data, menu)
