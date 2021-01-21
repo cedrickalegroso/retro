@@ -1575,6 +1575,7 @@ AddEventHandler('retro_gordo:updateBlip', function()
 
 	-- Is the player a cop? In that case show all the blips for other cops
 	if ESX.PlayerData.job2  ~= nil and ESX.PlayerData.job2.name == 'gordo' then
+		print('Getting all Gordo Blips')
 		ESX.TriggerServerCallback('esx_society:getOnlinePlayers', function(players)
 			for i=1, #players, 1 do
 				if players[i].job2.name == 'gordo' then
