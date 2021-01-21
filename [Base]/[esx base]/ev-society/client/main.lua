@@ -59,7 +59,7 @@ AddEventHandler('esx_addonaccount:setMoney', function(society, money)
 	end
 
 	if ESX.PlayerData.job2 and ESX.PlayerData.job2.grade_name == 'boss' or ESX.PlayerData.job2.grade_name == 'lieutenant' and 'society_' .. ESX.PlayerData.job2.name == society then
-		UpdateSociety2MoneyHUDElement(money2)
+		UpdateSociety2MoneyHUDElement(money)
 	end
 end)
 
@@ -121,10 +121,10 @@ end
 
 
 ---SECONDJOB INCLUDED
-function UpdateSociety2MoneyHUDElement(money2)
+function UpdateSociety2MoneyHUDElement(money)
 
 	ESX.UI.HUD.UpdateElement('society2_money', {
-	  money = money2
+	  money = money
 	})
   
   end

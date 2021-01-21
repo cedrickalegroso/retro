@@ -447,7 +447,7 @@ ESX.RegisterServerCallback('esx_society:setJob', function(source, cb, identifier
 	end
 end)
 
-ESX.RegisterServerCallback('esx_society:setJob2', function(source, cb, identifier, job, grade, type)
+ESX.RegisterServerCallback('esx_society:setJob2', function(source, cb, identifier, job2, grade2, type)
 	local xPlayer = ESX.GetPlayerFromId(source)
 	local isBoss = xPlayer.job2.grade2_name == 'boss' or xPlayer.job2.grade2_name == 'lieutenant'
 --	local isBoss2 = xPlayer.job.grade_name == 'lieutenant'
@@ -458,7 +458,7 @@ print('hired')
 		local xTarget = ESX.GetPlayerFromIdentifier(identifier)
 
 		if xTarget then
-			xTarget.setJob(job2, grade2)
+			xTarget.setJob2(job2, grade2)
 
 			if type == 'hire' then
 				xTarget.showNotification(_U('you_have_been_hired', job))
