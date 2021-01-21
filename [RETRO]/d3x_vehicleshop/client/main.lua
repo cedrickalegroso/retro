@@ -92,19 +92,28 @@ RegisterNUICallback('TestDrive', function(data, cb)
 	IsInShopMenu = false
 	--exports['mythic_notify']:PersistentHudText('START','waiting','vermelho','Wait while we load your vehicle!')
 	ESX.ShowNotification('Wait while we load your vehicle!')
-	ESX.Game.SpawnVehicle(model, vector3(-1733.25, -2901.43, 13.94), 326, function(vehicle)
-		--exports['mythic_notify']:PersistentHudText('END','waiting')
+	Citizen.Wait(5000)
 
-		TaskWarpPedIntoVehicle(playerPed, vehicle, -1)
-		SetVehicleNumberPlateText(vehicle, "TEST")
-		TriggerServerEvent('hsn-hotwire:addKeys',GetVehicleNumberPlateText(vehicle))
-		SetVehicleEngineOn(vehicle,true)
+	
+	ESX.Game.SpawnVehicle(model, vector3(-37.376983642578,-1099.7110595703,26.422353744507), 323, function(vehicle)
 
-		ESX.ShowNotification("You have ~g~40~w~ seconds to take the test drive!")
+		SetVehRadioStation(vehicle, "OFF")
+		SetVehicleFixed(vehicle)
+		SetVehicleDeformationFixed(vehicle)
+		SetVehicleUndriveable(vehicle, false)
+		SetVehicleEngineOn(vehicle, true, true)
+		--TaskWarpPedIntoVehicle(playerPed, vehicle, -1)
+		local carplate = GetVehicleNumberPlateText(vehicle)
+
+
+	TriggerServerEvent('hsn-hotwire:addKeys',GetVehicleNumberPlateText(vehicle))
+	SetVehicleEngineOn(vehicle,true)
+
+		ESX.ShowNotification("You have ~g~1~w~ minute to take the test drive!")
 		Citizen.CreateThread(function () 
-			local counter = 40
+			local counter = 60
 			
-			ESX.ShowNotification('Test drive ends in: 40 seconds!')
+			ESX.ShowNotification('Test drive ends in: 1 minute!')
 			
 	while counter > 0 do 
 			--	exports['mythic_notify']:DoCustomHudText('branco', 'Test drive ends in: '.. counter .. ' seconds!',700)
@@ -121,6 +130,8 @@ RegisterNUICallback('TestDrive', function(data, cb)
 		end)
 
 	end)
+
+
 end)
 
 RegisterNUICallback('BuyVehicle', function(data, cb)
