@@ -54,24 +54,23 @@ AddEventHandler('esx_armour:armor', function()
       }
   }, function(status)
       if not status then
-        TriggerEvent('skinchanger:getSkin', function(source, skin)
+        TriggerEvent('skinchanger:getSkin', function(skin)
 
-
-
+          print('get skin')
+          SetPedArmour(GetPlayerPed(-1), 50)
 
           if skin.sex == 0 then
             TriggerEvent('clothing:loadClothes', skin, {['bproof_1'] = 7,  ['bproof_2'] = 1})
-            SetPedArmour(GetPlayerPed(-1), 100)
+            
           else
             TriggerEvent('clothing:loadClothes', skin, {['bproof_1'] = 7,  ['bproof_2'] = 1})
-            SetPedArmour(GetPlayerPed(-1), 100)
+            
           end
           
         end)
         ESX.ShowNotification("You put on armor")
       end
   end)
-   
   --[[
     ExecuteCommand('e medic')
  
