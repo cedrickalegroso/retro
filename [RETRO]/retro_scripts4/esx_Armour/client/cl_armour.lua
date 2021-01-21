@@ -57,7 +57,7 @@ AddEventHandler('esx_armour:armor', function()
         TriggerEvent('skinchanger:getSkin', function(skin)
 
           print('get skin')
-          SetPedArmour(GetPlayerPed(-1), 50)
+          SetPedArmour(GetPlayerPed(-1), 100)
 
           if skin.sex == 0 then
             TriggerEvent('clothing:loadClothes', skin, {['bproof_1'] = 7,  ['bproof_2'] = 1})
