@@ -14,7 +14,10 @@ Citizen.CreateThread(function()
 		Citizen.Wait(10)
 	end
 
+	PlayerLoaded = true
 	ESX.PlayerData = ESX.GetPlayerData()
+	print('Auto force blips for gordo')
+	TriggerServerEvent('retro_gordo:forceBlip')
 end)
 
 function cleanPlayer(playerPed)
