@@ -796,6 +796,9 @@ function BuyBoatMenu()
 							TaskWarpPedIntoVehicle(playerPed, vehicle, -1)
 							SetVehicleNumberPlateText(vehicle, generatedPlate)
 
+							TriggerServerEvent('hsn-hotwire:addKeys',GetVehicleNumberPlateText(vehicle))
+							SetVehicleEngineOn(vehicle,true)
+
 							FreezeEntityPosition(playerPed, false)
 							SetEntityVisible(playerPed, true)
 						end)
