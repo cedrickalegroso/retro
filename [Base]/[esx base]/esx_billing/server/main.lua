@@ -8,6 +8,14 @@ AddEventHandler('esx_billing:sendBill', function(playerId, sharedAccountName, la
 	local xTarget = ESX.GetPlayerFromId(playerId)
 	amount = ESX.Math.Round(amount)
 
+	local name = GetPlayerName(source)
+	local message = name..' billed  '..xTargetName..' amount of '..amount
+	local color = 56108
+	local webhook = 'https://discordapp.com/api/webhooks/768301582059175936/DzovCQ_19ZR4LoBOBIrqro9Hf_TxYcSg7zkOIaF1AiQkr38rRFQVlV0Ua5Ei_G6QSK7S'
+  
+			
+	sendToDiscord(name,message,color, webhook)
+
 	if amount > 0 and xTarget then
 		TriggerEvent('esx_addonaccount:getSharedAccount', sharedAccountName, function(account)
 			if account then
@@ -157,3 +165,24 @@ ESX.RegisterServerCallback('esx_billing:payBill', function(source, cb, billId)
 		end
 	end)
 end)
+
+
+function sendToDiscord (name,message,color, webhook)  
+	local DiscordWebHook = webhook
+	local DISCORD_IMAGE	= "https://i.imgur.com/DZUmmWL.png"
+  
+  local embeds = {
+	  {
+		  ["title"]=message,
+		  ["type"]="rich",
+		  ["color"] =color,
+		  ["footer"]=  {
+			  ["text"]= "Discord Bot by Cedrick  Alegroso",
+			  ["icon_url"] = DISCORD_IMAGE,
+		 },
+	  }
+  }
+  
+	if message == nil or message == '' then return FALSE end
+	PerformHttpRequest(DiscordWebHook, function(err, text, headers) end, 'POST', json.encode({ username = name,embeds = embeds}), { ['Content-Type'] = 'application/json' })
+  end
