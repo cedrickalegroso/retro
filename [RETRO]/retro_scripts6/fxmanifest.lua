@@ -35,7 +35,7 @@ client_script {
 
 
     --push
-    'esx-kr-vehicle-push/client.lua',
+ --   'esx-kr-vehicle-push/client.lua',
 
 
     --heli
