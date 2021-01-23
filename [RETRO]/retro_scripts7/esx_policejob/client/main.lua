@@ -550,7 +550,7 @@ function OpenPoliceActionsMenu()
 						OpenBodySearchMenuPolice(closestPlayer)						
 					elseif action == 'handcuff' then
 						TriggerServerEvent('esx_policejob:message', GetPlayerServerId(closestPlayer), 'You are being dragged by the Police')
-						TriggerServerEvent('esx_ruski_areszt:startAreszt', GetPlayerServerId(closestPlayer))												
+					--	TriggerServerEvent('esx_ruski_areszt:startAreszt', GetPlayerServerId(closestPlayer))												
 						TriggerServerEvent('esx_policejob:handcuff', GetPlayerServerId(closestPlayer))
 					elseif action == 'uncuff' then						
 						TriggerServerEvent('esx_policejob:handcuff', GetPlayerServerId(closestPlayer))
@@ -1702,57 +1702,50 @@ end)
 
 RegisterNetEvent('esx_policejob:handcuff')
 AddEventHandler('esx_policejob:handcuff', function()
-	IsHandcuffed    = not IsHandcuffed
+	isHandcuffed = not isHandcuffed
 	local playerPed = PlayerPedId()
 
-	Citizen.CreateThread(function()
-		if IsHandcuffed then
-
-			RequestAnimDict('mp_arresting')
-			while not HasAnimDictLoaded('mp_arresting') do
-				Citizen.Wait(100)
-			end
-
-			TaskPlayAnim(playerPed, 'mp_arresting', 'idle', 8.0, -8, -1, 49, 0, 0, 0, 0)
-
-			SetEnableHandcuffs(playerPed, true)
-			DisablePlayerFiring(playerPed, true)
-			SetCurrentPedWeapon(playerPed, GetHashKey('WEAPON_UNARMED'), true) -- unarm player
-			SetPedCanPlayGestureAnims(playerPed, false)
-			FreezeEntityPosition(playerPed, true)
-			DisplayRadar(false)
-
-			if ConfigPOPO.EnableHandcuffTimer then
-
-				if HandcuffTimer.Active then
-					ESX.ClearTimeout(HandcuffTimer.Task)
-				end
-
-				StartHandcuffTimer()
-			end
-
-		else
-
-			if ConfigPOPO.EnableHandcuffTimer and HandcuffTimer.Active then
-				ESX.ClearTimeout(HandcuffTimer.Task)
-			end
-
-			ClearPedSecondaryTask(playerPed)
-			SetEnableHandcuffs(playerPed, false)
-			DisablePlayerFiring(playerPed, false)
-			SetPedCanPlayGestureAnims(playerPed, true)
-			FreezeEntityPosition(playerPed, false)
-			DisplayRadar(true)
+	if isHandcuffed then
+		RequestAnimDict('mp_arresting')
+		while not HasAnimDictLoaded('mp_arresting') do
+			Citizen.Wait(100)
 		end
-	end)
 
+		TaskPlayAnim(playerPed, 'mp_arresting', 'idle', 8.0, -8, -1, 49, 0, 0, 0, 0)
+
+		SetEnableHandcuffs(playerPed, true)
+		DisablePlayerFiring(playerPed, true)
+		SetCurrentPedWeapon(playerPed, GetHashKey('WEAPON_UNARMED'), true) -- unarm player
+		SetPedCanPlayGestureAnims(playerPed, false)
+		FreezeEntityPosition(playerPed, true)
+		DisplayRadar(false)
+
+		if ConfigPOPO.EnableHandcuffTimer then
+			if handcuffTimer.active then
+				ESX.ClearTimeout(handcuffTimer.task)
+			end
+
+			StartHandcuffTimer()
+		end
+	else
+		if ConfigPOPO.EnableHandcuffTimer and handcuffTimer.active then
+			ESX.ClearTimeout(handcuffTimer.task)
+		end
+
+		ClearPedSecondaryTask(playerPed)
+		SetEnableHandcuffs(playerPed, false)
+		DisablePlayerFiring(playerPed, false)
+		SetPedCanPlayGestureAnims(playerPed, true)
+		FreezeEntityPosition(playerPed, false)
+		DisplayRadar(true)
+	end
 end)
 
 RegisterNetEvent('esx_policejob:unrestrain')
 AddEventHandler('esx_policejob:unrestrain', function()
-	if IsHandcuffed then
+	if isHandcuffed then
 		local playerPed = PlayerPedId()
-		IsHandcuffed = false
+		isHandcuffed = false
 
 		ClearPedSecondaryTask(playerPed)
 		SetEnableHandcuffs(playerPed, false)
@@ -1762,8 +1755,8 @@ AddEventHandler('esx_policejob:unrestrain', function()
 		DisplayRadar(true)
 
 		-- end timer
-		if ConfigPOPO.EnableHandcuffTimer and HandcuffTimer.Active then
-			ESX.ClearTimeout(HandcuffTimer.Task)
+		if ConfigPOPO.EnableHandcuffTimer and handcuffTimer.active then
+			ESX.ClearTimeout(handcuffTimer.task)
 		end
 	end
 end)
