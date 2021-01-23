@@ -29,7 +29,7 @@ Citizen.CreateThread(function()
 	TriggerEvent('retro_scripts:initgroove')
   elseif ESX.PlayerData.job.name == 'police' then 
 --	print('calling police blips')
-	TriggerServerEvent('retro_scripts:updatePoliceBlips1')
+--	TriggerServerEvent('retro_scripts:updatePoliceBlips1')
 	Citizen.Wait(5000)
 	TriggerEvent('retro_scripts:initpolice')
   end
