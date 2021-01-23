@@ -132,11 +132,11 @@ AddEventHandler('chatMessage', function(source, n, message)
 			
 
 		
-		elseif cm[1] == "/wawanamanakohuhuhuhwagnamancombatlog" then
+		elseif cm[1] == "/huhuhuhuhsakitkatawanpahilot" then
 			
 	       TriggerClientEvent('ambotahhhh', source)
 		
-
+		   TriggerClientEvent('MF_SkeletalSystem:HealBones',source,"all")
 		
 		elseif cm[1] == "/bed1" then
 			if xPlayer.job.name == 'ambulance' or  xPlayer.job.name == 'fire' then
