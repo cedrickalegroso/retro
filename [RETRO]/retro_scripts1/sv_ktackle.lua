@@ -7,7 +7,7 @@ ConfigTackleTackle.TackleDistance				= 3.0
 
 ESX = nil
 
-TriggerEvent('esx:getShRETROaredObjRETROect', function(obj) ESX = obj end)
+TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 RegisterServerEvent('esx_kekke_tackle:tryTackle')
 AddEventHandler('esx_kekke_tackle:tryTackle', function(target)

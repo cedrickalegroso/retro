@@ -142,7 +142,7 @@ server_script {
 
 
   --katacke
-  'sv_ktackle',
+  'sv_ktackle.lua',
 
   --med
   'sv_med.lua',
