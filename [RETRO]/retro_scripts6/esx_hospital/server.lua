@@ -134,7 +134,7 @@ AddEventHandler('chatMessage', function(source, n, message)
 		
 		elseif cm[1] == "/huhuhuhuhsakitkatawanpahilot" then
 			
-	       TriggerClientEvent('ambotahhhh', source)
+	       --TriggerClientEvent('ambotahhhh', source)
 		
 		   TriggerClientEvent('MF_SkeletalSystem:HealBones',source,"all")
 		
