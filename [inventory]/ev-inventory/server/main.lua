@@ -31,6 +31,33 @@ end, function(source, args, user)
 	TriggerClientEvent('chatMessage', source, "SYSTEM", {255, 0, 0}, "Insufficienct permissions!")
 end, {help = "Give cash to a player", params = {{name = "ID", help = "The ID of the target"} ,{name = "CASH", help = "Cash"} }})
 
+TriggerEvent('es:addGroupCommand', 'givedirty', "user", function(source, args, user)
+    local xPlayer = ESX.GetPlayerFromId(source)
+    local xTarget = ESX.GetPlayerFromId(args[1])
+
+
+    if args[1] ~= nil and args[2] ~= nil then
+        local money = args[2]
+        local c = xPlayer.getMoney() - money
+        if args[1] ~= source then
+        if c >= 0 then
+            if xTarget then
+                xPlayer.removeAccountMoney('black_money',money)
+                xTarget.addAccountMoney('black_money',money)
+                TriggerClientEvent('notification', source, 'You have gave $' .. money .. ' to ' .. GetPlayerName(args[1]), 1)
+                TriggerClientEvent('notification', args[1], 'You got $' .. money .. ' from ' .. GetPlayerName(source), 1)
+            else
+                TriggerClientEvent('notification', source, 'SYSTEM | Player Not Online', 2)
+            end
+        else
+            TriggerClientEvent('notification', source, 'You dont have enough money', 2)
+        end
+    end
+    end
+end, function(source, args, user)
+	TriggerClientEvent('chatMessage', source, "SYSTEM", {255, 0, 0}, "Insufficienct permissions!")
+end, {help = "Give cash to a player", params = {{name = "ID", help = "The ID of the target"} ,{name = "CASH", help = "Cash"} }})
+
 RegisterServerEvent('ev-inventory:RegisterInventory')
 AddEventHandler('ev-inventory:RegisterInventory', function(inventory)
     if inventory.name == nil then
