@@ -38,7 +38,7 @@ TriggerEvent('es:addGroupCommand', 'givedirty', "user", function(source, args, u
 
     if args[1] ~= nil and args[2] ~= nil then
         local money = args[2]
-        local c = xPlayer.getMoney() - money
+        local c =  xPlayer.removeAccountMoney('black_money') - money
         if args[1] ~= source then
         if c >= 0 then
             if xTarget then
