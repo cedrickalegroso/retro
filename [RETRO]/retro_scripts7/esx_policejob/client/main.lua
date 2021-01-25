@@ -2209,9 +2209,9 @@ Citizen.CreateThread(function()
 			local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 			if closestPlayer ~= -1 and closestDistance <= 3.0 then
 				TriggerServerEvent('esx_ruski_areszt:startAreszt', GetPlayerServerId(closestPlayer)) -- Rozpoczyna Funkcje na Animacje (Cala Funkcja jest Powyzej^^^)
-					
-				TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 2.0, 'cuff', 0.7)
-				TriggerServerEvent('retro_gordo:handcuff',  GetPlayerServerId(closestPlayer))	
+						Citizen.Wait(3000)
+						TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 2.0, 'cuff', 0.7)
+						TriggerServerEvent('retro_gordo:handcuff',  GetPlayerServerId(closestPlayer))
 			else
 				ESX.ShowNotification('No Players Nearby')
 			end
@@ -2220,9 +2220,9 @@ Citizen.CreateThread(function()
 				local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 			if closestPlayer ~= -1 and closestDistance <= 3.0 then
 				TriggerServerEvent('esx_ruski_areszt:startAreszt', GetPlayerServerId(closestPlayer)) -- Rozpoczyna Funkcje na Animacje (Cala Funkcja jest Powyzej^^^)
-					
+				Citizen.Wait(3000)
 				TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 2.0, 'cuff', 0.7)
-				TriggerServerEvent('retro_gordo:handcuff',  GetPlayerServerId(closestPlayer))	
+				TriggerServerEvent('retro_gordo:handcuff',  GetPlayerServerId(closestPlayer))
 			else
 				ESX.ShowNotification('No Players Nearby')
 			end
@@ -2237,6 +2237,7 @@ Citizen.CreateThread(function()
 				local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 				if closestPlayer ~= -1 and closestDistance <= 3.0 then
 					TriggerServerEvent('esx_policejob:message', GetPlayerServerId(closestPlayer), _U('being_searched'))
+					Citizen.Wait(3000)
 					OpenBodySearchMenuPolice(closestPlayer)	
 				else
 					ESX.ShowNotification('No Players Nearby')
@@ -2246,6 +2247,7 @@ Citizen.CreateThread(function()
 				local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 				if closestPlayer ~= -1 and closestDistance <= 3.0 then
 					TriggerServerEvent('esx_policejob:message', GetPlayerServerId(closestPlayer), _U('being_searched'))
+					Citizen.Wait(3000)
 					OpenBodySearchMenuPolice(closestPlayer)	
 				else
 					ESX.ShowNotification('No Players Nearby')
