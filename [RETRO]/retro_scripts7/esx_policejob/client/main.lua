@@ -513,8 +513,8 @@ function OpenPoliceActionsMenu()
 				{label = _U('search'),			value = 'body_search'},
 				{label = 'Community Service',		value = 'comserve'},
 				{label = 'Jail',		value = 'jail'},
-				{label = _U('handcuff'),		value = 'handcuff'},
-				{label = 'uncuff',		value = 'uncuff'},
+				{label = 'Cuff',   value = 'ruskicuff'},
+				{label = 'Uncuff', value = 'uncuff'},
 				{label = _U('drag'),			value = 'drag'},
 				{label = _U('put_in_vehicle'),	value = 'put_in_vehicle'},
 				{label = _U('out_the_vehicle'),	value = 'out_the_vehicle'},
@@ -547,11 +547,14 @@ function OpenPoliceActionsMenu()
 					OpenIdentityCardMenuPolice(closestPlayer)
 					elseif action == 'body_search' then
 						TriggerServerEvent('esx_policejob:message', GetPlayerServerId(closestPlayer), _U('being_searched'))
-						OpenBodySearchMenuPolice(closestPlayer)						
+						OpenBodySearchMenuPolice(closestPlayer)	
+					elseif action == 'ruskicuff' then
+						TriggerServerEvent('esx_ruski_areszt:startAreszt', GetPlayerServerId(closestPlayer)) -- Rozpoczyna Funkcje na Animacje (Cala Funkcja jest Powyzej^^^)
+					
+						TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 2.0, 'cuff', 0.7)
+						TriggerServerEvent('retro_gordo:handcuff',  GetPlayerServerId(closestPlayer))					
 					elseif action == 'handcuff' then
-						TriggerServerEvent('esx_policejob:message', GetPlayerServerId(closestPlayer), 'You are being dragged by the Police')
-					--	TriggerServerEvent('esx_ruski_areszt:startAreszt', GetPlayerServerId(closestPlayer))												
-						TriggerServerEvent('esx_policejob:handcuff', GetPlayerServerId(closestPlayer))
+						TriggerServerEvent('retro_gordo:handcuff', GetPlayerServerId(closestPlayer))
 					elseif action == 'uncuff' then						
 						TriggerServerEvent('esx_policejob:handcuff', GetPlayerServerId(closestPlayer))
 					elseif action == 'comserve' then						
