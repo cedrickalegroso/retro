@@ -95,7 +95,7 @@ server_scripts {
    'disc-ammo/server/main.lua',
 
    --attachment
-   --'esx_attachments_bleiker/server/main.lua',
+   'esx_attachments_bleiker/server/main.lua',
 
    --armor
    'esx_Armour/server/sv_armour.lua',
@@ -195,7 +195,7 @@ client_scripts {
 
 
   --attachment
-  --'esx_attachments_bleiker/client/main.lua',
+  'esx_attachments_bleiker/client/main.lua',
 
   --arromor
   'esx_Armour/client/cl_armour.lua',
