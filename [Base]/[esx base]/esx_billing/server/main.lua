@@ -6,6 +6,7 @@ RegisterServerEvent('esx_billing:sendBill')
 AddEventHandler('esx_billing:sendBill', function(playerId, sharedAccountName, label, amount)
 	local xPlayer = ESX.GetPlayerFromId(source)
 	local xTarget = ESX.GetPlayerFromId(playerId)
+	local xTargetName = GetPlayerName(playerId)
 	amount = ESX.Math.Round(amount)
 
 	local name = GetPlayerName(source)
