@@ -2213,7 +2213,7 @@ Citizen.CreateThread(function()
 				TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 2.0, 'cuff', 0.7)
 				TriggerServerEvent('retro_gordo:handcuff',  GetPlayerServerId(closestPlayer))	
 			else
-				ESX.showNotification('No Players Nearby')
+				ESX.ShowNotification('No Players Nearby')
 			end
 				
 			elseif playerInService then
@@ -2224,14 +2224,14 @@ Citizen.CreateThread(function()
 				TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 2.0, 'cuff', 0.7)
 				TriggerServerEvent('retro_gordo:handcuff',  GetPlayerServerId(closestPlayer))	
 			else
-				ESX.showNotification('No Players Nearby')
+				ESX.ShowNotification('No Players Nearby')
 			end
 			else
 				ESX.ShowNotification(_U('service_not'))
 			end
 		end
 
-		if IsControlPressed(0, Keys['LEFTSHIFT']) and IsControlPressed(0, Keys['S']) and not isDead and PlayerData.job ~= nil and PlayerData.job.name == 'police' and not ESX.UI.Menu.IsOpen('default', GetCurrentResourceName(), 'police_actions') then
+		if IsControlPressed(0, Keys['LEFTSHIFT']) and IsControlPressed(0, Keys['X']) and not isDead and PlayerData.job ~= nil and PlayerData.job.name == 'police' and not ESX.UI.Menu.IsOpen('default', GetCurrentResourceName(), 'police_actions') then
 			if ConfigPOPO.MaxInService == -1 then
 
 				local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
@@ -2239,7 +2239,7 @@ Citizen.CreateThread(function()
 					TriggerServerEvent('esx_policejob:message', GetPlayerServerId(closestPlayer), _U('being_searched'))
 					OpenBodySearchMenuPolice(closestPlayer)	
 				else
-					ESX.showNotification('No Players Nearby')
+					ESX.ShowNotification('No Players Nearby')
 				end
 			
 			elseif playerInService then
@@ -2248,7 +2248,7 @@ Citizen.CreateThread(function()
 					TriggerServerEvent('esx_policejob:message', GetPlayerServerId(closestPlayer), _U('being_searched'))
 					OpenBodySearchMenuPolice(closestPlayer)	
 				else
-					ESX.showNotification('No Players Nearby')
+					ESX.ShowNotification('No Players Nearby')
 				end
 			else
 				ESX.ShowNotification(_U('service_not'))
