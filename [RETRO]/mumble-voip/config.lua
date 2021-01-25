@@ -18,7 +18,7 @@ mumbleConfig = {
 	radioClickMaxChannel = 100, -- Set the max amount of radio channels that will have local radio clicks enabled
 	controls = { -- Change default key binds
 		proximity = {
-			key = 74, -- Z
+			key = 100, -- Z
 		}, -- Switch proximity mode
 		radio = {
 			pressed = false, -- don't touch
