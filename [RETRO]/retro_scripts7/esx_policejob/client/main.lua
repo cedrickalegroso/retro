@@ -514,7 +514,7 @@ function OpenPoliceActionsMenu()
 				{label = 'Community Service',		value = 'comserve'},
 				{label = 'Jail',		value = 'jail'},
 				{label = 'Cuff',   value = 'ruskicuff'},
-				{label = 'Uncuff', value = 'uncuff'},
+				{label = 'Uncuff', value = 'handcuff'},
 				{label = _U('drag'),			value = 'drag'},
 				{label = _U('put_in_vehicle'),	value = 'put_in_vehicle'},
 				{label = _U('out_the_vehicle'),	value = 'out_the_vehicle'},
