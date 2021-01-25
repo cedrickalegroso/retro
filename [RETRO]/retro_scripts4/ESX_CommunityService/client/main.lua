@@ -288,13 +288,17 @@ function ApplyPrisonerSkin()
 
 		Citizen.CreateThread(function()
 
-			TriggerEvent('skinchanger:getSkin', function(skin)
+			--[[
+TriggerEvent('skinchanger:getSkin', function(skin)
 				if skin.sex == 0 then
 					TriggerEvent('skinchanger:loadClothes', skin, Config.Uniforms['prison_wear'].male)
 				else
 					TriggerEvent('skinchanger:loadClothes', skin, Config.Uniforms['prison_wear'].female)
 				end
 			end)
+			]]--
+
+			
 
 		SetPedArmour(playerPed, 0)
 		ClearPedBloodDamage(playerPed)
