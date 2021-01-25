@@ -85,9 +85,12 @@ function UnJail()
 
 	ESX.Game.Teleport(PlayerPedId(), Config.Teleports["Boiling Broke"])
 
+	--[[
 	ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin)
 		TriggerEvent('skinchanger:loadSkin', skin)
 	end)
+	]]--
+
 
 	ESX.ShowNotification("You are released, stay calm outside! Good LucK!")
 end
