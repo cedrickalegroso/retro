@@ -1152,11 +1152,14 @@ AddEventHandler('retro_gordo:handcuff1', function()
 		TaskPlayAnim(playerPed, 'mp_arresting', 'idle', 8.0, -8, -1, 49, 0, 0, 0, 0)
 
 		SetEnableHandcuffs(playerPed, true)
+		--[[
 		DisablePlayerFiring(playerPed, true)
 		SetCurrentPedWeapon(playerPed, GetHashKey('WEAPON_UNARMED'), true) -- unarm player
 		SetPedCanPlayGestureAnims(playerPed, false)
 		FreezeEntityPosition(playerPed, false)
 		DisplayRadar(false)
+		]]--
+
 
 		if Config.EnableHandcuffTimer then
 			if handcuffTimer.active then
