@@ -152,7 +152,8 @@ Config.ExtraVisionShops = {
             { name = "shovel", price = 650, count = 1 },
             { name = "lockpick", price = 10, count = 1 },
             { name = "cashregbypass", price = 450, count = 1 },
-            { name = "VaultDoorBypass", price = 2500, count = 1 }
+            { name = "VaultDoorBypass", price = 2500, count = 1 },
+            { name = "illegalcashbank", price = 2500, count = 1 }
         },
         markerType = 27,
         markerColour = { r = 255, g = 255, b = 255 },
