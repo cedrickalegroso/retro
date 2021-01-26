@@ -180,17 +180,16 @@ AddEventHandler('retro_scripts:withillegalcash', function(amount)
 
         if lefintbank >= 0 then 
             xPlayer.addAccountMoney('black_money', amount)
+            TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'success', text = 'Success! you just withdrawn '..amount.. ' black money.' })
             MySQL.Async.execute('UPDATE illegal_acc SET `money` = @money WHERE owner = @owner', {
                 ['@owner'] = player.license,
                 ['@money'] = lefintbank,
             }, function(rowsChanged)
                 if rowsChanged == 0 then
-
-                  
-                  
-                    TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Withdrawn '..amount })
                 end
             end)
+        else
+            TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'error', text = 'Not enough money in Bank' })
         end
 
       
@@ -224,14 +223,15 @@ AddEventHandler('retro_scripts:depositillegalcash', function( amount)
 
             if result[1] then 
                 local totalinBank = result[1].money + amount
-                print('Setting money')
+            
+                TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'success', text = 'Success! you just deposited '..amount.. ' black money.' })
                 MySQL.Async.execute('UPDATE illegal_acc SET `money` = @money WHERE owner = @owner', {
                     ['@owner'] = player.license,
                     ['@money'] = totalinBank,
                 }, function(rowsChanged)
                     if rowsChanged == 0 then
 
-                        TriggerClientEvent('notification', source, 'Deposited '..amount)
+                       -- TriggerClientEvent('notification', source, 'Deposited '..amount)
                       
                         
                     end
@@ -242,7 +242,7 @@ AddEventHandler('retro_scripts:depositillegalcash', function( amount)
            
         end)
     else 
-        TriggerEvent('notification', source, 'not enough money')
+        TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'error', text = 'Not enough money' })
     end
    
   
@@ -356,7 +356,7 @@ AddEventHandler('retro_scripts:gettodayreward', function()
     }, function(result) 
      if result[1] then
         
-        if epochunix - result[1].time >= 5  and result[1].taken == 0 then 
+        if epochunix - result[1].time >= 2500  and result[1].taken == 0 then 
             math.randomseed(os.time())
             local day = math.random(1,31)
 
@@ -557,7 +557,7 @@ AddEventHandler('retro_scripts:gettodayreward1', function()
     }, function(result) 
      if result[1] then
         
-        if epochunix - result[1].time >= 5  and result[1].takenDonator == 0 then 
+        if epochunix - result[1].time >= 2500  and result[1].takenDonator == 0 then 
             math.randomseed(os.time())
             local day = math.random(1,31)
 
