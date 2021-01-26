@@ -63,6 +63,46 @@ Config.ExtraVisionShops = {
         enableBlip = true,
         job = 'all'
     },
+
+
+    ['Black Market'] = {
+        coords = {
+            vector3(2728.6357421875,4142.0458984375,44.287925720215)
+        },
+        items = {
+            { name = "hifi", price = 500, count = 1 },
+            { name = "phone", price = 1500, count = 1 },
+            { name = "radio", price = 750, count = 1 },
+            { name = "water", price = 10, count = 1 },
+            { name = "whisky", price = 250, count = 1 },
+            { name = "cigarett", price = 50, count = 1 },
+            { name = "beer", price = 75, count = 1 },
+            { name = "lighter", price = 10, count = 1 },
+            { name = "chips", price = 15, count = 1 },
+            { name = "fishbait", price = 15, count = 1 },
+            { name = "turtlebait", price = 15, count = 1 },
+            { name = "fishingrod", price = 15, count = 1 },
+         --   { name = "stress", price = 750, count = 1 },
+            { name = "vape", price = 20000, count = 1 },
+            { name = "rccola", price = 35, count = 1 },
+            { name = "pepsibp", price = 55, count = 1 },
+            { name = "yakult", price = 20, count = 1 },
+            { name = "cupcake", price = 45, count = 1 },
+            { name = "burger", price = 60, count = 1 },
+            { name = "hersheys", price = 55, count = 1 },
+            { name = "hotdog", price = 45, count = 1 },
+            { name = "taco", price = 90, count = 1 },
+          --  { name = "orange", price = 30, count = 1 },
+            { name = "WEAPON_BAT", price = 500, count = 1},
+            { name = "WEAPON_KNIFE", price = 450, count = 1},
+        },
+        markerType = 27,
+        markerColour = { r = 255, g = 255, b = 255 },
+        msg = 'Press ~r~[E]~h~ to open the Black Market',
+        show3D = true,
+        enableBlip = false,
+        job = 'all'
+    },
     
     ['RETRO CITY GORDO SHOP'] = {
         coords = {
@@ -186,6 +226,37 @@ Config.ExtraVisionShops = {
 
 
     --[[
+        ['Black Market'] = {
+        coords = {
+            vector3(2728.6357421875,4142.0458984375,44.287925720215)
+        },
+        items = {
+            { name = "WEAPON_COMPACTRIFLE", price = 50000, count = 1, grade = 2 },
+            { name = "WEAPON_MINISMG", price = 12500, count = 1, grade = 0 },
+            { name = "WEAPON_ASSAULTRIFLE", price = 50000, count = 1, grade = 2 },
+            { name = "WEAPON_PUMPSHOTGUN", price = 7500, count = 1, grade = 2 },
+            { name = "WEAPON_SAWNOFFSHOTGUN", price = 7500, count = 1, grade = 2 },
+            { name = "WEAPON_MOLOTOV", price = 2500, count = 1, grade = 2 },
+            { name = "WEAPON_ASSAULTSMG", price = 15000, count = 1, grade = 2 },
+            { name = "WEAPON_FLASHLIGHT", price = 500, count = 1, grade = 0 },
+            { name = "disc_ammo_pistol", price = 1750, count = 1, grade = 0 },
+            { name = "disc_ammo_pistol_large", price = 2500, count = 1, grade = 0 },
+            { name = "disc_ammo_rifle", price = 3500, count = 1, grade = 0 },
+            { name = "disc_ammo_rifle_large", price = 5500, count = 1, grade = 0 },
+            { name = "disc_ammo_shotgun", price = 2500, count = 1, grade = 0 },
+            { name = "disc_ammo_smg", price = 2300, count = 1, grade = 0 },
+            { name = "Supressor", price = 500, count = 1, grade = 0 },
+			{ name = "flashlight", price = 750, count = 1, grade = 0 },
+			{ name = "grip", price = 750, count = 1, grade = 0 },
+        },
+        markerType = 27,
+        markerColour = { r = 255, g = 255, b = 255 },
+        msg = 'Press ~r~[E]~h~ to open the Black Market',
+        show3D = true,
+        enableBlip = false,
+        job = 'all'
+    },
+  
   ['Retro Court'] = {
         coords = {
             vector3(67.397933959961, -952.5205078125, 29.817785263062)
@@ -217,37 +288,7 @@ Config.ExtraVisionShops = {
         job = 'ambulance'
     },
     ]]--
-    ['Black Market'] = {
-        coords = {
-            vector3(2728.6357421875,4142.0458984375,44.287925720215)
-        },
-        items = {
-            { name = "WEAPON_COMPACTRIFLE", price = 50000, count = 1, grade = 2 },
-            { name = "WEAPON_MINISMG", price = 12500, count = 1, grade = 0 },
-            { name = "WEAPON_ASSAULTRIFLE", price = 50000, count = 1, grade = 2 },
-          { name = "WEAPON_PUMPSHOTGUN", price = 7500, count = 1, grade = 2 },
-          { name = "WEAPON_SAWNOFFSHOTGUN", price = 7500, count = 1, grade = 2 },
-          { name = "WEAPON_MOLOTOV", price = 2500, count = 1, grade = 2 },
-            { name = "WEAPON_ASSAULTSMG", price = 15000, count = 1, grade = 2 },
-            { name = "WEAPON_FLASHLIGHT", price = 500, count = 1, grade = 0 },
-            { name = "disc_ammo_pistol", price = 1750, count = 1, grade = 0 },
-            { name = "disc_ammo_pistol_large", price = 2500, count = 1, grade = 0 },
-            { name = "disc_ammo_rifle", price = 3500, count = 1, grade = 0 },
-            { name = "disc_ammo_rifle_large", price = 5500, count = 1, grade = 0 },
-            { name = "disc_ammo_shotgun", price = 2500, count = 1, grade = 0 },
-            { name = "disc_ammo_smg", price = 2300, count = 1, grade = 0 },
-            { name = "Supressor", price = 500, count = 1, grade = 0 },
-			{ name = "flashlight", price = 750, count = 1, grade = 0 },
-			{ name = "grip", price = 750, count = 1, grade = 0 },
-        },
-        markerType = 27,
-        markerColour = { r = 255, g = 255, b = 255 },
-        msg = 'Press ~r~[E]~h~ to open the Black Market',
-        show3D = true,
-        enableBlip = false,
-        job = 'all'
-    },
-  
+    
 
   
 
