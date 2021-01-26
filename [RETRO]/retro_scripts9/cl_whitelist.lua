@@ -1,6 +1,7 @@
 local blipsEms               = {}
 local blipsGroove            = {}
 local blipsCops           = {}
+local isClaimed = 0
 
 Citizen.CreateThread(function()
 	while ESX == nil do
@@ -305,4 +306,171 @@ Citizen.CreateThread(function()
             DisableControlAction(2, 257, true)
         end
     end
+end)
+
+RegisterNetEvent('retro_scripts:notif')
+AddEventHandler('retro_scripts:notif', function(source)
+	print('WEW')
+
+end)
+
+RegisterNetEvent('retro_scripts:rewardsmenu')
+AddEventHandler('retro_scripts:rewardsmenu', function(source)
+
+	--exports['mythic_notify']:DoHudText('inform', 'Hype! Custom Styling!', { ['background-color'] = '#ffffff', ['color'] = '#000000' })
+
+
+	local elements = {
+		{label = 'Get Todays Reward',      value = 'gettodays'},
+		{label = 'Donators Reward',      value = 'getdonate'},
+	}
+
+
+
+	
+	ESX.UI.Menu.CloseAll()
+
+
+	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'armory',
+		{
+			title    = 'Retro Dailty Rewards',
+			align    = 'top-left',
+			elements = elements
+		}, function(data, menu)
+
+			if data.current.value == 'gettodays' then
+				TriggerServerEvent('retro_scripts:gettodayreward')
+				
+			elseif data.current.value == 'getdonate' then
+				TriggerServerEvent('retro_scripts:gettodayreward1')
+			end
+
+		end, function(data, menu)
+			menu.close()
+
+		
+		end)
+end)
+
+RegisterNetEvent('retro_scripts:illegalcashbankmenu')
+AddEventHandler('retro_scripts:illegalcashbankmenu', function(source)
+	print('triggered')
+
+	local elements = {
+		{label = 'Check Balance',      value = 'bal'},
+		{label = 'Deposit Money',      value = 'depmoney'},
+		{label = 'Withdraw Money',     value = 'withmoney'},
+		
+	}
+
+	
+	ESX.UI.Menu.CloseAll()
+
+
+	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'armory',
+		{
+			title    = 'Illegal Cash',
+			align    = 'top-left',
+			elements = elements
+		}, function(data, menu)
+
+			if data.current.value == 'depmoney' then
+				ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'deposit_illegal_cash', {
+					title = 'How much do you want to deposit?'
+				}, function(data, menu)
+	
+					local amount = tonumber(data.value)
+	
+					if amount == nil then
+						ESX.ShowNotification('Invalid AMount')
+					else
+						print('deposit!!!')
+						menu.close()
+
+						TriggerEvent("mythic_progbar:client:progress", {
+							name = "unique_action_name",
+							duration = 4000,
+							label = "Transacting with encrypted network",
+							useWhileDead = false,
+							canCancel = false,
+							controlDisables = {
+								disableMovement = true,
+								disableCarMovement = true,
+								disableMouse = false,
+								disableCombat = true,
+							},
+							animation = {
+								animDict = "amb@world_human_stand_mobile@female@standing@call@enter",
+								anim = "enter",
+							},
+							prop = {
+								model = "prop_police_phone",
+							}
+						}, function(status)
+							if not status then
+								TriggerServerEvent('retro_scripts:depositillegalcash', amount)
+							end
+						end)
+						
+					end
+	
+				end, function(data, menu)
+					menu.close()
+				end)
+			elseif data.current.value == 'withmoney' then
+				ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'deposit_illegal_cash', {
+					title = 'How much do you want to Withdraw?'
+				}, function(data, menu)
+	
+					local amount = tonumber(data.value)
+	
+					if amount == nil then
+						ESX.ShowNotification('Invalid AMount')
+					else
+						print('witdraw!!!')
+						menu.close()
+
+						TriggerEvent("mythic_progbar:client:progress", {
+							name = "unique_action_name",
+							duration = 4000,
+							label = "Transacting with encrypted network",
+							useWhileDead = false,
+							canCancel = false,
+							controlDisables = {
+								disableMovement = true,
+								disableCarMovement = true,
+								disableMouse = false,
+								disableCombat = true,
+							},
+							animation = {
+								animDict = "amb@world_human_stand_mobile@female@standing@call@enter",
+								anim = "enter",
+							},
+							prop = {
+								model = "prop_police_phone",
+							}
+						}, function(status)
+							if not status then
+								TriggerServerEvent('retro_scripts:withillegalcash', amount)
+							end
+						end)
+						
+					end
+	
+				end, function(data, menu)
+					menu.close()
+				end)
+			elseif data.current.value == 'bal' then
+				ESX.TriggerServerCallback('retro_scripts:getbalancedirty', function(money)
+				    ESX.ShowNotification('Balance: ~r~'.. money)
+				end, source)
+			
+			elseif data.current.value == 'delacc' then
+			end
+
+		end, function(data, menu)
+			menu.close()
+
+		
+		end)
 end)

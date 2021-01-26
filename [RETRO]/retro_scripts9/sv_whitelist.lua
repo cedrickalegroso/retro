@@ -145,6 +145,698 @@ RegisterCommand("clearrewards", function(source)
    
 end)
 
+ESX.RegisterServerCallback('retro_scripts:getbalancedirty', function(source,cb, money)
+	local _source = source
+    local xPlayer = ESX.GetPlayerFromId(_source)
+    local player = getIdentity(source)
+
+    MySQL.Async.fetchAll('SELECT * FROM illegal_acc WHERE owner = @owner ', {
+        ['@owner'] = player.license,
+    }, function(result) 
+        cb(result[1].money)
+    end)
+end)
+
+
+
+
+RegisterServerEvent('retro_scripts:withillegalcash')
+AddEventHandler('retro_scripts:withillegalcash', function(amount)
+    local _source = source
+    local xPlayer = ESX.GetPlayerFromId(_source)
+    local player = getIdentity(source)
+
+    local name = xPlayer.name
+    local message = name..'  withdrawn '.. amount
+    local color = 56108
+     local webhook = 'https://discord.com/api/webhooks/803479851943985162/-DcXa9-9AQZTBOEpVTuaFcbGBeOk-5p8qvZOJ6mOl7unTQpoc9gXPY_6zj_M9_M-n935'
+     sendToDiscord(name,message,color, webhook)
+
+    MySQL.Async.fetchAll('SELECT * FROM illegal_acc WHERE owner = @owner ', {
+        ['@owner'] = player.license,
+    }, function(result) 
+        local moneynow = result[1].money 
+        local lefintbank = moneynow - amount
+
+        if lefintbank >= 0 then 
+            xPlayer.addAccountMoney('black_money', amount)
+            MySQL.Async.execute('UPDATE illegal_acc SET `money` = @money WHERE owner = @owner', {
+                ['@owner'] = player.license,
+                ['@money'] = lefintbank,
+            }, function(rowsChanged)
+                if rowsChanged == 0 then
+
+                  
+                  
+                    TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Withdrawn '..amount })
+                end
+            end)
+        end
+
+      
+    end)
+   
+  
+	
+end)
+
+RegisterServerEvent('retro_scripts:depositillegalcash')
+AddEventHandler('retro_scripts:depositillegalcash', function( amount)
+    local _source = source
+    local xPlayer = ESX.GetPlayerFromId(_source)
+    local player = getIdentity(source)
+
+
+
+    local name = xPlayer.name
+    local message = name..'  deposited '.. amount 
+    local color = 56108
+     local webhook = 'https://discord.com/api/webhooks/803479851943985162/-DcXa9-9AQZTBOEpVTuaFcbGBeOk-5p8qvZOJ6mOl7unTQpoc9gXPY_6zj_M9_M-n935'
+     sendToDiscord(name,message,color, webhook)
+
+
+    if xPlayer.getAccount('black_money').money >= amount then 
+        xPlayer.removeAccountMoney('black_money', amount)
+        print('money goods')
+        MySQL.Async.fetchAll('SELECT * FROM illegal_acc WHERE owner = @owner ', {
+            ['@owner'] = player.license,
+        }, function(result) 
+
+            if result[1] then 
+                local totalinBank = result[1].money + amount
+                print('Setting money')
+                MySQL.Async.execute('UPDATE illegal_acc SET `money` = @money WHERE owner = @owner', {
+                    ['@owner'] = player.license,
+                    ['@money'] = totalinBank,
+                }, function(rowsChanged)
+                    if rowsChanged == 0 then
+
+                        TriggerClientEvent('notification', source, 'Deposited '..amount)
+                      
+                        
+                    end
+                end)
+             else
+                print('Server error has occured')
+             end
+           
+        end)
+    else 
+        TriggerEvent('notification', source, 'not enough money')
+    end
+   
+  
+	
+end)
+
+
+
+
+ESX.RegisterUsableItem('illegalcashbank', function(source)
+    local _source = source
+    local xPlayer = ESX.GetPlayerFromId(_source)
+
+    local player = getIdentity(source)
+   -- print('License '..player.license..' registered for Retro City Daily rewards!')
+
+    MySQL.Async.fetchAll('SELECT * FROM illegal_acc WHERE owner = @owner ', {
+        ['@owner'] = player.license,
+    }, function(result)
+    
+     if result[1] then 
+        
+        TriggerClientEvent('retro_scripts:illegalcashbankmenu', source)
+     else
+        MySQL.Async.execute('INSERT INTO illegal_acc (owner, money) VALUES (@owner, @money)', {
+            ['@owner'] = player.license,
+            ['@money'] = 0,
+        }, function(rowsChanged)
+          
+           TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Registred' })
+
+           local name = GetPlayerName(source)
+          local message = name..' registered a illegal cash bank '
+          local color = 56108
+           local webhook = 'https://discord.com/api/webhooks/803479851943985162/-DcXa9-9AQZTBOEpVTuaFcbGBeOk-5p8qvZOJ6mOl7unTQpoc9gXPY_6zj_M9_M-n935'
+      
+                
+           sendToDiscord(name,message,color, webhook)
+        end)
+     end
+
+    end)
+end)
+
+
+RegisterCommand("useillegalcash", function(source)
+    local _source = source
+    local xPlayer = ESX.GetPlayerFromId(_source)
+
+    local player = getIdentity(source)
+   -- print('License '..player.license..' registered for Retro City Daily rewards!')
+
+    MySQL.Async.fetchAll('SELECT * FROM illegal_acc WHERE owner = @owner ', {
+        ['@owner'] = player.license,
+    }, function(result)
+    
+     if result[1] then 
+        print('calling menu trigger')
+        TriggerClientEvent('retro_scripts:illegalcashbankmenu', source)
+     else
+        MySQL.Async.execute('INSERT INTO illegal_acc (owner, money) VALUES (@owner, @money)', {
+            ['@owner'] = player.license,
+            ['@money'] = 0,
+        }, function(rowsChanged)
+          
+           TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Registred' })
+
+           local name = GetPlayerName(source)
+           local message = name..' registered a illegal cash bank '
+           local color = 56108
+           local webhook = 'https://discord.com/api/webhooks/803479851943985162/-DcXa9-9AQZTBOEpVTuaFcbGBeOk-5p8qvZOJ6mOl7unTQpoc9gXPY_6zj_M9_M-n935'
+      
+                
+           sendToDiscord(name,message,color, webhook)
+
+           
+           
+        end)
+     end
+
+    end)
+
+end)
+
+ESX.RegisterServerCallback('retro_scripts:isClaimed', function(source,cb, isClaimed)
+    print('callback triggered')
+	local _source = source
+    local xPlayer = ESX.GetPlayerFromId(_source)
+    local player = getIdentity(source)
+
+
+    
+end)
+
+
+RegisterServerEvent('retro_scripts:gettodayreward')
+AddEventHandler('retro_scripts:gettodayreward', function()
+    
+    local _source = source
+    local xPlayer = ESX.GetPlayerFromId(_source)
+    local player = getIdentity(source)
+
+    local retroCoin = xPlayer.getInventoryItem('retro_coin').count
+
+    local epochunix = os.time(os.date("!*t"))
+
+
+    MySQL.Async.fetchAll('SELECT * FROM retro_rewards WHERE id = @id AND taken = @taken ', {
+        ['@id'] = player.license,
+        ['@taken'] = 0
+    }, function(result) 
+     if result[1] then
+        
+        if epochunix - result[1].time >= 5  and result[1].taken == 0 then 
+            math.randomseed(os.time())
+            local day = math.random(1,31)
+
+            local type = ""
+            local weapon = ""
+            local amount = 0
+            local item  = ""
+            
+            if  day == nil then
+                type = "money" 
+                amount = 25000
+            elseif day == 01 then 
+                type = "black" 
+                amount = 20000
+            elseif day == 02 then 
+                type = "black" 
+                amount = 20000
+            elseif day == 03 then
+                type = "item" 
+                item = "bandage"
+                amount = 5
+            elseif day == 04 then
+                type = "item" 
+                item = "bread"
+                amount = 15
+            elseif day == 05 then
+                type = "money" 
+                amount = 15000
+            elseif day == 06 then
+                type = "money" 
+                amount = 30000
+            elseif day == 07 then
+                type = "item" 
+                item = "jewels"
+                amount = 150
+            elseif day == 08 then
+                type = "item" 
+                item = "carokit"
+                amount = 3
+            elseif day == 09 then
+                type = "item" 
+                item = "armor"
+                amount = 5
+            elseif day == 10 then
+                type = "weapon" 
+                item = "WEAPON_ASSAULTRIFLE"
+                amount = 1
+            elseif day == 11 then
+                type = "weapon" 
+                item = "WEAPON_ASSAULTRIFLE"
+                amount = 1
+            elseif day == 12 then
+                type = "item" 
+                item = "packaged_chicken"
+                amount = 50
+            elseif day == 13 then
+                type = "black" 
+                amount = 30000
+            elseif day == 14 then
+                type = "item" 
+                item = "packaged_chicken"
+                amount = 50
+            elseif day == 15 then
+                type = "money" 
+                amount = 25000
+            elseif day == 16 then
+                type = "item" 
+                item = "weed_pooch"
+                amount = 100
+            elseif day == 17 then
+                type = "item" 
+                item = "opoium_pooch"
+                amount = 100
+            elseif day == 18 then
+                type = "weapon" 
+                item = "WEAPON_CARBINERIFLE"
+                amount = 1
+            elseif day == 19 then
+                type = "black" 
+                amount = 35000
+            elseif day == 20 then
+                type = "item" 
+                item = "jewels"
+                amount = 100
+            elseif day == 21 then
+                type = "money" 
+                amount = 30000
+            elseif day == 22 then
+                type = "black" 
+                amount = 40000
+            elseif day == 23 then
+                type = "item" 
+                item = "packaged_chicken"
+                amount = 150
+            elseif day == 24 then
+                type = "item" 
+                item = "armor2"
+                amount = 10
+            elseif day == 25 then
+                type = "weapon" 
+                item = "WEAPON_PISTOL"
+                amount = 1
+            elseif day == 26 then
+                type = "weapon" 
+                item = "WEAPON_ASSAULTRIFLE"
+                amount = 1
+            elseif day == 27 then
+                type = "item" 
+                item = "weed_pooch"
+                amount = 100
+            elseif day == 28 then
+                type = "item" 
+                item = "carokit"
+                amount = 5
+            elseif day == 29 then
+                type = "item" 
+                item = "retro_car"
+                amount = 1
+            elseif day == 30 then
+                type = "retro" 
+                amount = 30000
+            elseif day == 31 then
+                type = "black" 
+                amount = 50000
+            end
+            print('player recived'.. type)
+        
+                        local name = xPlayer.name
+                        local message = 'got ' .. type .. ' ' .. item .. ' ' .. amount  
+                        local color = 56108
+                        local webhook = 'https://discord.com/api/webhooks/803504972032901170/M9PWG-v4XNUAhgip6rcxpizBFmGFeqk4QY1sKTmA6o0YNrWtNppeWOldG9Wt_bjOIjVU'
+                   
+                             
+                        sendToDiscord(name,message,color, webhook)
+        
+            if retroCoin > 0 then 
+                amount = (amount * 2) + amount
+                print('player have VIP Coin')
+                TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'inform', text = 'You have a retro coin so you got a little bit more reward.' })
+            end
+        
+            if type == "money" then 
+                xPlayer.addMoney(amount)
+               TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'inform', text = 'Success! You just claimed the reward for today! '..amount..' of clean money' })
+            elseif type == "item" then 
+                xPlayer.addInventoryItem(item, amount)
+                TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'inform', text = 'Success! You just claimed the reward for today! '..amount..' of '..item })
+            elseif type == "black" then 
+                xPlayer.addAccountMoney('black_money', amount)
+              TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'inform', text = 'Success! You just claimed the reward for today! '..amount..' of dirty money' })
+            elseif type == "weapon" then 
+                xPlayer.addInventoryItem(item, amount)
+               TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'inform', text = 'Success! You just claimed the reward for today! '..item..' with '..amount..' of bullets.'})
+            end
+        
+            
+            MySQL.Async.execute('UPDATE retro_rewards SET `taken` = @taken WHERE id = @id', {
+                ['@id'] = player.license,
+                ['@taken'] = 1,
+            }, function(rowsChanged)
+                if rowsChanged == 0 then
+                 print('PLAYER SET TO 1')
+                end
+            end)
+        else
+            TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'error', text = 'You already claimed todays reward or you havent played for atleast 20 mins yet.' })
+
+        end
+
+     else
+       -- print('NOO')
+       TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'error', text = 'You already claimed todays reward or you havent played for atleast 20 mins yet.' })
+
+      --  TriggerClientEvent('retro_scripts:notif', source)
+     end
+
+
+    end)
+
+end)
+
+
+RegisterServerEvent('retro_scripts:gettodayreward1')
+AddEventHandler('retro_scripts:gettodayreward1', function()
+    
+    local _source = source
+    local xPlayer = ESX.GetPlayerFromId(_source)
+    local player = getIdentity(source)
+
+    local retroCoin = xPlayer.getInventoryItem('retro_coin').count
+
+    local epochunix = os.time(os.date("!*t"))
+
+
+    MySQL.Async.fetchAll('SELECT * FROM retro_rewards WHERE id = @id AND takenDonator = @takenDonator ', {
+        ['@id'] = player.license,
+        ['@takenDonator'] = 0
+    }, function(result) 
+     if result[1] then
+        
+        if epochunix - result[1].time >= 5  and result[1].takenDonator == 0 then 
+            math.randomseed(os.time())
+            local day = math.random(1,31)
+
+            local type = ""
+            local weapon = ""
+            local amount = 0
+            local item  = ""
+            
+            if  day == nil then
+                type = "money" 
+                amount = 25000
+            elseif day == 01 then 
+                type = "black" 
+                amount = 20000
+            elseif day == 02 then 
+                type = "black" 
+                amount = 20000
+            elseif day == 03 then
+                type = "item" 
+                item = "bandage"
+                amount = 5
+            elseif day == 04 then
+                type = "item" 
+                item = "bread"
+                amount = 15
+            elseif day == 05 then
+                type = "money" 
+                amount = 15000
+            elseif day == 06 then
+                type = "money" 
+                amount = 30000
+            elseif day == 07 then
+                type = "item" 
+                item = "jewels"
+                amount = 150
+            elseif day == 08 then
+                type = "item" 
+                item = "carokit"
+                amount = 3
+            elseif day == 09 then
+                type = "item" 
+                item = "armor"
+                amount = 5
+            elseif day == 10 then
+                type = "weapon" 
+                item = "WEAPON_ASSAULTRIFLE"
+                amount = 1
+            elseif day == 11 then
+                type = "weapon" 
+                item = "WEAPON_ASSAULTRIFLE"
+                amount = 1
+            elseif day == 12 then
+                type = "item" 
+                item = "packaged_chicken"
+                amount = 50
+            elseif day == 13 then
+                type = "black" 
+                amount = 30000
+            elseif day == 14 then
+                type = "item" 
+                item = "packaged_chicken"
+                amount = 50
+            elseif day == 15 then
+                type = "money" 
+                amount = 25000
+            elseif day == 16 then
+                type = "item" 
+                item = "weed_pooch"
+                amount = 100
+            elseif day == 17 then
+                type = "item" 
+                item = "opoium_pooch"
+                amount = 100
+            elseif day == 18 then
+                type = "weapon" 
+                item = "WEAPON_CARBINERIFLE"
+                amount = 1
+            elseif day == 19 then
+                type = "black" 
+                amount = 35000
+            elseif day == 20 then
+                type = "item" 
+                item = "jewels"
+                amount = 100
+            elseif day == 21 then
+                type = "money" 
+                amount = 30000
+            elseif day == 22 then
+                type = "black" 
+                amount = 40000
+            elseif day == 23 then
+                type = "item" 
+                item = "packaged_chicken"
+                amount = 150
+            elseif day == 24 then
+                type = "item" 
+                item = "armor2"
+                amount = 10
+            elseif day == 25 then
+                type = "weapon" 
+                item = "WEAPON_PISTOL"
+                amount = 1
+            elseif day == 26 then
+                type = "weapon" 
+                item = "WEAPON_ASSAULTRIFLE"
+                amount = 1
+            elseif day == 27 then
+                type = "item" 
+                item = "weed_pooch"
+                amount = 100
+            elseif day == 28 then
+                type = "item" 
+                item = "carokit"
+                amount = 5
+            elseif day == 29 then
+                type = "item" 
+                item = "retro_car"
+                amount = 1
+            elseif day == 30 then
+                type = "retro" 
+                amount = 30000
+            elseif day == 31 then
+                type = "black" 
+                amount = 50000
+            end
+            print('player recived'.. type)
+        
+                        local name = xPlayer.name
+                        local message = 'got ' .. type .. ' ' .. item .. ' ' .. amount  
+                        local color = 56108
+                        local webhook = 'https://discord.com/api/webhooks/803504972032901170/M9PWG-v4XNUAhgip6rcxpizBFmGFeqk4QY1sKTmA6o0YNrWtNppeWOldG9Wt_bjOIjVU'
+                   
+                             
+                        sendToDiscord(name,message,color, webhook)
+        
+            if retroCoin > 0 then 
+                amount = (amount * 2) + amount
+                print('player have VIP Coin')
+                TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'inform', text = 'You have a retro coin so you got a little bit more reward.' })
+            end
+        
+            if type == "money" then 
+                xPlayer.addMoney(amount)
+               TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'inform', text = 'Success! You just claimed the reward for today! '..amount..' of clean money' })
+            elseif type == "item" then 
+                xPlayer.addInventoryItem(item, amount)
+                TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'inform', text = 'Success! You just claimed the reward for today! '..amount..' of '..item })
+            elseif type == "black" then 
+                xPlayer.addAccountMoney('black_money', amount)
+              TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'inform', text = 'Success! You just claimed the reward for today! '..amount..' of dirty money' })
+            elseif type == "weapon" then 
+                xPlayer.addInventoryItem(item, amount)
+               TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'inform', text = 'Success! You just claimed the reward for today! '..item..' with '..amount..' of bullets.'})
+            end
+        
+            
+            MySQL.Async.execute('UPDATE retro_rewards SET `takenDonator` = @takenDonator WHERE id = @id', {
+                ['@id'] = player.license,
+                ['@takenDonator'] = 1,
+            }, function(rowsChanged)
+                if rowsChanged == 0 then
+                 print('PLAYER SET TO 1')
+                end
+            end)
+
+        else
+            TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'error', text = 'You already claimed todays reward or you havent played for atleast 20 mins yet.' })
+  
+        end
+
+     else
+       -- print('NOO')
+       TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'error', text = 'You already claimed todays reward or you havent played for atleast 20 mins yet.' })
+
+      --  TriggerClientEvent('retro_scripts:notif', source)
+     end
+
+
+    end)
+
+end)
+
+
+
+
+RegisterServerEvent('retro_scripts:loginrewardstart')
+AddEventHandler('retro_scripts:loginrewardstart', function(source)
+    local _source = source
+    local xPlayer = ESX.GetPlayerFromId(_source)
+
+    local player = getIdentity(source)
+
+    MySQL.Async.fetchAll('SELECT * FROM retro_rewards WHERE id = @id ', {
+        ['@id'] = player.license,
+    }, function(result)
+
+        if result[1] then 
+           
+        else 
+            MySQL.Async.execute('INSERT INTO retro_rewards (id, taken, time) VALUES (@id, @taken, @time)', {
+                ['@id'] = player.license,
+                ['@taken'] = 0,
+                ['@time'] = os.time(os.date("!*t"))
+            }, function(rowsChanged)
+                local name = GetPlayerName(source)
+                local message = name..' registered for rewards '
+                local color = 56108
+                local webhook = 'https://discord.com/api/webhooks/803504972032901170/M9PWG-v4XNUAhgip6rcxpizBFmGFeqk4QY1sKTmA6o0YNrWtNppeWOldG9Wt_bjOIjVU'
+           
+                     
+                sendToDiscord(name,message,color, webhook)
+            end)
+        end
+
+    end)
+
+end)
+
+RegisterCommand("dailyreward", function(source)
+    local _source = source
+    local xPlayer = ESX.GetPlayerFromId(_source)
+
+    local player = getIdentity(source)
+
+    MySQL.Async.fetchAll('SELECT * FROM retro_rewards WHERE id = @id ', {
+        ['@id'] = player.license,
+    }, function(result)
+
+        if result[1] then 
+            print('calling menu trigger')
+            TriggerClientEvent('retro_scripts:rewardsmenu', source)
+        else 
+            print('SERVER ERROR ON RETRO CITY REWARDS')
+            --[[
+ MySQL.Async.execute('INSERT INTO retro_rewards (id, taken, time) VALUES (@id, @taken, @time)', {
+                ['@id'] = player.license,
+                ['@taken'] = 0,
+                ['@time'] = os.time(os.date("!*t"))
+            }, function(rowsChanged)
+                local name = GetPlayerName(source)
+                local message = name..' registered for rewards '
+                local color = 56108
+                local webhook = 'https://discord.com/api/webhooks/803504972032901170/M9PWG-v4XNUAhgip6rcxpizBFmGFeqk4QY1sKTmA6o0YNrWtNppeWOldG9Wt_bjOIjVU'
+           
+                     
+                sendToDiscord(name,message,color, webhook)
+
+                Citizen.Wait(500)
+                TriggerClientEvent('retro_scripts:rewardsmenu', source)
+            end)
+            ]]--
+           
+        end
+
+    end)
+
+
+end)
+
+
+function sendToDiscord (name,message,color, webhook)  
+	local DiscordWebHook = webhook
+	local DISCORD_IMAGE	= "https://i.imgur.com/DZUmmWL.png"
+  
+  local embeds = {
+	  {
+		  ["title"]=message,
+		  ["type"]="rich",
+		  ["color"] =color,
+		  ["footer"]=  {
+			  ["text"]= "Discord Bot by Cedrick  Alegroso",
+			  ["icon_url"] = DISCORD_IMAGE,
+		 },
+	  }
+  }
+  
+	if message == nil or message == '' then return FALSE end
+	PerformHttpRequest(DiscordWebHook, function(err, text, headers) end, 'POST', json.encode({ username = name,embeds = embeds}), { ['Content-Type'] = 'application/json' })
+  end
 
 
 --[[
