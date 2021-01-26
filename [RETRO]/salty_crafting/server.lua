@@ -71,11 +71,9 @@ AddEventHandler('salty_crafting:craftItem', function(ingredients)
 						xPlayer.removeInventoryItem(ingredient.item, ingredient.quantity)
 					end
 				end
-				if string.match(string.lower(item), "weapon_") then
-					xPlayer.addWeapon(item, Config.WeaponAmmo)
-				else
+				
 					xPlayer.addInventoryItem(item, 1)
-				end
+				
 				TriggerClientEvent('esx:showNotification', _source, '~y~Item Crafted: ~w~' .. itemLabel(item, xPlayer.inventory))
 			else
 				TriggerClientEvent('esx:showNotification', _source, 'You do not have all of the ingredients')
