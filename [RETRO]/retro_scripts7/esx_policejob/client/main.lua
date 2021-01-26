@@ -562,6 +562,7 @@ function OpenPoliceActionsMenu()
 					elseif action == 'handcuff' then
 						ExecuteCommand('e uncuff')
 						TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 2.0, 'cuff', 0.7)
+						Citizen.Wait(1000)
 						TriggerServerEvent('retro_gordo:handcuff', GetPlayerServerId(closestPlayer))
 					elseif action == 'uncuff' then						
 						TriggerServerEvent('esx_policejob:handcuff', GetPlayerServerId(closestPlayer))
