@@ -333,11 +333,34 @@ AddEventHandler("retro_scripts:morgue", function(tPID)
 
 	Citizen.Wait(5000)
 
-	TriggerEvent('freeze:freezePlayer')
-	exports['progressBars']:startUI(time, "You are under hospital arrest. ")
-	Citizen.Wait(time)
-	TriggerEvent('freeze:freezePlayer')
+    TriggerEvent('freeze:freezePlayer')
+    TriggerEvent("mythic_progbar:client:progress", {
+        name = "unique_action_name",
+        duration = 100000,
+        label = "You are under hospital arrest.",
+        useWhileDead = false,
+        canCancel = false,
+        controlDisables = {
+            disableMovement = true,
+            disableCarMovement = true,
+            disableMouse = false,
+            disableCombat = true,
+        },
+        animation = {
+            animDict = "",
+            anim = "",
+        },
+        prop = {
+            model = "",
+        }
+    }, function(status)
+        if not status then
+            TriggerEvent('freeze:freezePlayer')
 	  
-	ExecuteCommand('e c')
+            ExecuteCommand('e c')
+        end
+	end)
+
+	
 
 end)
