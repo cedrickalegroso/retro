@@ -71,7 +71,7 @@ Config.Recipes = {
 		   },
 		   
 		   
-		   ['WEAPON_COMBATPDW '] = { 
+		   ['WEAPON_COMBATPDW'] = { 
 			{item = "hood", quantity = 5 }, 
 			{item = "oilpump", quantity = 4 }, 
 			{item = "battery", quantity = 3 }, 
@@ -79,7 +79,7 @@ Config.Recipes = {
 		   },
 		   
 		   
-		   ['WEAPON_PISTOL50 '] = { 
+		   ['WEAPON_PISTOL50'] = { 
 			{item = "hood", quantity = 3 }, 
 			{item = "oilpump", quantity = 3 }, 
 			{item = "battery", quantity = 3 }, 
