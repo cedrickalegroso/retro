@@ -333,7 +333,7 @@ AddEventHandler('retro_scripts:rewardsmenu', function(source)
 
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'armory',
 		{
-			title    = 'Retro Dailty Rewards',
+			title    = 'Retro Daily Rewards',
 			align    = 'top-left',
 			elements = elements
 		}, function(data, menu)
