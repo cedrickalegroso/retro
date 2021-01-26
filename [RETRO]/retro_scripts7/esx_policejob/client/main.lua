@@ -563,7 +563,7 @@ function OpenPoliceActionsMenu()
 						TriggerEvent("esx-qalle-jail:openJailMenu")
 					elseif action == 'drag' then
 						TriggerServerEvent('esx_policejob:message', GetPlayerServerId(closestPlayer), 'You are being dragged by the Police')
-						TriggerServerEvent('esx_policejob:drag', GetPlayerServerId(closestPlayer))
+						TriggerServerEvent('retro_gordo:drag', GetPlayerServerId(closestPlayer))
 					elseif action == 'put_in_vehicle' then
 						TriggerServerEvent('esx_policejob:putInVehicle', GetPlayerServerId(closestPlayer))
 					elseif action == 'out_the_vehicle' then
