@@ -524,23 +524,24 @@ AddEventHandler('retro_scripts:newlife', function(ttPID)
 				}
 			}, function(status)
 				if not status then
-					RespawnPed(PlayerPedId(), playerpos, ConfigAmbu.RespawnPoint.heading)
-
-
-					exports['mythic_notify']:DoHudText('inform', 'You just landed at Retro City!.')
-				
-				--	TriggerServerEvent('esx_ambulancejob:reRETROvive', GetPlayerServerId(pP))
-				
-				--	TriggerClientEvent('esx_ambulancejob:reRETROvive', PlayerPedId(pP))
-				
-					TriggerServerEvent('esx:updateLastPosition', playerpos)
-					TriggerServerEvent('mythic_hospital:server:RequestBed')
-						Citizen.Wait(10)
-						StopScreenEffect('DeathFailOut')
-						DoScreenFadeIn(800)
-						
 					
-					end)
+    RespawnPed(PlayerPedId(), playerpos, ConfigAmbu.RespawnPoint.heading)
+
+
+	exports['mythic_notify']:DoHudText('inform', 'You just landed at Retro City!.')
+
+--	TriggerServerEvent('esx_ambulancejob:reRETROvive', GetPlayerServerId(pP))
+
+--	TriggerClientEvent('esx_ambulancejob:reRETROvive', PlayerPedId(pP))
+
+	TriggerServerEvent('esx:updateLastPosition', playerpos)
+	TriggerServerEvent('mythic_hospital:server:RequestBed')
+		Citizen.Wait(10)
+		StopScreenEffect('DeathFailOut')
+		DoScreenFadeIn(800)
+		
+	
+	end)
 				end
 			end)
 	
@@ -553,12 +554,9 @@ AddEventHandler('retro_scripts:newlife', function(ttPID)
 
 --RespawnPed(PlayerPedId(), pos, ConfigAmbu.RespawnPoint.heading)
 
-   
 	
 
 	
-
-end)
 
 
 function RemoveItemsAfterRPDeath()
