@@ -62,7 +62,7 @@ RegisterCommand("hotwirecar", function(source)
         TriggerClientEvent("retro_scripts:starthotwire", source)
     else 
         --TriggerEvent('notification', ('You need to have a lockpick to hotwire a car!'), 2)
-        TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'You need to have a lockpick to hotwire a car!'})
+        --TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'You need to have a lockpick to hotwire a car!'})
     end
 
     
@@ -180,7 +180,7 @@ AddEventHandler('retro_scripts:withillegalcash', function(amount)
 
         if lefintbank >= 0 then 
             xPlayer.addAccountMoney('black_money', amount)
-            TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'success', text = 'Success! you just withdrawn '..amount.. ' black money.' })
+            --TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'success', text = 'Success! you just withdrawn '..amount.. ' black money.' })
             MySQL.Async.execute('UPDATE illegal_acc SET `money` = @money WHERE owner = @owner', {
                 ['@owner'] = player.license,
                 ['@money'] = lefintbank,
@@ -189,7 +189,7 @@ AddEventHandler('retro_scripts:withillegalcash', function(amount)
                 end
             end)
         else
-            TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'error', text = 'Not enough money in Bank' })
+            --TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'error', text = 'Not enough money in Bank' })
         end
 
       
@@ -224,7 +224,7 @@ AddEventHandler('retro_scripts:depositillegalcash', function( amount)
             if result[1] then 
                 local totalinBank = result[1].money + amount
             
-                TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'success', text = 'Success! you just deposited '..amount.. ' black money.' })
+                --TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'success', text = 'Success! you just deposited '..amount.. ' black money.' })
                 MySQL.Async.execute('UPDATE illegal_acc SET `money` = @money WHERE owner = @owner', {
                     ['@owner'] = player.license,
                     ['@money'] = totalinBank,
@@ -242,7 +242,7 @@ AddEventHandler('retro_scripts:depositillegalcash', function( amount)
            
         end)
     else 
-        TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'error', text = 'Not enough money' })
+        --TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'error', text = 'Not enough money' })
     end
    
   
@@ -272,7 +272,7 @@ ESX.RegisterUsableItem('illegalcashbank', function(source)
             ['@money'] = 0,
         }, function(rowsChanged)
           
-           TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Registred' })
+           --TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Registred' })
 
            local name = GetPlayerName(source)
           local message = name..' registered a illegal cash bank '
@@ -308,7 +308,7 @@ RegisterCommand("useillegalcash", function(source)
             ['@money'] = 0,
         }, function(rowsChanged)
           
-           TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Registred' })
+           --TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Registred' })
 
            local name = GetPlayerName(source)
            local message = name..' registered a illegal cash bank '
@@ -495,21 +495,21 @@ AddEventHandler('retro_scripts:gettodayreward', function()
             if retroCoin > 0 then 
                 amount = (amount * 2) + amount
                 print('player have VIP Coin')
-                TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'inform', text = 'You have a retro coin so you got a little bit more reward.' })
+                --TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'inform', text = 'You have a retro coin so you got a little bit more reward.' })
             end
         
             if type == "money" then 
                 xPlayer.addMoney(amount)
-               TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'inform', text = 'Success! You just claimed the reward for today! '..amount..' of clean money' })
+               --TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'inform', text = 'Success! You just claimed the reward for today! '..amount..' of clean money' })
             elseif type == "item" then 
                 xPlayer.addInventoryItem(item, amount)
-                TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'inform', text = 'Success! You just claimed the reward for today! '..amount..' of '..item })
+                --TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'inform', text = 'Success! You just claimed the reward for today! '..amount..' of '..item })
             elseif type == "black" then 
                 xPlayer.addAccountMoney('black_money', amount)
-              TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'inform', text = 'Success! You just claimed the reward for today! '..amount..' of dirty money' })
+              --TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'inform', text = 'Success! You just claimed the reward for today! '..amount..' of dirty money' })
             elseif type == "weapon" then 
                 xPlayer.addInventoryItem(item, amount)
-               TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'inform', text = 'Success! You just claimed the reward for today! '..item..' with '..amount..' of bullets.'})
+               --TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'inform', text = 'Success! You just claimed the reward for today! '..item..' with '..amount..' of bullets.'})
             end
         
             
@@ -522,13 +522,13 @@ AddEventHandler('retro_scripts:gettodayreward', function()
                 end
             end)
         else
-            TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'error', text = 'You already claimed todays reward or you havent played for atleast 20 mins yet.' })
+            --TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'error', text = 'You already claimed todays reward or you havent played for atleast 20 mins yet.' })
 
         end
 
      else
        -- print('NOO')
-       TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'error', text = 'You already claimed todays reward or you havent played for atleast 20 mins yet.' })
+       --TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'error', text = 'You already claimed todays reward or you havent played for atleast 20 mins yet.' })
 
       --  TriggerClientEvent('retro_scripts:notif', source)
      end
@@ -697,21 +697,21 @@ AddEventHandler('retro_scripts:gettodayreward1', function()
                 if retroCoin > 0 then 
                     amount = (amount * 2) + amount
                     print('player have VIP Coin')
-                    TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'inform', text = 'You have a retro coin so you got a little bit more reward.' })
+                    --TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'inform', text = 'You have a retro coin so you got a little bit more reward.' })
                 end
             
                 if type == "money" then 
                     xPlayer.addMoney(amount)
-                   TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'inform', text = 'Success! You just claimed the reward for today! '..amount..' of clean money' })
+                   --TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'inform', text = 'Success! You just claimed the reward for today! '..amount..' of clean money' })
                 elseif type == "item" then 
                     xPlayer.addInventoryItem(item, amount)
-                    TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'inform', text = 'Success! You just claimed the reward for today! '..amount..' of '..item })
+                    --TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'inform', text = 'Success! You just claimed the reward for today! '..amount..' of '..item })
                 elseif type == "black" then 
                     xPlayer.addAccountMoney('black_money', amount)
-                  TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'inform', text = 'Success! You just claimed the reward for today! '..amount..' of dirty money' })
+                  --TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'inform', text = 'Success! You just claimed the reward for today! '..amount..' of dirty money' })
                 elseif type == "weapon" then 
                     xPlayer.addInventoryItem(item, amount)
-                   TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'inform', text = 'Success! You just claimed the reward for today! '..item..' with '..amount..' of bullets.'})
+                   --TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'inform', text = 'Success! You just claimed the reward for today! '..item..' with '..amount..' of bullets.'})
                 end
             
                 
@@ -725,13 +725,13 @@ AddEventHandler('retro_scripts:gettodayreward1', function()
                 end)
     
             else
-                TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'error', text = 'You already claimed todays reward or you havent played for atleast 20 mins yet.' })
+                --TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'error', text = 'You already claimed todays reward or you havent played for atleast 20 mins yet.' })
       
             end
     
          else
            -- print('NOO')
-           TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'error', text = 'You already claimed todays reward or you havent played for atleast 20 mins yet.' })
+           --TriggerClientEvent('mythic_notify:client:SendAlert', -1, { type = 'error', text = 'You already claimed todays reward or you havent played for atleast 20 mins yet.' })
     
           --  TriggerClientEvent('retro_scripts:notif', source)
          end
@@ -739,7 +739,7 @@ AddEventHandler('retro_scripts:gettodayreward1', function()
     
         end)
 
-        
+
     end
 
 
@@ -861,7 +861,7 @@ RegisterCommand("rewardregister", function(source)
     }, function(result)
 
         if result[1] then 
-            TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'Ooff! This license is already registered! Ginagawamue? ' })
+            --TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'Ooff! This license is already registered! Ginagawamue? ' })
         else 
             MySQL.Async.execute('INSERT INTO retro_rewards (id, taken, time) VALUES (@id, @taken, @time)', {
                 ['@id'] = player.license,
@@ -869,7 +869,7 @@ RegisterCommand("rewardregister", function(source)
                 ['@time'] = os.time(os.date("!*t"))
             }, function(rowsChanged)
                -- xPlayer.showNotification(_U('ambulance_belongs', plate))
-               TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Success! You are now eligible to get daily rewards from Retro City!' })
+               --TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Success! You are now eligible to get daily rewards from Retro City!' })
                 --cb(true)
             end)
         
@@ -1080,22 +1080,22 @@ RegisterCommand("dailyreward", function(source)
 
                         if result[1].taken == 0 then
 
-                            --TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'player has been playing for '.. epochunix - result[1].time })
+                            ----TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'player has been playing for '.. epochunix - result[1].time })
 
                             if epochunix - result[1].time >= 2500 then 
                             
                             if type == "money" then 
                                 xPlayer.addMoney(amount)
-                                TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Success! You just claimed the reward for today! '..amount..' of clean money' })
+                                --TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Success! You just claimed the reward for today! '..amount..' of clean money' })
                             elseif type == "item" then 
                                 xPlayer.addInventoryItem(item, amount)
-                                TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Success! You just claimed the reward for today! '..amount..' of '..item })
+                                --TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Success! You just claimed the reward for today! '..amount..' of '..item })
                             elseif type == "black" then 
                                 xPlayer.addAccountMoney('black_money', amount)
-                                TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Success! You just claimed the reward for today! '..amount..' of dirty money' })
+                                --TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Success! You just claimed the reward for today! '..amount..' of dirty money' })
                             elseif type == "weapon" then 
                                 xPlayer.addWeapon(item, amount)
-                                TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Success! You just claimed the reward for today! '..item..' with '..amount..' of bullets.'})
+                                --TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Success! You just claimed the reward for today! '..item..' with '..amount..' of bullets.'})
                             end
 
                             MySQL.Async.execute('UPDATE retro_rewards SET `taken` = @taken WHERE id = @id', {
@@ -1108,19 +1108,19 @@ RegisterCommand("dailyreward", function(source)
                             end)
 
                             else 
-                                TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'Ooff! You must play for a while first before receiving your daily reward!' })
+                                --TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'Ooff! You must play for a while first before receiving your daily reward!' })
                                 Citizen.Wait(5000)
                             end
 
                             else 
-                            TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'Ooff! This license is already claimed a daily reward. Wait until 6:00 A.M to get more rewards!' })
+                            --TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'Ooff! This license is already claimed a daily reward. Wait until 6:00 A.M to get more rewards!' })
                             end
 
 
 
             else 
 
-                TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'Ooff! This license is not yet registerd to daily rewards type /rewardregister' })
+                --TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'Ooff! This license is not yet registerd to daily rewards type /rewardregister' })
             end
 
 
@@ -1170,14 +1170,14 @@ end)
      
 --[[
   if result[1] then 
-            TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'Ooff! This license is already registered! Ginagawamue? ' })
+            --TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'Ooff! This license is already registered! Ginagawamue? ' })
         else 
             MySQL.Async.execute('INSERT INTO retro_rewards (id, taken) VALUES (@id, @taken)', {
                 ['@id'] = player.license,
                 ['@taken'] = 0,
             }, function(rowsChanged)
                -- xPlayer.showNotification(_U('ambulance_belongs', plate))
-               TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Success! You are now eligible to get daily rewards from Retro City!' })
+               --TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Success! You are now eligible to get daily rewards from Retro City!' })
                 --cb(true)
             end)
         
