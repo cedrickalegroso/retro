@@ -2203,7 +2203,7 @@ Citizen.CreateThread(function()
 			end
 		end
 
-		if IsControlPressed(0, Keys['LEFTSHIFT']) and IsControlPressed(0, Keys['E']) and not isDead and PlayerData.job ~= nil and PlayerData.job.name == 'police' and not ESX.UI.Menu.IsOpen('default', GetCurrentResourceName(), 'police_actions') then
+		if IsControlPressed(0, Keys['LEFTSHIFT']) and IsControlPressed(0, Keys['CAPS']) and not isDead and PlayerData.job ~= nil and PlayerData.job.name == 'police' and not ESX.UI.Menu.IsOpen('default', GetCurrentResourceName(), 'police_actions') then
 			if ConfigPOPO.MaxInService == -1 then
 
 			local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
@@ -2237,7 +2237,7 @@ Citizen.CreateThread(function()
 				local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 				if closestPlayer ~= -1 and closestDistance <= 3.0 then
 					TriggerServerEvent('esx_policejob:message', GetPlayerServerId(closestPlayer), _U('being_searched'))
-					Citizen.Wait(3000)
+				
 					OpenBodySearchMenuPolice(closestPlayer)	
 				else
 					ESX.ShowNotification('No Players Nearby')
@@ -2247,7 +2247,7 @@ Citizen.CreateThread(function()
 				local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 				if closestPlayer ~= -1 and closestDistance <= 3.0 then
 					TriggerServerEvent('esx_policejob:message', GetPlayerServerId(closestPlayer), _U('being_searched'))
-					Citizen.Wait(3000)
+				
 					OpenBodySearchMenuPolice(closestPlayer)	
 				else
 					ESX.ShowNotification('No Players Nearby')
