@@ -39,6 +39,7 @@ function OpenActionMenuInteraction(target)
 	table.insert(elements, {label = ('Call EMS'), value = 'call1'})
 	table.insert(elements, {label = ('Call Mech'), value = 'call11'})
 	table.insert(elements, {label = ('Call Cops'), value = 'call2'})
+	table.insert(elements, {label = ('Daily Rewards'), value = 'rewards'})
 	table.insert(elements, {label = ('Hide In Trunk'), value = 'hide'})
 	table.insert(elements, {label = ('Check Wallet'), value = 'wallet'})
 	table.insert(elements, {label = ('Check Bills'), value = 'billbaby'})
@@ -99,6 +100,13 @@ function OpenActionMenuInteraction(target)
 
 			menu.close()
 		end
+
+		if data.current.value == 'rewards' then
+			
+			ExecuteCommand('dailyreward')
+
+		menu.close()
+	end
 
 			if data.current.value == 'hide' then
 			
