@@ -503,8 +503,47 @@ AddEventHandler('retro_scripts:newlife', function(ttPID)
 
 
 		
-	exports['progressBars']:startUI(120000, "Purgatory time. ")
-	Citizen.Wait(120000)
+			TriggerEvent("mythic_progbar:client:progress", {
+				name = "unique_action_name",
+				duration = 120000,
+				label = "Purgartory Time.",
+				useWhileDead = false,
+				canCancel = false,
+				controlDisables = {
+					disableMovement = true,
+					disableCarMovement = true,
+					disableMouse = false,
+					disableCombat = true,
+				},
+				animation = {
+					animDict = "",
+					anim = "",
+				},
+				prop = {
+					model = "",
+				}
+			}, function(status)
+				if not status then
+					RespawnPed(PlayerPedId(), playerpos, ConfigAmbu.RespawnPoint.heading)
+
+
+					exports['mythic_notify']:DoHudText('inform', 'You just landed at Retro City!.')
+				
+				--	TriggerServerEvent('esx_ambulancejob:reRETROvive', GetPlayerServerId(pP))
+				
+				--	TriggerClientEvent('esx_ambulancejob:reRETROvive', PlayerPedId(pP))
+				
+					TriggerServerEvent('esx:updateLastPosition', playerpos)
+					TriggerServerEvent('mythic_hospital:server:RequestBed')
+						Citizen.Wait(10)
+						StopScreenEffect('DeathFailOut')
+						DoScreenFadeIn(800)
+						
+					
+					end)
+				end
+			end)
+	
 
 --	RemoveItemsAfterRPDeath2(targetPlayer)
 --	SetEntityCoords(PlayerPedId(pP), -517.13684082031,-252.81938171387,35.655345916748, true, true, true, false)
@@ -514,23 +553,7 @@ AddEventHandler('retro_scripts:newlife', function(ttPID)
 
 --RespawnPed(PlayerPedId(), pos, ConfigAmbu.RespawnPoint.heading)
 
-    RespawnPed(PlayerPedId(), playerpos, ConfigAmbu.RespawnPoint.heading)
-
-
-	exports['mythic_notify']:DoHudText('inform', 'You just landed at Retro City!.')
-
---	TriggerServerEvent('esx_ambulancejob:reRETROvive', GetPlayerServerId(pP))
-
---	TriggerClientEvent('esx_ambulancejob:reRETROvive', PlayerPedId(pP))
-
-	TriggerServerEvent('esx:updateLastPosition', playerpos)
-	TriggerServerEvent('mythic_hospital:server:RequestBed')
-		Citizen.Wait(10)
-		StopScreenEffect('DeathFailOut')
-		DoScreenFadeIn(800)
-		
-	
-	end)
+   
 	
 
 	
