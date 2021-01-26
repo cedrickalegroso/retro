@@ -35,7 +35,7 @@ Config.Recipes = {
 		 {item = "radio", quantity = 4},
 		},
 		
-		['GoldSkin'] = { 
+		['yusuf'] = { 
 		 {item = "subwoofer", quantity = 2}, 
 		 {item = "muffler", quantity = 4},
 		},
