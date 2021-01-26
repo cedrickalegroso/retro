@@ -84,7 +84,7 @@ Config.ExtraVisionShops = {
             { name = "disc_ammo_rifle_large", price = 5500, count = 1, grade = 0 },
             { name = "disc_ammo_shotgun", price = 2500, count = 1, grade = 0 },
             { name = "disc_ammo_smg", price = 2300, count = 1, grade = 0 },
-            { name = "Supressor", price = 500, count = 1, grade = 0 },
+            { name = "Suppressor", price = 500, count = 1, grade = 0 },
 			{ name = "flashlight", price = 750, count = 1, grade = 0 },
 			{ name = "grip", price = 750, count = 1, grade = 0 },
         },
