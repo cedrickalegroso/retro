@@ -217,51 +217,39 @@ Config.ExtraVisionShops = {
         job = 'ambulance'
     },
     ]]--
-  
-
     ['Black Market'] = {
         coords = {
             vector3(2728.6357421875,4142.0458984375,44.287925720215)
         },
         items = {
-           { name = "WEAPON_COMPACTRIFLE", price = 50000, count = 1, grade = 2 },
+            { name = "WEAPON_COMPACTRIFLE", price = 50000, count = 1, grade = 2 },
             { name = "WEAPON_MINISMG", price = 12500, count = 1, grade = 0 },
-           -- { name = "WEAPON_SPECIALCARBINE", price = 50000, count = 1, grade = 2 },
             { name = "WEAPON_ASSAULTRIFLE", price = 50000, count = 1, grade = 2 },
-          --  { name = "WEAPON_ADVANCEDRIFLE", price = 0, count = 1, grade = 2 },
-          --  { name = "WEAPON_HEAVYSNIPER", price = 0, count = 1, grade = 3 },
-          --  { name = "WEAPON_GUSENBERG", price = 0, count = 1, grade = 2 },
-          --  { name = "WEAPON_BULLPUPRIFLE", price = 0, count = 1, grade = 2 },
           { name = "WEAPON_PUMPSHOTGUN", price = 7500, count = 1, grade = 2 },
           { name = "WEAPON_SAWNOFFSHOTGUN", price = 7500, count = 1, grade = 2 },
           { name = "WEAPON_MOLOTOV", price = 2500, count = 1, grade = 2 },
             { name = "WEAPON_ASSAULTSMG", price = 15000, count = 1, grade = 2 },
             { name = "WEAPON_FLASHLIGHT", price = 500, count = 1, grade = 0 },
-         --   { name = "WEAPON_STUNGUN", price = 0, count = 1, grade = 0 },
-          --  { name = "WEAPON_COMBATPISTOL", price = 0, count = 1, grade = 0 },
             { name = "disc_ammo_pistol", price = 1750, count = 1, grade = 0 },
             { name = "disc_ammo_pistol_large", price = 2500, count = 1, grade = 0 },
             { name = "disc_ammo_rifle", price = 3500, count = 1, grade = 0 },
             { name = "disc_ammo_rifle_large", price = 5500, count = 1, grade = 0 },
             { name = "disc_ammo_shotgun", price = 2500, count = 1, grade = 0 },
             { name = "disc_ammo_smg", price = 2300, count = 1, grade = 0 },
-        --    { name = "disc_ammo_snp", price = 0, count = 1, grade = 0 },
-        --    { name = "WEAPON_NIGHTSTICK", price = 0, count = 1, grade = 0 },
-       --     { name = "WEAPON_FLASHLIGHT", price = 0, count = 1, grade = 0 },
-       --     { name = "WEAPON_FLARE", price = 0, count = 1, grade = 0 },
-       --     { name = "WEAPON_BAT", price = 0, count = 1},
-       --     { name = "WEAPON_KNIFE", price = 0, count = 1},
             { name = "Supressor", price = 500, count = 1, grade = 0 },
 			{ name = "flashlight", price = 750, count = 1, grade = 0 },
-			{ name = "grip", price = 750, count = 1, grade = 0 }
+			{ name = "grip", price = 750, count = 1, grade = 0 },
         },
         markerType = 27,
         markerColour = { r = 255, g = 255, b = 255 },
-        msg = 'Press ~r~[E]~h~ To Black Market',
+        msg = 'Press ~r~[E]~h~ to open the Black Market',
         show3D = true,
         enableBlip = false,
         job = 'all'
     },
+  
+
+  
 
     ['Biton Armor'] = {
         coords = {
