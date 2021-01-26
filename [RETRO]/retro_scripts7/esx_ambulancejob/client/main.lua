@@ -502,13 +502,12 @@ AddEventHandler('retro_scripts:newlife', function(ttPID)
 			ESX.SetPlayerData('loadout', {})
 
 
-		
 			TriggerEvent("mythic_progbar:client:progress", {
 				name = "unique_action_name",
 				duration = 120000,
-				label = "Purgartory Time.",
+				label = "Purgatory Time",
 				useWhileDead = false,
-				canCancel = false,
+				canCancel = true,
 				controlDisables = {
 					disableMovement = true,
 					disableCarMovement = true,
@@ -524,26 +523,26 @@ AddEventHandler('retro_scripts:newlife', function(ttPID)
 				}
 			}, function(status)
 				if not status then
+				--RespawnPed(PlayerPedId(), pos, ConfigAmbu.RespawnPoint.heading)
+
+				RespawnPed(PlayerPedId(), playerpos, ConfigAmbu.RespawnPoint.heading)
+
+
+				exports['mythic_notify']:DoHudText('inform', 'You just landed at Retro City!.')
+			
+			--	TriggerServerEvent('esx_ambulancejob:reRETROvive', GetPlayerServerId(pP))
+			
+			--	TriggerClientEvent('esx_ambulancejob:reRETROvive', PlayerPedId(pP))
+			
+				TriggerServerEvent('esx:updateLastPosition', playerpos)
+			--	TriggerServerEvent('mythic_hospital:server:RequestBed')
+					Citizen.Wait(10)
+					StopScreenEffect('DeathFailOut')
+					DoScreenFadeIn(800)
 					
-    RespawnPed(PlayerPedId(), playerpos, ConfigAmbu.RespawnPoint.heading)
-
-
-	exports['mythic_notify']:DoHudText('inform', 'You just landed at Retro City!.')
-
---	TriggerServerEvent('esx_ambulancejob:reRETROvive', GetPlayerServerId(pP))
-
---	TriggerClientEvent('esx_ambulancejob:reRETROvive', PlayerPedId(pP))
-
-	TriggerServerEvent('esx:updateLastPosition', playerpos)
-	TriggerServerEvent('mythic_hospital:server:RequestBed')
-		Citizen.Wait(10)
-		StopScreenEffect('DeathFailOut')
-		DoScreenFadeIn(800)
-		
-	
-	end)
 				end
 			end)
+	
 	
 
 --	RemoveItemsAfterRPDeath2(targetPlayer)
@@ -552,11 +551,14 @@ AddEventHandler('retro_scripts:newlife', function(ttPID)
 --local pos =  -517.13684082031,-252.81938171387,35.655345916748
 
 
---RespawnPed(PlayerPedId(), pos, ConfigAmbu.RespawnPoint.heading)
 
+	
+	end)
 	
 
 	
+
+end)
 
 
 function RemoveItemsAfterRPDeath()
