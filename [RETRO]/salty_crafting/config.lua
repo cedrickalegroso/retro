@@ -62,6 +62,70 @@ Config.Recipes = {
 		 {item = "muffler", quantity = 1},
 		},
 
+
+
+		   
+		   ['WEAPON_FLARE'] = {  
+			{item = "oilpump", quantity = 1 }, 
+			{item = "muffler", quantity = 1},
+		   },
+		   
+		   
+		   ['WEAPON_COMBATPDW '] = { 
+			{item = "hood", quantity = 5 }, 
+			{item = "oilpump", quantity = 4 }, 
+			{item = "battery", quantity = 3 }, 
+			{item = "muffler", quantity = 3},
+		   },
+		   
+		   
+		   ['WEAPON_PISTOL50 '] = { 
+			{item = "hood", quantity = 3 }, 
+			{item = "oilpump", quantity = 3 }, 
+			{item = "battery", quantity = 3 }, 
+			{item = "muffler", quantity = 3},
+		   },
+		   
+		   
+		   ['WEAPON_SWITCHBLADE'] = { 
+			{item = "hood", quantity = 3 }, 
+		   },
+		   
+		   
+		   ['WEAPON_MUSKET'] = { 
+			{item = "hood", quantity = 10 }, 
+			{item = "oilpump", quantity = 5 }, 
+			{item = "battery", quantity = 3 }, 
+			{item = "muffler", quantity = 5},
+		   },
+		   
+		   ['WEAPON_MACHINEPISTOL'] = { 
+			{item = "hood", quantity = 3 }, 
+			{item = "oilpump", quantity = 1 }, 
+			{item = "battery", quantity = 2 }, 
+			{item = "muffler", quantity = 1},
+		   },
+		   
+		   
+		   ['WEAPON_ASSAULTSMG'] = { 
+			{item = "hood", quantity = 3 }, 
+			{item = "oilpump", quantity = 2 }, 
+			{item = "muffler", quantity = 1},
+		   },
+		   
+		   
+		   ['WEAPON_MINISMG'] = { 
+			{item = "hood", quantity = 3 }, 
+			{item = "oilpump", quantity = 1 }, 
+			{item = "battery", quantity = 2 }, 
+			{item = "muffler", quantity = 1},
+		   },
+		   
+		   ['WEAPON_HEAVYPISTOL'] = { 
+			{item = "oilpump", quantity = 1 }, 
+			{item = "battery", quantity = 1 }, 
+			{item = "muffler", quantity = 1},
+		   }
 }
 
 
