@@ -1138,6 +1138,47 @@ AddEventHandler('retro_gordo:handcuff', function()
 	end
 end)
 
+RegisterNetEvent('retro_gordo:handcuff1')
+AddEventHandler('retro_gordo:handcuff1', function()
+	isHandcuffed = not isHandcuffed
+	local playerPed = PlayerPedId()
+
+	if isHandcuffed then
+		RequestAnimDict('mp_arresting')
+		while not HasAnimDictLoaded('mp_arresting') do
+			Citizen.Wait(100)
+		end
+
+		TaskPlayAnim(playerPed, 'mp_arresting', 'idle', 8.0, -8, -1, 49, 0, 0, 0, 0)
+
+		SetEnableHandcuffs(playerPed, true)
+		DisablePlayerFiring(playerPed, true)
+		SetCurrentPedWeapon(playerPed, GetHashKey('WEAPON_UNARMED'), true) -- unarm player
+		SetPedCanPlayGestureAnims(playerPed, false)
+		FreezeEntityPosition(playerPed, false)
+		DisplayRadar(false)
+
+		if Config.EnableHandcuffTimer then
+			if handcuffTimer.active then
+				ESX.ClearTimeout(handcuffTimer.task)
+			end
+
+			StartHandcuffTimer()
+		end
+	else
+		if Config.EnableHandcuffTimer and handcuffTimer.active then
+			ESX.ClearTimeout(handcuffTimer.task)
+		end
+
+		ClearPedSecondaryTask(playerPed)
+		SetEnableHandcuffs(playerPed, false)
+		DisablePlayerFiring(playerPed, false)
+		SetPedCanPlayGestureAnims(playerPed, true)
+		FreezeEntityPosition(playerPed, false)
+		DisplayRadar(true)
+	end
+end)
+
 RegisterNetEvent('retro_gordo:unrestrain')
 AddEventHandler('retro_gordo:unrestrain', function()
 	if isHandcuffed then
