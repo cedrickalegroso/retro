@@ -32,12 +32,12 @@ AddEventHandler("Lenzh_chopshop:ChopRewards", function(rewards)
         local amount = math.random(1,3)
         local myItem = Config.Items[chance]
 
-        if xPlayer.canCarryItem(myItem, amount) then
+      --  if xPlayer.canCarryItem(myItem, amount) then
             xPlayer.addInventoryItem(myItem, amount)
             TriggerClientEvent('esx:showNotification', source, '~g~Rewards has been given!')
-        else
-            TriggerClientEvent('esx:showNotification', source, '~r~You cant carry anymore!')
-        end
+      --  else
+        --    TriggerClientEvent('esx:showNotification', source, '~r~You cant carry anymore!')
+       -- end
     end
 end)
 
