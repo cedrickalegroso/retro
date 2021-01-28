@@ -27,6 +27,9 @@ RegisterServerEvent("Lenzh_chopshop:ChopRewards")
 AddEventHandler("Lenzh_chopshop:ChopRewards", function(rewards)
     local _source = source
     local xPlayer = ESX.GetPlayerFromId(_source)
+
+   
+
     for i= 1, 3, 1 do
         local chance = math.random(1, #Config.Items)
         local amount = math.random(1,3)
