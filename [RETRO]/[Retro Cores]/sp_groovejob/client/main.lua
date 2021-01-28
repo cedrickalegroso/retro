@@ -351,6 +351,10 @@ function OpengrooveActionsMenu()
 							table.insert(myPlate, plate)
 							plate = string.gsub(plate, " ", "")
 							TaskWarpPedIntoVehicle(playerPed,  vehicle,  -1)
+
+							
+							TriggerServerEvent('hsn-hotwire:addKeys',vehicle)
+							SetVehicleEngineOn(vehicle,true)
 						end)
 
 						TriggerServerEvent('esx_society:removeVehicleFromGarage', 'groove', vehicleProps)
