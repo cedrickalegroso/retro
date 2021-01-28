@@ -345,15 +345,17 @@ function OpengrooveActionsMenu()
 						ESX.Game.SpawnVehicle(vehicleProps.model, Config.Zones.VehicleSpawnPoint.Pos, 270.0, function(vehicle)
 							ESX.Game.SetVehicleProperties(vehicle, vehicleProps)
 							local playerPed = PlayerPedId()
-							local plate = 'WORK' .. math.random(100, 900)
-							TriggerServerEvent('esx_vehiclelock:givekey', 'no', plate) -- vehicle lock
-							SetVehicleNumberPlateText(vehicle, plate)
-							table.insert(myPlate, plate)
-							plate = string.gsub(plate, " ", "")
+							SetVehicleFuelLevel(vehicle, 100.0)
+
+						--	local plate = 'WORK' .. math.random(100, 900)
+						--	TriggerServerEvent('esx_vehiclelock:givekey', 'no', plate) -- vehicle lock
+						--	SetVehicleNumberPlateText(vehicle, plate)
+						--	table.insert(myPlate, plate)
+						--	plate = string.gsub(plate, " ", "")
 							TaskWarpPedIntoVehicle(playerPed,  vehicle,  -1)
 
 							
-							TriggerServerEvent('hsn-hotwire:addKeys',vehicle)
+							TriggerServerEvent('hsn-hotwire:addKeys',GetVehicleNumberPlateText(vehicle))
 							SetVehicleEngineOn(vehicle,true)
 						end)
 
