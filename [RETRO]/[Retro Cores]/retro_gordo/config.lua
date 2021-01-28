@@ -45,10 +45,10 @@ Config.GordoStations = {
 
 		Vehicles = {	
 			{
-				Spawner = vector3(2354.7580566406,5884.0307617188,47.63334274292),
+				Spawner = vector3(2540.9956054688,6138.224609375,164.2721862793),
 				InsideShop = vector3(228.5, -993.5, -99.0),
 				SpawnPoints = {
-					{coords = vector3(2347.0007324219,5885.666015625,47.508060455322), heading = 33.0, radius = 6.0},
+				--	{coords = vector3(2347.0007324219,5885.666015625,47.508060455322), heading = 33.0, radius = 6.0},
 				--	{coords = vector3(484.1, -1023.1, 27.5), heading = 302.5, radius = 6.0}
 				}
 			},
@@ -59,7 +59,7 @@ Config.GordoStations = {
 		Helicopters = {
 			
 	{
-				Spawner = vector3(2596.1574707031,6197.6577148438,165.56037902832),
+				Spawner = vector3(2588.3747558594,6196.306640625,165.43855285645),
 				InsideShop = vector3(-1878.6215820312,3003.4211425781,32.810466766357),
 				SpawnPoints = {
 					{coords = vector3(2593.1765136719,6202.7036132812,165.56037902832), heading = 92.6, radius = 10.0}
