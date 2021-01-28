@@ -394,7 +394,7 @@ AddEventHandler('retro_scripts:gettodayreward', function(source)
     }, function(result) 
      if result[1] then
         
-        if epochunix - result[1].time >= 1  and result[1].taken == 0 then 
+        if epochunix - result[1].time >= 2500  and result[1].taken == 0 then 
             math.randomseed(os.time())
             local day = math.random(1,31)
 
