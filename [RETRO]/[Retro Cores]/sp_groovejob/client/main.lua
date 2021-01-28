@@ -396,6 +396,9 @@ function OpengrooveActionsMenu()
 								ESX.Game.SpawnVehicle(data.current.value, Config.Zones.VehicleSpawnPoint.Pos, 90.0, function(vehicle)
 									local playerPed = PlayerPedId()
 									TaskWarpPedIntoVehicle(playerPed,  vehicle, -1)
+
+									TriggerServerEvent('hsn-hotwire:addKeys',GetVehicleNumberPlateText(vehicle))
+							SetVehicleEngineOn(vehicle,true)
 								end)
 							else
 								ESX.ShowNotification(_U('service_full') .. inServiceCount .. '/' .. maxInService)
@@ -484,6 +487,9 @@ function OpentestActionsMenu()
 							table.insert(myPlate, plate)
 							plate = string.gsub(plate, " ", "")
 							TaskWarpPedIntoVehicle(playerPed,  vehicle,  -1)
+
+							TriggerServerEvent('hsn-hotwire:addKeys',GetVehicleNumberPlateText(vehicle))
+							SetVehicleEngineOn(vehicle,true)
 						end)
 
 						TriggerServerEvent('esx_society:removeVehicleFromGarage', 'groove', vehicleProps)
@@ -521,6 +527,9 @@ function OpentestActionsMenu()
 								ESX.Game.SpawnVehicle(data.current.value, Config.Zones.VehicleSpawnPoint.Pos, 90.0, function(vehicle)
 									local playerPed = PlayerPedId()
 									TaskWarpPedIntoVehicle(playerPed,  vehicle, -1)
+
+									TriggerServerEvent('hsn-hotwire:addKeys',GetVehicleNumberPlateText(vehicle))
+							SetVehicleEngineOn(vehicle,true)
 								end)
 							else
 								ESX.ShowNotification(_U('service_full') .. inServiceCount .. '/' .. maxInService)
