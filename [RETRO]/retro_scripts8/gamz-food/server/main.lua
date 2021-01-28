@@ -1,6 +1,6 @@
 local ESX = nil
 
-TriggerEvent('esx:getShRETROaredObjRETROect', function(obj) ESX = obj end)
+TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 
 
