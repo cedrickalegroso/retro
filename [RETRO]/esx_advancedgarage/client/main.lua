@@ -899,6 +899,216 @@ function ReturnOwnedvermillionMenu()
 end
 -- End of vermillion Code
 
+
+
+-- Start of Gordo Code
+function ListOwnedgordoMenu()
+	local elements = {}
+
+	if Config.Main.ShowVehLoc and Config.Main.Spacers then
+		local spacer = ('| <span style="color:red;">%s</span> - <span style="color:darkgoldenrod;">%s</span> - <span style="color:red;">%s</span> |'):format(_U('plate'), _U('vehicle'), _U('location'))
+		table.insert(elements, {label = spacer, value = nil})
+	elseif Config.Main.ShowVehLoc == false and Config.Main.Spacers then
+		local spacer = ('| <span style="color:red;">%s</span> - <span style="color:darkgoldenrod;">%s</span> |'):format(_U('plate'), _U('vehicle'))
+		table.insert(elements, {label = ('<span style="color:red;">%s</span>'):format(_U('spacer1')), value = nil})
+		table.insert(elements, {label = spacer, value = nil})
+	end
+
+	ESX.TriggerServerCallback('esx_advancedgarage:getOwnedgordoCars', function(ownedgordoCars)
+		if #ownedgordoCars == 0 then
+			ESX.ShowNotification(_U('garage_no_police'))
+		else
+			for _,v in pairs(ownedgordoCars) do
+				local hashVehicule = v.vehicle.model
+				local aheadVehName = GetDisplayNameFromVehicleModel(hashVehicule)
+				local vehicleName = GetLabelText(aheadVehName)
+				local plate = v.plate
+				local labelvehicle
+				local labelvehicle2 = ('| <span style="color:red;">%s</span> - <span style="color:darkgoldenrod;">%s</span> - '):format(plate, vehicleName)
+				local labelvehicle3 = ('| <span style="color:red;">%s</span> - <span style="color:darkgoldenrod;">%s</span> | '):format(plate, vehicleName)
+
+				if Config.Main.ShowVehLoc then
+					if v.stored then
+						labelvehicle = labelvehicle2 .. ('<span style="color:green;">%s</span> |'):format(_U('loc_garage'))
+					else
+						labelvehicle = labelvehicle2 .. ('<span style="color:red;">%s</span> |'):format(_U('loc_pound'))
+					end
+				else
+					if v.stored then
+						labelvehicle = labelvehicle3
+					else
+						labelvehicle = labelvehicle3
+					end
+				end
+
+				table.insert(elements, {label = labelvehicle, value = v})
+			end
+		end
+
+		table.insert(elements, {label = _U('spacer2'), value = nil})
+
+		ESX.TriggerServerCallback('esx_advancedgarage:getOwnedgordoAircrafts', function(ownedgordoAircrafts)
+			if #ownedgordoAircrafts == 0 then
+				ESX.ShowNotification(_U('garage_no_gordo_aircraft'))
+			else
+				for _,v in pairs(ownedgordoAircrafts) do
+					local hashVehicule = v.vehicle.model
+					local aheadVehName = GetDisplayNameFromVehicleModel(hashVehicule)
+					local vehicleName = GetLabelText(aheadVehName)
+					local plate = v.plate
+					local labelvehicle
+					local labelvehicle2 = ('| <span style="color:red;">%s</span> - <span style="color:darkgoldenrod;">%s</span> - '):format(plate, vehicleName)
+					local labelvehicle3 = ('| <span style="color:red;">%s</span> - <span style="color:darkgoldenrod;">%s</span> | '):format(plate, vehicleName)
+
+					if Config.Main.ShowVehLoc then
+						if v.stored then
+							labelvehicle = labelvehicle2 .. ('<span style="color:green;">%s</span> |'):format(_U('loc_garage'))
+						else
+							labelvehicle = labelvehicle2 .. ('<span style="color:red;">%s</span> |'):format(_U('loc_pound'))
+						end
+					else
+						if v.stored then
+							labelvehicle = labelvehicle3
+						else
+							labelvehicle = labelvehicle3
+						end
+					end
+
+					table.insert(elements, {label = labelvehicle, value = v})
+				end
+			end
+
+			ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'spawn_owned_gordo', {
+				title = _U('garage_gordo'),
+				align = Config.Main.MenuAlign,
+				elements = elements
+			}, function(data, menu)
+				if data.current.value == nil then
+				elseif data.current.value.vtype == 'aircraft' or data.current.value.vtype == 'helicopter' then
+					if data.current.value.stored then
+						menu.close()
+						SpawnVehicle2(data.current.value.vehicle, data.current.value.plate)
+					else
+						ESX.ShowNotification(_U('gordo_is_impounded'))
+					end
+				else
+					if data.current.value.stored then
+						menu.close()
+						SpawnVehicle(data.current.value.vehicle, data.current.value.plate)
+					else
+						ESX.ShowNotification(_U('gordo_is_impounded'))
+					end
+				end
+			end, function(data, menu)
+				menu.close()
+			end)
+		end)
+	end)
+end
+
+function StoreOwnedgordoMenu()
+	local playerPed  = GetPlayerPed(-1)
+
+	if IsPedInAnyVehicle(playerPed,  false) then
+		local playerPed = GetPlayerPed(-1)
+		local coords = GetEntityCoords(playerPed)
+		local vehicle = GetVehiclePedIsIn(playerPed, false)
+		local vehicleProps = ESX.Game.GetVehicleProperties(vehicle)
+		local current = GetPlayersLastVehicle(GetPlayerPed(-1), true)
+		local engineHealth = GetVehicleEngineHealth(current)
+		local plate = vehicleProps.plate
+
+		ESX.TriggerServerCallback('esx_advancedgarage:storeVehicle', function(valid)
+			if valid then
+				if engineHealth < 990 then
+					if Config.Main.DamageMult then
+						local apprasial = math.floor((1000 - engineHealth)/1000*Config.gordo.PoundP*Config.Main.MultAmount)
+						RepairVehicle(apprasial, vehicle, vehicleProps)
+					else
+						local apprasial = math.floor((1000 - engineHealth)/1000*Config.gordo.PoundP)
+						RepairVehicle(apprasial, vehicle, vehicleProps)
+					end
+				else
+					StoreVehicle(vehicle, vehicleProps)
+				end	
+			else
+				ESX.ShowNotification(_U('cannot_store_vehicle'))
+			end
+		end, vehicleProps)
+	else
+		ESX.ShowNotification(_U('no_vehicle_to_enter'))
+	end
+end
+
+function ReturnOwnedgordoMenu()
+	if WasinJPound then
+		ESX.ShowNotification(_U('must_wait', Config.Main.JPoundWait))
+	else
+		ESX.TriggerServerCallback('esx_advancedgarage:getOutOwnedgordoCars', function(ownedgordoCars)
+			local elements = {}
+
+			if Config.Main.ShowVehLoc == false and Config.Main.Spacers then
+				local spacer = ('| <span style="color:red;">%s</span> - <span style="color:darkgoldenrod;">%s</span> |'):format(_U('plate'), _U('vehicle'))
+				table.insert(elements, {label = spacer, value = nil})
+			end
+
+			for _,v in pairs(ownedgordoCars) do
+				local hashVehicule = v.model
+				local aheadVehName = GetDisplayNameFromVehicleModel(hashVehicule)
+				local vehicleName = GetLabelText(aheadVehName)
+				local plate = v.plate
+				local labelvehicle
+				local labelvehicle2 = ('| <span style="color:red;">%s</span> - <span style="color:darkgoldenrod;">%s</span> - '):format(plate, vehicleName)
+
+				labelvehicle = labelvehicle2 .. ('<span style="color:green;">%s</span> |'):format(_U('return'))
+
+				table.insert(elements, {label = labelvehicle, value = v})
+			end
+
+			ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'return_owned_gordo', {
+				title = _U('pound_gordo', ESX.Math.GroupDigits(Config.Gordo.PoundP)),
+				align = Config.Main.MenuAlign,
+				elements = elements
+			}, function(data, menu)
+				local doesVehicleExist = false
+
+				for k,v in pairs (vehInstance) do
+					if ESX.Math.Trim(v.plate) == ESX.Math.Trim(data.current.value.plate) then
+						if DoesEntityExist(v.vehicleentity) then
+							doesVehicleExist = true
+						else
+							table.remove(vehInstance, k)
+							doesVehicleExist = false
+						end
+					end
+				end
+
+				if not doesVehicleExist and not DoesAPlayerDrivesVehicle(data.current.value.plate) then
+					ESX.TriggerServerCallback('esx_advancedgarage:checkMoneygordo', function(hasEnoughMoney)
+						if hasEnoughMoney then
+							if data.current.value == nil then
+							else
+								SpawnVehicle(data.current.value, data.current.value.plate)
+								TriggerServerEvent('esx_advancedgarage:paygordo')
+								if Config.Main.JPoundTimer then
+									WasinJPound = true
+								end
+							end
+						else
+							ESX.ShowNotification(_U('not_enough_money'))
+						end
+					end)
+				else
+					ESX.ShowNotification(_U('cant_take_out'))
+				end
+			end, function(data, menu)
+				menu.close()
+			end)
+		end)
+	end
+end
+-- End of Gordo Code
+
 -- Start of Mechanic Code
 function ListOwnedMechanicMenu()
 	local elements = {}
@@ -1746,9 +1956,22 @@ AddEventHandler('esx_advancedgarage:hasEnteredMarker', function(zone)
 		CurrentAction = 'vermillion_pound_point'
 		CurrentActionMsg = _U('press_to_impound')
 		CurrentActionData = {}
+		
 	elseif zone == 'mechanic_garage_point' then
 		CurrentAction = 'mechanic_garage_point'
 		CurrentActionMsg = _U('press_to_enter')
+		CurrentActionData = {}
+	elseif zone == 'gordo_garage_point' then
+		CurrentAction = 'gordo_garage_point'
+		CurrentActionMsg = _U('press_to_enter')
+		CurrentActionData = {}
+	elseif zone == 'gordo_store_point' then
+		CurrentAction = 'gordo_store_point'
+		CurrentActionMsg = _U('press_to_delete')
+		CurrentActionData = {}
+	elseif zone == 'gordo_pound_point' then
+		CurrentAction = 'gordo_pound_point'
+		CurrentActionMsg = _U('press_to_impound')
 		CurrentActionData = {}
 	elseif zone == 'mechanic_store_point' then
 		CurrentAction = 'mechanic_store_point'
@@ -2082,6 +2305,72 @@ Citizen.CreateThread(function()
 
 						if distance < Config.Vermillion.Markers.Pounds.x then
 							isInMarker, this_Garage, currentZone = true, v, 'vermillion_pound_point'
+						end
+					end
+				end
+			end
+		end
+
+		if Config.Gordo.Garages then
+			if ESX.PlayerData.job2 and ESX.PlayerData.job2.name == 'gordo' then
+				for k,v in pairs(Config.GordoGarages) do
+					local distance = #(playerCoords - v.Marker)
+					local distance2 = #(playerCoords - v.Deleter)
+					local distance3 = #(playerCoords - v.Deleter2)
+
+					if distance < Config.Main.DrawDistance then
+						letSleep = false
+
+						if Config.Gordo.Markers.Points.Type ~= -1 then
+							DrawMarker(Config.Gordo.Markers.Points.Type, v.Marker, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Config.Gordo.Markers.Points.x, Config.Gordo.Markers.Points.y, Config.Gordo.Markers.Points.z, Config.Gordo.Markers.Points.r, Config.Gordo.Markers.Points.g, Config.Gordo.Markers.Points.b, 100, false, true, 2, false, nil, nil, false)
+						end
+
+						if distance < Config.Gordo.Markers.Points.x then
+							isInMarker, this_Garage, currentZone = true, v, 'gordo_garage_point'
+						end
+					end
+
+					if distance2 < Config.Main.DrawDistance then
+						letSleep = false
+
+						if Config.Gordo.Markers.Delete.Type ~= -1 then
+							DrawMarker(Config.Gordo.Markers.Delete.Type, v.Deleter, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Config.Gordo.Markers.Delete.x, Config.Gordo.Markers.Delete.y, Config.Gordo.Markers.Delete.z, Config.Gordo.Markers.Delete.r, Config.Gordo.Markers.Delete.g, Config.Gordo.Markers.Delete.b, 100, false, true, 2, false, nil, nil, false)
+						end
+
+						if distance2 < Config.Gordo.Markers.Delete.x then
+							isInMarker, this_Garage, currentZone = true, v, 'gordo_store_point'
+						end
+					end
+
+					if distance3 < Config.Main.DrawDistance then
+						letSleep = false
+
+						if Config.Gordo.Markers.Delete.Type ~= -1 then
+							DrawMarker(Config.Gordo.Markers.Delete.Type, v.Deleter2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Config.Gordo.Markers.Delete.x, Config.Gordo.Markers.Delete.y, Config.Gordo.Markers.Delete.z, Config.Gordo.Markers.Delete.r, Config.Gordo.Markers.Delete.g, Config.Gordo.Markers.Delete.b, 100, false, true, 2, false, nil, nil, false)
+						end
+
+						if distance3 < Config.Gordo.Markers.Delete.x then
+							isInMarker, this_Garage, currentZone = true, v, 'gordo_store_point'
+						end
+					end
+				end
+			end
+		end
+
+		if Config.Gordo.Pounds then
+			if ESX.PlayerData.job2 and ESX.PlayerData.job2.name == 'gordo' then
+				for k,v in pairs(Config.GordoPounds) do
+					local distance = #(playerCoords - v.Marker)
+
+					if distance < Config.Main.DrawDistance then
+						letSleep = false
+
+						if Config.Gordo.Markers.Pounds.Type ~= -1 then
+							DrawMarker(Config.Gordo.Markers.Pounds.Type, v.Marker, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Config.Gordo.Markers.Pounds.x, Config.Gordo.Markers.Pounds.y, Config.Gordo.Markers.Pounds.z, Config.Gordo.Markers.Pounds.r, Config.Gordo.Markers.Pounds.g, Config.Gordo.Markers.Pounds.b, 100, false, true, 2, false, nil, nil, false)
+						end
+
+						if distance < Config.Gordo.Markers.Pounds.x then
+							isInMarker, this_Garage, currentZone = true, v, 'gordo_pound_point'
 						end
 					end
 				end
@@ -2454,6 +2743,35 @@ Citizen.CreateThread(function()
 					else
 						ESX.ShowNotification(_U('must_vermillion'))
 					end
+
+
+				elseif CurrentAction == 'gordo_garage_point' then
+					if ESX.PlayerData.job2 and ESX.PlayerData.job2.name == 'gordo' then
+						ListOwnedgordoMenu()
+					else
+						ESX.ShowNotification(_U('must_gordo'))
+					end
+				elseif CurrentAction == 'gordo_store_point' then
+					if ESX.PlayerData.job2 and ESX.PlayerData.job2.name == 'gordo' then
+						if IsThisModelACar(model) or IsThisModelABicycle(model) or IsThisModelABike(model) or IsThisModelAHeli(model) then
+							if (GetPedInVehicleSeat(playerVeh, -1) == playerPed) then
+								StoreOwnedgordoMenu()
+							else
+								ESX.ShowNotification(_U('driver_seat'))
+							end
+						else
+							ESX.ShowNotification(_U('not_correct_veh'))
+						end
+					else
+						ESX.ShowNotification(_U('must_gordo'))
+					end
+				elseif CurrentAction == 'gordo_pound_point' then
+					if ESX.PlayerData.job2 and ESX.PlayerData.job2.name == 'gordo' then
+						ReturnOwnedgordoMenu()
+					else
+						ESX.ShowNotification(_U('must_gordo'))
+					end
+
 
 
 
@@ -2829,6 +3147,43 @@ function RefreshJobBlips()
 	end
 
 
+	if Config.Gordo.Garages and Config.Gordo.Blips then
+		if ESX.PlayerData.job2 and ESX.PlayerData.job2.name == 'gordo' then
+			for k,v in pairs(Config.GordoGarages) do
+				local blip = AddBlipForCoord(v.Marker)
+
+				SetBlipSprite (blip, Config.Blips.JGarages.Sprite)
+				SetBlipColour (blip, Config.Blips.JGarages.Color)
+				SetBlipDisplay(blip, Config.Blips.JGarages.Display)
+				SetBlipScale  (blip, Config.Blips.JGarages.Scale)
+				SetBlipAsShortRange(blip, true)
+
+				BeginTextCommandSetBlipName("STRING")
+				AddTextComponentString(_U('blip_gordo_garage'))
+				EndTextCommandSetBlipName(blip)
+				table.insert(JobBlips, blip)
+			end
+		end
+	end
+
+	if Config.Gordo.Pounds and Config.Gordo.Blips then
+		if ESX.PlayerData.job2 and ESX.PlayerData.job2.name == 'gordo' then
+			for k,v in pairs(Config.GordoPounds) do
+				local blip = AddBlipForCoord(v.Marker)
+
+				SetBlipSprite (blip, Config.Blips.JPounds.Sprite)
+				SetBlipColour (blip, Config.Blips.JPounds.Color)
+				SetBlipDisplay(blip, Config.Blips.JPounds.Display)
+				SetBlipScale  (blip, Config.Blips.JPounds.Scale)
+				SetBlipAsShortRange(blip, true)
+
+				BeginTextCommandSetBlipName("STRING")
+				AddTextComponentString(_U('blip_gordo_pound'))
+				EndTextCommandSetBlipName(blip)
+				table.insert(JobBlips, blip)
+			end
+		end
+	end
 
 
 	if Config.Mechanic.Garages and Config.Mechanic.Blips then

@@ -60,6 +60,15 @@ Locales['en'] = {
 		['vermillion_is_impounded'] = 'Your Vermillion Vehicle is not here.',
 		['must_vermillion'] = 'Must be Vermillion Job to Access this!',
 
+		['blip_gordo_garage'] = 'Garage | Indigenous People Garage',
+		['blip_gordo_pound'] = 'Garage | Indigenous People Pound',
+		['garage_gordo'] = 'Indigenous People Garage',
+		['pound_gordo'] = 'Indigenous People Pound: Fee $%s',
+		['garage_no_gordo'] = 'You dont own any Indigenous People Vehicles!',
+		['garage_no_gordo_aircraft'] = 'You dont own any Indigenous People Aircrafts!',
+		['gordo_is_gordo'] = 'Your Indigenous People Vehicle is not here.',
+		['must_gordo'] = 'Must be Indigenous People Job to Access this!',
+
 			-- Vermilllio
 			['blip_cuatro_garage'] = 'Garage | Cuatro Garage',
 			['blip_cuatro_pound'] = 'Garage | Cuatro Pound',

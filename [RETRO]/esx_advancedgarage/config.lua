@@ -79,6 +79,19 @@ Config.Vermillion = {
 	}
 }
 
+Config.Gordo = {
+	Garages = true, -- true = Allows use of Police Garages.
+	Pounds = true, -- true = Allows use of Police Pounds.
+	Blips = false, -- true = Use Police Blips.
+	PoundP = 80, -- How much it Costs to get Vehicles from Police Pound.
+	Markers = {
+		Points = {Type = 36, r = 0, g = 255, b = 0, x = 1.0, y = 1.0, z = 1.0}, -- Green Color / Standard Size Circle.
+		Delete = {Type = 36, r = 255, g = 0, b = 0, x = 1.0, y = 1.0, z = 1.0}, -- Red Color / Big Size Circle.
+		Pounds = {Type = 36, r = 255, g = 0, b = 0, x = 1.0, y = 1.0, z = 1.0} -- Red Color / Standard Size Circle.
+	}
+}
+
+
 
 
 Config.Mechanic = {
@@ -233,6 +246,48 @@ Config.VermillionPounds = {
 	Los_Santos = {
 		Marker = vector3(-2711.3640136719,-69.649597167969,17.009370803833),
 		Spawner = vector3(-2697.0244140625,-90.874938964844,17.009370803833),
+		Heading = 15.34
+	}
+}
+-- End of Police
+
+
+-- Start of Police
+Config.GordoGarages = {
+	Los_Santos = {
+		Marker = vector3(2598.34765625,6178.3559570312,168.04647827148),
+		Spawner = vector3(2596.9711914062,6182.9609375,167.32032775879),
+		Spawner2 = vector3(2587.4111328125,6206.435546875,165.56039428711),
+		Deleter = vector3(2595.5024414062,6186.734375,166.42364501953),
+		Deleter2 = vector3(2596.6462402344,6182.556640625,167.26573181152),
+		Heading = 260.46,
+		Heading2 = 260.53
+	},
+
+	Los_Santos2 = {
+		Marker = vector3(2354.7189941406,5881.4545898438,47.317527770996),
+		Spawner = vector3(2351.7687988281,5878.0620117188,47.36385345459),
+		Spawner2 = vector3(2346.6655273438,5885.4184570312,47.515377044678),
+		Deleter = vector3(2357.279296875,5877.9399414062,47.225955963135),
+		Deleter2 = vector3(0,0,0),
+		Heading = 40.00,
+		Heading2 = 40.00
+	},
+
+
+
+	
+}
+
+Config.GordoPounds = {
+	Los_Santos = {
+		Marker = vector3(2560.970703125,6177.8046875,163.37550354004),
+		Spawner = vector3(2567.1704101562,6177.5483398438,163.7770690918),
+		Heading = 15.34
+	},
+	Los_Santosheli = {
+		Marker = vector3(2584.3950195312,6202.1025390625,165.62110900879),
+		Spawner = vector3(2591.15234375,6202.8061523438,165.56037902832),
 		Heading = 15.34
 	}
 }

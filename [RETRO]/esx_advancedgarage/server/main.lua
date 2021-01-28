@@ -609,6 +609,148 @@ end)
 
 
 
+-- Start of gordo Code
+ESX.RegisterServerCallback('esx_advancedgarage:getOwnedgordoCars', function(source, cb)
+	local ownedgordoCars = {}
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+	if Config.Main.ShowVehLoc then
+		MySQL.Async.fetchAll('SELECT * FROM owned_vehicles WHERE owner = @owner AND Type = @Type AND job = @job', { -- job = NULL
+			['@owner'] = xPlayer.identifier,
+			['@Type'] = 'car',
+			['@job'] = 'gordo'
+		}, function(data)
+			for _,v in pairs(data) do
+				local vehicle = json.decode(v.vehicle)
+				table.insert(ownedgordoCars, {vehicle = vehicle, stored = v.stored, plate = v.plate})
+			end
+			cb(ownedgordoCars)
+		end)
+	else
+		MySQL.Async.fetchAll('SELECT * FROM owned_vehicles WHERE owner = @owner AND Type = @Type AND job = @job AND `stored` = @stored', { -- job = NULL
+			['@owner'] = xPlayer.identifier,
+			['@Type'] = 'car',
+			['@job'] = 'gordo',
+			['@stored'] = true
+		}, function(data)
+			for _,v in pairs(data) do
+				local vehicle = json.decode(v.vehicle)
+				table.insert(ownedgordoCars, {vehicle = vehicle, stored = v.stored, plate = v.plate})
+			end
+			cb(ownedgordoCars)
+		end)
+	end
+end)
+
+ESX.RegisterServerCallback('esx_advancedgarage:getOwnedgordoAircrafts', function(source, cb)
+	local ownedgordoAircrafts = {}
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+	if Config.Main.AdvVehShop then
+		if Config.Main.ShowVehLoc then
+			MySQL.Async.fetchAll('SELECT * FROM owned_vehicles WHERE owner = @owner AND Type = @Type AND job = @job', { -- job = NULL
+				['@owner'] = xPlayer.identifier,
+				['@Type'] = 'aircraft',
+				['@job'] = 'gordo'
+			}, function(data)
+				for _,v in pairs(data) do
+					local vehicle = json.decode(v.vehicle)
+					table.insert(ownedgordoAircrafts, {vehicle = vehicle, stored = v.stored, plate = v.plate, vtype = 'aircraft'})
+				end
+				cb(ownedgordoAircrafts)
+			end)
+		else
+			MySQL.Async.fetchAll('SELECT * FROM owned_vehicles WHERE owner = @owner AND Type = @Type AND job = @job AND `stored` = @stored', { -- job = NULL
+				['@owner'] = xPlayer.identifier,
+				['@Type'] = 'aircraft',
+				['@job'] = 'gordo',
+				['@stored'] = true
+			}, function(data)
+				for _,v in pairs(data) do
+					local vehicle = json.decode(v.vehicle)
+					table.insert(ownedgordoAircrafts, {vehicle = vehicle, stored = v.stored, plate = v.plate, vtype = 'aircraft'})
+				end
+				cb(ownedgordoAircrafts)
+			end)
+		end
+	else
+		if Config.Main.ShowVehLoc then
+			MySQL.Async.fetchAll('SELECT * FROM owned_vehicles WHERE owner = @owner AND Type = @Type AND job = @job', { -- job = NULL
+				['@owner'] = xPlayer.identifier,
+				['@Type'] = 'helicopter',
+				['@job'] = 'gordo'
+			}, function(data)
+				for _,v in pairs(data) do
+					local vehicle = json.decode(v.vehicle)
+					table.insert(ownedgordoAircrafts, {vehicle = vehicle, stored = v.stored, plate = v.plate, vtype = 'helicopter'})
+				end
+				cb(ownedgordoAircrafts)
+			end)
+		else
+			MySQL.Async.fetchAll('SELECT * FROM owned_vehicles WHERE owner = @owner AND Type = @Type AND job = @job AND `stored` = @stored', { -- job = NULL
+				['@owner'] = xPlayer.identifier,
+				['@Type'] = 'helicopter',
+				['@job'] = 'gordo',
+				['@stored'] = true
+			}, function(data)
+				for _,v in pairs(data) do
+					local vehicle = json.decode(v.vehicle)
+					table.insert(ownedgordoAircrafts, {vehicle = vehicle, stored = v.stored, plate = v.plate, vtype = 'helicopter'})
+				end
+				cb(ownedgordoAircrafts)
+			end)
+		end
+	end
+end)
+
+ESX.RegisterServerCallback('esx_advancedgarage:getOutOwnedgordoCars', function(source, cb)
+	local ownedgordoCars = {}
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+	MySQL.Async.fetchAll('SELECT * FROM owned_vehicles WHERE owner = @owner AND job = @job AND `stored` = @stored', {
+		['@owner'] = xPlayer.identifier,
+		['@job'] = 'gordo',
+		['@stored'] = false
+	}, function(data) 
+		for _,v in pairs(data) do
+			local vehicle = json.decode(v.vehicle)
+			table.insert(ownedgordoCars, vehicle)
+		end
+		cb(ownedgordoCars)
+	end)
+end)
+
+ESX.RegisterServerCallback('esx_advancedgarage:checkMoneygordo', function(source, cb)
+	local xPlayer = ESX.GetPlayerFromId(source)
+	if xPlayer.getMoney() >= Config.Gordo.PoundP then
+		cb(true)
+	else
+		cb(false)
+	end
+end)
+
+RegisterServerEvent('esx_advancedgarage:paygordo')
+AddEventHandler('esx_advancedgarage:paygordo', function()
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+	--[[ 
+xPlayer.removeMoney(Config.gordo.PoundP)
+	TriggerClientEvent('esx:showNotification', source, _U('you_paid') .. Config.gordo.PoundP)
+
+	if Config.Main.GiveSocMoney then
+		TriggerEvent('esx_addonaccount:getSharedAccount', 'society_groove', function(account)
+			account.addMoney(Config.gordo.PoundP)
+		end)
+	end
+
+	]]--
+	
+end)
+-- End of gordo Code
+
+
+
+
 
 -- Start of Mechanic Code
 ESX.RegisterServerCallback('esx_advancedgarage:getOwnedMechanicCars', function(source, cb)
