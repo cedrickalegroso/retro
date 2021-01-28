@@ -18,7 +18,7 @@ Config.Recipes = {
 			{item = "doors", quantity = 5 },
 		   },
 		
-		['ExtendedClip'] = { 
+		['powiekszonymagazynek'] = { 
 		 {item = "oilpump", quantity = 2}, 
 		 {item = "hood", quantity = 1}, 
 		 {item = "muffler", quantity = 4},
