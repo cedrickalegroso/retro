@@ -315,8 +315,20 @@ AddEventHandler('retro_scripts:notif', function(source)
 end)
 
 RegisterNetEvent('retro_scripts:rewardsmenu')
-AddEventHandler('retro_scripts:rewardsmenu', function(source)
+AddEventHandler('retro_scripts:rewardsmenu', function()
+    openMenu()
+end)
 
+
+RegisterNetEvent('retro_scripts:Notify')
+AddEventHandler('retro_scripts:Notify', function(ped, message)
+	print('triggered Notify')
+	ESX.ShowNotification('Eyy '..message)
+end)
+
+function openMenu()
+	local ped = PlayerPedId()
+    print('Player '..ped..' Opened rewards menu')
 	--exports['mythic_notify']:DoHudText('inform', 'Hype! Custom Styling!', { ['background-color'] = '#ffffff', ['color'] = '#000000' })
 
 
@@ -339,10 +351,10 @@ AddEventHandler('retro_scripts:rewardsmenu', function(source)
 		}, function(data, menu)
 
 			if data.current.value == 'gettodays' then
-				TriggerServerEvent('retro_scripts:gettodayreward')
+			ExecuteCommand('openMyRewardsRetro')
 				
 			elseif data.current.value == 'getdonate' then
-				TriggerServerEvent('retro_scripts:gettodayreward1')
+				ExecuteCommand('openMyRewardsRetro1')
 			end
 
 		end, function(data, menu)
@@ -350,7 +362,7 @@ AddEventHandler('retro_scripts:rewardsmenu', function(source)
 
 		
 		end)
-end)
+end
 
 RegisterNetEvent('retro_scripts:illegalcashbankmenu')
 AddEventHandler('retro_scripts:illegalcashbankmenu', function(source)
@@ -408,7 +420,8 @@ AddEventHandler('retro_scripts:illegalcashbankmenu', function(source)
 							}
 						}, function(status)
 							if not status then
-								TriggerServerEvent('retro_scripts:depositillegalcash', amount)
+								ExecuteCommand('RetroBankIllegalDep '..amount)
+							--	TriggerServerEvent('retro_scripts:depositillegalcash', amount)
 							end
 						end)
 						
@@ -451,7 +464,8 @@ AddEventHandler('retro_scripts:illegalcashbankmenu', function(source)
 							}
 						}, function(status)
 							if not status then
-								TriggerServerEvent('retro_scripts:withillegalcash', amount)
+								ExecuteCommand('RetroBankIllegalWith '..amount)
+							--	TriggerServerEvent('retro_scripts:withillegalcash', amount)
 							end
 						end)
 						
