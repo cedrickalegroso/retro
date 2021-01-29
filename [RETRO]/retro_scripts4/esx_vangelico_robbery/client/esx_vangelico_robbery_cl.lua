@@ -6,7 +6,7 @@ ESX = nil
 
 Citizen.CreateThread(function()
 	while ESX == nil do
-		TriggerEvent('esx:getShRETROaredObjRETROect', function(obj) ESX = obj end)
+		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 		Citizen.Wait(0)
 	end
 end)
@@ -66,7 +66,8 @@ RegisterNetEvent('esx_vangelico_robbery:robberycomplete')
 AddEventHandler('esx_vangelico_robbery:robberycomplete', function(robb)
 	holdingup = false
 
-		TriggerEvent('skinchanger:getSkin', function(skin)
+   --[[
+	TriggerEvent('skinchanger:getSkin', function(skin)
 	
 		if skin.sex == 0 then
 
@@ -84,6 +85,9 @@ AddEventHandler('esx_vangelico_robbery:robberycomplete', function(robb)
 
 	    end
 	    end)
+   ]]--
+
+	
 	ESX.ShowNotification(_U('robbery_complete'))
 	store = ""
 	incircle = false
@@ -913,9 +917,11 @@ Citizen.CreateThread(function()
                             hasrobbed18 = false
                             hasrobbed19 = false
                             hasrobbed20 = false
-							TriggerServerEvent('esx_vangelico_robbery:enRETROdrob', store)
+							TriggerServerEvent('esx_vangelico_robbery:endrob', store)
 							ESX.ShowNotification(_U('lester'))
-							TriggerEvent('skinchanger:getSkin', function(skin)
+
+							--[[
+	TriggerEvent('skinchanger:getSkin', function(skin)
 	
 		                       if skin.sex == 0 then
 
@@ -933,6 +939,8 @@ Citizen.CreateThread(function()
 
 	                           end
 	                        end)
+							]]--
+						
 							end	
 
 			local pos2 = StoresJEWEL[store].position
@@ -1061,8 +1069,10 @@ Citizen.CreateThread(function()
 				
 				if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), 706.669, -966.898, 30.413, true) <= 5 then
 					TriggerServerEvent('lester:vendita')
-                    Citizen.Wait(4000)
-                    TriggerEvent('skinchanger:getSkin', function(skin)
+					Citizen.Wait(4000)
+					
+					--[[
+  TriggerEvent('skinchanger:getSkin', function(skin)
 	
 		                       if skin.sex == 0 then
 
@@ -1080,6 +1090,8 @@ Citizen.CreateThread(function()
 
 	                           end
 	                end)
+					]]--
+                  
 				end	
 		end
     end

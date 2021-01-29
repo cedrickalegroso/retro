@@ -4,7 +4,7 @@ PlayersCrafting    = {}
 local CopsConnected  = 0
 ESX = nil
 
-TriggerEvent('esx:getShRETROaredObjRETROect', function(obj) ESX = obj end)
+TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 function get3DDistance(x1, y1, z1, x2, y2, z2)
 	return math.sqrt(math.pow(x1 - x2, 2) + math.pow(y1 - y2, 2) + math.pow(z1 - z2, 2))
@@ -29,8 +29,8 @@ AddEventHandler('esx_vangelico_robbery:toofar', function(robb)
 	end
 end)
 
-RegisterServerEvent('esx_vangelico_robbery:enRETROdrob')
-AddEventHandler('esx_vangelico_robbery:enRETROdrob', function(robb)
+RegisterServerEvent('esx_vangelico_robbery:endrob')
+AddEventHandler('esx_vangelico_robbery:endrob', function(robb)
 	local source = source
 	local xPlayers = ESX.GetPlayers()
 	rob = false
