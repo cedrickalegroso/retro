@@ -84,8 +84,15 @@ AddEventHandler('esx_society:withdrawMoney', function(society, amount)
 
 	TriggerEvent('esx_addonaccount:getSharedAccount', society.account, function(account)
 			if amount > 0 and account.money >= amount then
-				account.removeMoney(amount)
-				xPlayer.addMoney(amount)
+
+				if xPlayer.job2.name == 'vermillion' then 
+					account.removeMoney(amount)
+					xPlayer.addMoney(amount)
+				else 
+					account.removeMoney(amount)
+					xPlayer.addMoney(amount)
+				end
+			
 
 				log(GetPlayerName(xPlayer.source) .. '(' .. xPlayer.source .. ') withdraw $' .. amount .. ' from ' .. society.account)
 
@@ -121,37 +128,38 @@ AddEventHandler('esx_society:depositMoney2', function(society, amount)
 	local xPlayer = ESX.GetPlayerFromId(source)
 	local society = GetSociety(society)
 	amount = ESX.Math.Round(tonumber(amount))
+	
 
-	if amount > 0 and xPlayer.getMoney() >= amount then
-		TriggerEvent('esx_addonaccount:getSharedAccount', society.account, function(account)
-			xPlayer.removeMoney(amount)
-			account.addMoney(amount)
-		--	log(GetPlayerName(xPlayer.source) .. '(' .. xPlayer.source .. ') deposit $' .. amount .. ' to ' .. society.account)
-
-		end)
-
-		xPlayer.showNotification(_U('have_deposited', ESX.Math.GroupDigits(amount)))
-	else
-		xPlayer.showNotification(_U('invalid_amount'))
-	end
-	--[[
-	if xPlayer.job.name == society.name then
-		if amount > 0 and xPlayer.getMoney() >= amount then
+	if xPlayer.job2.name == 'vermillion' then 
+		if amount > 0 and xPlayer.getAccount('black_money').money >= amount then
 			TriggerEvent('esx_addonaccount:getSharedAccount', society.account, function(account)
-				xPlayer.removeMoney(amount)
+
+				
+				xPlayer.removeAccountMoney('black_money', amount)
 				account.addMoney(amount)
-				log(GetPlayerName(xPlayer.source) .. '(' .. xPlayer.source .. ') deposit $' .. amount .. ' to ' .. society.account)
 
 			end)
-
+	
 			xPlayer.showNotification(_U('have_deposited', ESX.Math.GroupDigits(amount)))
 		else
 			xPlayer.showNotification(_U('invalid_amount'))
 		end
-	else
-		print(('esx_society: %s attempted to call depositMoney!'):format(xPlayer.identifier))
+	else 
+		if amount > 0 and xPlayer.getMoney() >= amount then
+			TriggerEvent('esx_addonaccount:getSharedAccount', society.account, function(account)
+				xPlayer.removeMoney(amount)
+				account.addMoney(amount)
+
+			end)
+	
+			xPlayer.showNotification(_U('have_deposited', ESX.Math.GroupDigits(amount)))
+		else
+			xPlayer.showNotification(_U('invalid_amount'))
+		end
+	
 	end
-	]]--
+
+	
 
 
 end)
