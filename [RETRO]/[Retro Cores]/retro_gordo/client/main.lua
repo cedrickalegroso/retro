@@ -296,10 +296,23 @@ function OpenPoliceActionsMenu()
 					elseif action == 'search' then
 						OpenBodySearchMenu(closestPlayer)
 					elseif action == 'ruskicuff' then
-						TriggerServerEvent('esx_ruski_areszt:startAreszt', GetPlayerServerId(closestPlayer)) -- Rozpoczyna Funkcje na Animacje (Cala Funkcja jest Powyzej^^^)
+						--[[
+TriggerServerEvent('esx_ruski_areszt:startAreszt', GetPlayerServerId(closestPlayer)) -- Rozpoczyna Funkcje na Animacje (Cala Funkcja jest Powyzej^^^)
 						Citizen.Wait(3000)
 						TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 2.0, 'cuff', 0.7)
 						TriggerServerEvent('retro_gordo:handcuff',  GetPlayerServerId(closestPlayer))
+						]]--
+						ESX.TriggerServerCallback('retro_scripts:getCuffs', function(cuff)
+							if cuff == 1 then 
+								ESX.ShowNotification('~g~ You have a cuff great!')
+								TriggerServerEvent('esx_ruski_areszt:startAreszt', GetPlayerServerId(closestPlayer)) -- Rozpoczyna Funkcje na Animacje (Cala Funkcja jest Powyzej^^^)
+								Citizen.Wait(3000) 
+								TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 2.0, 'cuff', 0.7)
+						        TriggerServerEvent('retro_gordo:handcuff',  GetPlayerServerId(closestPlayer))
+							else 
+								ESX.ShowNotification('~r~ You need to have a cuff')
+							end 
+						end, source)						
 					elseif action == 'handcuff' then
 						TriggerServerEvent('retro_gordo:handcuff', GetPlayerServerId(closestPlayer))
 					elseif action == 'drag' then
