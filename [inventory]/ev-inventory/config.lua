@@ -498,6 +498,18 @@ Config.Stash = {
         msg = 'Press ~r~[E]~h~ To Open Fruit Store Stash',
         show3D = true
     },
+
+    ['Vermillion Armory'] = {
+        coords = vector3(-1866.4528808594,2065.4287109375,135.4344329834),
+        size = vector3(1.0, 1.0, 1.0),
+        job = 'vermillion',
+        markerType = 2,
+        markerColour = { r = 255, g = 255, b = 255 },
+        msg = 'Press ~r~[E]~h~ To Open Vermillion Armory',
+        show3D = true
+    },
+
+    
     ['Police Stash'] = {
         coords = vector3(451.58212280273,-980.04754638672,30.689331054688),
         size = vector3(1.0, 1.0, 1.0),
