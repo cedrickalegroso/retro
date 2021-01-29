@@ -159,6 +159,8 @@ AddEventHandler('esx_basicneeds:onEatPancakes', function(prop_name)
 	end)
 end)
 
+
+
 RegisterNetEvent('esx_basicneeds:onEat')
 AddEventHandler('esx_basicneeds:onEat', function(prop_name)
 
@@ -166,6 +168,60 @@ AddEventHandler('esx_basicneeds:onEat', function(prop_name)
 		name = "unique_action_name",
 		duration = 5000,
 		label = "Eating Bread",
+		useWhileDead = false,
+		canCancel = true,
+		controlDisables = {
+			disableMovement = true,
+			disableCarMovement = true,
+			disableMouse = false,
+			disableCombat = true,
+		},
+		animation = {
+			animDict = "mp_player_inteat@burger",
+			anim = "mp_player_int_eat_burger_fp",
+		},
+		prop = {
+			model = "prop_cs_burger_01",
+		}
+	}, function(status)
+		if not status then
+		
+		end
+	end)
+
+	--[[
+	if not IsAnimated then
+		prop_name = prop_name or 'prop_cs_burger_01'
+		IsAnimated = true
+
+		Citizen.CreateThread(function()
+			local playerPed = PlayerPedId()
+			local x,y,z = table.unpack(GetEntityCoords(playerPed))
+			local prop = CreateObject(GetHashKey(prop_name), x, y, z + 0.2, true, true, true)
+			local boneIndex = GetPedBoneIndex(playerPed, 18905)
+			AttachEntityToEntity(prop, playerPed, boneIndex, 0.11, 0.045, 0.02, 10.0, 175.0, 0.0, true, true, false, true, 1, true)
+
+			ESX.Streaming.RequestAnimDict('mp_player_inteat@burger', function()
+				TaskPlayAnim(playerPed, 'mp_player_inteat@burger', 'mp_player_int_eat_burger_fp', 8.0, -8, -1, 49, 0, 0, 0, 0)
+                exports["taskbar"]:taskBar(3000, "Eating")
+				IsAnimated = false
+				ClearPedSecondaryTask(playerPed)
+				DeleteObject(prop)
+			end)
+		end)
+
+	end
+	]]--
+
+end)
+
+RegisterNetEvent('esx_basicneeds:onEatB')
+AddEventHandler('esx_basicneeds:onEatB', function(prop_name)
+
+	TriggerEvent("mythic_progbar:client:progress", {
+		name = "unique_action_name",
+		duration = 5000,
+		label = "Eating Burger",
 		useWhileDead = false,
 		canCancel = true,
 		controlDisables = {

@@ -79,10 +79,10 @@ end)
 ESX.RegisterUsableItem('burger', function(source)
 	local xPlayer = ESX.GetPlayerFromId(source)
 
-	xPlayer.removeInventoryItem('hamburger', 1)
+	xPlayer.removeInventoryItem('burger', 1)
 
 	TriggerClientEvent('esx_status:add', source, 'hunger', 700000)
-	TriggerClientEvent('esx_basicneeds:onEat', source)
+	TriggerClientEvent('esx_basicneeds:onEatB', source)
 	TriggerClientEvent('notification', source, _U('used_hamburger'))
 end)
 
