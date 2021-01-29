@@ -2246,7 +2246,7 @@ Citizen.CreateThread(function()
 
 
 		if Config.Vermillion.Garages then
-			if ESX.PlayerData.job and ESX.PlayerData.job.name == 'vermillion' then
+			if ESX.PlayerData.job2 and ESX.PlayerData.job2.name == 'vermillion' then
 				for k,v in pairs(Config.VermillionGarages) do
 					local distance = #(playerCoords - v.Marker)
 					local distance2 = #(playerCoords - v.Deleter)
@@ -2292,7 +2292,7 @@ Citizen.CreateThread(function()
 		end
 
 		if Config.Vermillion.Pounds then
-			if ESX.PlayerData.job and ESX.PlayerData.job.name == 'vermillion' then
+			if ESX.PlayerData.job2 and ESX.PlayerData.job2.name == 'vermillion' then
 				for k,v in pairs(Config.VermillionPounds) do
 					local distance = #(playerCoords - v.Marker)
 
@@ -2718,13 +2718,13 @@ Citizen.CreateThread(function()
 
 					
 				elseif CurrentAction == 'vermillion_garage_point' then
-					if ESX.PlayerData.job and ESX.PlayerData.job.name == 'vermillion' then
+					if ESX.PlayerData.job2 and ESX.PlayerData.job2.name == 'vermillion' then
 						ListOwnedvermillionMenu()
 					else
 						ESX.ShowNotification(_U('must_vermillion'))
 					end
 				elseif CurrentAction == 'vermillion_store_point' then
-					if ESX.PlayerData.job and ESX.PlayerData.job.name == 'vermillion' then
+					if ESX.PlayerData.job2 and ESX.PlayerData.job2.name == 'vermillion' then
 						if IsThisModelACar(model) or IsThisModelABicycle(model) or IsThisModelABike(model) or IsThisModelAHeli(model) then
 							if (GetPedInVehicleSeat(playerVeh, -1) == playerPed) then
 								StoreOwnedvermillionMenu()
@@ -2738,7 +2738,7 @@ Citizen.CreateThread(function()
 						ESX.ShowNotification(_U('must_vermillion'))
 					end
 				elseif CurrentAction == 'vermillion_pound_point' then
-					if ESX.PlayerData.job and ESX.PlayerData.job.name == 'vermillion' then
+					if ESX.PlayerData.job2 and ESX.PlayerData.job2.name == 'vermillion' then
 						ReturnOwnedvermillionMenu()
 					else
 						ESX.ShowNotification(_U('must_vermillion'))
@@ -3128,7 +3128,7 @@ function RefreshJobBlips()
 	end
 
 	if Config.Vermillion.Pounds and Config.Vermillion.Blips then
-		if ESX.PlayerData.job and ESX.PlayerData.job.name == 'vermillion' then
+		if ESX.PlayerData.job2 and ESX.PlayerData.job2.name == 'vermillion' then
 			for k,v in pairs(Config.VermillionPounds) do
 				local blip = AddBlipForCoord(v.Marker)
 
