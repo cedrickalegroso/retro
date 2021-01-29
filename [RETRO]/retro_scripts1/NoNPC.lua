@@ -38,6 +38,10 @@ Citizen.CreateThread(function()
 end)
 
 
+
+
+--[[
+
 CreateThread(function()
     --LAZY LOADING
     local GetRoomKeyFromEntity = GetRoomKeyFromEntity
@@ -54,10 +58,6 @@ CreateThread(function()
         Wait(2000) -- 2 seconds is a fine delay for preserve user/pc performance.
     end
 end)
-
---[[
-
-
 
 Citizen.CreateThread(function()
 	while true do
