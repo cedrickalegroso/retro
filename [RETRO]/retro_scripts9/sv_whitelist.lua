@@ -178,7 +178,20 @@ ESX.RegisterServerCallback('retro_scripts:getbalancedirty', function(source,cb, 
     end)
 end)
 
+ESX.RegisterServerCallback('retro_scripts:getCuffs', function(source,cb, cuff)
+    local cuff = 0
+	local _source = source
+    local xPlayer = ESX.GetPlayerFromId(_source)
+    local count = xPlayer.getInventoryItem('cuffs').count 
 
+    if count > 0 then 
+        cuff = 1
+        xPlayer.removeInventoryItem('cuffs', 1)
+    end
+
+    cb(cuff)
+
+end)
 
 
 RegisterServerEvent('retro_scripts:withillegalcash')
