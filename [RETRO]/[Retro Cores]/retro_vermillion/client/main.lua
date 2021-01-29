@@ -262,8 +262,8 @@ function OpenPoliceActionsMenu()
 			--	{label = "Jail Menu",   value = 'jail_menu'},
 			--	{label = _U('id_card'), value = 'identity_card'},
 				{label = _U('search'), value = 'search'},
-				{label = 'Un-Cuff',   value = 'ruskicuff'},
-				{label = _U('handcuff'), value = 'handcuff'},
+				{label = 'Cuff',   value = 'ruskicuff'},
+				{label = 'Uncuff', value = 'handcuff'},
 				{label = _U('drag'), value = 'drag'},
 				{label = _U('put_in_vehicle'), value = 'put_in_vehicle'},
 				{label = _U('out_the_vehicle'), value = 'out_the_vehicle'},
@@ -293,14 +293,25 @@ function OpenPoliceActionsMenu()
 					elseif action == 'search' then
 						OpenBodySearchMenu(closestPlayer)
 					elseif action == 'ruskicuff' then
-						TriggerServerEvent('esx_ruski_areszt:startAreszt', GetPlayerServerId(closestPlayer)) -- Rozpoczyna Funkcje na Animacje (Cala Funkcja jest Powyzej^^^)
-						Citizen.Wait(3000)
-						TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 2.0, 'cuff', 0.7)
-						TriggerServerEvent('retro_vermillion:handcuff',  GetPlayerServerId(closestPlayer))
+						ESX.TriggerServerCallback('retro_scripts:getCuffs', function(cuff)
+							if cuff == 1 then 
+								ESX.ShowNotification('~g~ You have a cuff great!')
+								TriggerServerEvent('esx_ruski_areszt:startAreszt', GetPlayerServerId(closestPlayer)) -- Rozpoczyna Funkcje na Animacje (Cala Funkcja jest Powyzej^^^)
+								Citizen.Wait(3000) 
+								TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 2.0, 'cuff', 0.7)
+						        TriggerServerEvent('retro_gordo:handcuff',  GetPlayerServerId(closestPlayer))
+							else 
+								ESX.ShowNotification('~r~ You need to have a cuff')
+							end 
+						end, source)
 					elseif action == 'handcuff' then
-						TriggerServerEvent('retro_vermillion:handcuff', GetPlayerServerId(closestPlayer))
+						ExecuteCommand('e uncuff')
+						TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 2.0, 'cuff', 0.7)
+						Citizen.Wait(4000)
+						TriggerServerEvent('retro_gordo:handcuff', GetPlayerServerId(closestPlayer))
 					elseif action == 'drag' then
-						TriggerServerEvent('retro_vermillion:drag', GetPlayerServerId(closestPlayer))
+						TriggerServerEvent('esx_policejob:message', GetPlayerServerId(closestPlayer), 'You are being dragged by the Police')
+						TriggerServerEvent('retro_gordo:drag', GetPlayerServerId(closestPlayer))
 					elseif action == 'put_in_vehicle' then
 						TriggerServerEvent('retro_vermillion:putInVehicle', GetPlayerServerId(closestPlayer))
 					elseif action == 'out_the_vehicle' then
@@ -1508,7 +1519,7 @@ Citizen.CreateThread(function()
 					ESX.Game.DeleteVehicle(CurrentActionData.vehicle)
 				elseif CurrentAction == 'menu_boss_actions' then
 					ESX.UI.Menu.CloseAll()
-					TriggerEvent('esx_society:openBosRETROsMenu', 'vermillion', function(data, menu)
+					TriggerEvent('esx_society:openBossMenu2', 'vermillion', function(data, menu)
 						menu.close()
 
 						CurrentAction     = 'menu_boss_actions'
@@ -1582,8 +1593,8 @@ AddEventHandler('retro_vermillion:updateBlip', function()
 	end
 
 	-- Is the player a cop? In that case show all the blips for other cops
-	if ESX.PlayerData.job and ESX.PlayerData.job.name == 'vermillion' then
-		ESX.TriggerServerCallback('esx_society:getOnlRETROinePlayers', function(players)
+	if ESX.PlayerData.job2 and ESX.PlayerData.job2.name == 'vermillion' then
+		ESX.TriggerServerCallback('esx_society:getOnlinePlayers', function(players)
 			for i=1, #players, 1 do
 				if players[i].job2.name == 'vermillion' then
 					local id = GetPlayerFromServerId(players[i].source)

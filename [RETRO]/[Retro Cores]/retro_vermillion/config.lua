@@ -26,7 +26,7 @@ Config.VermillionStations = {
 	LSPD = {
 
 		Blip = {
-			Coords  = vector3(-2704.7517089844,-86.507751464844,18.472007751465),
+			Coords  = vector3(-1890.9283447266,2045.1667480469,140.86595153809),
 			Sprite  = 181,
 			Display = 4,
 			Scale   = 1.0,
@@ -34,47 +34,55 @@ Config.VermillionStations = {
 		},
 
 		Cloakrooms = {
-			vector3(0, 0, 0)
+			--vector3(0, 0, 0)
 		},
 
 		Armories = {
-			vector3(-2712.7006835938,-108.9271774292,21.846572875977)
+			--vector3(-2712.7006835938,-108.9271774292,21.846572875977)
 		},
 
 		Vehicles = {
 			{
-				Spawner = vector3(-2690.2463378906,-105.99501800537,17.009380340576),
+				Spawner = vector3(-1892.5412597656,2038.9240722656,140.86982727051),
 				InsideShop = vector3(-2993.8364257812,84.958503723145,11.607793807983),
 				SpawnPoints = {
-					{coords = vector3(-1922.2191162109,2044.7106933594,140.73471069336), heading = 90.0, radius = 6.0},
-					{coords = vector3(-1922.3537597656,2039.8934326172,140.73492431641), heading = 90.0, radius = 6.0},
-					{coords = vector3(-1923.8397216797,2036.5322265625,140.7347869873), heading = 90.0, radius = 6.0},
+					{coords = vector3(-1899.0250244141,2037.0810546875,140.74186706543), heading = 156.0, radius = 6.0},
+					{coords = vector3(-1895.0894775391,2035.6773681641,140.74267578125), heading = 156.0, radius = 6.0},
+					{coords = vector3(-1891.5736083984,2034.4958496094,140.73951721191), heading = 156.0, radius = 6.0},
 				--	{coords = vector3(450.9, -1016.5, 28.1), heading = 90.0, radius = 6.0}
 				}
 			},
 
-			{
-				Spawner = vector3(473.3, -1018.8, 28.0),
+
+            {
+				Spawner = vector3(-1915.7038574219,2098.8156738281,142.23519897461),
 				InsideShop = vector3(228.5, -993.5, -99.0),
 				SpawnPoints = {
-					{coords = vector3(475.9, -1021.6, 28.0), heading = 276.1, radius = 6.0},
-					{coords = vector3(484.1, -1023.1, 27.5), heading = 302.5, radius = 6.0}
+					{coords = vector3(-1907.9096679688,2100.7143554688,142.27633666992), heading = 276.1, radius = 6.0},
+					
 				}
 			}
+			
+
+			
 		},
 
 		Helicopters = {
-			{
-				Spawner = vector3(-2720.0949707031,-61.464767456055,18.85729598999),
+
+			--[[
+	{
+				Spawner = vector3(-1915.1301269531,2097.1350097656,142.28384399414),
 				InsideShop = vector3(-1878.6215820312,3003.4211425781,32.810466766357),
 				SpawnPoints = {
-					{coords = vector3(-2726.9990234375,-59.13060760498,18.899234771729), heading = 92.6, radius = 10.0}
+					{coords = vector3(-1908.3187255859,2100.9104003906,142.27632141113), heading = 92.6, radius = 10.0}
 				}
 			}
+			]]--
+		
 		},
 
 		BossActions = {
-			vector3(-2716.224609375,-116.10466766357,21.846578598022)
+			vector3(-1880.6031494141,2065.2575683594,145.57389831543)
 		}
 
 	}
@@ -149,7 +157,6 @@ Config.AuthorizedVehicles = {
 
 		{ model = 'baller5', label = 'Baller 5', price = 400 },
 		{ model = 'buffalo2', label = 'Buffalo', price = 400 },
-	
 		{ model = 'buzzard2', label = 'Buzzard', price = 400 },
 		{ model = 'hakuchou2', label = 'hakuchou2', price = 400 },
 		{ model = 'volatus', label = 'volatus', price = 400 }
@@ -159,7 +166,6 @@ Config.AuthorizedVehicles = {
 	officer = {
 		{ model = 'baller5', label = 'Baller 5', price = 400 },
 		{ model = 'buffalo2', label = 'Buffalo', price = 400 },
-	
 		{ model = 'buzzard2', label = 'Buzzard', price = 400 },
 		{ model = 'hakuchou2', label = 'hakuchou2', price = 400 },
 		{ model = 'volatus', label = 'volatus', price = 400 }
@@ -168,7 +174,6 @@ Config.AuthorizedVehicles = {
 	sergeant = {
 		{ model = 'baller5', label = 'Baller 5', price = 400 },
 		{ model = 'buffalo2', label = 'Buffalo', price = 400 },
-	
 		{ model = 'buzzard2', label = 'Buzzard', price = 400 },
 		{ model = 'hakuchou2', label = 'hakuchou2', price = 400 },
 		{ model = 'volatus', label = 'volatus', price = 400 }
@@ -178,29 +183,28 @@ Config.AuthorizedVehicles = {
 	lieutenant = {
 		{ model = 'baller5', label = 'Baller 5', price = 400 },
 		{ model = 'buffalo2', label = 'Buffalo', price = 400 },
-	
 		{ model = 'buzzard2', label = 'Buzzard', price = 400 },
 		{ model = 'hakuchou2', label = 'hakuchou2', price = 400 },
 		{ model = 'volatus', label = 'volatus', price = 400 }
-
-
 	},
 
 	boss = {
-		    { model = 'baller5', label = 'Baller 5', price = 400 },
-			{ model = 'buffalo2', label = 'Buffalo', price = 400 },
-		
-			{ model = 'buzzard2', label = 'Buzzard', price = 400 },
-			{ model = 'hakuchou2', label = 'hakuchou2', price = 400 },
-			{ model = 'volatus', label = 'volatus', price = 400 }
+		{ model = 'surfer2', label = 'Jeep', price = 400 },
+		{ model = 'Guardian', label = 'guardian', price = 400 },
+		{ model = 'blazer', label = 'blazer', price = 400 },
+		{ model = 'pounder', label = 'Big Truck', price = 400 },
 
 	}
 }
 
 Config.AuthorizedHelicopters = {
-	recruit = {},
+	recruit = {
+		{ model = 'buzzard2', label = 'Gang Buzzard',  price = 400 }
+	},
 
-	tyro = {},
+	tyro = {
+		{ model = 'buzzard2', label = 'Gang Buzzard',  price = 400 }
+	},
 
 	soldier = {
 		{ model = 'buzzard2', label = 'Gang Buzzard',  price = 400 }
