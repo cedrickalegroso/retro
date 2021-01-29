@@ -388,9 +388,8 @@ ConfigGamz.Zones = {
         }
     }, --
 
-
-    
-    ["VERMILLION STORE "] = {
+--[[
+ ["VERMILLION STORE "] = {
 
         ["coords"] = vector3(-2734.7905273438,-86.259078979492,17.050016403198),
 
@@ -419,7 +418,10 @@ ConfigGamz.Zones = {
 
         }
     }, --
-	["The Lost Clubhouse "] = {
+]]--
+    
+   
+	["VERMILLION STORE "] = {
 
         ["coords"] = vector3(982.41,-130.2,78.89),
 
