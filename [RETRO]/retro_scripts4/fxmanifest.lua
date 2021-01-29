@@ -20,7 +20,7 @@ server_scripts {
   'ESX_CommunityService/server/main.lua',
 
    --carkeys
--- 'ESX_GiveCarKeys/server/main.lua',
+ 'ESX_GiveCarKeys/server/main.lua',
 
  --zipties
 -- 'esx_zipties/server.lua',
@@ -116,7 +116,7 @@ client_scripts {
 
   
  --carkeys
--- 'ESX_GiveCarKeys/client/main.lua',
+ 'ESX_GiveCarKeys/client/main.lua',
 
  --zipties
 ---- 'esx_zipties/client.lua',

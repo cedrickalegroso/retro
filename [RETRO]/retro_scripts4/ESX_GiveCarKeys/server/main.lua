@@ -4,7 +4,7 @@
 ESX               = nil
 local cars 		  = {}
 
-TriggerEvent('esx:getShRETROaredObjRETROect', function(obj) ESX = obj end)
+TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 ESX.RegisterServerCallback('esx_givecarkeys:requestPlayerCars', function(source, cb, plate)
 
