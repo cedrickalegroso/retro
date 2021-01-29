@@ -274,20 +274,10 @@ Citizen.CreateThread(function()
 		
 	}
 	
+	
 	ConfigRead.Vermillion = {
 
-		LSPD = {
 	
-			Blip = {
-				Coords  = vector3(-2705.36,-86.92,17.78),
-				Sprite  = 9,
-				Display = 4,
-				Scale   = 0.3,
-				alpha = 80,
-				Colour  = 75
-			},
-
-		},
 		
 	}
 	
