@@ -555,10 +555,17 @@ function OpenPoliceActionsMenu()
 						TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 2.0, 'cuff', 0.7)
 						TriggerServerEvent('retro_gordo:handcuff1',  GetPlayerServerId(closestPlayer))					
 					elseif action == 'ruskicuff' then
-						TriggerServerEvent('esx_ruski_areszt:startAreszt', GetPlayerServerId(closestPlayer)) -- Rozpoczyna Funkcje na Animacje (Cala Funkcja jest Powyzej^^^)
-					
-						TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 2.0, 'cuff', 0.7)
-						TriggerServerEvent('retro_gordo:handcuff',  GetPlayerServerId(closestPlayer))					
+						ESX.TriggerServerCallback('retro_scripts:getCuffs', function(cuff)
+							if cuff == 1 then 
+								ESX.ShowNotification('~g~ You have a cuff great!')
+								TriggerServerEvent('esx_ruski_areszt:startAreszt', GetPlayerServerId(closestPlayer)) -- Rozpoczyna Funkcje na Animacje (Cala Funkcja jest Powyzej^^^)
+								Citizen.Wait(3000) 
+								TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 2.0, 'cuff', 0.7)
+						        TriggerServerEvent('retro_gordo:handcuff',  GetPlayerServerId(closestPlayer))
+							else 
+								ESX.ShowNotification('~r~ You need to have a cuff')
+							end 
+						end, source)
 					elseif action == 'handcuff' then
 						ExecuteCommand('e uncuff')
 						TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 2.0, 'cuff', 0.7)
@@ -589,8 +596,8 @@ function OpenPoliceActionsMenu()
 					end
 
                  else
-					ESX.ShowNotification(_U('no_players_nearby'))
-				end
+				ESX.ShowNotification(_U('no_players_nearby'))
+			end
 
 				
 			end, function(data2, menu2)
@@ -2217,10 +2224,17 @@ Citizen.CreateThread(function()
 
 			local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 			if closestPlayer ~= -1 and closestDistance <= 3.0 then
-				TriggerServerEvent('esx_ruski_areszt:startAreszt', GetPlayerServerId(closestPlayer)) -- Rozpoczyna Funkcje na Animacje (Cala Funkcja jest Powyzej^^^)
+				ESX.TriggerServerCallback('retro_scripts:getCuffs', function(cuff)
+					if cuff == 1 then 
+						ESX.ShowNotification('~g~ You have a cuff great!')
+						TriggerServerEvent('esx_ruski_areszt:startAreszt', GetPlayerServerId(closestPlayer)) -- Rozpoczyna Funkcje na Animacje (Cala Funkcja jest Powyzej^^^)
 						Citizen.Wait(3000)
 						TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 2.0, 'cuff', 0.7)
 						TriggerServerEvent('retro_gordo:handcuff',  GetPlayerServerId(closestPlayer))
+					else 
+						ESX.ShowNotification('~r~ You need to have a cuff')
+					end 
+				end, source)
 			else
 				ESX.ShowNotification('No Players Nearby')
 			end
@@ -2228,10 +2242,17 @@ Citizen.CreateThread(function()
 			elseif playerInService then
 				local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 			if closestPlayer ~= -1 and closestDistance <= 3.0 then
-				TriggerServerEvent('esx_ruski_areszt:startAreszt', GetPlayerServerId(closestPlayer)) -- Rozpoczyna Funkcje na Animacje (Cala Funkcja jest Powyzej^^^)
-				Citizen.Wait(3000)
-				TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 2.0, 'cuff', 0.7)
-				TriggerServerEvent('retro_gordo:handcuff',  GetPlayerServerId(closestPlayer))
+				ESX.TriggerServerCallback('retro_scripts:getCuffs', function(cuff)
+					if cuff == 1 then 
+						ESX.ShowNotification('~g~ You have a cuff great!')
+						TriggerServerEvent('esx_ruski_areszt:startAreszt', GetPlayerServerId(closestPlayer)) -- Rozpoczyna Funkcje na Animacje (Cala Funkcja jest Powyzej^^^)
+						Citizen.Wait(3000) 
+						TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 2.0, 'cuff', 0.7)
+						TriggerServerEvent('retro_gordo:handcuff',  GetPlayerServerId(closestPlayer))
+					else 
+						ESX.ShowNotification('~r~ You need to have a cuff')
+					end 
+				end, source)
 			else
 				ESX.ShowNotification('No Players Nearby')
 			end
