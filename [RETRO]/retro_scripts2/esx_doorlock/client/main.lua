@@ -10,6 +10,10 @@ Citizen.CreateThread(function()
 		Citizen.Wait(10)
 	end
 
+	while not ESX.GetPlayerData().job2 do
+		Citizen.Wait(10)
+	end
+
 	ESX.PlayerData = ESX.GetPlayerData()
 
 	-- Update the door list
@@ -22,6 +26,9 @@ end)
 
 RegisterNetEvent('esx:setJob')
 AddEventHandler('esx:setJob', function(job) ESX.PlayerData.job = job end)
+
+RegisterNetEvent('esx:setJob2')
+AddEventHandler('esx:setJob2', function(job2) ESX.PlayerData.job2 = job2 end)
 
 RegisterNetEvent('esx_doorlock:setDoorState')
 AddEventHandler('esx_doorlock:setDoorState', function(index, state) Config.DoorListLOCK[index].locked = state end)
@@ -113,8 +120,13 @@ function isAuthorized(door)
 		return false
 	end
 
+	if not ESX or not ESX.PlayerData.job2 then
+		return false
+	end
+
+
 	for k,job in pairs(door.authorizedJobs) do
-		if job == ESX.PlayerData.job.name then
+		if job == ESX.PlayerData.job.name or job == ESX.PlayerData.job2.name then
 			return true
 		end
 	end

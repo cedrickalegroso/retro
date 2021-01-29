@@ -1816,7 +1816,7 @@ Config.DoorListLOCK = {
 
 					{
 						textCoords = vector3(-1886.6115722656,2050.42578125,141.00416564941),
-						authorizedJobs = {'cuatro'},
+						authorizedJobs = {'vermillion'},
 						locked = true,
 						maxDistance = 4,
 						doors = {
@@ -1829,7 +1829,7 @@ Config.DoorListLOCK = {
 
 					{
 						textCoords = vector3(-1889.0762939453,2051.5949707031,141.00611877441),
-						authorizedJobs = {'cuatro'},
+						authorizedJobs = {'vermillion'},
 						locked = true,
 						maxDistance = 4,
 						doors = {
@@ -1840,7 +1840,7 @@ Config.DoorListLOCK = {
 
 					{
 						textCoords = vector3(-1908.5750732422,2072.9340820312,140.40840148926),
-						authorizedJobs = {'cuatro'},
+						authorizedJobs = {'vermillion'},
 						locked = true,
 						maxDistance = 4,
 						doors = {
@@ -1851,7 +1851,7 @@ Config.DoorListLOCK = {
 	
 					{
 						textCoords = vector3(-1911.0247802734,2074.8581542969,140.40838623047),
-						authorizedJobs = {'cuatro'},
+						authorizedJobs = {'vermillion'},
 						locked = true,
 						maxDistance = 4,
 						doors = {
@@ -1863,7 +1863,7 @@ Config.DoorListLOCK = {
 
 					{
 						textCoords = vector3(-1902.2431640625,2085.4819335938,140.40843200684),
-						authorizedJobs = {'cuatro'},
+						authorizedJobs = {'vermillion'},
 						locked = true,
 						maxDistance = 4,
 						doors = {
@@ -1874,7 +1874,7 @@ Config.DoorListLOCK = {
 	
 					{
 						textCoords = vector3(-1899.3912353516,2083.6940917969,140.40075683594),
-						authorizedJobs = {'cuatro'},
+						authorizedJobs = {'vermillion'},
 						locked = true,
 						maxDistance = 4,
 						doors = {
@@ -1886,7 +1886,7 @@ Config.DoorListLOCK = {
 
 					{
 						textCoords = vector3(-1910.9897460938,2079.7580566406,140.39552307129),
-						authorizedJobs = {'cuatro'},
+						authorizedJobs = {'vermillion'},
 						locked = true,
 						maxDistance = 4,
 						doors = {
@@ -1897,7 +1897,7 @@ Config.DoorListLOCK = {
 
 					{
 						textCoords = vector3(-1906.8060302734,2084.5939941406,140.39680480957),
-						authorizedJobs = {'cuatro'},
+						authorizedJobs = {'vermillion'},
 						locked = true,
 						maxDistance = 4,
 						doors = {
@@ -1910,7 +1910,7 @@ Config.DoorListLOCK = {
 					
 					{
 						textCoords = vector3(-1874.6326904297,2069.6062011719,141.01164245605),
-						authorizedJobs = {'cuatro'},
+						authorizedJobs = {'vermillion'},
 						locked = true,
 						maxDistance = 4,
 						doors = {
@@ -1921,7 +1921,7 @@ Config.DoorListLOCK = {
 					
 					{
 						textCoords = vector3(-1886.1031494141,2074.1647949219,141.01058959961),
-						authorizedJobs = {'cuatro'},
+						authorizedJobs = {'vermillion'},
 						locked = true,
 						maxDistance = 4,
 						doors = {
@@ -1932,7 +1932,7 @@ Config.DoorListLOCK = {
 
 					{
 						textCoords = vector3(-1893.7469482422,2075.2705078125,141.00769042969),
-						authorizedJobs = {'cuatro'},
+						authorizedJobs = {'vermillion'},
 						locked = true,
 						maxDistance = 4,
 						doors = {
@@ -1944,7 +1944,7 @@ Config.DoorListLOCK = {
 
 					{
 						textCoords = vector3(-1860.4918212891,2054.48828125,140.97677612305),
-						authorizedJobs = {'cuatro'},
+						authorizedJobs = {'vermillion'},
 						locked = true,
 						maxDistance = 4,
 						doors = {
