@@ -201,7 +201,16 @@ Config.PolicePounds = {
 		Marker = vector3(453.08, -995.35, 25.79),
 		Spawner = vector3(448.18, -1011.21, 29.51),
 		Heading = 180.3
+	},
+
+	Los_Santos = {
+		Marker = vector3(449.93756103516,-972.76422119141,43.691799163818),
+		Spawner = vector3(449.46591186523,-980.58386230469,43.691791534424),
+		Heading = 180.3
 	}
+
+
+	
 }
 -- End of Police
 
