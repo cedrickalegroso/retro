@@ -1,12 +1,11 @@
 import { setHttpCallback } from '@citizenfx/http-wrapper';
 
-import { v4 } from 'uuid';
+import * as uuidv4 from 'uuid/v4';
 import * as fs from 'fs';
 import * as Koa from 'koa';
 import * as Router from 'koa-router';
 import * as koaBody from 'koa-body';
 import * as mv from 'mv';
-import { File } from 'formidable';
 
 const app = new Koa();
 const router = new Router();
@@ -35,7 +34,7 @@ router.post('/upload/:token', async (ctx) => {
             });
         }
 
-        const f = ctx.request.files['file'] as File;
+        const f = ctx.request.files['file'];
 
         if (f) {
             if (upload.fileName) {
@@ -71,7 +70,7 @@ router.post('/upload/:token', async (ctx) => {
 
 app.use(koaBody({
         patchKoa: true,
-        multipart: true,
+        multipart: true
     }))
    .use(router.routes())
    .use(router.allowedMethods());
@@ -82,7 +81,7 @@ setHttpCallback(app.callback());
 const exp = (<any>global).exports;
 
 exp('requestClientScreenshot', (player: string | number, options: any, cb: (err: string | boolean, data: string) => void) => {
-    const tkn = v4();
+    const tkn = uuidv4();
 
     const fileName = options.fileName;
     delete options['fileName']; // so the client won't get to know this
