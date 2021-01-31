@@ -965,13 +965,15 @@ function OpenHelicopterSpawnerMenu(hospital, partNum)
 			OpenShopMenu(shopElements, playerCoords, shopCoords)
 		elseif data.current.action == 'spawn' then
 
-			ESX.Game.SpawnVehicle('buzzard2', vector3(-505.49179077148,-306.15591430664,73.168014526367), 100, function(vehicle)
+			ESX.Game.SpawnVehicle('supervolito', vector3(-505.49179077148,-306.15591430664,73.168014526367), 100, function(vehicle)
 				SetVehicleModKit(vehicle, 0)
 				SetVehicleLivery(vehicle, 0)
+
+				TriggerServerEvent('hsn-hotwire:addKeys',GetVehicleNumberPlateText(vehicle))
+				SetVehicleEngineOn(vehicle,true)
 			end)
 
-			TriggerServerEvent('hsn-hotwire:addKeys',vehicle)
-			SetVehicleEngineOn(vehicle,true)
+		
 
 
 

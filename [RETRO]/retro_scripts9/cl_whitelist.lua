@@ -205,9 +205,9 @@ AddEventHandler('retro_scripts:initgroove', function(source)
   --  print('[RETRO_SCRIPTS] initializing groove stuffs') 
 
     --radio
-    exports["rp-radio"]:GivePlayerAccessToFrequency(3) 
+	exports["rp-radio"]:GivePlayerAccessToFrequencies(3,4) 
 
-	ESX.ShowNotification('Whitelist Frequency for Mechanic activated ~g~FREQ #3 ')
+	ESX.ShowNotification('Whitelist Frequency for Mechanic activated ~g~FREQ #3 and #4(All Whitelisted) ')
       --blips
     --  TriggerEvent('retro_mechanic:updateBlip')
 
@@ -224,9 +224,9 @@ AddEventHandler('retro_scripts:initpolice', function(source)
   --  print('[RETRO_SCRIPTS] initializing police stuffs') 
 
     --radio
-    exports["rp-radio"]:GivePlayerAccessToFrequency(2) 
+	exports["rp-radio"]:GivePlayerAccessToFrequencies(2,4) 
 
-	ESX.ShowNotification('Whitelist Frequency for Police activated ~g~FREQ #2 ')
+	ESX.ShowNotification('Whitelist Frequency for Police activated ~g~FREQ #2 and #4(All Whitelisted) ')
      --blips
   --   TriggerEvent('esx_policejob:updateBlip')
 
@@ -239,9 +239,9 @@ AddEventHandler('retro_scripts:initems', function(source)
    -- print('[RETRO_SCRIPTS] initializing ems stuffs') 
 
     --radio
-	exports["rp-radio"]:GivePlayerAccessToFrequency(1) 
+	exports["rp-radio"]:GivePlayerAccessToFrequencies(1,4) 
 	
-	ESX.ShowNotification('Whitelist Frequency for EMS activated ~g~FREQ #1 ')
+	ESX.ShowNotification('Whitelist Frequency for EMS activated ~g~FREQ #1 and #4(All Whitelisted) ')
 
     --blips
   --  TriggerEvent('esx_ambulancejob:updateBlip')
@@ -249,6 +249,47 @@ AddEventHandler('retro_scripts:initems', function(source)
     --notif
    -- exports['mythic_notify']:DoHudText('inform', 'Whitelist Access for EMS activated')
 end)
+
+
+
+RegisterNetEvent("retro_scripts:disabledutyradioPD")
+AddEventHandler('retro_scripts:disabledutyradioPD', function(source, job)
+	exports["rp-radio"]:RemovePlayerAccessToFrequencies(2,4)
+    ESX.ShowNotification('Whitelist Frequencies for Police ~r~deactivated')
+end)
+
+RegisterNetEvent("retro_scripts:disabledutyradioEMS")
+AddEventHandler('retro_scripts:disabledutyradioEMS', function(source, job)
+	exports["rp-radio"]:RemovePlayerAccessToFrequencies(1,4)
+    ESX.ShowNotification('Whitelist Frequencies for EMS ~r~deactivated')
+end)
+
+RegisterNetEvent("retro_scripts:disabledutyradioMECH")
+AddEventHandler('retro_scripts:disabledutyradioMECH', function(source, job)
+	exports["rp-radio"]:RemovePlayerAccessToFrequencies(3,4)
+    ESX.ShowNotification('Whitelist Frequencies for MECHANIC ~r~deactivated')
+end)
+
+RegisterNetEvent("retro_scripts:enabledutyradioPD")
+AddEventHandler('retro_scripts:enabledutyradioPD', function(source)
+	exports["rp-radio"]:GivePlayerAccessToFrequencies(2, 4)
+    ESX.ShowNotification('Whitelist Frequency for Police activated ~g~FREQ #2 and #4(All Whitelisted)')
+end)
+
+
+RegisterNetEvent("retro_scripts:enabledutyradioEMS")
+AddEventHandler('retro_scripts:enabledutyradioEMS', function(source)
+	exports["rp-radio"]:GivePlayerAccessToFrequencies(1, 4)
+    ESX.ShowNotification('Whitelist Frequency for EMS activated ~g~FREQ #1 and #4(All Whitelisted)')
+end)
+
+
+RegisterNetEvent("retro_scripts:enabledutyradioMECH")
+AddEventHandler('retro_scripts:enabledutyradioMECH', function(source)
+	exports["rp-radio"]:GivePlayerAccessToFrequencies(3, 4)
+    ESX.ShowNotification('Whitelist Frequency for Mechanic activated ~g~FREQ #3 and #4(All Whitelisted)')
+end)
+
 
 RegisterNetEvent("retro_scripts:fly")
 AddEventHandler('retro_scripts:fly', function(source)

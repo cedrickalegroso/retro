@@ -148,6 +148,13 @@ ConfigAmbu.Hospitals = {
 			color  = 2
 		},
 
+		Blip2 = {
+			coords = vector3(-240.00073242188,6328.1376953125,32.400386810303), --pillbox
+			sprite = 61,
+			scale  = 0.7,
+			color  = 2
+		},
+
 
 
 		AmbulanceActions = {
@@ -424,6 +431,18 @@ ConfigPOPO.PoliceStations = {
 			Colour  = 29,
 		},
 
+
+		Blip2 = {
+			Pos     = { x = 1857.5006103516, y = 3680.0705566406, z = 33.782405853271 },
+			Sprite  = 60,
+			Display = 4,
+			Scale   = 1.2,
+			Colour  = 29,
+		},
+
+
+		
+
 		-- https://wiki.rage.mp/index.php?title=Weapons
 		AuthorizedWeapons = {
 			--{ name = 'WEAPON_NIGHTSTICK',       price = 200 },
@@ -491,7 +510,8 @@ Armories = {
 		},
 
 		BossActions = {
-			{ x = 464.71768188477, y = -1009.0299682617, z = 34.931060791016 }
+		
+			{ x = 462.17129516602, y = -985.41741943359, z = 30.72808265686 }
 		},
 
 		

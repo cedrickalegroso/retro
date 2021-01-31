@@ -90,7 +90,9 @@ Citizen.CreateThread(function ()
 
                     if IsControlJustPressed(0, Keys['E']) then
                         TriggerServerEvent('duty:onoff')
-                     --   TriggerEvent('retro_scripts:radiofreq')
+                        Citizen.Wait(1500)
+                        print('Radio Debug Checking')
+                        ExecuteCommand('ondutyradio')
                     end
                 end
             end

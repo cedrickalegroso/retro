@@ -31,7 +31,7 @@ Config.Blips = {
 Config.Ambulance = {
 	Garages = true, -- true = Allows use of Ambulance Garages.
 	Pounds = true, -- true = Allows use of Ambulance Pounds.
-	Blips = true, -- true = Use Ambulance Blips.
+	Blips = false, -- true = Use Ambulance Blips.
 	PoundP = 80, -- How much it Costs to get Vehicles from Ambulance Pound.
 	Markers = {
 		Points = {type = 36, r = 0, g = 255, b = 0, x = 1.0, y = 1.0, z = 1.0}, -- Green Color / Standard Size Circle.
@@ -43,7 +43,7 @@ Config.Ambulance = {
 Config.Police = {
 	Garages = true, -- true = Allows use of Police Garages.
 	Pounds = true, -- true = Allows use of Police Pounds.
-	Blips = true, -- true = Use Police Blips.
+	Blips = false, -- true = Use Police Blips.
 	PoundP = 80, -- How much it Costs to get Vehicles from Police Pound.
 	Markers = {
 		Points = {Type = 36, r = 0, g = 255, b = 0, x = 1.0, y = 1.0, z = 1.0}, -- Green Color / Standard Size Circle.
@@ -161,7 +161,19 @@ Config.AmbulanceGarages = {
 		Deleter2 = vector3(0,0,0),
 		Heading = 20.79,
 		Heading2 = 20.79
+	},
+
+	Paleto = {
+		Marker = vector3(-239.20602416992,6327.9194335938,32.400386810303),
+		Spawner = vector3(-240.3772277832,6335.5908203125,32.338436126709),
+		Spawner2 = vector3(-232.51626586914,6327.7646484375,31.922264099121),
+		Deleter = vector3(-230.62710571289,6325.7104492188,31.595506668091),
+		Deleter2 = vector3(0,0,0),
+		Heading = 223.79,
+		Heading2 = 223.79
 	}
+
+	
 }
 
 Config.AmbulancePounds = {
@@ -169,18 +181,26 @@ Config.AmbulancePounds = {
 		Marker = vector3(-497.35, -346.19, 34.5),
 		Spawner = vector3(-491.43, -341.91, 35.37),
 		Heading = 261.34
+	},
+
+	Los_Santos1 = {
+		Marker = vector3(-259.15762329102,6347.671875,32.426456451416),
+		Spawner = vector3(-251.57678222656,6346.2055664062,32.411022186279),
+		Heading = 225.34
 	}
+
+	
 }
 -- End of Ambulance
 
 -- Start of Police
 Config.PoliceGarages = {
 	Los_Santos = {
-		Marker = vector3(454.94378662109,-1014.6602172852,28.432725906372),
-		Spawner = vector3(449.90075683594,-1015.003112793,28.494787216187),
-		Spawner2 = vector3(449.9970703125,-1022.0873413086,28.458257675171),
-		Deleter = vector3(454.25341796875,-1020.1893310547,28.340188980103),
-		Deleter2 = vector3(463.14599609375,-1015.2299194336,28.073106765747),
+		Marker = vector3(461.55520629883,-984.53009033203,25.699853897095),
+		Spawner = vector3(457.86080932617,-985.4638671875,25.699838638306),
+		Spawner2 = vector3(458.76544189453,-980.71435546875,25.699838638306),
+		Deleter = vector3(446.11090087891,-986.13348388672,25.699806213379),
+		Deleter2 = vector3(445.76358032227,-988.70385742188,25.699806213379),
 		Heading = 87.46,
 		Heading2 = 87.53
 	},
@@ -193,23 +213,41 @@ Config.PoliceGarages = {
 		Deleter2 = vector3(481.53237915039,-982.36651611328,41.008014678955),
 		Heading = 87.46,
 		Heading2 = 87.53
-	}
+	},
+
+	Los_Santos3 = {
+		Marker = vector3(1861.7069091797,3682.4443359375,33.781761169434),
+		Spawner = vector3(1864.6092529297,3680.9348144531,33.660026550293),
+		Spawner2 = vector3(1868.0649414062,3683.1433105469,33.676746368408),
+		Deleter = vector3(1853.8057861328,3675.8627929688,33.756072998047),
+		Deleter2 = vector3(1851.0299072266,3673.76171875,33.762752532959),
+		Heading = 211.46,
+		Heading2 = 211.53
+	},
+
+	
 }
 
 Config.PolicePounds = {
 	Los_Santos = {
-		Marker = vector3(453.08, -995.35, 25.79),
-		Spawner = vector3(448.18, -1011.21, 29.51),
+		Marker = vector3(436.37054443359,-973.89514160156,25.699813842773),
+		Spawner = vector3(430.90042114258,-976.06103515625,25.699813842773),
 		Heading = 180.3
 	},
 
-	Los_Santos = {
+	Los_Santos1 = {
 		Marker = vector3(449.93756103516,-972.76422119141,43.691799163818),
 		Spawner = vector3(449.46591186523,-980.58386230469,43.691791534424),
 		Heading = 180.3
+	},
+
+	Los_Santos2 = {
+		Marker = vector3(1845.9777832031,3672.8322753906,33.694873809814),
+		Spawner = vector3(1847.8706054688,3667.5710449219,33.877265930176),
+		Heading = 180.3
 	}
 
-
+	
 	
 }
 -- End of Police

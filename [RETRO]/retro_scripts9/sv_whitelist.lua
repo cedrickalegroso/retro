@@ -21,6 +21,23 @@ AddEventHandler('chatMessage', function(source, n, message)
     elseif cm[1] == "/RetroBankIllegalWith" then
         local amount = tonumber(cm[2]) 
         TriggerEvent('retro_scripts:withillegalcash', source, amount)
+    elseif cm[1] == "/ondutyradio" then
+        local _source = source
+	xPlayer = ESX.GetPlayerFromId(source)
+	local job = xPlayer.job.name
+	if job == 'offpolice'  then
+		TriggerClientEvent('retro_scripts:disabledutyradioPD', source)
+	elseif job == 'offambulance' then
+		TriggerClientEvent('retro_scripts:disabledutyradioEMS', source)	
+	elseif job == 'offmecano' then
+		TriggerClientEvent('retro_scripts:disabledutyradioMECH', source)		
+	elseif job == 'police' then
+		TriggerClientEvent('retro_scripts:enabledutyradioPD', source)
+    elseif job == 'ambulance' then
+		TriggerClientEvent('retro_scripts:enabledutyradioEMS', source)
+	elseif job == 'mecano' then
+		TriggerClientEvent('retro_scripts:enabledutyradioMECH', source)
+    end
     end
 
 end)
@@ -192,6 +209,50 @@ ESX.RegisterServerCallback('retro_scripts:getCuffs', function(source,cb, cuff)
     cb(cuff)
 
 end)
+
+ESX.RegisterServerCallback('retro_scripts:getIDCARD', function(source,cb, item)
+    local item = 0
+	local _source = source
+    local xPlayer = ESX.GetPlayerFromId(_source)
+    local count = xPlayer.getInventoryItem('retro_idcard').count 
+
+    if count > 0 then 
+        item = 1
+    end
+
+    cb(item)
+
+end)
+
+ESX.RegisterServerCallback('retro_scripts:getDRIVECARD', function(source,cb, item)
+    local item = 0
+	local _source = source
+    local xPlayer = ESX.GetPlayerFromId(_source)
+    local count = xPlayer.getInventoryItem('retro_drivecard').count 
+
+    if count > 0 then 
+        item = 1
+    end
+
+    cb(item)
+
+end)
+
+ESX.RegisterServerCallback('retro_scripts:getGUNCARD', function(source,cb, item)
+    local item = 0
+	local _source = source
+    local xPlayer = ESX.GetPlayerFromId(_source)
+    local count = xPlayer.getInventoryItem('retro_guncard').count 
+
+    if count > 0 then 
+        item = 1
+    end
+
+    cb(item)
+
+end)
+
+
 
 
 RegisterServerEvent('retro_scripts:withillegalcash')

@@ -82,6 +82,19 @@ Citizen.CreateThread(function()
 		AddTextComponentSubstringPlayerName(_U('hospital'))
 		EndTextCommandSetBlipName(blip)
 	end
+
+	for k,v in pairs(ConfigAmbu.Hospitals) do
+		local blip2 = AddBlipForCoord(v.Blip2.coords)
+
+		SetBlipSprite(blip2, v.Blip2.sprite)
+		SetBlipScale(blip2, v.Blip2.scale)
+		SetBlipColour(blip2, v.Blip2.color)
+		SetBlipAsShortRange(blip2, true)
+
+		BeginTextCommandSetBlipName('STRING')
+		AddTextComponentSubstringPlayerName(_U('hospital'))
+		EndTextCommandSetBlipName(blip2)
+	end
 end)
 
 -- Disable most inputs when dead

@@ -85,21 +85,73 @@ function OpenUsermenuSubMenu(menu)
 		local type = data.current.type
 
 		if type == 'checkID' then
-			TriggerServerEvent('jsfour-idcard:open', GetPlayerServerId(PlayerId()), GetPlayerServerId(PlayerId()))
+			ESX.TriggerServerCallback('retro_scripts:getIDCARD', function(item)
+				if item == 1 then 
+					TriggerServerEvent('jsfour-idcard:open', GetPlayerServerId(PlayerId()), GetPlayerServerId(PlayerId()))
+				else 
+					ESX.ShowNotification('~r~ You need to have a Physical Citizen ID Card. You can buy one at the Police Department')
+				end
+			end, source)
+			
 		elseif type == 'checkDriver' then
-			TriggerServerEvent('jsfour-idcard:open', GetPlayerServerId(PlayerId()), GetPlayerServerId(PlayerId()), 'driver')
+
+			ESX.TriggerServerCallback('retro_scripts:getDRIVECARD', function(item)
+				if item == 1 then 
+					TriggerServerEvent('jsfour-idcard:open', GetPlayerServerId(PlayerId()), GetPlayerServerId(PlayerId()), 'driver')
+				else 
+					ESX.ShowNotification('~r~ You need to have a Physical Driver License Card. You can buy one at the Police Department')
+				end
+			end, source)
+
+			
 		elseif type == 'checkFirearms' then
-			TriggerServerEvent('jsfour-idcard:open', GetPlayerServerId(PlayerId()), GetPlayerServerId(PlayerId()), 'weapon')
+
+			ESX.TriggerServerCallback('retro_scripts:getGUNCARD', function(item)
+				if item == 1 then 
+					TriggerServerEvent('jsfour-idcard:open', GetPlayerServerId(PlayerId()), GetPlayerServerId(PlayerId()), 'weapon')
+				else 
+					ESX.ShowNotification('~r~ You need to have a Physical Weapon License Card. You can buy one at the Police Department')
+				end
+			end, source)
+
+			
 		else
 			local player, distance = ESX.Game.GetClosestPlayer()
 			
 			if distance ~= -1 and distance <= 3.0 then
 				if type == 'showID' then
-				TriggerServerEvent('jsfour-idcard:open', GetPlayerServerId(PlayerId()), GetPlayerServerId(player))
+
+					ESX.TriggerServerCallback('retro_scripts:getIDCARD', function(item)
+						if item == 1 then 
+							TriggerServerEvent('jsfour-idcard:open', GetPlayerServerId(PlayerId()), GetPlayerServerId(player))
+						else 
+							ESX.ShowNotification('~r~ You need to have a Physical Citizen ID Card. You can buy one at the Police Department')
+						end
+					end, source)
+
+			
 				elseif type == 'showDriver' then
-			TriggerServerEvent('jsfour-idcard:open', GetPlayerServerId(PlayerId()), GetPlayerServerId(player), 'driver')
+
+					ESX.TriggerServerCallback('retro_scripts:getDRIVECARD', function(item)
+						if item == 1 then 
+							TriggerServerEvent('jsfour-idcard:open', GetPlayerServerId(PlayerId()), GetPlayerServerId(player), 'driver')
+						else 
+							ESX.ShowNotification('~r~ You need to have a Physical Driver License Card. You can buy one at the Police Department')
+						end
+					end, source)
+		
+		
 				elseif type == 'showFirearms' then
-			TriggerServerEvent('jsfour-idcard:open', GetPlayerServerId(PlayerId()), GetPlayerServerId(player), 'weapon')
+
+					ESX.TriggerServerCallback('retro_scripts:getGUNCARD', function(item)
+						if item == 1 then 
+							TriggerServerEvent('jsfour-idcard:open', GetPlayerServerId(PlayerId()), GetPlayerServerId(player), 'weapon')
+						else 
+							ESX.ShowNotification('~r~ You need to have a Physical Weapon License Card. You can buy one at the Police Department')
+						end
+					end, source)
+		
+			
 				end
 			else
 			  ESX.ShowNotification('No players nearby')

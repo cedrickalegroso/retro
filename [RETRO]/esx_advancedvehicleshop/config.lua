@@ -98,9 +98,9 @@ Config.ZonesVEHICLESHOP = {
 	},
 	-- Police Shop
 	ShopEnteringPolice = {
-		Pos    = vector3(447.25, -975.57, 29.90),
+		Pos    = vector3(452.49633789062,-977.48028564453,29.989512252808),
 		Marker = {r = 0, g = 0, b = 255},
-		Size   = {x = 1.5, y = 1.5, z = 1.0},
+		Size   = {x = 1.0, y = 1.0, z = 1.0},
 		Type   = 27,
 		ShopId = 2
 	},

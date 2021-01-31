@@ -16,19 +16,19 @@ AddEventHandler('duty:onoff', function(job, bimby)
 
     if job == 'police' or job == 'ambulance' or job == 'groove' then
         xPlayer.setJob('off' ..job, grade)
-        TriggerClientEvent('retro_scripts:radiofreqpoliceoff', source, job)
+      --  TriggerClientEvent('retro_scripts:radiofreqpoliceoff', source, job)
         TriggerClientEvent('esx:showNotification', _source, _U('offduty'))
     elseif job == 'offpolice' then
         xPlayer.setJob('police', grade)
-        TriggerClientEvent('retro_scripts:radiofreqpolon', source, job)
+      --  TriggerClientEvent('retro_scripts:radiofreqpolon', source, job)
         TriggerClientEvent('esx:showNotification', _source, _U('onduty'))
     elseif job == 'offambulance' then
         xPlayer.setJob('ambulance', grade)
-        TriggerClientEvent('retro_scripts:radiofreqemson', source, job)
+       -- TriggerClientEvent('retro_scripts:radiofreqemson', source, job)
         TriggerClientEvent('esx:showNotification', _source, _U('onduty'))
     elseif job == 'offgroove' then
         xPlayer.setJob('groove', grade)
-        TriggerClientEvent('retro_scripts:radiofreqgrooveon', source, job)
+      --  TriggerClientEvent('retro_scripts:radiofreqgrooveon', source, job)
         TriggerClientEvent('esx:showNotification', _source, _U('onduty'))
     end
 

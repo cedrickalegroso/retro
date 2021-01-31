@@ -1953,6 +1953,27 @@ Citizen.CreateThread(function()
 	 exports['blip_info']:AddBlipInfoText(blip, "Home of the fearless RCPD officers!")
 	end
 
+	for k,v in pairs(ConfigPOPO.PoliceStations) do
+		local blip2 = AddBlipForCoord(v.Blip2.Pos.x, v.Blip2.Pos.y, v.Blip2.Pos.z)
+
+		SetBlipSprite (blip2, v.Blip2.Sprite)
+		SetBlipDisplay(blip2, v.Blip2.Display)
+		SetBlipScale  (blip2, v.Blip2.Scale)
+		SetBlipColour (blip2, v.Blip2.Colour)
+		SetBlipAsShortRange(blip2, true)
+
+		BeginTextCommandSetBlipName("STRING")
+		AddTextComponentString(_U('map_blip'))
+		EndTextCommandSetBlipName(blip2)
+
+	 -- Add all the cool info to the blip
+	 exports['blip_info']:SetBlipInfoTitle(blip2, "RCPD", false)
+	 exports['blip_info']:SetBlipInfoImage(blip2, "world_blips", "RCPD")
+	 exports['blip_info']:AddBlipInfoText(blip2, "Area", "Mission Row")
+	 exports['blip_info']:AddBlipInfoHeader(blip2, "") -- Empty header adds the header line
+	 exports['blip_info']:AddBlipInfoText(blip2, "Home of the fearless RCPD officers!")
+	end
+
 end)
 
 -- Display markers
