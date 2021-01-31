@@ -64,7 +64,24 @@ Config.ExtraVisionShops = {
         job = 'all'
     },
 
+    ['ID Cards Shop'] = {
+        coords = {
+            vector3(441.24865722656,-981.52142333984,30.689504623413),
+        },
+        items = {
+            { name = "retro_idcard", price = 750, count = 1 },
+            { name = "retro_drivecard", price = 750, count = 1 },
+            { name = "retro_guncard", price = 750, count = 1 },
+        },
+        markerType = 27,
+        markerColour = { r = 255, g = 255, b = 255 },
+        msg = 'Press ~r~[E]~h~ to open ID cards shops',
+        show3D = true,
+        enableBlip = true,
+        job = 'all'
+    },
 
+   
     ['Black Market'] = {
         coords = {
             vector3(2728.6357421875,4142.0458984375,44.287925720215)
@@ -437,7 +454,7 @@ Config.PVault = {
 Config.Stash = {
 
      ['police evidence'] = {
-        coords = vector3(472.22927856445,-981.61224365234,24.914720535278),
+        coords = vector3(474.26547241211,-990.66900634766,26.273273468018),
         size = vector3(1.0, 1.0, 1.0),
         job = 'police',
         markerType = 2,
@@ -455,6 +472,18 @@ Config.Stash = {
         msg = 'Press ~r~[E]~h~ To Open Ambulance Stock',
         show3D = true
     },
+
+    ['Ambulance Stock 2'] = {
+        coords = vector3( -254.57975769043,6307.1127929688,32.431537628174),
+        size = vector3(1.0, 1.0, 1.0),
+        job = 'ambulance',
+        markerType = 2,
+        markerColour = { r = 255, g = 255, b = 255 },
+        msg = 'Press ~r~[E]~h~ To Open Ambulance Stock',
+        show3D = true
+    },
+
+   
     
     ['Mech Stock'] = {
         coords = vector3(-100.43384552002,-1792.6810302734,32.19514465332),
@@ -511,7 +540,7 @@ Config.Stash = {
 
     
     ['Police Stash'] = {
-        coords = vector3(451.58212280273,-980.04754638672,30.689331054688),
+        coords = vector3(482.47003173828,-995.26495361328,30.689645767212),
         size = vector3(1.0, 1.0, 1.0),
         job = 'police',
         markerType = 2,
@@ -519,6 +548,19 @@ Config.Stash = {
         msg = 'Press ~r~[E]~h~ To Open Police Stash',
         show3D = true
     },
+
+    ['Police Stash 2'] = {
+        coords = vector3(1850.1231689453,3685.9167480469,34.267086029053),
+        size = vector3(1.0, 1.0, 1.0),
+        job = 'police',
+        markerType = 2,
+        markerColour = { r = 255, g = 255, b = 255 },
+        msg = 'Press ~r~[E]~h~ To Open Police Stash',
+        show3D = true
+    },
+
+
+    
     ['blackmarket Stash'] = {
         coords = vector3(1252.9504394531, -2577.5148925781, 42.948802947998),
         size = vector3(1.0, 1.0, 1.0),
