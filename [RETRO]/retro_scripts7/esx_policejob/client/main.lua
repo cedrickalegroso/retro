@@ -550,10 +550,8 @@ function OpenPoliceActionsMenu()
 						TriggerServerEvent('esx_policejob:message', GetPlayerServerId(closestPlayer), _U('being_searched'))
 						OpenBodySearchMenuPolice(closestPlayer)	
 					elseif action == 'softcuff' then
-						TriggerServerEvent('esx_ruski_areszt:startAreszt', GetPlayerServerId(closestPlayer)) -- Rozpoczyna Funkcje na Animacje (Cala Funkcja jest Powyzej^^^)
-					
 						TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 2.0, 'cuff', 0.7)
-						TriggerServerEvent('retro_gordo:handcuff1',  GetPlayerServerId(closestPlayer))					
+						TriggerServerEvent('retro_gordo:SoftCuff',  GetPlayerServerId(closestPlayer))					
 					elseif action == 'ruskicuff' then
 						ESX.TriggerServerCallback('retro_scripts:getCuffs', function(cuff)
 							if cuff == 1 then 
