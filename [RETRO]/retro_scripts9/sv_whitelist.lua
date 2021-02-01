@@ -203,7 +203,7 @@ ESX.RegisterServerCallback('retro_scripts:getCuffs', function(source,cb, cuff)
 
     if count > 0 then 
         cuff = 1
-        xPlayer.removeInventoryItem('cuffs', 1)
+     --   xPlayer.removeInventoryItem('cuffs', 1)
     end
 
     cb(cuff)
