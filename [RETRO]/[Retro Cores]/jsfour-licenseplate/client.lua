@@ -55,6 +55,8 @@ AddEventHandler('jsfour-licenseplate', function()
             if cb == 'found' then
               ESX.UI.Menu.CloseAll()
               SetVehicleNumberPlateText(vehicle, plate)
+              TriggerServerEvent('hsn-hotwire:addKeys', GetVehicleNumberPlateText(vehicle))
+              SetVehicleEngineOn(vehicle,true)
               plate = nil
             elseif cb == 'error' then
               ESX.ShowNotification('You couldnt apply the license plate')
