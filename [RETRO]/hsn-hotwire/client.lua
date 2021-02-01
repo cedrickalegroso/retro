@@ -195,7 +195,7 @@ end)
 ]]--
 
 
-RegisterCommand('anahtarver', function()
+RegisterCommand('lendkey', function()
     local vehicle = ESX.Game.GetVehicleInDirection()
     local Plate = GetVehicleNumberPlateText(vehicle)
     local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
