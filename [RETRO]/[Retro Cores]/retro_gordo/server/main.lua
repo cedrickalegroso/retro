@@ -71,9 +71,28 @@ end)
 
 RegisterServerEvent('retro_gordo:handcuff')
 AddEventHandler('retro_gordo:handcuff', function(target)
+	print('triggered handcuff')
 	local xPlayer = ESX.GetPlayerFromId(source)
 
+	print('cuffing '..target)
+
 		TriggerClientEvent('retro_gordo:handcuff', target)
+end)
+--[[
+RegisterCommand('testsoftcuff', function(source)
+	print('triggered handcuff')
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+   TriggerClientEvent('retro_gordo:SoftCuff', source)
+end)
+]]--
+
+
+RegisterServerEvent('retro_gordo:SoftCuff')
+AddEventHandler('retro_gordo:SoftCuff', function(target)
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+	TriggerClientEvent('retro_gordo:SoftCuff', target)
 end)
 
 RegisterServerEvent('retro_gordo:drag')
