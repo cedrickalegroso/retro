@@ -18,12 +18,12 @@ Citizen.CreateThread(function()
 		SetCreateRandomCopsNotOnScenarios(false) -- stop random cops (not in a scenario) from spawning.
 		SetCreateRandomCopsOnScenarios(false) -- stop random cops (in a scenario) from spawning.
 		
-		--[[
+		
 local x,y,z = table.unpack(GetEntityCoords(PlayerPedId()))
 		ClearAreaOfVehicles(x, y, z, 1000, false, false, false, false, false)
 		RemoveVehiclesFromGeneratorsInArea(x - 500.0, y - 500.0, z - 500.0, x + 500.0, y + 500.0, z + 500.0);
 
-		]]--
+	
 		
 		-- fix OneSync NPC by Albert0
         if IsPedSittingInAnyVehicle(GetPlayerPed(-1)) then
