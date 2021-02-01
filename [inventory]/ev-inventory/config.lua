@@ -529,7 +529,7 @@ Config.Stash = {
     },
 
     ['Vermillion Armory'] = {
-        coords = vector3(-1866.4528808594,2065.4287109375,135.4344329834),
+        coords = vector3(-1866.6091308594,2065.5102539062,135.43452453613),
         size = vector3(1.0, 1.0, 1.0),
         job = 'vermillion',
         markerType = 2,
