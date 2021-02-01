@@ -196,22 +196,24 @@ end)
 
 
 RegisterCommand('lendkey', function()
-    local vehicle = ESX.Game.GetVehicleInDirection()
-    local Plate = GetVehicleNumberPlateText(vehicle)
-    local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
-    if vehicle ~= nil then
-        if Keys[Plate] == true then
-            if closestPlayer ~= -1 and closestDistance <= 3.0 then
-                TriggerServerEvent('hsn-hotwire:server:giveKeys',GetPlayerServerId(closestPlayer), Plate)
-            else
-                exports['mythic_notify']:SendAlert('inform', 'There is no one nearby!')
-            end
+
+    if IsPedInAnyVehicle(PlayerPedId(),false)  then
+        local vehicle = GetVehiclePedIsIn(PlayerPedId())
+        print('veh '..vehicle)
+        local Plate = GetVehicleNumberPlateText(vehicle)
+        local vehicleCoords = GetOffsetFromEntityInWorldCoords(vehicle, 0.0, 1.25, 0.35)
+        local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
+        if closestPlayer ~= -1 and closestDistance <= 3.0 then
+            TriggerServerEvent('hsn-hotwire:server:giveKeys',GetPlayerServerId(closestPlayer), Plate)
+            
         else
-            exports['mythic_notify']:SendAlert('inform', 'You dont have the keys to this vehicle!')
+            exports['mythic_notify']:SendAlert('inform', 'There is no one nearby!')
         end
-    else
-        exports['mythic_notify']:SendAlert('inform', 'You have to look at the vehicle!')
+       
     end
+
+ 
+   
 end)
 
 Citizen.CreateThread(function()
