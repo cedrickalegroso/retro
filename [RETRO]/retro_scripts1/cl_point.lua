@@ -1,3 +1,5 @@
+--[[
+
 local mp_pointing = false
 local keyPressed = false
 
@@ -105,3 +107,4 @@ Citizen.CreateThread(function()
         end
     end
 end)
+]]--

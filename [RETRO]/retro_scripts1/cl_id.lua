@@ -1,3 +1,4 @@
+--[[
 Citizen.CreateThread(function()
     while true do
 	local id = GetPlayerServerId(PlayerId())
@@ -18,3 +19,5 @@ function DrawTxt(x,y ,width,height,scale, text, r,g,b,a)
     AddTextComponentString(text)
     DrawText(x - width/2 , y - height/2 + 0.005)
 end
+]]--
+

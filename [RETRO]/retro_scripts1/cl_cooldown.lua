@@ -1,3 +1,4 @@
+--[[
 local cooldown = 0
 local ispriority = false
 local ishold = false
@@ -48,3 +49,4 @@ end)
     end
 
   
+]]--

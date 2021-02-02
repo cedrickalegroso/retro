@@ -1,3 +1,5 @@
+--[[
+
 Citizen.CreateThread(function()
     local dict = "amb@world_human_hang_out_street@female_arms_crossed@base"
     
@@ -5,7 +7,7 @@ Citizen.CreateThread(function()
 	while not HasAnimDictLoaded(dict) do
 		Citizen.Wait(100)
 	end
-    local handsup = false
+   
 	while true do
 		Citizen.Wait(0)
 		if IsControlJustPressed(1, 311) then --Start holding g
@@ -43,3 +45,4 @@ Citizen.CreateThread(function()
     end
 end)
 	
+]]--
