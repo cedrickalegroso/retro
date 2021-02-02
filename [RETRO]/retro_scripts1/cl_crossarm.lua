@@ -1,4 +1,4 @@
---[[
+
 
 Citizen.CreateThread(function()
     local dict = "amb@world_human_hang_out_street@female_arms_crossed@base"
@@ -45,4 +45,4 @@ Citizen.CreateThread(function()
     end
 end)
 	
-]]--
+

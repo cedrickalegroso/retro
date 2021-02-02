@@ -1,4 +1,4 @@
---[[
+
 -- Config
 timermax = 16 -- In minutes. Must be one bigger than the max timer you want (Eg if you want 20 it must be 21)
 
@@ -96,4 +96,4 @@ AddEventHandler("cancelcooldown", function()
 	end
 	
 end)
-]]--
+

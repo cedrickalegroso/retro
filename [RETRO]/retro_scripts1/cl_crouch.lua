@@ -1,4 +1,4 @@
---[[
+
 local crouched = false
 
 Citizen.CreateThread( function()
@@ -30,4 +30,3 @@ Citizen.CreateThread( function()
         end 
     end
 end )
-]]--
