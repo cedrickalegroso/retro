@@ -78,6 +78,54 @@ AddEventHandler('chatMessage', function(source, n, message)
 					TriggerClientEvent("retro_scripts:emsbed5", tPID)
 				end
 			end
+
+		elseif cm[1] == "/hparrest6" then
+			if xPlayer.job.name == 'ambulance' then
+				local tPID = tonumber(cm[2])
+			--	local t = tonumber(cm[3]) * 60
+				print(t)
+				if GetPlayerName(tPID) ~= nil then
+					print("Put in the hospital: ".. GetPlayerName(tPID).. "  entry done by ".. GetPlayerName(source))
+					TriggerClientEvent("retro_scripts:emsbed6", tPID)
+				end
+			end
+
+		
+		elseif cm[1] == "/hparrest7" then
+			if xPlayer.job.name == 'ambulance' then
+				local tPID = tonumber(cm[2])
+			--	local t = tonumber(cm[3]) * 60
+				print(t)
+				if GetPlayerName(tPID) ~= nil then
+					print("Put in the hospital: ".. GetPlayerName(tPID).. "  entry done by ".. GetPlayerName(source))
+					TriggerClientEvent("retro_scripts:emsbed7", tPID)
+				end
+			end
+
+		
+		elseif cm[1] == "/hparrest8" then
+			if xPlayer.job.name == 'ambulance' then
+				local tPID = tonumber(cm[2])
+			--	local t = tonumber(cm[3]) * 60
+				print(t)
+				if GetPlayerName(tPID) ~= nil then
+					print("Put in the hospital: ".. GetPlayerName(tPID).. "  entry done by ".. GetPlayerName(source))
+					TriggerClientEvent("retro_scripts:emsbed8", tPID)
+				end
+			end
+
+		elseif cm[1] == "/hparrest9" then
+			if xPlayer.job.name == 'ambulance' then
+				local tPID = tonumber(cm[2])
+			--	local t = tonumber(cm[3]) * 60
+				print(t)
+				if GetPlayerName(tPID) ~= nil then
+					print("Put in the hospital: ".. GetPlayerName(tPID).. "  entry done by ".. GetPlayerName(source))
+					TriggerClientEvent("retro_scripts:emsbed9", tPID)
+				end
+			end
+
+
 		elseif cm[1] == "/morgue" then
 			if xPlayer.job.name == 'ambulance' then
 				local tPID = tonumber(cm[2])
