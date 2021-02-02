@@ -579,9 +579,9 @@ function OpenPoliceActionsMenu()
 						TriggerServerEvent('esx_policejob:message', GetPlayerServerId(closestPlayer), 'You are being dragged by the Police')
 						TriggerServerEvent('retro_gordo:drag', GetPlayerServerId(closestPlayer))
 					elseif action == 'put_in_vehicle' then
-						TriggerServerEvent('esx_policejob:putInVehicle', GetPlayerServerId(closestPlayer))
+						TriggerServerEvent('retro_gordo:putInVehicle', GetPlayerServerId(closestPlayer))
 					elseif action == 'out_the_vehicle' then
-						TriggerServerEvent('esx_policejob:OutVehicle', GetPlayerServerId(closestPlayer))
+						TriggerServerEvent('retro_gordo:OutVehicle', GetPlayerServerId(closestPlayer))
 					elseif action == 'fine' then
 						TriggerServerEvent('esx_policejob:message', GetPlayerServerId(closestPlayer), 'You are being billed by the Police')
 						OpenFineMenuPolice(closestPlayer)
