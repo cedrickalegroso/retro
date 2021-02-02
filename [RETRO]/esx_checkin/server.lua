@@ -12,7 +12,7 @@ end)
 RegisterServerEvent('esx_checkin:takeMoney')
 AddEventHandler('esx_checkin:takeMoney', function()
 	local xPlayer = ESX.GetPlayerFromId(source)
-	xPlayer.removeMoney(7000)
+	xPlayer.removeMoney(25000)
 end)
 
 
