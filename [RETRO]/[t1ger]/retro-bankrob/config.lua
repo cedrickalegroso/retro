@@ -40,7 +40,7 @@ Config.Banks = {
     [1] = {
         name = "Fleeca Bank [Legion Square]", postal = "8170",
         blip = {enable = true, bName = "Fleeca Bank [Legion Square]", display = 4, sprite = 431, color = 5, scale = 0.7},
-        inUse = true, minCops = 0,
+        inUse = true, minCops = 3,
         vault = { pos = {147.349,-1046.24,29.3681}, model = 2121050683, oHeadMin = 124.0, oHeadMax = 154.0, cHeadMin = 235.0, cHeadMax = 265.0 },
         door = { pos = {149.561, -1047.35, 29.34634}, model = -1591004109 },
         keypads = {
@@ -58,7 +58,7 @@ Config.Banks = {
     [2] = {
         name = "Fleeca Bank [Alta]",postal = "7193",
         blip = {enable = true, bName = "Fleeca Bank [Alta]", display = 4, sprite = 431, color = 5, scale = 0.7},
-        inUse = false, minCops = 0,
+        inUse = false, minCops = 3,
         vault = { pos = {311.6992,-284.5561,54.1648}, model = 2121050683, oHeadMin = 124.0, oHeadMax = 154.0, cHeadMin = 235.0, cHeadMax = 265.0 },
         door = { pos = {313.8916,-285.7734,54.14302}, model = -1591004109 },
         keypads = {
@@ -76,7 +76,7 @@ Config.Banks = {
 	[3] = {
 		name = "Fleeca Bank [Burton]",postal = "7185",
 		blip = { enable = true, bName = "Fleeca Bank [Burton]", display = 4, sprite = 431, color = 5, scale = 0.7 },
-		inUse = false, minCops = 0,
+		inUse = false, minCops = 3,
 		vault = { pos = {-353.32,-55.47687,49.03565}, model = 2121050683, oHeadMin = 124.0, oHeadMax = 154.0, cHeadMin = 235.0, cHeadMax = 265.0 },
 		door = { pos = {-351.097, -56.46866, 49.01482}, model = -1591004109 },
 		keypads = {
@@ -94,7 +94,7 @@ Config.Banks = {
 	[4] = {
 		name = "Fleeca Bank [Rockford Hills]",postal = "7175",
 		blip = { enable = true, bName = "Fleeca Bank [Rockford Hills]", display = 4, sprite = 431, color = 5, scale = 0.7 },
-		inUse = false, minCops = 0,
+		inUse = false, minCops = 3,
 		vault = { pos = {-1210.31,-336.334,37.781}, model = 2121050683, oHeadMin = 170.0, oHeadMax = 200.0, cHeadMin = 277.0, cHeadMax = 307.0 },
 		door = { pos = {-1208.084, -335.4738, 37.75928}, model = -1591004109 },
 		keypads = {
@@ -112,7 +112,7 @@ Config.Banks = {
 	[5] = {
 		name = "Fleeca Bank [Grand Senora Desert]",postal = "4024",
 		blip = { enable = true, bName = "Fleeca Bank [Grand Senora Desert]", display = 4, sprite = 431, color = 5, scale = 0.7 },
-		inUse = false, minCops = 0,
+		inUse = false, minCops = 3,
 		vault = { pos = {1175.544,2712.855,38.088}, model = 2121050683, oHeadMin = 320.0, oHeadMax = 350.0, cHeadMin = 80.0, cHeadMax = 110.0 },
 		door = { pos = {1173.07, 2713.166, 38.06626}, model = -1591004109 },
 		keypads = {
@@ -130,7 +130,7 @@ Config.Banks = {
 	[6] = {
 		name = "Fleeca Bank [Great Ocean Highway]",postal = "5070",
 		blip = { enable = true, bName = "Fleeca Bank [Great Ocean Highway]", display = 4, sprite = 431, color = 5, scale = 0.7 },
-		inUse = false, minCops = 0,
+		inUse = false, minCops = 3,
 		vault = { pos = {-2956.473,482.2,15.99}, model = -63539571, oHeadMin = 230.0, oHeadMax = 260.0, cHeadMin = 340.0, cHeadMax = 370.0 },
 		door = { pos = {-2956.226, 484.5746, 15.67534}, model = -1591004109, },
 		keypads = {
@@ -148,7 +148,7 @@ Config.Banks = {
 	[7] = {
 		name = "Blaine County Savings Bank",postal = "1055",
 		blip = { enable = true, bName = "BCS Bank", display = 4, sprite = 431, color = 5, scale = 0.7 },
-		inUse = false, minCops = 0,
+		inUse = false, minCops = 3,
 		vault = { pos = {-105.9,6472.11,31.9}, model = -1185205679, oHeadMin = 140.0, oHeadMax = 170.0, cHeadMin = 30.0, cHeadMax = 60.0 },
 		door = { pos = {-105.817, 6475.618, 31.62672}, model = 1309269072 },
 		keypads = {
@@ -166,7 +166,7 @@ Config.Banks = {
 	[8] = {
 		name = "Pacific Standard Public Deposit Bank", postal = "7090",
 		blip = { enable = true, bName = "PSPD Bank", display = 4, sprite = 431, color = 5, scale = 0.7 },
-		inUse = false, minCops = 0,
+		inUse = false, minCops = 3,
 		vault = { pos = {252.8114,228.4967,102.0833}, model = 961976194, oHeadMin = 20.0, oHeadMax = 40.0, cHeadMin = 150.0, cHeadMax = 165.0 },
 		door = { pos = {262.1650,221.76,106.2851}, model = 746855201 },
 		keypads = {
