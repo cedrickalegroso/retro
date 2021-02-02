@@ -747,6 +747,7 @@ AddEventHandler('esx_ambulancejob:putInVehicle', function()
 			if freeSeat then
 				SetPedIntoVehicle(playerPed, vehicle, freeSeat)
 				TaskWarpPedIntoVehicle(playerPed, vehicle, freeSeat)
+				SetPedToRagdoll(playerPed, 1000, 1000, 0, 0, 0, 0)
 			end
 		end
 	end
