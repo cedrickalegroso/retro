@@ -176,7 +176,40 @@ AddEventHandler('lockpicks:UseLockpick', function(isAdvanced)
         local postal = Config.Registers[k].postal
         local storename = Config.Registers[k].storename
         if dist <= 1 and not Config.Registers[k].robbed then
-            if CurrentCops >= Config.MinimumStoreRobberyPolice then
+
+            ESX.TriggerServerCallback('retro_scripts:checkPopoCount', function(okay)
+                if okay == 1 then 
+                   
+                        lockpick(true)
+                        currentRegister = k
+                        if not copsCalled then
+                            local s1, s2 = Citizen.InvokeNative(0x2EB41072B4C1E4C0, pos.x, pos.y, pos.z, Citizen.PointerValueInt(), Citizen.PointerValueInt())
+                            local street1 = GetStreetNameFromHashKey(s1)
+                            local street2 = GetStreetNameFromHashKey(s2)
+                            local streetLabel = street1
+                            if street2 ~= nil then 
+                                streetLabel = streetLabel .. " " .. street2
+                            end
+    
+                         --   print(Config.Registers[k])
+    
+                         --   print(storename)
+    
+                         --   print(postal)
+    
+                         ExecuteCommand('robpos911')
+                        --    TriggerServerEvent("retro_scripts:callcopsnew", "cashier", currentRegister, streetLabel, pos, storename, postal)
+                            copsCalled = true
+                        end
+                
+                else 
+                    TriggerEvent('notification', ('Theres not enough cops'), 2)
+                end
+               -- ESX.ShowNotification('Cops Count: ~r~'.. cops)
+            end, source)
+
+            --[[
+ if CurrentCops >= Config.MinimumStoreRobberyPolice then
                 if usingAdvanced then
                     lockpick(true)
                     currentRegister = k
@@ -219,12 +252,14 @@ AddEventHandler('lockpicks:UseLockpick', function(isAdvanced)
                         else
                             TriggerEvent('notification', ('Gorunuse göre tornovida eksik..'), 2)
                         end
-                    end, "screwdriverset")--]]
+                    end, "screwdriverset")
                 end
                 
             else
                 TriggerEvent('notification', ('Theres not enough cops'), 2)
             end
+            ]]--
+           
         end
     end
 end)
