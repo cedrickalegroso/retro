@@ -422,6 +422,25 @@ RegisterCommand("useillegalcash", function(source)
 
 end)
 
+
+        
+ESX.RegisterServerCallback('retro_scripts:checkPopoCount', function(source,cb, okay)
+    local cops = 0
+    local okay = 0
+    for i=1, #xPlayers, 1 do
+        local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
+        if xPlayer.job.name == 'police' then
+            cops = cops + 1
+        end
+    end
+
+    if cops > 0 then 
+        okay = 1
+    end
+
+    cb(okay)
+end)
+
 ESX.RegisterServerCallback('retro_scripts:isClaimed', function(source,cb, isClaimed)
     print('callback triggered')
 	local _source = source
