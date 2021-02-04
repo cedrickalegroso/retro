@@ -810,7 +810,8 @@ AddEventHandler('retro_scripts:gettodayreward1', function(source)
                     amount = 5
                 elseif day == 29 then
                     type = "item" 
-                    item = "retro_car"
+                    
+                    item = "carokit"
                     amount = 1
                 elseif day == 30 then
                     type = "retro" 
