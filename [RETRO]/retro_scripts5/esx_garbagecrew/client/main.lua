@@ -26,7 +26,7 @@ Citizen.CreateThread(function()
 		SetBlipAsShortRange(mainblip, true)
 
 		BeginTextCommandSetBlipName("STRING")
-		AddTextComponentString(_U('blip_job'))
+		AddTextComponentString('Garbage Job')
 		EndTextCommandSetBlipName(mainblip)
 	end
 		
@@ -70,7 +70,7 @@ AddEventHandler('esx_garbagecrew:selectnextjob', function()
 		RemoveBlip(Blips['delivery'])
 		SetBlipRoute(Blips['endmission'], true)
 		albetogetbags = false
-		ESX.ShowNotification(_U('return_depot'))
+		ESX.ShowNotification('return depot')
 	end
 end)
 
@@ -89,27 +89,27 @@ AddEventHandler('esx_garbagecrew:enteredarea', function(zone)
 	end
 
 	if CurrentAction == 'endmission' and vehiclespawned then
-		CurrentActionMsg = _U('cancel_mission')
+		CurrentActionMsg = 'cancel mission'
 	end
 
 	if CurrentAction == 'collection' and not albetogetbags then
 		if IsPedInAnyVehicle(GetPlayerPed(-1)) and GetVehicleNumberPlateText(GetVehiclePedIsIn(GetPlayerPed(-1), false)) == worktruckplate then
-			CurrentActionMsg = _U('collection')
+			CurrentActionMsg ='collection'
 		else
-			CurrentActionMsg = _U('need_work_truck')
+			CurrentActionMsg ='Need TowTruck'
 		end
 	end
 
 	if CurrentAction == 'bagcollection' then
 		if zone.bagsremaining > 0 then
-			CurrentActionMsg = _U('collect_bags', tostring(zone.bagsremaining))
+			CurrentActionMsg ='Collect Bags '..tostring(zone.bagsremaining)
 		else
 			CurrentActionMsg = nil
 		end
 	end
 
 	if CurrentAction == 'deposit' then
-		CurrentActionMsg = _U('toss_bag')
+		CurrentActionMsg = 'Toss Bags'
 	end
 
 end)
@@ -182,7 +182,7 @@ AddEventHandler('esx_garbagecrew:checkjob', function()
 		SetBlipAsShortRange(mainblip, true)
 
 		BeginTextCommandSetBlipName("STRING")
-		AddTextComponentString(_U('blip_job'))
+		AddTextComponentString('Job Blip')
 		EndTextCommandSetBlipName(mainblip)
 	end
 end)
@@ -225,7 +225,7 @@ Citizen.CreateThread( function()
 				end
 
 				if CurrentAction == 'collection' then
-					if CurrentActionMsg == _U('collection') then
+					if CurrentActionMsg == 'Collection' then
 						SelectBinAndCrew(GetEntityCoords(GetPlayerPed(-1)))
 						CurrentAction = nil
 						CurrentActionMsg  = nil
@@ -346,7 +346,7 @@ function CollectBagFromBin(currentZone)
 		CurrentActionMsg = nil
 		HasAlreadyEnteredArea = false
 	else
-		ESX.ShowNotification(_U('not_near_truck'))
+		ESX.ShowNotification('Not near truck')
 		TriggerServerEvent('esx_garbagecrew:unknownlocation', currentZone.pos)
 	end
 end
@@ -395,7 +395,7 @@ function SelectBinAndCrew(location)
 		currentstop = currentstop + 1
 		SetVehicleDoorOpen(work_truck, 5, false, false)
 	else
-		ESX.ShowNotification( _U('no_trash_aviable'))
+		ESX.ShowNotification( 'No trash available ')
 		SetBlipRoute(Blips['endmission'], true)
 		FindDeliveryLoc()
 	end
@@ -427,18 +427,18 @@ function FindDeliveryLoc()
 	SetBlipAsShortRange(Blips['delivery'], true)
 	SetBlipRoute(Blips['delivery'], true)
 	BeginTextCommandSetBlipName("STRING")
-	AddTextComponentString(_U('blip_delivery'))
+	AddTextComponentString('Delivery')
 	EndTextCommandSetBlipName(Blips['delivery'])
 	
 	Blips['endmission'] = AddBlipForCoord(Config.Zones[1].pos)
 	SetBlipSprite (Blips['endmission'], 318)
 	SetBlipColour(Blips['endmission'], 1)
 	BeginTextCommandSetBlipName("STRING")
-	AddTextComponentString(_U('blip_goal'))
+	AddTextComponentString('Goal')
 	EndTextCommandSetBlipName(Blips['endmission'])
 
 	oncollection = true
-	ESX.ShowNotification(_U('drive_to_collection'))
+	ESX.ShowNotification('Drive to collection')
 end
 
 function IsGarbageJob()
@@ -455,25 +455,31 @@ function MenuCloakRoom()
 	ESX.UI.Menu.CloseAll()
 
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'cloakroom', {
-			title    = _U('cloakroom'),
+			title    = 'Cloakroom',
 			elements = {
-				{label = _U('job_wear'), value = 'job_wear'},
-				{label = _U('citizen_wear'), value = 'citizen_wear'}
+				{label = 'Clock In', value = 'job_wear'},
+				{label = 'Clock out', value = 'citizen_wear'}
 			}}, function(data, menu)
 			if data.current.value == 'citizen_wear' then
 				clockedin = false
-				ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin)
+				
+				--[[
+ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin)
 					TriggerEvent('skinchanger:loadSkin', skin)
 				end)
+				]]--
 			elseif data.current.value == 'job_wear' then
 				clockedin = true
-				ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin, jobSkin)
+				--[[
+ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin, jobSkin)
 					if skin.sex == 0 then
 						TriggerEvent('skinchanger:loadClothes', skin, jobSkin.skin_male)
 					else
 						TriggerEvent('skinchanger:loadClothes', skin, jobSkin.skin_female)
 					end
 				end)
+				]]--
+				
 			end
 			menu.close()
 		end, function(data, menu)
@@ -491,7 +497,7 @@ function MenuVehicleSpawner()
 	ESX.UI.Menu.CloseAll()
 
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'vehiclespawner', {
-			title    = _U('vehiclespawner'),
+			title    = 'Vehicle Spawner',
 			elements = elements
 		}, function(data, menu)
 			ESX.Game.SpawnVehicle(data.current.value, Config.VehicleSpawn.pos, 270.0, function(vehicle)
@@ -509,6 +515,9 @@ function MenuVehicleSpawner()
 				TriggerServerEvent('esx_garbagecrew:movetruckcount')   
 				SetEntityAsMissionEntity(vehicle,true, true)
 				TaskWarpPedIntoVehicle(GetPlayerPed(-1), vehicle, -1)  
+
+				TriggerServerEvent('hsn-hotwire:addKeys',GetVehicleNumberPlateText(vehicle))
+				SetVehicleEngineOn(vehicle,true)
 				vehiclespawned = true 
 				albetogetbags = false
 				work_truck = vehicle
