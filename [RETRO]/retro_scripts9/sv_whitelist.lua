@@ -434,7 +434,7 @@ ESX.RegisterServerCallback('retro_scripts:checkPopoCount', function(source,cb, o
         end
     end
 
-    if cops > 0 then 
+    if cops >= 2  then 
         okay = 1
     end
 
