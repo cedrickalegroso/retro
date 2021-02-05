@@ -111,9 +111,9 @@ Config.Aircrafts = {
 	Blips = true, -- true = Use Aircraft Blips.
 	PoundP = 10000, -- How much it Costs to get Vehicles from Aircraft Pound.
 	Markers = {
-		Points = {Type = 1, r = 0, g = 255, b = 0, x = 1.5, y = 1.5, z = 1.0}, -- Green Color / Standard Size Circle.
-		Delete = {Type = 1, r = 255, g = 0, b = 0, x = 5.0, y = 5.0, z = 1.0}, -- Red Color / Big Size Circle.
-		Pounds = {Type = 1, r = 0, g = 0, b = 100, x = 1.5, y = 1.5, z = 1.0} -- Blue Color / Standard Size Circle.
+		Points = {Type = 34, r = 0, g = 255, b = 0, x = 1.0, y = 1.0, z = 1.0}, -- Green Color / Standard Size Circle.
+		Delete = {Type = 34, r = 255, g = 0, b = 0, x = 1.0, y = 1.0, z = 1.0}, -- Red Color / Big Size Circle.
+		Pounds = {Type = 34, r = 0, g = 0, b = 100, x = 1.0, y = 1.0, z = 1.0}-- Blue Color / Standard Size Circle.
 	}
 }
 
@@ -378,6 +378,12 @@ Config.AircraftGarages = {
 		Spawner = vector3(2122.72, 4804.85, 40.78),
 		Deleter = vector3(2082.36, 4806.06, 40.07),
 		Heading = 115.04
+	},
+	Magsd_Airport = {
+		Marker = vector3(-2610.6625976562,1853.9826660156,168.90153503418),
+		Spawner = vector3(-2616.1691894531,1859.8542480469,168.76583862305),
+		Deleter = vector3(-2616.1691894531,1859.8542480469,168.76583862305),
+		Heading = 115.04
 	}
 }
 
@@ -385,6 +391,11 @@ Config.AircraftPounds = {
 	Los_Santos_Airport = {
 		Marker = vector3(-1243.0, -3391.92, 12.94),
 		Spawner = vector3(-1272.27, -3382.46, 12.94),
+		Heading = 330.25
+	},
+	Mags_Santos_Airport = {
+		Marker = vector3(-2616.3940429688,1851.9776611328,168.85723876953),
+		Spawner = vector3(-2616.1691894531,1859.8542480469,168.76583862305),
 		Heading = 330.25
 	}
 }
@@ -497,6 +508,12 @@ Config.CarGarages = {
 		Spawner = vector3(2485.73828125,6119.0473632812,167.57499694824),
 		Deleter = vector3(2493.859375,6123.685546875,163.44665527344),
 		Heading = 125.0
+	},
+	Magitbay = {
+		Marker = vector3(-2602.90234375,1920.5028076172,167.33227539062),
+		Spawner = vector3(-2598.9494628906,1921.1185302734,167.33209228516),
+		Deleter = vector3(-2594.4873046875,1921.5032958984,167.33219909668),
+		Heading = 8.70
 	}
 }
 
