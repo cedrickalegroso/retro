@@ -482,6 +482,38 @@ ConfigGamz.Zones = {
         }
     }, 
 
+    ["Magtibay"] = {
+
+        ["coords"] = vector3(-2583.9428710938,1892.4539794922,167.3190612793),
+
+        ["drink"] = {
+            ["Coca Cola"] = {
+                ["price"] = 25,
+                ["prop"] = "prop_ecola_can"
+            },
+
+            ["Sparkling Water"] = {
+                ["price"] = 15,
+                ["prop"] = "prop_ld_flow_bottle"
+            } 
+        },
+        
+        ["eatable"] = {
+            ["Burger"] = {
+                ["price"] = 25,
+                ["prop"] = "prop_cs_burger_01"
+            },
+
+            ["Hotdog"] = {
+                ["price"] = 25,
+                ["prop"] = "prop_cs_hotdog_01"
+            }
+
+        }
+    }, 
+
+    
+
     ["Fridge "] = {
 
         ["coords"] = vector3(2537.25390625,6143.8525390625,164.27233886719),
