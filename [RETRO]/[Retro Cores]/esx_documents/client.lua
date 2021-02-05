@@ -23,7 +23,7 @@ local MENU_OPTIONS = {
 
 Citizen.CreateThread(function()
 	while ESX == nil do
-		TriggerEvent('esx:getShRETROaredObjRETROect', function(obj) ESX = obj end)
+		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 		Citizen.Wait(0)
 	end
     while ESX.IsPlayerLoaded == false do
