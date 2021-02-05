@@ -446,7 +446,18 @@ Config.PVault = {
         show3D = true
     },
 
+    ['MAGTIBAY'] = {
+        coords = vector3(-2581.2121582031,1890.0434570312,163.72393798828),
+        size = vector3(1.0, 1.0, 1.0),
+        steam = 'steam:110000144c4b7f4',
+        markerType = 2,
+        markerColour = { r = 255, g = 255, b = 255 },
+        msg = 'Press ~r~[E]~h~ To Open Magtibay Vault',
+        show3D = true
+    },
 
+
+    
     
 }
 
