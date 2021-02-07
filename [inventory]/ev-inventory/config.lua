@@ -457,7 +457,7 @@ Config.PVault = {
     },
 
     ['ACE'] = {
-        coords = vector3(-2581.2121582031,1890.0434570312,163.72393798828),
+        coords = vector3(-81.968376159668,826.96649169922,231.32997131348),
         size = vector3(1.0, 1.0, 1.0),
         steam = 'steam:1100001093ea77c',
         markerType = 2,
@@ -467,7 +467,7 @@ Config.PVault = {
     },
 
     ['krabs'] = {
-        coords = vector3(-2581.2121582031,1890.0434570312,163.72393798828),
+        coords = vector3(-56.01628112793,837.48529052734,235.71800231934),
         size = vector3(1.0, 1.0, 1.0),
         steam = 'steam:1100001443f348a',
         markerType = 2,
@@ -513,8 +513,18 @@ Config.Stash = {
         msg = 'Press ~r~[E]~h~ To Open Ambulance Stock',
         show3D = true
     },
+    ['Magtibay Stash'] = {
+        coords = vector3(-101.11005401611,823.40356445312,227.88090515137),
+        size = vector3(1.0, 1.0, 1.0),
+        job = 'magtibay',
+        markerType = 2,
+        markerColour = { r = 255, g = 255, b = 255 },
+        msg = 'Press ~r~[E]~h~ To Open magtibay Stash',
+        show3D = true
+    },
 
    
+    
     
     ['Mech Stock'] = {
         coords = vector3(-100.43384552002,-1792.6810302734,32.19514465332),
