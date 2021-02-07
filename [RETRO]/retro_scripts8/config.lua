@@ -477,14 +477,14 @@ ConfigGamz.Zones = {
             ["Hotdog"] = {
                 ["price"] = 25,
                 ["prop"] = "prop_cs_hotdog_01"
-            }
+            }   
 
         }
     }, 
 
     ["Magtibay"] = {
 
-        ["coords"] = vector3(-2583.9428710938,1892.4539794922,167.3190612793),
+        ["coords"] = vector3(-89.736259460449,824.34637451172,227.78491210938),
 
         ["drink"] = {
             ["Coca Cola"] = {
