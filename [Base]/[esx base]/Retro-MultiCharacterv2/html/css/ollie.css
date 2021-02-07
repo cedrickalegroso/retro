@@ -1,3 +1,7 @@
+html {
+    overflow: scroll;
+}
+
 .character-container {
     display: none;
     /* set to none on upload */
