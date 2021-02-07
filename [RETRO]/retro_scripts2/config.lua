@@ -2221,7 +2221,105 @@ Config.DoorListLOCK = {
 	},
 
 
+	--MAGTIBAY
+	{
+		objHash = -1119680854,
+		objHeading = 10.0,
+		objCoords = vector3(-78.367332458496,822.72808837891,227.78700256348),
+		textCoords = vector3(-78.367332458496,822.72808837891,227.78700256348),
+		authorizedJobs = {'magtibay'},
+		locked = true,
+		maxDistance = 1.25
+	},
 
+	{
+		objHash = -1119680854,
+		objHeading = 45.0,
+		objCoords = vector3(-51.539855957031,828.08715820312,231.39669799805),
+		textCoords = vector3(-51.539855957031,828.08715820312,231.39669799805),
+		authorizedJobs = {'magtibay'},
+		locked = true,
+		maxDistance = 1.25
+	},
+	
+	{
+		objHash = -1119680854,
+		objHeading = 10.0,
+		objCoords = vector3(-70.787666320801,823.99786376953,231.41041564941),
+		textCoords = vector3(-70.787666320801,823.99786376953,231.41041564941),
+		authorizedJobs = {'magtibay'},
+		locked = true,
+		maxDistance = 1.25
+	},
+
+	{
+		objHash = -1119680854,
+		objHeading = 45.0,
+		objCoords = vector3(-49.605251312256,830.12072753906,235.74108886719),
+		textCoords = vector3(-49.605251312256,830.12072753906,235.74108886719),
+		authorizedJobs = {'magtibay'},
+		locked = true,
+		maxDistance = 1.25
+	},
+
+	{
+		objHash = -1119680854,
+		objHeading = 10.0,
+		objCoords = vector3(-69.142837524414,824.28656005859,235.74029541016),
+		textCoords = vector3(-69.142837524414,824.28656005859,235.74029541016),
+		authorizedJobs = {'magtibay'},
+		locked = true,
+		maxDistance = 1.25
+	},
+	
+
+	{
+		objHash = -1119680854,
+		objHeading = 10.0,
+		objCoords = vector3(-80.774963378906,822.26672363281,235.73062133789),
+		textCoords = vector3(-80.774963378906,822.26672363281,235.73062133789),
+		authorizedJobs = {'magtibay'},
+		locked = true,
+		maxDistance = 1.25
+	},
+	
+	{
+		objHash = -1119680854,
+		objHeading = 10.0,
+		objCoords = vector3(-97.39119720459,816.16510009766,235.75161743164),
+		textCoords = vector3(-97.39119720459,816.16510009766,235.75161743164),
+		authorizedJobs = {'magtibay'},
+		locked = true,
+		maxDistance = 1.25
+	},
+	
+	{
+		objHash = 110411286,
+		objHeading = 100.0,
+		objCoords = vector3(-85.148475646973,834.7548828125,235.92178344727),
+		textCoords = vector3(-85.148475646973,834.7548828125,235.92178344727),
+		authorizedJobs = {'magtibay'},
+		locked = true,
+		maxDistance = 1.25
+	},
+	
+
+	{
+		objHash = -1186396713,
+		objHeading = -80.0,
+		objCoords = vector3(-90.627296447754,821.79290771484,240.20416259766),
+		textCoords = vector3(-90.627296447754,821.79290771484,240.20416259766),
+		authorizedJobs = {'magtibay'},
+		locked = true,
+		maxDistance = 1.25
+	},
+	
+
+
+
+	
+	
+	
 	{
 		objHash = GetHashKey('prop_lrggate_02'),
 		objCoords = vector3(287.76290893555,-574.35302734375,43.155288696289),
