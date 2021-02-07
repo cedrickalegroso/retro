@@ -456,6 +456,26 @@ Config.PVault = {
         show3D = true
     },
 
+    ['ACE'] = {
+        coords = vector3(-2581.2121582031,1890.0434570312,163.72393798828),
+        size = vector3(1.0, 1.0, 1.0),
+        steam = 'steam:1100001093ea77c',
+        markerType = 2,
+        markerColour = { r = 255, g = 255, b = 255 },
+        msg = 'Press ~r~[E]~h~ To Open ace Vault',
+        show3D = true
+    },
+
+    ['krabs'] = {
+        coords = vector3(-2581.2121582031,1890.0434570312,163.72393798828),
+        size = vector3(1.0, 1.0, 1.0),
+        steam = 'steam:1100001443f348a',
+        markerType = 2,
+        markerColour = { r = 255, g = 255, b = 255 },
+        msg = 'Press ~r~[E]~h~ To Open krabs Vault',
+        show3D = true
+    },
+
 
     
     
