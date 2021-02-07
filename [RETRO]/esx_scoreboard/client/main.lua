@@ -135,7 +135,7 @@ end)
 function checkemscount(connectedPlayers)
 
 	local formattedPlayerList, num = {}, 1
-	local ems, police, taxi, groove, guerrero, tamasakv2, cardealer, players government, cuatro = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	local ems, police, magtibay, taxi, groove, guerrero, tamasakv2, cardealer, players government, cuatro = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
 	for k,v in pairs(connectedPlayers) do
 
@@ -166,6 +166,8 @@ function checkemscount(connectedPlayers)
 			vermillion = vermillion + 1
 		elseif v.job or v.job2 == 'thelost' then
 			thelost = thelost + 1
+		elseif v.job or v.job2 == 'magtibay' then
+			magtibay = magtibay + 1
 		end
 
 
@@ -184,7 +186,7 @@ end
 
 function UpdatePlayerTable(connectedPlayers)
 	local formattedPlayerList, num = {}, 1
-	local ems, police, taxi, groove, guerrero, tamasakv2, cardealer, players, government, cuatro, vermillion, thelost, gordo = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	local ems, police, taxi, groove, magtibay, guerrero, tamasakv2, cardealer, players, government, cuatro, vermillion, thelost, gordo = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
 	for k,v in pairs(connectedPlayers) do
 
@@ -216,6 +218,8 @@ function UpdatePlayerTable(connectedPlayers)
 			thelost = thelost + 1
 		elseif v.job == 'gordo'  then
 			gordo = gordo + 1
+		elseif v.job == 'magtibay'  then
+			magtibay = magtibay + 1
 		end
 
 		if v.job2 == 'ambulance'  then
@@ -242,6 +246,8 @@ function UpdatePlayerTable(connectedPlayers)
 			thelost = thelost + 1
 		elseif v.job2 == 'gordo'  then
 			gordo = gordo + 1
+		elseif v.job2 == 'magtibay'  then
+			magtibay = magtibay + 1
 		end
 		
 	end
@@ -252,7 +258,7 @@ function UpdatePlayerTable(connectedPlayers)
 
 	SendNUIMessage({
 		action = 'updatePlayerJobs',
-		jobs   = {ems = ems,   police = police,    groove = groove, taxi = taxi, tamasakv2 = tamasakv2, guerrero = guerrero, cuatro = cuatro,government = government, vermillion = vermillion, thelost = thelost,    gordo = gordo,  player_count = players}
+		jobs   = {ems = ems,   police = police,  magtibay = magtibay,   groove = groove, taxi = taxi, tamasakv2 = tamasakv2, guerrero = guerrero, cuatro = cuatro,government = government, vermillion = vermillion, thelost = thelost,    gordo = gordo,  player_count = players}
 	})
 
 	local pingpong = nil

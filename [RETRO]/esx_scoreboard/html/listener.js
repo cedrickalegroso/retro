@@ -60,8 +60,9 @@ $(function() {
 
                 $('#cuatro').html(jobs.cuatro);
 
+                $('#magtibay').html(jobs.magtibay);
 
-  $('#gordo').html(jobs.gordo);
+                $('#gordo').html(jobs.gordo);
 
                 $('#groove').html(jobs.groove);
                 $('#cardealer').html(jobs.cardealer);
