@@ -475,9 +475,45 @@ Config.PVault = {
         msg = 'Press ~r~[E]~h~ To Open krabs Vault',
         show3D = true
     },
-
+    ['uno'] = {
+        coords = vector3(-52.965251922607,829.04827880859,235.71817016602),
+        size = vector3(1.0, 1.0, 1.0),
+        steam = 'steam:110000142eac874',
+        markerType = 2,
+        markerColour = { r = 255, g = 255, b = 255 },
+        msg = 'Press ~r~[E]~h~ To Open Uno Vault',
+        show3D = true
+    },
+    ['tam'] = {
+        coords = vector3(-82.918670654297,832.45245361328,235.71817016602),
+        size = vector3(1.0, 1.0, 1.0),
+        steam = 'steam:110000145364d22',
+        markerType = 2,
+        markerColour = { r = 255, g = 255, b = 255 },
+        msg = 'Press ~r~[E]~h~ To Open Tamtam Vault',
+        show3D = true
+    },
+    ['tam'] = {
+        coords = vector3(-82.918670654297,832.45245361328,235.71817016602),
+        size = vector3(1.0, 1.0, 1.0),
+        steam = 'steam:110000145364d22',
+        markerType = 2,
+        markerColour = { r = 255, g = 255, b = 255 },
+        msg = 'Press ~r~[E]~h~ To Open Tamtam Vault',
+        show3D = true
+    },
+    ['jay'] = {
+        coords = vector3(-85.41682434082,825.52062988281,235.71803283691),
+        size = vector3(1.0, 1.0, 1.0),
+        steam = 'steam:11000011a07e707',
+        markerType = 2,
+        markerColour = { r = 255, g = 255, b = 255 },
+        msg = 'Press ~r~[E]~h~ To Open jay Vault',
+        show3D = true
+    },
 
     
+   
     
 }
 
