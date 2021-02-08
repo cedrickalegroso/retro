@@ -447,7 +447,7 @@ Config.PVault = {
     },
 
     ['MAGTIBAY'] = {
-        coords = vector3(-2581.2121582031,1890.0434570312,163.72393798828),
+        coords = vector3(-59.986461639404,834.26312255859,231.32987976074),
         size = vector3(1.0, 1.0, 1.0),
         steam = 'steam:110000144c4b7f4',
         markerType = 2,
@@ -456,6 +456,17 @@ Config.PVault = {
         show3D = true
     },
 
+    ['RATRBU'] = {
+        coords = vector3(-49.864715576172,832.35308837891,231.32989501953),
+        size = vector3(1.0, 1.0, 1.0),
+        steam = 'steam:11000014485736e',
+        markerType = 2,
+        markerColour = { r = 255, g = 255, b = 255 },
+        msg = 'Press ~r~[E]~h~ To Open RATRBU Vault',
+        show3D = true
+    },
+
+    
     ['ACE'] = {
         coords = vector3(-81.968376159668,826.96649169922,231.32997131348),
         size = vector3(1.0, 1.0, 1.0),
