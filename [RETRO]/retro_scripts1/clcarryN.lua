@@ -49,6 +49,7 @@ function OpenActionMenuInteraction(target)
 	table.insert(elements, {label = ('TakeHostage'), value = 'takehostage'})
 	table.insert(elements, {label = ('Put Body on Vehicle'), value = 'putveh'})
 	table.insert(elements, {label = ('Take Body out of Vehicle'), value = 'outveh'})
+	table.insert(elements, {label = ('Save Current Outfit'), value = 'saveout'})
 	ESX.UI.Menu.CloseAll()
 
 	ESX.UI.Menu.Open(
@@ -100,6 +101,28 @@ function OpenActionMenuInteraction(target)
 
 			menu.close()
 		end
+
+		if data.current.value == 'saveout' then
+			
+			ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'save_outfit', {
+				title = 'Name your outfit'
+			}, function(data, menu)
+
+				local label = data.value
+
+				if label == nil then
+					ESX.ShowNotification('Invalid label')
+				else
+				
+					ExecuteCommand('saveoutfitclothe '..label )
+				
+					menu.close()
+				end
+
+			end, function(data, menu)
+				menu.close()
+			end)
+	end
 
 		if data.current.value == 'rewards' then
 			
