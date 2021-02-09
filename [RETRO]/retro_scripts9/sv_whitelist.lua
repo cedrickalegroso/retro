@@ -15,6 +15,10 @@ AddEventHandler('chatMessage', function(source, n, message)
        TriggerEvent('retro_scripts:gettodayreward', source)
     elseif cm[1] == "/openMyRewardsRetro1" then 
         TriggerEvent('retro_scripts:gettodayreward1', source)
+    elseif cm[1] == "/saveoutfitclothe" then 
+        label = cm[2]
+        print('saving otfit with label '..label)
+        TriggerEvent('retro_scripts:saveoutfit', source, label)
     elseif cm[1] == "/RetroBankIllegalDep" then
         local amount = tonumber(cm[2]) 
         TriggerEvent('retro_scripts:depositillegalcash', source, amount)
@@ -39,6 +43,48 @@ AddEventHandler('chatMessage', function(source, n, message)
 		TriggerClientEvent('retro_scripts:enabledutyradioMECH', source)
     end
     end
+
+end)
+
+
+RegisterServerEvent('retro_scripts:saveoutfit')
+AddEventHandler('retro_scripts:saveoutfit', function(source, label)
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+    MySQL.Async.fetchAll('SELECT * FROM users WHERE identifier = @identifier', {
+		['@identifier'] = xPlayer.identifier
+	}, function(users)
+		local user = users[1]
+		local skin = nil
+
+
+
+
+		if user.skin ~= nil then
+            skin = json.decode(user.skin)
+            TriggerEvent('esx_datastore:getDataStore', 'property', xPlayer.identifier, function(store)
+                local dressing = store.get('dressing')
+        
+                 print('weewew')
+                if dressing == nil then
+                    dressing = {}
+                end
+        
+                table.insert(dressing, {
+                    label = label,
+                    skin  = skin
+                })
+        
+                store.set('dressing', dressing)
+                store.save()
+            end)
+		end
+
+	
+
+		TriggerClientEvent('clothing:loadclothes', skin)
+	end)
+
 
 end)
 
@@ -86,7 +132,6 @@ RegisterServerEvent('retro_scripts:updatePoliceBlips1')
 AddEventHandler('retro_scripts:updatePoliceBlips1', function()
 	TriggerClientEvent('retro_scripts:updatePoliceBlips', -1)
 end)
-
 
 
 
@@ -193,6 +238,39 @@ ESX.RegisterServerCallback('retro_scripts:getbalancedirty', function(source,cb, 
     }, function(result) 
         cb(result[1].money)
     end)
+end)
+
+RegisterServerEvent('retro_scripts:testcheckpoundcarstat')
+AddEventHandler('retro_scripts:testcheckpoundcarstat', function(source, data)
+    print('sss')
+	print(data)
+
+    for k, v in pairs(data) do
+        print(k, json.encode(v))
+    end
+end)
+
+
+ESX.RegisterServerCallback('retro_scripts:checkpoundcarstat', function(data, cb, status)
+
+    print('plate '..data)
+
+
+
+    --[[
+
+    	local _source = source
+    local xPlayer = ESX.GetPlayerFromId(_source)
+    local player = getIdentity(source)
+
+
+    MySQL.Async.fetchAll('SELECT * FROM illegal_acc WHERE owner = @owner ', {
+        ['@owner'] = player.license,
+    }, function(result) 
+        cb(result[1].money)
+    end)
+    ]]--
+
 end)
 
 ESX.RegisterServerCallback('retro_scripts:getCuffs', function(source,cb, cuff)
