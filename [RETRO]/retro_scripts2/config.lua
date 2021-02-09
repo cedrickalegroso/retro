@@ -2043,6 +2043,29 @@ Config.DoorListLOCK = {
 
 
 	{
+		objHash = -1406685646,
+		objHeading = 0.0,
+		objCoords = vector3(441.21328735352,-977.65759277344,30.790342330933),
+		textCoords = vector3(441.21328735352,-977.65759277344,30.790342330933),
+		authorizedJobs = {'police'},
+		locked = true,
+		maxDistance = 1.25
+	},
+
+	{
+		objHash = -96679321,
+		objHeading = 180.0,
+		objCoords = vector3(441.26547241211,-986.44348144531,30.782032012939),
+		textCoords = vector3(441.26547241211,-986.44348144531,30.782032012939),
+		authorizedJobs = {'police'},
+		locked = true,
+		maxDistance = 1.25
+	},
+
+
+
+	
+	{
 		objHash = -53345114,
 		objHeading = 0.0,
 		objCoords = vector3(486.07348632812,-1012.1759033203,26.32301902771),
@@ -2115,6 +2138,30 @@ Config.DoorListLOCK = {
 		doors = {
 			{objHash = -692649124, objHeading = 180.0, objCoords  = vector3(469.00671386719,-1014.2437744141,26.42449760437)},
 			{objHash = -692649124, objHeading = 0.0, objCoords  = vector3(467.94839477539,-1013.8379516602,26.390390396118)}
+		}
+	},
+
+
+	{
+		textCoords = vector3(470.81771850586,-1009.0859375,26.273124694824),
+		authorizedJobs = {'police'},
+		locked = true,
+		maxDistance = 4,
+		doors = {
+			{objHash = 149284793, objHeading = 90.0, objCoords  = vector3(471.19134521484,-1009.500793457,26.373008728027)},
+			{objHash = 149284793, objHeading = -90.0, objCoords  = vector3(471.3381652832,-1008.6209106445,26.373979568481)}
+		}
+	},
+
+	{
+		textCoords = vector3(468.82095336914,-1000.5321044922,26.373985290527),
+		authorizedJobs = {'police'},
+		locked = true,
+		maxDistance = 4,
+		doors = {
+			{objHash = -288803980, objHeading = 180.0, objCoords  = vector3(469.20724487305,-1000.6148681641,26.373924255371)},
+			{objHash = -288803980, objHeading = 0.0, objCoords  = vector3(468.25048828125,-1000.7696533203,26.370897293091)}
+	
 		}
 	},
 
