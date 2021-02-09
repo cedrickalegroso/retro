@@ -80,15 +80,6 @@ RegisterCommand("v", function(source)
 	
 end)
 
-RegisterCommand("gigi", function(source)
-	local _source = source
-	local xPlayer = ESX.GetPlayerFromId(_source)
-
-	print('1')
-
-	TriggerClientEvent('retro_scripts:armortestg', _source)
-	
-end)
 
 
 
