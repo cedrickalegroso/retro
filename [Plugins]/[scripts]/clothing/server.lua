@@ -23,6 +23,7 @@ end)
 
 RegisterServerEvent('clothing:loadclothes')
 AddEventHandler('clothing:loadclothes', function()
+	
 	local xPlayer = ESX.GetPlayerFromId(source)
 
 	MySQL.Async.fetchAll('SELECT * FROM users WHERE identifier = @identifier', {
@@ -40,6 +41,15 @@ AddEventHandler('clothing:loadclothes', function()
 
 
 end)
+
+RegisterServerEvent('retro_Scripts:loadclothessavedServer')
+AddEventHandler('retro_Scripts:loadclothessavedServer', function(data)
+	print('got request')
+
+	TriggerClientEvent('retro_scripts:loadclothesSaved', source)
+end)
+
+
 
 ESX.RegisterServerCallback('clothing:getPlayerSkin', function(source, cb)
 	local xPlayer = ESX.GetPlayerFromId(source)

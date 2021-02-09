@@ -47,7 +47,23 @@ end)
 RegisterNetEvent('clothing:loadclothes')
 AddEventHandler('clothing:loadclothes', function(data)
     LoadPed(data)
+    print(data)
 end)
+
+
+RegisterNetEvent('retro_scripts:loadclothesSaved')
+AddEventHandler('retro_scripts:loadclothesSaved', function(data)
+    
+   LoadPed(data)
+
+   --[[
+ for k, v in pairs(data) do
+        print(k, json.encode(v))
+    end
+   ]]--
+   
+end)
+
 
 RegisterNetEvent('esx:playerLoaded')
 AddEventHandler('esx:playerLoaded', function(xPlayer)
