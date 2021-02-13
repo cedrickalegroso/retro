@@ -512,7 +512,9 @@ ESX.RegisterServerCallback('retro_scripts:checkPopoCount', function(source,cb, o
         end
     end
 
-    if cops >= 2  then 
+    print('COPS COUNT '..cops )
+
+    if cops > 0   then 
         okay = 1
     end
 
@@ -554,7 +556,7 @@ AddEventHandler('retro_scripts:gettodayreward', function(source)
 
     
 
-    local retroCoin = xPlayer.getInventoryItem('retro_coin').count
+   
 
     local epochunix = os.time(os.date("!*t"))
 
@@ -702,9 +704,9 @@ AddEventHandler('retro_scripts:gettodayreward', function(source)
                              
                         sendToDiscord(name,message,color, webhook)
         
-            if retroCoin > 0 then 
+            if result[1].isdonator == 1 then 
                 amount = (amount * 2) + amount
-                print('player have VIP Coin')
+              
                 TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'You have a retro coin so you got a little bit more reward.' })
             end
         
@@ -763,15 +765,24 @@ AddEventHandler('retro_scripts:gettodayreward1', function(source)
 
     local epochunix = os.time(os.date("!*t"))
 
-    if retroCoin > 0 then 
+  
 
         MySQL.Async.fetchAll('SELECT * FROM retro_rewards WHERE id = @id AND takenDonator = @takenDonator ', {
             ['@id'] = player.license,
             ['@takenDonator'] = 0
         }, function(result) 
+           
          if result[1] then
+
+        
+
+           
+
+            print('donator '..result[1].isdonator)
             
-            if epochunix - result[1].time >= 2500  and result[1].takenDonator == 0 then 
+            if  result[1].isdonator == 1 and epochunix - result[1].time >= 2500  and result[1].takenDonator == 0 then 
+                print('donator')
+               
                 math.randomseed(os.time())
                 local day = math.random(1,31)
     
@@ -908,9 +919,9 @@ AddEventHandler('retro_scripts:gettodayreward1', function(source)
                                  
                             sendToDiscord(name,message,color, webhook)
             
-                if retroCoin > 0 then 
+                if result[1].isdonator ==  1 then 
                     amount = (amount * 2) + amount
-                    print('player have VIP Coin')
+                  
                     TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'You have a retro coin so you got a little bit more reward.' })
                 end
             
@@ -942,6 +953,8 @@ AddEventHandler('retro_scripts:gettodayreward1', function(source)
                 TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'You already claimed todays reward or you havent played for atleast 20 mins yet.' })
       
             end
+
+           
     
          else
            -- print('NOO')
@@ -954,7 +967,7 @@ AddEventHandler('retro_scripts:gettodayreward1', function(source)
         end)
 
 
-    end
+   
 
 
    
