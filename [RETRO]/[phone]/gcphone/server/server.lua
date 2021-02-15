@@ -7,6 +7,100 @@ ESX.RegisterServerCallback("crewPhone:getAccessToken",function(a,b)
     b(________)
 end)
 
+AddEventHandler('esx_phone:registerNumber', function(number, type, sharePos, hasDispatch, hideNumber, hidePosIfAnon)
+    --print('= INFO = Enregistrement du telephone ' .. number .. ' => ' .. type)
+      local hideNumber    = hideNumber    or false
+      local hidePosIfAnon = hidePosIfAnon or false
+  
+      PhoneNumbers[number] = {
+          type          = type,
+      sources       = {},
+      alerts        = {}
+      }
+  end)
+
+  
+
+  function notifyAlertSMS (number, alert, listSrc)
+    print('note ems')
+    if PhoneNumbers[number] ~= nil then
+      local messText = alert.message
+      if (messText == '%posrealtime%') then
+        messText = 'GPS Live Position'
+      end
+      local mess = 'From #' .. alert.numero  .. ' : ' .. messText
+      if alert.coords ~= nil then
+        mess = mess .. ' ' .. alert.coords.x .. ', ' .. alert.coords.y 
+      end
+      for k, _ in pairs(listSrc) do
+        local targetPlayer = tonumber(k)
+        getPhoneNumber(targetPlayer, function (n)
+          if n ~= nil then
+            TriggerEvent('gcPhone:_internalAddMessage', number, n, mess, 0, function (smsMess)
+              TriggerClientEvent('gcPhone:receiveMessage1', targetPlayer, smsMess)
+              TriggerClientEvent('gcPhone:receiveLivePosition', targetPlayer, alert.source, duration, alert.numero, 1)
+              if alert.source then
+                if messText == 'GPS Live Position' then
+                  local duration = Config.ShareRealtimeGPSJobTimer * 60000 --Config Time (Default = 10 minutes)
+                  TriggerClientEvent('gcPhone:receiveLivePosition', targetPlayer, alert.source, duration, alert.numero, 1)
+                end
+             end
+            end)
+          end
+        end)
+      end
+    end
+  end
+  
+  
+  AddEventHandler('esx:setJob', function(source, job, lastJob)
+    if PhoneNumbers[lastJob.name] ~= nil then
+      TriggerEvent('esx_addons_gcphone:removeSource', lastJob.name, source)
+    end
+  
+    if PhoneNumbers[job.name] ~= nil then
+      TriggerEvent('esx_addons_gcphone:addSource', job.name, source)
+    end
+  end)
+  
+  AddEventHandler('esx_addons_gcphone:addSource', function(number, source)
+      PhoneNumbers[number].sources[tostring(source)] = true
+  end)
+  
+  AddEventHandler('esx_addons_gcphone:removeSource', function(number, source)
+      PhoneNumbers[number].sources[tostring(source)] = nil
+  end)
+  
+  RegisterServerEvent('gcPhone:sendMessage')
+  AddEventHandler('gcPhone:sendMessage', function(number, message)
+      local sourcePlayer = tonumber(source)
+      if PhoneNumbers[number] ~= nil then
+        getPhoneNumber(source, function (phone) 
+          notifyAlertSMS(number, {
+            message = message,
+            numero = phone,
+          }, PhoneNumbers[number].sources)
+        end)
+      end
+  end)
+  
+
+  RegisterServerEvent('esx_phone:send')
+AddEventHandler('esx_phone:send', function(number, message, _, coords)
+  local source = source
+  if PhoneNumbers[number] ~= nil then
+    getPhoneNumber(source, function (phone) 
+      notifyAlertSMS(number, {
+        message = message,
+        coords = coords,
+        numero = phone,
+      }, PhoneNumbers[number].sources)
+    end)
+  else
+    -- print('esx_phone:send | Appels sur un service non enregistre => numero : ' .. number)
+  end
+end)
+
 RegisterServerEvent("crew:onPlayerLoaded")
 AddEventHandler("crew:onPlayerLoaded",function(a)
     local b=tonumber(a)
@@ -309,6 +403,30 @@ AddEventHandler('gcPhone:sendMessage', function(phoneNumber, message)
     local sourcePlayer = tonumber(source)
     local identifier = getPlayerID(sourcePlayer)
     addMessage(sourcePlayer, identifier, phoneNumber, message)
+end)
+
+
+RegisterCommand('98send', function(source)
+    local sourcePlayer = tonumber(source)
+    local identifier = getPlayerID(sourcePlayer)
+     message = 'GPS: ' .. GetEntityCoords(GetPlayerPed(source)).x .. ', ' .. GetEntityCoords(GetPlayerPed(source)).y
+  --  TriggerEvent('gcPhone:sendMessage', source, 'ambulance',  message )
+
+  local xPlayers = ESX.GetPlayers()
+
+
+     for i = 1, #xPlayers, 1 do
+          local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
+  
+          if xPlayer and xPlayer.job.name == 'ambulance' then
+          --  print(xPlayer.identifier)
+        --  TriggerClientEvent('mythic_notify:client:SendAlert', xPlayer.source, { type = 'inform', text = 'Hype! Custom Styling!', style = { ['background-color'] = '#ffffff', ['color'] = '#000000' } })
+
+             TriggerClientEvent('retro_scripts:notifyemsdeads', xPlayer.source)
+          end
+      end	
+
+  addMessage(sourcePlayer, identifier, 'ambu', message)
 end)
 
 RegisterServerEvent('gcPhone:deleteMessage')
