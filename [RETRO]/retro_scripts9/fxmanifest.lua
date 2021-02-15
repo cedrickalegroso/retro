@@ -30,7 +30,7 @@ server_scripts {
 
   --'sv_des.lua',
 
-  'sv_reply.lua',
+ -- 'sv_reply.lua',
 
   'sv_whitelist.lua',
 
@@ -64,7 +64,7 @@ client_scripts {
 
   --'Log/client/main.lua',
 
- 'cl_reply.lua',
+ --'cl_reply.lua',
 
   --'cl_time.lua',
   
