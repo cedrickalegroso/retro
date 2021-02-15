@@ -64,6 +64,9 @@ function cleanPlayer(playerPed)
 	ResetPedMovementClipset(playerPed, 0)
 end
 
+
+
+
 function setUniformPolice(job, playerPed)
 	TriggerEvent('skinchanger:getSkin', function(skin)
 		if skin.sex == 0 then

@@ -213,7 +213,12 @@ function StartDistressSignal()
 end
 
 function SendDistressSignal()
-	local playerPed = PlayerPedId()
+
+	ExecuteCommand('icu')
+	Citizen.Wait(1000)
+	ExecuteCommand('98send')
+	--[[
+local playerPed = PlayerPedId()
 	PedPosition		= GetEntityCoords(playerPed)
 	
 	local PlayerCoords = { x = PedPosition.x, y = PedPosition.y, z = PedPosition.z }
@@ -225,6 +230,8 @@ function SendDistressSignal()
 
 		PlayerCoords = { x = PedPosition.x, y = PedPosition.y, z = PedPosition.z },
 	})
+	]]--
+	
 end
 
 function DrawGenericTextThisFrame()

@@ -85,7 +85,7 @@ AddEventHandler('CUSTOM_esx_ambulance:requestCPR', function(target, playerheadin
     TriggerClientEvent("CUSTOM_esx_ambulance:playCPR", target, playerheading, playerCoords, playerlocation)
 end)
 
-TriggerEvent('esx_phone:registerNumber', 'ambulance', _U('alert_ambulance'), true, true)
+TriggerEvent('esx_phone:registerNumber', 'ambu', _U('alert_ambulance'), true, true)
 
 TriggerEvent('esx_society:registerSociety', 'ambulance', 'Ambulance', 'society_ambulance', 'society_ambulance', 'society_ambulance', {type = 'public'})
 
