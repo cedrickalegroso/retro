@@ -40,6 +40,14 @@ Citizen.CreateThread(function()
 end)
 
 
+
+RegisterNetEvent('retro_scripts:notifyemsdeads')
+AddEventHandler('retro_scripts:notifyemsdeads', function()
+	ESX.ShowNotification('~r~Someone is in need of medical attention. Check your Phone to get the GPS')
+end)
+
+
+
 RegisterNetEvent('esx:setJob')
 AddEventHandler('esx:setJob', function(job)
     PlayerData.job = job
