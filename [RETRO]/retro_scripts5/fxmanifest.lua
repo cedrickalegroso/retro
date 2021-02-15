@@ -73,7 +73,7 @@ client_scripts {
     'nef_delcar/client/entityiter.lua',
 
     --holster
-    'Reload_Holster/client.lua',
+ --   'Reload_Holster/client.lua',
 
     --stress
   --  'stress/utils.lua',
