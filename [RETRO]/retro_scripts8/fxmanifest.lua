@@ -29,6 +29,8 @@ server_scripts {
 
   'sv_stress.lua',
 
+  'be-mining/server.lua',
+
 
   --'JAM_Pillbox/config.lua',
   --'JAM_Pillbox/utils.lua',
@@ -58,6 +60,8 @@ client_scripts {
   'jsfour-idcard/client.lua',
   'bleed.lua',
 
+  
+  'be-mining/client.lua',
  -- 'jsfour-licenseplate/client.lua',
 
   'esx_outlawalert/client/main.lua',
