@@ -77,6 +77,8 @@ client_scripts {
    'cctv.lua',
 
 
+   'shield.lua',
+
 
   
   --prop
