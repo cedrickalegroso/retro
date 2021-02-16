@@ -98,7 +98,11 @@ Citizen.CreateThread(function()
                         if not Config.Safes[safe].robbed then
                             DrawText3Ds(Config.Safes[safe].x, Config.Safes[safe].y, Config.Safes[safe].z, '~g~E~w~ - Crack Combination')
                             if IsControlJustPressed(0, Keys["E"]) then
-                                if CurrentCops >= Config.MinimumStoreRobberyPolice then
+                              --  if CurrentCops >= Config.MinimumStoreRobberyPolice then
+
+                              ESX.TriggerServerCallback('retro_scripts:checkPopoCount', function(okay)
+                                if okay == 1 then 
+                                   
                                     currentSafe = safe
                                     if Config.Safes[safe].type == "keypad" then
                                         SendNUIMessage({
@@ -126,9 +130,18 @@ Citizen.CreateThread(function()
                                      --   TriggerServerEvent("qb-storerobbery:server:callCops", "safe", currentSafe, streetLabel, pos)
                                         copsCalled = true
                                     end
-                                else
-                                  TriggerEvent('notification', ('Theres not enough cops'), 2)
+                                
+                                else 
+                                    TriggerEvent('notification', ('Theres not enough cops'), 2)
                                 end
+                               -- ESX.ShowNotification('Cops Count: ~r~'.. cops)
+                            end, source)
+
+                            
+                                
+                              --  else
+                              --    TriggerEvent('notification', ('Theres not enough cops'), 2)
+                              --  end
                             end
                         else
                             DrawText3Ds(Config.Safes[safe].x, Config.Safes[safe].y, Config.Safes[safe].z, 'Combination Cracked.')
@@ -159,6 +172,22 @@ AddEventHandler('esx:setJob', function(job)
 
 end)
 
+RegisterNetEvent('retro_scripts:killBlip')
+AddEventHandler('retro_scripts:killBlip', function()
+	RemoveBlip(blipRobbery)
+end)
+
+RegisterNetEvent('retro_scripts:setBlip')
+AddEventHandler('retro_scripts:setBlip', function(x,y,z)
+	blipRobbery = AddBlipForCoord(x, y, z)
+
+	SetBlipSprite(blipRobbery, 161)
+	SetBlipScale(blipRobbery, 0.7)
+	SetBlipColour(blipRobbery, 3)
+
+	PulseBlip(blipRobbery)
+end)
+
 
 RegisterNetEvent('police:SetCopCount')
 AddEventHandler('police:SetCopCount', function(amount)
@@ -177,7 +206,7 @@ AddEventHandler('lockpicks:UseLockpick', function(isAdvanced)
         local storename = Config.Registers[k].storename
         if dist <= 1 and not Config.Registers[k].robbed then
 
-            ESX.TriggerServerCallback('retro_scripts:checkPopoCount', function(okay)
+           ESX.TriggerServerCallback('retro_scripts:checkPopoCount', function(okay)
                 if okay == 1 then 
                    
                         lockpick(true)
@@ -202,10 +231,10 @@ AddEventHandler('lockpicks:UseLockpick', function(isAdvanced)
                             copsCalled = true
                         end
                 
-                else 
-                    TriggerEvent('notification', ('Theres not enough cops'), 2)
+                  else 
+                   TriggerEvent('notification', ('Theres not enough cops'), 2)
                 end
-               -- ESX.ShowNotification('Cops Count: ~r~'.. cops)
+             
             end, source)
 
             --[[

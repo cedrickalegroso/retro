@@ -1,4 +1,6 @@
 ESX = nil
+local isinit = 0
+local isblipped = 0
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 local SafeCodes = {}
@@ -6,7 +8,7 @@ local SafeCodes = {}
 Citizen.CreateThread(function()
     while true do 
         SafeCodes = {
-            [1] = 1234,
+            [1] = math.random(1000, 9999),
             [2] = {math.random(1, 149), math.random(150.0, 359.0), math.random(1, 149), math.random(150.0, 359.0), math.random(1, 149)},
             [3] = {math.random(1, 149), math.random(150.0, 359.0), math.random(1, 149), math.random(150.0, 359.0), math.random(1, 149)},
             [4] = math.random(1000, 9999),
@@ -79,6 +81,8 @@ RegisterServerEvent('qb-storerobbery:server:setRegisterStatus')
 AddEventHandler('qb-storerobbery:server:setRegisterStatus', function(register)
     TriggerClientEvent('qb-storerobbery:client:setRegisterStatus', -1, register, true)
 
+    print('robb! 1')
+
     TriggerEvent('InteractSound_SV:PlayOnAll','pow',0.5)
 
     TriggerEvent('isPriority')
@@ -92,15 +96,54 @@ AddEventHandler('qb-storerobbery:server:setRegisterStatus', function(register)
         args = { fal, msg }
     })
 
+    if isinit == 0 then 
+
+        local xPlayers = ESX.GetPlayers()
+
+        for i=1, #xPlayers, 1 do
+            local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
+            if xPlayer.job.name == 'police' then
+                TriggerClientEvent('esx:showNotification', xPlayers[i], 'Store Robbery at '.. Config.Registers[register].storename)
+                TriggerClientEvent('retro_scripts:setBlip', xPlayers[i], Config.Registers[register].x, Config.Registers[register].y, Config.Registers[register].z)
+            end
+        end
+
+
+        isinit = 1
+
+        while isinit == 1 do
+            print('Starting Countdown to kill blips')
+           Citizen.Wait(180000)
+           local xPlayers = ESX.GetPlayers()
+    
+           for i=1, #xPlayers, 1 do
+               local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
+               if xPlayer.job.name == 'police' then
+                   TriggerClientEvent('esx:showNotification', xPlayers[i], 'Store Robbery Blip Disabled at '..Config.Registers[register].storename)
+                   TriggerClientEvent('retro_scripts:killBlip', xPlayers[i])
+               end
+           end
+    
+           isinit = 0
+        end
+
+    end
+
 
     Config.Registers[register].robbed   = true
     Config.Registers[register].time     = Config.resetTime
+end)
+
+Citizen.CreateThread(function()
+   
 end)
 
 RegisterServerEvent('qb-storerobbery:server:setSafeStatus')
 AddEventHandler('qb-storerobbery:server:setSafeStatus', function(safe)
     TriggerClientEvent('qb-storerobbery:client:setSafeStatus', -1, safe, true)
     Config.Safes[safe].robbed = true
+
+    print('robb! 2')
 
     TriggerEvent('InteractSound_SV:PlayOnAll','pow',0.5)
 
@@ -151,6 +194,8 @@ end)
 RegisterServerEvent('retro_scripts:callcopsnew')
 AddEventHandler('retro_scripts:callcopsnew', function(safe, currentRegister, streetLabel, pos, storename, postal)
   
+    print('robb!')
+
     print(pos)
 
     TriggerEvent('InteractSound_SV:PlayOnAll','pow',0.5)
@@ -165,6 +210,18 @@ AddEventHandler('retro_scripts:callcopsnew', function(safe, currentRegister, str
         template = '<div class="chat-message system"><b> 👮 RCPD : </b> ^1Robbery in progress at '..storename..' Postal Code '..postal..'  ^3EMS AND MECHANIC STANDBY!  </div>',
         args = { fal, msg }
     })
+
+    local xPlayers = ESX.GetPlayers()
+
+  
+
+    for i=1, #xPlayers, 1 do
+        local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
+        if xPlayer.job.name == 'police' then
+         --   TriggerClientEvent('esx:showNotification', xPlayers[i], _U('rob_in_prog', store.nameOfStore))
+          --  TriggerClientEvent('retro_scripts:setBlip', xPlayers[i], StoresHOLDUP[currentStore].position)
+        end
+    end
 
     --[[
 Citizen.Wait(5000)
