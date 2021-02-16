@@ -1,50 +1,13 @@
 
-ESX = nil
+ESX 				= nil
 local defaultsecs   = 300
 local maxsecs 		= 9999
 
+-----------------------------
+
+--ESX base
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
-local xPlayers 		= ESX.GetPlayers()
-
-AddEventHandler('chatMessage', function(source, n, message)
-	cm = stringsplit(message, " ")
-    local xPlayer 		= ESX.GetPlayerFromId(source)
-    
-    if cm[1] == "/openMyRewardsRetro" then
-       TriggerEvent('retro_scripts:gettodayreward', source)
-    elseif cm[1] == "/openMyRewardsRetro1" then 
-        TriggerEvent('retro_scripts:gettodayreward1', source)
-    elseif cm[1] == "/saveoutfitclothe" then 
-        label = cm[2]
-        print('saving otfit with label '..label)
-        TriggerEvent('retro_scripts:saveoutfit', source, label)
-    elseif cm[1] == "/RetroBankIllegalDep" then
-        local amount = tonumber(cm[2]) 
-        TriggerEvent('retro_scripts:depositillegalcash', source, amount)
-    elseif cm[1] == "/RetroBankIllegalWith" then
-        local amount = tonumber(cm[2]) 
-        TriggerEvent('retro_scripts:withillegalcash', source, amount)
-    elseif cm[1] == "/ondutyradio" then
-        local _source = source
-	xPlayer = ESX.GetPlayerFromId(source)
-	local job = xPlayer.job.name
-	if job == 'offpolice'  then
-		TriggerClientEvent('retro_scripts:disabledutyradioPD', source)
-	elseif job == 'offambulance' then
-		TriggerClientEvent('retro_scripts:disabledutyradioEMS', source)	
-	elseif job == 'offmecano' then
-		TriggerClientEvent('retro_scripts:disabledutyradioMECH', source)		
-	elseif job == 'police' then
-		TriggerClientEvent('retro_scripts:enabledutyradioPD', source)
-    elseif job == 'ambulance' then
-		TriggerClientEvent('retro_scripts:enabledutyradioEMS', source)
-	elseif job == 'mecano' then
-		TriggerClientEvent('retro_scripts:enabledutyradioMECH', source)
-    end
-    end
-
-end)
 
 
 RegisterServerEvent('retro_scripts:saveoutfit')
@@ -169,7 +132,7 @@ RegisterCommand("hideintrunk", function(source)
    TriggerClientEvent("retro_scripts:hidetrunk", source)
 end)
 
-    
+
 
 
 
@@ -226,6 +189,24 @@ RegisterCommand("clearrewards", function(source)
 
     end
    
+end)
+
+ESX.RegisterServerCallback('retro_scripts:getHackerDevice', function(source,cb, hackerDevice)
+    local hackerDevice = 0
+	local _source = source
+    local xPlayer = ESX.GetPlayerFromId(_source)
+    local count = xPlayer.getInventoryItem('hackerDevice').count 
+
+    if count > 0 then 
+        hackerDevice = 1
+    end
+
+	if hackerDevice == 1 then 
+		xPlayer.removeInventoryItem('hackerDevice', 1)
+	end
+
+    cb(hackerDevice)
+
 end)
 
 ESX.RegisterServerCallback('retro_scripts:getbalancedirty', function(source,cb, money)
@@ -505,6 +486,8 @@ end)
 ESX.RegisterServerCallback('retro_scripts:checkPopoCount', function(source,cb, okay)
     local cops = 0
     local okay = 0
+    local xPlayers = ESX.GetPlayers()
+
     for i=1, #xPlayers, 1 do
         local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
         if xPlayer.job.name == 'police' then
@@ -514,7 +497,7 @@ ESX.RegisterServerCallback('retro_scripts:checkPopoCount', function(source,cb, o
 
     print('COPS COUNT '..cops )
 
-    if cops > 0   then 
+    if cops >= 2   then 
         okay = 1
     end
 
