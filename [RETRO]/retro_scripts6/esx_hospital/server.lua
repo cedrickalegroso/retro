@@ -170,16 +170,39 @@ AddEventHandler('chatMessage', function(source, n, message)
 		
 		
 	
-		
+		elseif cm[1] == "/openMyRewardsRetro" then
+			TriggerEvent('retro_scripts:gettodayreward', source)
 		   
 			
-		
-			
-				
-			
-			
-
-		
+		elseif cm[1] == "/openMyRewardsRetro1" then 
+			TriggerEvent('retro_scripts:gettodayreward1', source)
+		elseif cm[1] == "/saveoutfitclothe" then 
+			label = cm[2]
+			print('saving otfit with label '..label)
+			TriggerEvent('retro_scripts:saveoutfit', source, label)
+		elseif cm[1] == "/RetroBankIllegalDep" then
+			local amount = tonumber(cm[2]) 
+			TriggerEvent('retro_scripts:depositillegalcash', source, amount)
+		elseif cm[1] == "/RetroBankIllegalWith" then
+			local amount = tonumber(cm[2]) 
+			TriggerEvent('retro_scripts:withillegalcash', source, amount)
+		elseif cm[1] == "/ondutyradio" then
+					local _source = source
+				xPlayer = ESX.GetPlayerFromId(source)
+				local job = xPlayer.job.name
+				if job == 'offpolice'  then
+					TriggerClientEvent('retro_scripts:disabledutyradioPD', source)
+				elseif job == 'offambulance' then
+					TriggerClientEvent('retro_scripts:disabledutyradioEMS', source)	
+				elseif job == 'offmecano' then
+					TriggerClientEvent('retro_scripts:disabledutyradioMECH', source)		
+				elseif job == 'police' then
+					TriggerClientEvent('retro_scripts:enabledutyradioPD', source)
+				elseif job == 'ambulance' then
+					TriggerClientEvent('retro_scripts:enabledutyradioEMS', source)
+				elseif job == 'mecano' then
+					TriggerClientEvent('retro_scripts:enabledutyradioMECH', source)
+				end
 		elseif cm[1] == "/huhuhuhuhsakitkatawanpahilot" then
 			
 	       --TriggerClientEvent('ambotahhhh', source)
