@@ -48,8 +48,16 @@ AddEventHandler('esx_vangelico_robbery:endrob', function(robb)
 	end
 end)
 
+
+RegisterServerEvent('esx_vangelico_robbery:rob1')
+AddEventHandler('esx_vangelico_robbery:rob1', function(robb)
+	print(robb)
+end)
+
 RegisterServerEvent('esx_vangelico_robbery:rob')
 AddEventHandler('esx_vangelico_robbery:rob', function(robb)
+
+	print('server rob')
 
 	local source = source
 	local xPlayer = ESX.GetPlayerFromId(source)
@@ -78,7 +86,9 @@ AddEventHandler('esx_vangelico_robbery:rob', function(robb)
 
 		if rob == false then
 
-			if(cops >= Config.RequiredCopsRobJEWEL1)then
+			if(rob == false)then
+
+				print('G! na')
 
 				rob = true
 				for i=1, #xPlayers, 1 do
@@ -95,40 +105,40 @@ AddEventHandler('esx_vangelico_robbery:rob', function(robb)
 				Citizen.Wait(5000)
 
 				
-		local name = GetPlayerName(source)
-		local message = name..'started a jewelry robbery'
-		local color = 56108
-		local webhook = 'https://discordapp.com/api/webhooks/759856102652510208/yqtjYXj_DBNEyffauo_6PIuTYd6WzUYgeYFtWdyLUrfIcvLBPdYkVSh537fMQy-lYuIP'
-		
-		sendToDiscord (name,message,color, webhook)  
+				local name = GetPlayerName(source)
+				local message = name..'started a jewelry robbery'
+				local color = 56108
+				local webhook = 'https://discordapp.com/api/webhooks/759856102652510208/yqtjYXj_DBNEyffauo_6PIuTYd6WzUYgeYFtWdyLUrfIcvLBPdYkVSh537fMQy-lYuIP'
+				
+				sendToDiscord (name,message,color, webhook)  
 
 
-				TriggerClientEvent('chat:addMessage', -1, {
-					template = '<div class="chat-message system"><b> 👮 NCPD : </b> ^1Ongoing Jewelry Store Robbery @ '..store.nameofstore..  '^3 EMS AND MECHANIC STANDBY!  </div>',
-					args = { fal, msg }
-				})
+						TriggerClientEvent('chat:addMessage', -1, {
+							template = '<div class="chat-message system"><b> 👮 RCPD : </b> ^1Ongoing Jewelry Store Robbery @ '..store.nameofstore..  '^3 EMS AND MECHANIC STANDBY!  </div>',
+							args = { fal, msg }
+						})
 
-				Citizen.Wait(2500)
+						Citizen.Wait(2500)
 
-				TriggerClientEvent('chat:addMessage', -1, {
-					template = '<div class="chat-message system"><b> 👮 NCPD : </b> ^1Ongoing Jewelry Store Robbery @ '..store.nameofstore..  '^3 EMS AND MECHANIC STANDBY!  </div>',
-					args = { fal, msg }
-				})
+						TriggerClientEvent('chat:addMessage', -1, {
+							template = '<div class="chat-message system"><b> 👮 RCPD : </b> ^1Ongoing Jewelry Store Robbery @ '..store.nameofstore..  '^3 EMS AND MECHANIC STANDBY!  </div>',
+							args = { fal, msg }
+						})
 
-				Citizen.Wait(2500)
+						Citizen.Wait(2500)
 
-				TriggerClientEvent('chat:addMessage', -1, {
-					template = '<div class="chat-message system"><b> 👮 NCPD : </b> ^1Ongoing Jewelry Store Robbery @ '..store.nameofstore..  '^3 EMS AND MECHANIC STANDBY!  </div>',
-					args = { fal, msg }
-				})
+						TriggerClientEvent('chat:addMessage', -1, {
+							template = '<div class="chat-message system"><b> 👮 RCPD : </b> ^1Ongoing Jewelry Store Robbery @ '..store.nameofstore..  '^3 EMS AND MECHANIC STANDBY!  </div>',
+							args = { fal, msg }
+						})
 
-				Citizen.Wait(2500)
+						Citizen.Wait(2500)
 
 
-				TriggerClientEvent('chat:addMessage', -1, {
-					template = '<div class="chat-message system"><b> 👮 NCPD : </b> ^1Ongoing Jewelry Store Robbery @ '..store.nameofstore..  '^3 EMS AND MECHANIC STANDBY!  </div>',
-					args = { fal, msg }
-				})
+						TriggerClientEvent('chat:addMessage', -1, {
+							template = '<div class="chat-message system"><b> 👮 RCPD : </b> ^1Ongoing Jewelry Store Robbery @ '..store.nameofstore..  '^3 EMS AND MECHANIC STANDBY!  </div>',
+							args = { fal, msg }
+						})
 
 				TriggerClientEvent('esx:showNotification', source, _U('started_to_rob') .. store.nameofstore .. _U('do_not_move'))
 				TriggerClientEvent('esx:showNotification', source, _U('alarm_triggered'))
@@ -182,7 +192,7 @@ local function Craft(source)
 			local xPlayer  = ESX.GetPlayerFromId(source)
 			local JewelsQuantity = xPlayer.getInventoryItem('jewels').count
 
-			local cash = math.random( 10000 , 15000 )
+			local cash = math.random( 2000 , 3000 )
 
 			if JewelsQuantity < 5 then 
 				TriggerClientEvent('esx:showNotification', source, _U('notenoughgold'))

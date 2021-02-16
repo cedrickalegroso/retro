@@ -492,9 +492,11 @@ Config.GasStations = {
 Config.RequiredCopsRobJEWEL1 = 0
 Config.RequiredCopsSellJEWEL1 = 0
 
+-- ,,
+
 StoresJEWEL = {
 	["jewelry"] = {
-		position = { ['x'] = -629.99, ['y'] = -236.542, ['z'] = 38.05 },       
+		position = { ['x'] = -631.2451171875, ['y'] = -230.01733398438, ['z'] = 38.057060241699 },       
 		reward = math.random(10,500),
 		nameofstore = "jewelry",
 		lastrobbed = 0

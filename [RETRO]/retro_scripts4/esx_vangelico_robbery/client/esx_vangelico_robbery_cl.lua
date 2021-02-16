@@ -66,7 +66,7 @@ RegisterNetEvent('esx_vangelico_robbery:robberycomplete')
 AddEventHandler('esx_vangelico_robbery:robberycomplete', function(robb)
 	holdingup = false
 
-   --[[
+ 
 	TriggerEvent('skinchanger:getSkin', function(skin)
 	
 		if skin.sex == 0 then
@@ -85,7 +85,7 @@ AddEventHandler('esx_vangelico_robbery:robberycomplete', function(robb)
 
 	    end
 	    end)
-   ]]--
+  
 
 	
 	ESX.ShowNotification(_U('robbery_complete'))
@@ -178,174 +178,213 @@ Citizen.CreateThread(function()
 
 					if(Vdist(pos.x, pos.y, pos.z, pos2.x, pos2.y, pos2.z) < 1.0)then
 						if (incircle == false) then
-							DisplayHelpText(_U('press_to_rob'))
+							DisplayHelpText('Press [E] to start the robberry')
 						end
 						incircle = true
-						if IsPedShooting(GetPlayerPed(-1)) then
+						if IsControlJustReleased(0, 38) then
 
-							gioielli1 = AddBlipForCoord(-626.5326, -238.3758, 38.05)
-							SetBlipSprite(gioielli1,1)
-							SetBlipColour(gioielli1,16742399)
-							SetBlipScale(gioielli1,0.5)
-							BeginTextCommandSetBlipName("STRING")
-							AddTextComponentString(_U('jewelsblipmap'))
-							EndTextCommandSetBlipName(gioielli1)
-
-							gioielli2 = AddBlipForCoord(-625.6032, -237.5273, 38.05)
-							SetBlipSprite(gioielli2,1)
-							SetBlipColour(gioielli2,16742399)
-							SetBlipScale(gioielli2,0.5)
-							BeginTextCommandSetBlipName("STRING")
-							AddTextComponentString(_U('jewelsblipmap'))
-							EndTextCommandSetBlipName(gioielli2)
-
-							gioielli3 = AddBlipForCoord(-626.9178, -235.5166, 38.05)
-							SetBlipSprite(gioielli3,1)
-							SetBlipColour(gioielli3,16742399)
-							SetBlipScale(gioielli3,0.5)
-							BeginTextCommandSetBlipName("STRING")
-							AddTextComponentString(_U('jewelsblipmap'))
-							EndTextCommandSetBlipName(gioielli3)
-
-							gioielli4 = AddBlipForCoord(-625.6701, -234.6061, 38.05)
-							SetBlipSprite(gioielli4,1)
-							SetBlipColour(gioielli4,16742399)
-							SetBlipScale(gioielli4,0.5)
-							BeginTextCommandSetBlipName("STRING")
-							AddTextComponentString(_U('jewelsblipmap'))
-							EndTextCommandSetBlipName(gioielli4)
-
-
-							gioielli5 = AddBlipForCoord(-626.8935, -233.0814, 38.05)
-							SetBlipSprite(gioielli5,1)
-							SetBlipColour(gioielli5,16742399)
-							SetBlipScale(gioielli5,0.5)
-							BeginTextCommandSetBlipName("STRING")
-							AddTextComponentString(_U('jewelsblipmap'))
-							EndTextCommandSetBlipName(gioielli5)
-
-							gioielli6 = AddBlipForCoord(-627.9514, -233.8582, 38.05)
-							SetBlipSprite(gioielli6,1)
-							SetBlipColour(gioielli6,16742399)
-							SetBlipScale(gioielli6,0.5)
-							BeginTextCommandSetBlipName("STRING")
-							AddTextComponentString(_U('jewelsblipmap'))
-							EndTextCommandSetBlipName(gioielli6)
-
-							gioielli7 = AddBlipForCoord(-624.5250, -231.0555, 38.05)
-							SetBlipSprite(gioielli7,1)
-							SetBlipColour(gioielli7,16742399)
-							SetBlipScale(gioielli7,0.5)
-							BeginTextCommandSetBlipName("STRING")
-							AddTextComponentString(_U('jewelsblipmap'))
-							EndTextCommandSetBlipName(gioielli7)
-
-							gioielli8 = AddBlipForCoord(-623.0003, -233.0833, 38.05)
-							SetBlipSprite(gioielli8,1)
-							SetBlipColour(gioielli8,16742399)
-							SetBlipScale(gioielli8,0.5)
-							BeginTextCommandSetBlipName("STRING")
-							AddTextComponentString(_U('jewelsblipmap'))
-							EndTextCommandSetBlipName(gioielli8)
-
-							gioielli9 = AddBlipForCoord(-620.1098, -233.3672, 38.05)
-							SetBlipSprite(gioielli9,1)
-							SetBlipColour(gioielli9,16742399)
-							SetBlipScale(gioielli9,0.5)
-							BeginTextCommandSetBlipName("STRING")
-							AddTextComponentString(_U('jewelsblipmap'))
-							EndTextCommandSetBlipName(gioielli9)
-
-							gioielli10 = AddBlipForCoord(-620.2979, -234.4196, 38.05)
-							SetBlipSprite(gioielli10,1)
-							SetBlipColour(gioielli10,16742399)
-							SetBlipScale(gioielli10,0.5)
-							BeginTextCommandSetBlipName("STRING")
-							AddTextComponentString(_U('jewelsblipmap'))
-							EndTextCommandSetBlipName(gioielli10)
-
-							gioielli11 = AddBlipForCoord(-619.0646, -233.5629, 38.05)
-							SetBlipSprite(gioielli11,1)
-							SetBlipColour(gioielli11,16742399)
-							SetBlipScale(gioielli11,0.5)
-							BeginTextCommandSetBlipName("STRING")
-							AddTextComponentString(_U('jewelsblipmap'))
-							EndTextCommandSetBlipName(gioielli11)
-
-							gioielli12 = AddBlipForCoord(-617.4846, -230.6598, 38.05)
-							SetBlipSprite(gioielli12,1)
-							SetBlipColour(gioielli12,16742399)
-							SetBlipScale(gioielli12,0.5)
-							BeginTextCommandSetBlipName("STRING")
-							AddTextComponentString(_U('jewelsblipmap'))
-							EndTextCommandSetBlipName(gioielli12)
-
-							gioielli13 = AddBlipForCoord(-618.3619, -229.4285, 38.05)
-							SetBlipSprite(gioielli13,1)
-							SetBlipColour(gioielli13,16742399)
-							SetBlipScale(gioielli13,0.5)
-							BeginTextCommandSetBlipName("STRING")
-							AddTextComponentString(_U('jewelsblipmap'))
-							EndTextCommandSetBlipName(gioielli13)
-
-							gioielli14 = AddBlipForCoord(-619.6064, -230.5518, 38.05)
-							SetBlipSprite(gioielli14,1)
-							SetBlipColour(gioielli14,16742399)
-							SetBlipScale(gioielli14,0.5)
-							BeginTextCommandSetBlipName("STRING")
-							AddTextComponentString(_U('jewelsblipmap'))
-							EndTextCommandSetBlipName(gioielli14)
-
-							gioielli15 = AddBlipForCoord(-620.8951, -228.6519, 38.05)
-							SetBlipSprite(gioielli15,1)
-							SetBlipColour(gioielli15,16742399)
-							SetBlipScale(gioielli15,0.5)
-							BeginTextCommandSetBlipName("STRING")
-							AddTextComponentString(_U('jewelsblipmap'))
-							EndTextCommandSetBlipName(gioielli15)
-
-							gioielli16 = AddBlipForCoord(-619.7905, -227.5623, 38.05)
-							SetBlipSprite(gioielli16,1)
-							SetBlipColour(gioielli16,16742399)
-							SetBlipScale(gioielli16,0.5)
-							BeginTextCommandSetBlipName("STRING")
-							AddTextComponentString(_U('jewelsblipmap'))
-							EndTextCommandSetBlipName(gioielli16)
-
-							gioielli17 = AddBlipForCoord(-620.6110, -226.4467, 38.05)
-							SetBlipSprite(gioielli17,1)
-							SetBlipColour(gioielli17,16742399)
-							SetBlipScale(gioielli17,0.5)
-							BeginTextCommandSetBlipName("STRING")
-							AddTextComponentString(_U('jewelsblipmap'))
-							EndTextCommandSetBlipName(gioielli17)
-
-							gioielli18 = AddBlipForCoord(-623.9951, -228.1755, 38.05)
-							SetBlipSprite(gioielli18,1)
-							SetBlipColour(gioielli18,16742399)
-							SetBlipScale(gioielli18,0.5)
-							BeginTextCommandSetBlipName("STRING")
-							AddTextComponentString(_U('jewelsblipmap'))
-							EndTextCommandSetBlipName(gioielli18)
-
-							gioielli19 = AddBlipForCoord(-624.8832, -227.8645, 38.05)
-							SetBlipSprite(gioielli19,1)
-							SetBlipColour(gioielli19,16742399)
-							SetBlipScale(gioielli19,0.5)
-							BeginTextCommandSetBlipName("STRING")
-							AddTextComponentString(_U('jewelsblipmap'))
-							EndTextCommandSetBlipName(gioielli19)
-
-							gioielli20 = AddBlipForCoord(-623.6746, -227.0025, 38.05)
-							SetBlipSprite(gioielli20,1)
-							SetBlipColour(gioielli20,16742399)
-							SetBlipScale(gioielli20,0.5)
-							BeginTextCommandSetBlipName("STRING")
-							AddTextComponentString(_U('jewelsblipmap'))
-							EndTextCommandSetBlipName(gioielli20)	
+							ESX.TriggerServerCallback('retro_scripts:getHackerDevice', function(hackerDevice)
 							
-							TriggerServerEvent('esx_vangelico_robbery:rob', k)
-                        end
+
+								if hackerDevice == 1 then 
+
+
+									TriggerEvent("mythic_progbar:client:progress", {
+										name = "unique_action_name",
+										duration = 15000,
+										label = "Finding Network insecurities",
+										useWhileDead = false,
+										canCancel = false,
+										controlDisables = {
+											disableMovement = true,
+											disableCarMovement = true,
+											disableMouse = false,
+											disableCombat = true,
+										},
+										animation = {
+											animDict = "amb@world_human_stand_mobile@female@standing@call@enter",
+											anim = "enter",
+										},
+										prop = {
+											model = "prop_police_phone",
+										}
+									}, function(status)
+										if not status then
+											gioielli1 = AddBlipForCoord(-626.5326, -238.3758, 38.05)
+											SetBlipSprite(gioielli1,1)
+											SetBlipColour(gioielli1,16742399)
+											SetBlipScale(gioielli1,0.5)
+											BeginTextCommandSetBlipName("STRING")
+											AddTextComponentString(_U('jewelsblipmap'))
+											EndTextCommandSetBlipName(gioielli1)
+				
+											gioielli2 = AddBlipForCoord(-625.6032, -237.5273, 38.05)
+											SetBlipSprite(gioielli2,1)
+											SetBlipColour(gioielli2,16742399)
+											SetBlipScale(gioielli2,0.5)
+											BeginTextCommandSetBlipName("STRING")
+											AddTextComponentString(_U('jewelsblipmap'))
+											EndTextCommandSetBlipName(gioielli2)
+				
+											gioielli3 = AddBlipForCoord(-626.9178, -235.5166, 38.05)
+											SetBlipSprite(gioielli3,1)
+											SetBlipColour(gioielli3,16742399)
+											SetBlipScale(gioielli3,0.5)
+											BeginTextCommandSetBlipName("STRING")
+											AddTextComponentString(_U('jewelsblipmap'))
+											EndTextCommandSetBlipName(gioielli3)
+				
+											gioielli4 = AddBlipForCoord(-625.6701, -234.6061, 38.05)
+											SetBlipSprite(gioielli4,1)
+											SetBlipColour(gioielli4,16742399)
+											SetBlipScale(gioielli4,0.5)
+											BeginTextCommandSetBlipName("STRING")
+											AddTextComponentString(_U('jewelsblipmap'))
+											EndTextCommandSetBlipName(gioielli4)
+				
+				
+											gioielli5 = AddBlipForCoord(-626.8935, -233.0814, 38.05)
+											SetBlipSprite(gioielli5,1)
+											SetBlipColour(gioielli5,16742399)
+											SetBlipScale(gioielli5,0.5)
+											BeginTextCommandSetBlipName("STRING")
+											AddTextComponentString(_U('jewelsblipmap'))
+											EndTextCommandSetBlipName(gioielli5)
+				
+											gioielli6 = AddBlipForCoord(-627.9514, -233.8582, 38.05)
+											SetBlipSprite(gioielli6,1)
+											SetBlipColour(gioielli6,16742399)
+											SetBlipScale(gioielli6,0.5)
+											BeginTextCommandSetBlipName("STRING")
+											AddTextComponentString(_U('jewelsblipmap'))
+											EndTextCommandSetBlipName(gioielli6)
+				
+											gioielli7 = AddBlipForCoord(-624.5250, -231.0555, 38.05)
+											SetBlipSprite(gioielli7,1)
+											SetBlipColour(gioielli7,16742399)
+											SetBlipScale(gioielli7,0.5)
+											BeginTextCommandSetBlipName("STRING")
+											AddTextComponentString(_U('jewelsblipmap'))
+											EndTextCommandSetBlipName(gioielli7)
+				
+											gioielli8 = AddBlipForCoord(-623.0003, -233.0833, 38.05)
+											SetBlipSprite(gioielli8,1)
+											SetBlipColour(gioielli8,16742399)
+											SetBlipScale(gioielli8,0.5)
+											BeginTextCommandSetBlipName("STRING")
+											AddTextComponentString(_U('jewelsblipmap'))
+											EndTextCommandSetBlipName(gioielli8)
+				
+											gioielli9 = AddBlipForCoord(-620.1098, -233.3672, 38.05)
+											SetBlipSprite(gioielli9,1)
+											SetBlipColour(gioielli9,16742399)
+											SetBlipScale(gioielli9,0.5)
+											BeginTextCommandSetBlipName("STRING")
+											AddTextComponentString(_U('jewelsblipmap'))
+											EndTextCommandSetBlipName(gioielli9)
+				
+											gioielli10 = AddBlipForCoord(-620.2979, -234.4196, 38.05)
+											SetBlipSprite(gioielli10,1)
+											SetBlipColour(gioielli10,16742399)
+											SetBlipScale(gioielli10,0.5)
+											BeginTextCommandSetBlipName("STRING")
+											AddTextComponentString(_U('jewelsblipmap'))
+											EndTextCommandSetBlipName(gioielli10)
+				
+											gioielli11 = AddBlipForCoord(-619.0646, -233.5629, 38.05)
+											SetBlipSprite(gioielli11,1)
+											SetBlipColour(gioielli11,16742399)
+											SetBlipScale(gioielli11,0.5)
+											BeginTextCommandSetBlipName("STRING")
+											AddTextComponentString(_U('jewelsblipmap'))
+											EndTextCommandSetBlipName(gioielli11)
+				
+											gioielli12 = AddBlipForCoord(-617.4846, -230.6598, 38.05)
+											SetBlipSprite(gioielli12,1)
+											SetBlipColour(gioielli12,16742399)
+											SetBlipScale(gioielli12,0.5)
+											BeginTextCommandSetBlipName("STRING")
+											AddTextComponentString(_U('jewelsblipmap'))
+											EndTextCommandSetBlipName(gioielli12)
+				
+											gioielli13 = AddBlipForCoord(-618.3619, -229.4285, 38.05)
+											SetBlipSprite(gioielli13,1)
+											SetBlipColour(gioielli13,16742399)
+											SetBlipScale(gioielli13,0.5)
+											BeginTextCommandSetBlipName("STRING")
+											AddTextComponentString(_U('jewelsblipmap'))
+											EndTextCommandSetBlipName(gioielli13)
+				
+											gioielli14 = AddBlipForCoord(-619.6064, -230.5518, 38.05)
+											SetBlipSprite(gioielli14,1)
+											SetBlipColour(gioielli14,16742399)
+											SetBlipScale(gioielli14,0.5)
+											BeginTextCommandSetBlipName("STRING")
+											AddTextComponentString(_U('jewelsblipmap'))
+											EndTextCommandSetBlipName(gioielli14)
+				
+											gioielli15 = AddBlipForCoord(-620.8951, -228.6519, 38.05)
+											SetBlipSprite(gioielli15,1)
+											SetBlipColour(gioielli15,16742399)
+											SetBlipScale(gioielli15,0.5)
+											BeginTextCommandSetBlipName("STRING")
+											AddTextComponentString(_U('jewelsblipmap'))
+											EndTextCommandSetBlipName(gioielli15)
+				
+											gioielli16 = AddBlipForCoord(-619.7905, -227.5623, 38.05)
+											SetBlipSprite(gioielli16,1)
+											SetBlipColour(gioielli16,16742399)
+											SetBlipScale(gioielli16,0.5)
+											BeginTextCommandSetBlipName("STRING")
+											AddTextComponentString(_U('jewelsblipmap'))
+											EndTextCommandSetBlipName(gioielli16)
+				
+											gioielli17 = AddBlipForCoord(-620.6110, -226.4467, 38.05)
+											SetBlipSprite(gioielli17,1)
+											SetBlipColour(gioielli17,16742399)
+											SetBlipScale(gioielli17,0.5)
+											BeginTextCommandSetBlipName("STRING")
+											AddTextComponentString(_U('jewelsblipmap'))
+											EndTextCommandSetBlipName(gioielli17)
+				
+											gioielli18 = AddBlipForCoord(-623.9951, -228.1755, 38.05)
+											SetBlipSprite(gioielli18,1)
+											SetBlipColour(gioielli18,16742399)
+											SetBlipScale(gioielli18,0.5)
+											BeginTextCommandSetBlipName("STRING")
+											AddTextComponentString(_U('jewelsblipmap'))
+											EndTextCommandSetBlipName(gioielli18)
+				
+											gioielli19 = AddBlipForCoord(-624.8832, -227.8645, 38.05)
+											SetBlipSprite(gioielli19,1)
+											SetBlipColour(gioielli19,16742399)
+											SetBlipScale(gioielli19,0.5)
+											BeginTextCommandSetBlipName("STRING")
+											AddTextComponentString(_U('jewelsblipmap'))
+											EndTextCommandSetBlipName(gioielli19)
+				
+											gioielli20 = AddBlipForCoord(-623.6746, -227.0025, 38.05)
+											SetBlipSprite(gioielli20,1)
+											SetBlipColour(gioielli20,16742399)
+											SetBlipScale(gioielli20,0.5)
+											BeginTextCommandSetBlipName("STRING")
+											AddTextComponentString(_U('jewelsblipmap'))
+											EndTextCommandSetBlipName(gioielli20)	
+											
+											TriggerServerEvent('esx_vangelico_robbery:rob', k)
+										end
+									end)
+
+									
+
+								else
+									ESX.ShowNotification('~r~You dont have any Hacking Device to start the robberry!') 
+
+								end
+							end, source)
+						end
+
+						
 					elseif(Vdist(pos.x, pos.y, pos.z, pos2.x, pos2.y, pos2.z) > 1.0)then
 						incircle = false
 					end
@@ -920,7 +959,7 @@ Citizen.CreateThread(function()
 							TriggerServerEvent('esx_vangelico_robbery:endrob', store)
 							ESX.ShowNotification(_U('lester'))
 
-							--[[
+							
 	TriggerEvent('skinchanger:getSkin', function(skin)
 	
 		                       if skin.sex == 0 then
@@ -939,7 +978,7 @@ Citizen.CreateThread(function()
 
 	                           end
 	                        end)
-							]]--
+							
 						
 							end	
 
@@ -1071,8 +1110,10 @@ Citizen.CreateThread(function()
 					TriggerServerEvent('lester:vendita')
 					Citizen.Wait(4000)
 					
-					--[[
-  TriggerEvent('skinchanger:getSkin', function(skin)
+					
+                  --[[
+
+				    TriggerEvent('skinchanger:getSkin', function(skin)
 	
 		                       if skin.sex == 0 then
 
@@ -1090,7 +1131,8 @@ Citizen.CreateThread(function()
 
 	                           end
 	                end)
-					]]--
+					
+				  ]]--
                   
 				end	
 		end

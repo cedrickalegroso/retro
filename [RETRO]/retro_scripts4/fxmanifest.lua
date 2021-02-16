@@ -53,7 +53,7 @@ server_scripts {
   --'LegacyFuel/source/fuel_server.lua',
   
   --jewel
- -- 'esx_vangelico_robbery/server/esx_vangelico_robbery_sv.lua',
+ 'esx_vangelico_robbery/server/esx_vangelico_robbery_sv.lua',
 
   --velock
   'esx_vehiclelock/server/main.lua',
@@ -66,7 +66,7 @@ server_scripts {
   'esx_jobs/jobs/fisherman.lua',
 	'esx_jobs/jobs/fueler.lua',
 	'esx_jobs/jobs/lumberjack.lua',
-	'esx_jobs/jobs/miner.lua',
+	--'esx_jobs/jobs/miner.lua',
 	'esx_jobs/jobs/reporter.lua',
 	'esx_jobs/jobs/slaughterer.lua',
   'esx_jobs/jobs/tailor.lua',
@@ -161,7 +161,7 @@ client_scripts {
   'esx_jobs/jobs/fisherman.lua',
 	'esx_jobs/jobs/fueler.lua',
 	'esx_jobs/jobs/lumberjack.lua',
-	'esx_jobs/jobs/miner.lua',
+	--'esx_jobs/jobs/miner.lua',
 	'esx_jobs/jobs/reporter.lua',
 	'esx_jobs/jobs/slaughterer.lua',
   'esx_jobs/jobs/tailor.lua',
