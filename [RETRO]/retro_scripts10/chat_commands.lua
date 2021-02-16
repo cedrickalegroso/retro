@@ -208,7 +208,7 @@ end, false)
 --[[ POLICE COMMANDS ]]--
 
 
-RegisterCommand('mcpd', function(source, args, rawCommand)
+RegisterCommand('rcpd', function(source, args, rawCommand)
     local _source = source
     local playerName = GetPlayerName(source)
     local msg = rawCommand:sub(5)
@@ -219,7 +219,7 @@ RegisterCommand('mcpd', function(source, args, rawCommand)
 	
 	if jobN == 'police' then
     TriggerClientEvent('chat:addMessage', -1, {
-        template = '<div class="chat-message " style="background-color: rgba(0, 0, 255, 0.1);" ><i class="fas fa-shield-alt"></i> 👮 <strong> mcpd {0} </strong>:  {1}</div>',
+        template = '<div class="chat-message " style="background-color: rgba(0, 0, 255, 0.1);" ><i class="fas fa-shield-alt"></i> 👮 <strong> rcpd {0} </strong>:  {1}</div>',
         args = { fal, msg }
     })
    end
@@ -237,7 +237,7 @@ RegisterCommand('warncarchase', function(source, args, rawCommand)
 	
 	if jobN == 'police' then
     TriggerClientEvent('chat:addMessage', -1, {
-        template = '<div class="chat-message " style="background-color: rgba(0, 0, 255, 0.1);" ><i class="fas fa-shield-alt"></i> 👮 <strong> mcpd {0} </strong>:  Retro citizens please be advised there is an ongoing carchase. If you are inside a 10 mile radius please dont try to interfere. </div>',
+        template = '<div class="chat-message " style="background-color: rgba(0, 0, 255, 0.1);" ><i class="fas fa-shield-alt"></i> 👮 <strong> rcpd {0} </strong>:  Retro citizens please be advised there is an ongoing carchase. If you are inside a 10 mile radius please dont try to interfere. </div>',
         args = { fal, msg }
     })
    end
@@ -255,7 +255,7 @@ RegisterCommand('warnshootout', function(source, args, rawCommand)
 	
 	if jobN == 'police' then
     TriggerClientEvent('chat:addMessage', -1, {
-        template = '<div class="chat-message " style="background-color: rgba(0, 0, 255, 0.1);" ><i class="fas fa-shield-alt"></i> 👮 <strong> mcpd {0} </strong>:  Retro citizens please be advised there is an ongoing shootout everyone inside 1 mile radius will be shot dead! </div>',
+        template = '<div class="chat-message " style="background-color: rgba(0, 0, 255, 0.1);" ><i class="fas fa-shield-alt"></i> 👮 <strong> rcpd {0} </strong>:  Retro citizens please be advised there is an ongoing shootout everyone inside 1 mile radius will be shot dead! </div>',
         args = { fal, msg }
     })
    end
@@ -316,7 +316,7 @@ end, false)
 
 
 
-RegisterCommand('mcmech', function(source, args, rawCommand)
+RegisterCommand('rcmech', function(source, args, rawCommand)
     local _source = source
     local playerName = GetPlayerName(source)
     local msg = rawCommand:sub(7)
@@ -327,14 +327,14 @@ RegisterCommand('mcmech', function(source, args, rawCommand)
 	
 	if jobN == 'groove' then
     TriggerClientEvent('chat:addMessage', -1, {
-        template = '<div class="chat-message " style="background-color: rgba(0, 153, 0, 0.1);" ><i class="fas fa-shield-alt"></i> 🔧 <strong> mcmech {0} </strong>:  {1}</div>',
+        template = '<div class="chat-message " style="background-color: rgba(0, 153, 0, 0.1);" ><i class="fas fa-shield-alt"></i> 🔧 <strong> rcmech {0} </strong>:  {1}</div>',
         args = { fal, msg }
     })
    end
 end, false)
 
 
-RegisterCommand('mcmechotw', function(source, args, rawCommand)
+RegisterCommand('rcmechotw', function(source, args, rawCommand)
     local _source = source
     local playerName = GetPlayerName(source)
     local msg = rawCommand:sub(5)
@@ -345,7 +345,7 @@ RegisterCommand('mcmechotw', function(source, args, rawCommand)
 	
 	if jobN == 'groove' then
     TriggerClientEvent('chat:addMessage', -1, {
-        template = '<div class="chat-message " style="background-color: rgba(0, 153, 0, 0.1);" ><i class="fas fa-shield-alt"></i> 🔧 <strong> mcmech {0} </strong>: RETRO CITY MECH IS ON THE WAY!</div>',
+        template = '<div class="chat-message " style="background-color: rgba(0, 153, 0, 0.1);" ><i class="fas fa-shield-alt"></i> 🔧 <strong> rcmech {0} </strong>: RETRO CITY MECH IS ON THE WAY!</div>',
         args = { fal, msg }
     })
    end
