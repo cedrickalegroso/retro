@@ -65,7 +65,7 @@ RegisterCommand('advert', function(source, args, rawCommand)
 end, false)
 
 
-RegisterCommand('mcems', function(source, args, rawCommand)
+RegisterCommand('rcems', function(source, args, rawCommand)
     local _source = source
     local playerName = GetPlayerName(source)
     local msg = rawCommand:sub(6)
@@ -76,7 +76,7 @@ RegisterCommand('mcems', function(source, args, rawCommand)
 	
 	if jobN == 'ambulance' then
     TriggerClientEvent('chat:addMessage', -1, {
-        template = '<div class="chat-message " style="background-color:  rgba(204, 0, 153, 0.1);" ><i class="fas fa-shield-alt"></i> 🏥 <strong> mcems {0} </strong>:  {1}</div>',
+        template = '<div class="chat-message " style="background-color:  rgba(204, 0, 153, 0.1);" ><i class="fas fa-shield-alt"></i> 🏥 <strong> rcems {0} </strong>:  {1}</div>',
         args = { fal, msg }
     })
    end
@@ -84,7 +84,7 @@ RegisterCommand('mcems', function(source, args, rawCommand)
 end, false)
 
 
-RegisterCommand('mcemsotw', function(source, args, rawCommand)
+RegisterCommand('rcemsotw', function(source, args, rawCommand)
     local _source = source
     local playerName = GetPlayerName(source)
     local msg = rawCommand:sub(6)
@@ -95,14 +95,14 @@ RegisterCommand('mcemsotw', function(source, args, rawCommand)
 	
 	if jobN == 'ambulance' then
     TriggerClientEvent('chat:addMessage', -1, {
-        template = '<div class="chat-message " style="background-color:  rgba(204, 0, 153, 0.1);" ><i class="fas fa-shield-alt"></i> 🏥 <strong> mcems {0} </strong>:  10-1 Taking distress. OTW to postal #{1} </div>',
+        template = '<div class="chat-message " style="background-color:  rgba(204, 0, 153, 0.1);" ><i class="fas fa-shield-alt"></i> 🏥 <strong> rcems {0} </strong>:  10-1 Taking distress. OTW to postal #{1} </div>',
         args = { fal, msg }
     })
    end
 end, false)
 
 
-RegisterCommand('mcemsotw2', function(source, args, rawCommand)
+RegisterCommand('rcemsotw2', function(source, args, rawCommand)
     local _source = source
     local playerName = GetPlayerName(source)
     local msg = rawCommand:sub(10)
@@ -113,14 +113,14 @@ RegisterCommand('mcemsotw2', function(source, args, rawCommand)
 	
 	if jobN == 'ambulance' then
     TriggerClientEvent('chat:addMessage', -1, {
-        template = '<div class="chat-message " style="background-color:  rgba(204, 0, 153, 0.1);" ><i class="fas fa-shield-alt"></i> 🏥 <strong> mcems {0} </strong>:  EMS proceeding to the area. </div>',
+        template = '<div class="chat-message " style="background-color:  rgba(204, 0, 153, 0.1);" ><i class="fas fa-shield-alt"></i> 🏥 <strong> rcems {0} </strong>:  EMS proceeding to the area. </div>',
         args = { fal, msg }
     })
    end
 end, false)
 
 
-RegisterCommand('mcemsotw3', function(source, args, rawCommand)
+RegisterCommand('rcemsotw3', function(source, args, rawCommand)
     local _source = source
     local playerName = GetPlayerName(source)
     local msg = rawCommand:sub(10)
@@ -131,14 +131,14 @@ RegisterCommand('mcemsotw3', function(source, args, rawCommand)
 	
 	if jobN == 'ambulance' then
     TriggerClientEvent('chat:addMessage', -1, {
-        template = '<div class="chat-message " style="background-color:  rgba(204, 0, 153, 0.1);" ><i class="fas fa-shield-alt"></i> 🏥 <strong> mcems {0} </strong>: EMS EN ROUTE TO GET THE HOSTAGE/S </div>',
+        template = '<div class="chat-message " style="background-color:  rgba(204, 0, 153, 0.1);" ><i class="fas fa-shield-alt"></i> 🏥 <strong> rcems {0} </strong>: EMS EN ROUTE TO GET THE HOSTAGE/S </div>',
         args = { fal, msg }
     })
    end
 end, false)
 
 
-RegisterCommand('mcemsrip', function(source, args, rawCommand)
+RegisterCommand('rcemsrip', function(source, args, rawCommand)
     local _source = source
     local playerName = GetPlayerName(source)
     local msg = rawCommand:sub(10)
@@ -151,13 +151,13 @@ RegisterCommand('mcemsrip', function(source, args, rawCommand)
 	
 	if jobN == 'ambulance' then
     TriggerClientEvent('chat:addMessage', -1, {
-        template = '<div class="chat-message " style="background-color:  rgba(204, 0, 153, 0.1);" ><i class="fas fa-shield-alt"></i> 🏥 <strong> mcems {0} </strong>: RIP {1}. Time of Death '..date..' Condolences to family and friends </div>',
+        template = '<div class="chat-message " style="background-color:  rgba(204, 0, 153, 0.1);" ><i class="fas fa-shield-alt"></i> 🏥 <strong> rcems {0} </strong>: RIP {1}. Time of Death '..date..' Condolences to family and friends </div>',
         args = { fal, msg }
     })
    end
 end, false)
 
-RegisterCommand('mcemsstandby', function(source, args, rawCommand)
+RegisterCommand('rcemsstandby', function(source, args, rawCommand)
     local _source = source
     local playerName = GetPlayerName(source)
     local msg = rawCommand:sub(12)
@@ -170,14 +170,14 @@ RegisterCommand('mcemsstandby', function(source, args, rawCommand)
 	
 	if jobN == 'ambulance' then
     TriggerClientEvent('chat:addMessage', -1, {
-        template = '<div class="chat-message " style="background-color:  rgba(204, 0, 153, 0.1);" ><i class="fas fa-shield-alt"></i> 🏥 <strong> mcems {0} </strong>:  ALL EMS ON STAND BY </div>',
+        template = '<div class="chat-message " style="background-color:  rgba(204, 0, 153, 0.1);" ><i class="fas fa-shield-alt"></i> 🏥 <strong> rcems {0} </strong>:  ALL EMS ON STAND BY </div>',
         args = { fal, msg }
     })
    end
 end, false)
 
 
-RegisterCommand('mcemsdelay', function(source, args, rawCommand)
+RegisterCommand('rcemsdelay', function(source, args, rawCommand)
     local _source = source
     local playerName = GetPlayerName(source)
     local msg = rawCommand:sub(12)
@@ -190,7 +190,7 @@ RegisterCommand('mcemsdelay', function(source, args, rawCommand)
 	
 	if jobN == 'ambulance' then
     TriggerClientEvent('chat:addMessage', -1, {
-        template = '<div class="chat-message " style="background-color:  rgba(204, 0, 153, 0.1);" ><i class="fas fa-shield-alt"></i> 🏥 <strong> mcems {0} </strong>:  Priority in progress. There may be a delay on other distress calls. Your patience is much appreciated. </div>',
+        template = '<div class="chat-message " style="background-color:  rgba(204, 0, 153, 0.1);" ><i class="fas fa-shield-alt"></i> 🏥 <strong> rcems {0} </strong>:  Priority in progress. There may be a delay on other distress calls. Your patience is much appreciated. </div>',
         args = { fal, msg }
     })
    end
