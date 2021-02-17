@@ -390,6 +390,47 @@ if ispowered == "ambulance" or ispowered == "government"  then
 end)
 
 
+AddEventHandler('playerDropped', function()
+	-- Save the source in case we lose it (which happens a lot)
+	local _source = source
+	
+	-- Did the player ever join?
+	if _source ~= nil then
+		local xPlayer = ESX.GetPlayerFromId(_source)
+		
+		-- Is it worth telling all clients to refresh?
+		if xPlayer ~= nil and xPlayer.job ~= nil and xPlayer.job.name == 'ambulance' then
+			Citizen.Wait(5000)
+			TriggerClientEvent('esx_ambulance:updateBlip', -1)
+		end
+	end	
+end)
+
+RegisterServerEvent('esx_ambulance:spawned')
+AddEventHandler('esx_ambulance:spawned', function()
+	local _source = source
+	local xPlayer = ESX.GetPlayerFromId(_source)
+	
+	if xPlayer ~= nil and xPlayer.job ~= nil and xPlayer.job.name == 'ambulance' then
+		Citizen.Wait(5000)
+		TriggerClientEvent('esx_ambulance:updateBlip', -1)
+	end
+end)
+
+RegisterServerEvent('esx_ambulance:forceBlip')
+AddEventHandler('esx_ambulance:forceBlip', function()
+	TriggerClientEvent('esx_ambulance:updateBlip', -1)
+end)
+
+AddEventHandler('onResourceStart', function(resource)
+	if resource == GetCurrentResourceName() then
+		Citizen.Wait(5000)
+		TriggerClientEvent('esx_ambulance:updateBlip', -1)
+	end
+end)
+
+
+
 function sendToDiscord (name,message,color, webhook)  
 	local DiscordWebHook = webhook
 	local DISCORD_IMAGE	= "https://i.imgur.com/DZUmmWL.png"
