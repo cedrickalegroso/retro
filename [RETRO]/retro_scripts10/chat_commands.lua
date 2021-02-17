@@ -65,6 +65,27 @@ RegisterCommand('advert', function(source, args, rawCommand)
 end, false)
 
 
+
+RegisterCommand('gov', function(source, args, rawCommand)
+    local _source = source
+    local playerName = GetPlayerName(source)
+    local msg = rawCommand:sub(6)
+    local name = getIdentity(source)
+    fal = name.firstname .. " " .. name.lastname
+	xPlayer = ESX.GetPlayerFromId(source)
+    jobN = xPlayer.job.name
+	
+    if xPlayer.identifier == 'steam:1100001115e4c94' or xPlayer.identifier == 'steam:11000011693aece' then 
+    TriggerClientEvent('chat:addMessage', -1, {
+        template = '<div class="chat-message " style="background-color:  rgba(0, 0, 0, 0.1);" ><i class="fas fa-shield-alt"></i> 🏛️ <strong> Government {0} </strong>:  {1}</div>',
+        args = { fal, msg }
+    })
+   end
+   
+end, false)
+
+
+
 RegisterCommand('rcems', function(source, args, rawCommand)
     local _source = source
     local playerName = GetPlayerName(source)
