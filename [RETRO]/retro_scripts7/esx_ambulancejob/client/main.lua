@@ -43,8 +43,9 @@ RegisterNetEvent('esx:setJob')
 AddEventHandler('esx:setJob', function(job)
 	ESX.PlayerData.job = job
 
-	--TriggerEvent('esx_ambulancejob:updateBlip')
-	--exports["rp-radio"]:GivePlayerAccessToFrequency(1) 
+
+	Citizen.Wait(5000)
+	TriggerServerEvent('esx_ambulance:forceBlip')
 end)
 
 
