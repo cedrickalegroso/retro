@@ -20,12 +20,12 @@ Citizen.CreateThread(function()
 
   if ESX.PlayerData.job.name == 'ambulance' then 
 --	print('calling ems blips')
-	TriggerServerEvent('retro_scripts:updateEmsBlips1')
+--	TriggerServerEvent('retro_scripts:updateEmsBlips1')
 	Citizen.Wait(5000)
 	TriggerEvent('retro_scripts:initems')
   elseif ESX.PlayerData.job.name == 'groove' then 
 --	print('calling groove blips')
-	TriggerServerEvent('retro_scripts:updateGrooveBlips1')
+--	TriggerServerEvent('retro_scripts:updateGrooveBlips1')
 	Citizen.Wait(5000)
 	TriggerEvent('retro_scripts:initgroove')
   elseif ESX.PlayerData.job.name == 'police' then 
