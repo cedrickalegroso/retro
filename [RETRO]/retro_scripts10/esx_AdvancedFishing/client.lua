@@ -126,7 +126,7 @@ Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
 		if fishing then
-			for i = 5, 8 do
+			for i = 1, 8 do
 				if IsControlJustReleased(0, Keys[tostring(i)]) then
 					input = i
 			   	end
@@ -179,7 +179,7 @@ Citizen.CreateThread(function()
 		Citizen.Wait(wait)
 		if fishing then
 			pause = true
-			correct = math.random(5,8)
+			correct = math.random(1,8)
 			ESX.ShowNotification("Fish is taking the bait\nPress ~y~" .. correct .. "~s~ to catch it")
 			input = 0
 			pausetimer = 0
@@ -283,9 +283,6 @@ function OpenBoatsMenu(xyz, h)
 			SetPedIntoVehicle(ped, veh, -1)
 			TriggerEvent("ls:newVehicle", GetVehicleNumberPlateText(veh), veh, 0)
 			DecorSetInt(veh, "ControlCar", 1)
-			
-			TriggerServerEvent('hsn-hotwire:addKeys',GetVehicleNumberPlateText(veh))
-			SetVehicleEngineOn(veh,true)
 			local deposit = math.floor(v.price / 2)
 			ESX.ShowNotification("You have paid a ~r~$" .. deposit .. "~s~ rental fee and a ~r~$" .. deposit .. "~s~ deposit.")
 			ESX.ShowNotification("Return the ~y~" .. GetLabelText(GetDisplayNameFromVehicleModel(v.model)) .. "~s~ to get your ~r~deposit~s~ back")

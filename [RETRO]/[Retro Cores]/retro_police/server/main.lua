@@ -6,7 +6,7 @@ if Config.MaxInService ~= -1 then
 	TriggerEvent('esx_service:activateService', 'police', Config.MaxInService)
 end
 
-TriggerEvent('esx_phone:registerNumber', 'police', _U('alert_police'), true, true)
+--TriggerEvent('esx_phone:registerNumber', 'police', _U('alert_police'), true, true)
 TriggerEvent('esx_society:registerSociety', 'police', 'police', 'society_police', 'society_police', 'society_police', {type = 'public'})
 
 RegisterServerEvent('retro_police:confiscatePlayerItem')

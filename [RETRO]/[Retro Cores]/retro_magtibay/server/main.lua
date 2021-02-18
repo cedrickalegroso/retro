@@ -6,7 +6,7 @@ if Config.MaxInService ~= -1 then
 	TriggerEvent('esx_service:activateService', 'magtibay', Config.MaxInService)
 end
 
-TriggerEvent('esx_phone:registerNumber', 'magtibay', _U('alert_gordo'), true, true)
+--TriggerEvent('esx_phone:registerNumber', 'magtibay', _U('alert_gordo'), true, true)
 TriggerEvent('esx_society:registerSociety', 'magtibay', 'magtibay', 'society_gordo', 'society_gordo', 'society_gordo', {type = 'public'})
 
 RegisterServerEvent('retro_magtibay:confiscatePlayerItem')

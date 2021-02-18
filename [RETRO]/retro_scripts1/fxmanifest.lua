@@ -31,6 +31,8 @@ client_script {
 
  'cl_crouch.lua',
 
+ 'weapondmg.lua',
+
   --crouch
  -- 'crouch/client/cor.lua',
  -- 'crouch/client/main.lua',

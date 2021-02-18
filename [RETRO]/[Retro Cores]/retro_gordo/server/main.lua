@@ -6,7 +6,7 @@ if Config.MaxInService ~= -1 then
 	TriggerEvent('esx_service:activateService', 'gordo', Config.MaxInService)
 end
 
-TriggerEvent('esx_phone:registerNumber', 'gordo', _U('alert_gordo'), true, true)
+--TriggerEvent('esx_phone:registerNumber', 'gordo', _U('alert_gordo'), true, true)
 TriggerEvent('esx_society:registerSociety', 'gordo', 'gordo', 'society_gordo', 'society_gordo', 'society_gordo', {type = 'public'})
 
 RegisterServerEvent('retro_gordo:confiscatePlayerItem')

@@ -88,6 +88,11 @@
             "display": "Ambulance",
             "backgroundColor": "red",
             "number": "ambulance"
+        },
+        {
+            "display": "Groove",
+            "backgroundColor": "orange",
+            "number": "groove"
         }
     ],
 
@@ -102,6 +107,12 @@
             "display": "Police",
             "backgroundColor": "blue",
             "letter": "P"
+        },
+        {
+            "number": "groove",
+            "display": "Groove",
+            "backgroundColor": "orange",
+            "letter": "G"
         }
     ],
     "apps": [{

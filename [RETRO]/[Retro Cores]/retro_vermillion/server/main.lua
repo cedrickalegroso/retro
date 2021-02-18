@@ -6,7 +6,7 @@ if Config.MaxInService ~= -1 then
 	TriggerEvent('esx_service:activateService', 'vermillion', Config.MaxInService)
 end
 
-TriggerEvent('esx_phone:registerNumber', 'vermillion', _U('alert_vermillion'), true, true)
+--TriggerEvent('esx_phone:registerNumber', 'vermillion', _U('alert_vermillion'), true, true)
 TriggerEvent('esx_society:registerSociety', 'vermillion', 'vermillion', 'society_vermillion', 'society_vermillion', 'society_vermillion', {type = 'public'})
 
 RegisterServerEvent('retro_vermillion:confiscatePlayerItem')

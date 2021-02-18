@@ -6,7 +6,7 @@ if Config.MaxInService ~= -1 then
 	TriggerEvent('esx_service:activateService', 'cuatro', Config.MaxInService)
 end
 
-TriggerEvent('esx_phone:registerNumber', 'cuatro', _U('alert_cuatro'), true, true)
+--TriggerEvent('esx_phone:registerNumber', 'cuatro', _U('alert_cuatro'), true, true)
 TriggerEvent('esx_society:registerSociety', 'cuatro', 'cuatro', 'society_cuatro', 'society_cuatro', 'society_cuatro', {type = 'public'})
 
 RegisterServerEvent('retro_cuatro:confiscatePlayerItem')

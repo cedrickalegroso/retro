@@ -6,7 +6,7 @@ if Config.MaxInService ~= -1 then
 	TriggerEvent('esx_service:activateService', 'thelost', Config.MaxInService)
 end
 
-TriggerEvent('esx_phone:registerNumber', 'thelost', _U('alert_thelost'), true, true)
+--TriggerEvent('esx_phone:registerNumber', 'thelost', _U('alert_thelost'), true, true)
 TriggerEvent('esx_society:registerSociety', 'thelost', 'thelost', 'society_thelost', 'society_thelost', 'society_thelost', {type = 'public'})
 
 RegisterServerEvent('retro_thelost:confiscatePlayerItem')

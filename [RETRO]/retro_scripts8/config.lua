@@ -617,11 +617,11 @@ ConfigBE = {
         ['copper'] = {120, 160},
 		['iron'] = {120, 160},
 		['diamond'] = {200, 220},
-		['fuel'] = {120, 160},
+		
     },
     ChanceToGetItem = 40, -- if math.random(0, 100) <= ChanceToGetItem then give item
     Items = {
-    	'gold', 'copper', 'iron', 'diamond', 'fuel', 'paper'
+    	'gold', 'copper', 'iron', 'diamond'
     },
     Sell = vector3(-43.29, -1041.92, 28.35),
     --Objects = {
