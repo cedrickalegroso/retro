@@ -163,22 +163,34 @@ end)
 RegisterNetEvent('esx:addInventoryItem')
 AddEventHandler('esx:addInventoryItem', function(item, count)
 
+	ESX.UI.ShowInventoryItemNotification(true, item, count)
+
+	--[[
 	for i=1, #ESX.PlayerData.inventory, 1 do
 		if ESX.PlayerData.inventory[i].name == item.name then
 			ESX.PlayerData.inventory[i] = item
 			break
 		end
 	end
+	]]--
+
 end)
 
 RegisterNetEvent('esx:removeInventoryItem')
 AddEventHandler('esx:removeInventoryItem', function(item, count)
-	for i=1, #ESX.PlayerData.inventory, 1 do
+
+
+	ESX.UI.ShowInventoryItemNotification(false, item, count)
+
+	--[[
+for i=1, #ESX.PlayerData.inventory, 1 do
 		if ESX.PlayerData.inventory[i].name == item.name then
 			ESX.PlayerData.inventory[i] = item
 			break
 		end
 	end
+	]]--
+	
 end)
 
 RegisterNetEvent('inventory:updateWeight')

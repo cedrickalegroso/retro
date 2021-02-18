@@ -4,12 +4,12 @@ Config.Locale               = 'en'
 Config.Accounts             = { 'bank', 'black_money' }
 Config.AccountLabels        = { bank = _U('bank'), black_money = _U('black_money') }
 
-Config.EnableSocietyPayouts = false -- pay from the society account that the player is employed at? Requirement: esx_society
+Config.EnableSocietyPayouts = true -- pay from the society account that the player is employed at? Requirement: esx_society
 Config.ShowDotAbovePlayer   = false
 Config.DisableWantedLevel   = true
 Config.EnableHud            = false -- enable the default hud? Display current job and accounts (black, bank & cash)
 
-Config.PaycheckInterval     = 14 * 60000
+Config.PaycheckInterval     = 2 * 60000
 Config.MaxPlayers           = GetConvarInt('sv_maxclients', 255) -- set this value to 255 if you're running OneSync
 
 Config.EnableDebug          = false
@@ -103,6 +103,7 @@ Config.InvItems = {
 
 	]]
 -- // ITEMS //
+    ["bread"] 					 = {["name"] = "bread", 			 	  	  	["label"] = "Mayors Bread", 					["weight"] = 15, 		["type"] = "item", 		["image"] = "id_card.png", 				["unique"] = false, 		["useable"] = true, 	["shouldClose"] = false,   ["combinable"] = nil,   ["description"] = "Masarap Eto"}, 
 	["id_card"] 					 = {["name"] = "id_card", 			 	  	  	["label"] = "Id Card", 					["weight"] = 0, 		["type"] = "item", 		["image"] = "id_card.png", 				["unique"] = true, 		["useable"] = true, 	["shouldClose"] = false,   ["combinable"] = nil,   ["description"] = "A card with all your data on it."},
 	["driver_license"] 				 = {["name"] = "driver_license", 			  	["label"] = "Drivers License", 			["weight"] = 0, 		["type"] = "item", 		["image"] = "driver_license.png", 		["unique"] = true, 		["useable"] = true, 	["shouldClose"] = false,   ["combinable"] = nil,   ["description"] = "Proof to prove you can drive a vehicle."},
 	["lawyerpass"] 					 = {["name"] = "lawyerpass", 			 	  	["label"] = "Lawyer Card", 				["weight"] = 0, 		["type"] = "item", 		["image"] = "lawyerpass.png", 			["unique"] = true, 		["useable"] = true, 	["shouldClose"] = false,   ["combinable"] = nil,   ["description"] = "Only for lawyers as evidence that they are allowed to represent a suspect."},
@@ -136,7 +137,7 @@ Config.InvItems = {
 	["mg_ammo"] 				 	 = {["name"] = "mg_ammo", 			  	  		["label"] = "MG Ammo", 					["weight"] = 1000, 		["type"] = "item", 		["image"] = "mg_ammo.png", 				["unique"] = false, 	["useable"] = true, 	["shouldClose"] = false,   ["combinable"] = nil,   ["description"] = "Ammunition intended for Machine Guns."},
 	["lockpick"] 					 = {["name"] = "lockpick", 			 	  	  	["label"] = "Lockpick", 				["weight"] = 300, 		["type"] = "item", 		["image"] = "lockpick.png", 			["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = {accept = {"screwdriverset"}, reward = "advancedlockpick", anim = {["dict"] = "anim@amb@business@weed@weed_inspecting_high_dry@", ["lib"] = "weed_inspecting_high_base_inspector", ["text"] = "Lockpick Making", ["timeOut"] = 7500,}},   ["description"] = "If you forget the keys now and then, it's not so bad... Or you use it somewhere else for.."},
 	["advancedlockpick"] 			 = {["name"] = "advancedlockpick", 			 	["label"] = "Advanced Lockpick", 		["weight"] = 500, 		["type"] = "item", 		["image"] = "advancedlockpick.png", 	["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,   ["description"] = "If you forget the keys now and then, it's not so bad... Also useful as a beer opener :)"},
-	["repairkit"] 					 = {["name"] = "repairkit", 			 	  	["label"] = "Repairkit", 				["weight"] = 2500, 		["type"] = "item", 		["image"] = "repairkit.png", 			["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,   ["description"] = "A handy toolbox with stuff to repair a vehicle."},
+	["repairkit"] 					 = {["name"] = "repairkit", 			 	  	["label"] = "Repairkit", 				["weight"] = 200, 		["type"] = "item", 		["image"] = "repairkit.png", 			["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,   ["description"] = "A handy toolbox with stuff to repair a vehicle."},
 	["advancedrepairkit"] 			 = {["name"] = "advancedrepairkit", 			["label"] = "Advanced Repairkit", 		["weight"] = 4000, 		["type"] = "item", 		["image"] = "advancedkit.png", 			["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,   ["description"] = "A handy toolbox with stuff to repair a vehicle a bit better."},
 	["cleaningkit"] 				 = {["name"] = "cleaningkit", 			 	  	["label"] = "Cleaning Kit", 			["weight"] = 250, 		["type"] = "item", 		["image"] = "cleaningkit.png", 			["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,   ["description"] = "A cloth and some water will make your car shine again!"},
 	["screwdriverset"] 				 = {["name"] = "screwdriverset", 			    ["label"] = "Toolkit", 					["weight"] = 1000, 		["type"] = "item", 		["image"] = "screwdriverset.png", 		["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,   ["combinable"] = nil,   ["description"] = "Pretty handy for screwing... to turn.."},
@@ -226,5 +227,9 @@ Config.InvItems = {
 	["pinger"] 			 			 = {["name"] = "pinger", 						["label"] = "Ping Antenne", 			["weight"] = 1000, 		["type"] = "item", 		["image"] = "pinger.png", 				["unique"] = false, 	["useable"] = false, 	["shouldClose"] = true,	   ["combinable"] = nil,   ["description"] = "With a pinger and a Phone you can send your location"},
 	["firstaid"] 			 		 = {["name"] = "firstaid", 						["label"] = "First Aid", 				["weight"] = 2500, 		["type"] = "item", 		["image"] = "firstaid.png", 			["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,   ["description"] = "You can use this First Aid kit to help people out of trouble.."},
 	["printerdocument"] 			 = {["name"] = "printerdocument", 				["label"] = "Document", 				["weight"] = 500, 		["type"] = "item", 		["image"] = "printerdocument.png", 		["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,   ["description"] = "A nice little document"},
+	["water"] 					 = {["name"] = "water", 			 	  	  	["label"] = "water", 					["weight"] = 15, 		["type"] = "item", 		["image"] = "water.png", 				["unique"] = false, 		["useable"] = true, 	["shouldClose"] = false,   ["combinable"] = nil,   ["description"] = "Masarap Eto"}, 
+	["disc_ammo_pistol"] 			 = {["name"] = "disc_ammo_pistol", 				["label"] = "Pistol Ammo", 				["weight"] = 250, 		["type"] = "item", 		["image"] = "disc_ammo_pistol.png", 		["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,   ["description"] = "A nice little document"},
+
+
 }
 

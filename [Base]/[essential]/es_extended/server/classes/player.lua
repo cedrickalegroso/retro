@@ -426,42 +426,7 @@ function CreateExtendedPlayer(player, accounts, inventory, job, job2, loadout, n
 		end
 	end
 
-	--[[
-	self.setJob2 = function(job, grade)
-		grade2 = tostring(grade)
-		local lastJob2 = json.decode(json.encode(self.job2))
-
-		if ESX.DoesJobExist(job, grade) then
-			local jobObject, gradeObject = ESX.Jobs[job], ESX.Jobs[job].grades[grade2]
-
-			self.job2.id    = jobObject.id
-			self.job2.name  = jobObject.name
-			self.job2.label = jobObject.label
-
-			self.job2.grade        = tonumber(grade)
-			self.job2.grade_name   = gradeObject.name
-			self.job2.grade_label  = gradeObject.label
-			self.job2.grade_salary = gradeObject.salary
-
-			self.job2.skin_male    = {}
-			self.job2.skin_female  = {}
-
-			if gradeObject.skin_male ~= nil then
-				self.job2.skin_male = json.decode(gradeObject.skin_male)
-			end
-
-			if gradeObject.skin_female ~= nil then
-				self.job2.skin_female = json.decode(gradeObject.skin_female)
-			end
-
-			TriggerEvent('esx:setJob2', self.source, self.job2, lastJob2)
-			TriggerClientEvent('esx:setJob2', self.source, self.job2)
-		else
-			print(('es_extended: ignoring setJob2 for %s due to job not found!'):format(self.source))
-		end
-	end
-
-	]]--
+	
 
 
 	self.addWeapon = function(weaponName, ammo)

@@ -20,10 +20,18 @@ ESX.StartPayCheck = function()
 						if society ~= nil then -- verified society
 							TriggerEvent('esx_addonaccount:getSharedAccount', society.account, function (account)
 								if account.money >= salary then -- does the society money to pay its employees?
-									xPlayer.addAccountMoney('bank', salary)
+									
+									local tax = salary * 0.20
+									local playerSal  = playerSal - tax
+									
+									
+									xPlayer.addAccountMoney('bank', playerSal)
 									account.removeMoney(salary)
+									
+									TriggerEvent('esx_society:depositTax',xPlayer.source, 'government', tax)
 	
-									TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source, 'Retro City Bank', _U('received_paycheck'), _U('received_salary', salary), 'CHAR_BANK_MAZE', 9)
+									TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source, 'Retro City Bank', 'Received Paycheck with tax of '..tax, _U('received_salary', salary), 'CHAR_BANK_MAZE', 9)
+									TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source, 'Retro City Bank', 'Received Paycheck with tax of '..tax, _U('received_salary', salary), 'CHAR_BANK_MAZE', 9)
 								else
 									TriggerClientEvent('esx:showAdvancedNotification', xPlayer.source, 'Retro City Bank', '', _U('company_nomoney'), 'CHAR_BANK_MAZE', 1)
 								end

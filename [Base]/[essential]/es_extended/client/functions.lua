@@ -261,6 +261,15 @@ ESX.UI.Menu.IsOpen = function(type, namespace, name)
 end
 
 
+ESX.UI.ShowInventoryItemNotification = function(add, item, count)
+	SendNUIMessage({
+		action = 'inventoryNotification',
+		add    = add,
+		item   = item,
+		count  = count
+	})
+end
+
 ESX.Game.GetPedMugshot = function(ped)
 	local mugshot = RegisterPedheadshot(ped)
 
