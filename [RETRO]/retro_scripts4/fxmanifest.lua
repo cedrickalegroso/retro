@@ -101,7 +101,7 @@ server_scripts {
    'esx_Armour/server/sv_armour.lua',
 
     --accee
-    'esx_accessories/server/main.lua',
+    --'esx_accessories/server/main.lua',
 
   'RealisticVehicleFailure/server.lua'
 }
@@ -214,7 +214,7 @@ client_scripts {
 
 
       --accee
-      'esx_accessories/client/main.lua',
+     -- 'esx_accessories/client/main.lua',
 
       'utk_fingerprint/client.lua'
 
