@@ -248,6 +248,32 @@ ConfigXray.drink = { -- if you have not choosed any drinks for a certain zone it
 }
 
 
+
+ConfigAlbularyo = {}
+
+ConfigAlbularyo.XrayTime = 20000
+
+ConfigAlbularyo.XrayPay = 250
+
+ConfigAlbularyo.Zones = {
+
+ 
+
+	["Albularyo"] = {
+
+		["coords"] = vector3(3311.4458007812,5176.1181640625,19.614587783813),
+
+
+        ["bed"] = vector4(-441.21328735352,-303.36676025391,35.779876708984, 115),
+        
+
+        ["timed"] = 1
+
+    }, --
+
+}
+
+
 intervals = { -- Unit: seconds
 	['save'] = 10, -- How often the vehicles' position should be saved. The save schedule is only useful after game crashes, or disconnects while in vehicle.
 	['check'] = 15 -- How often should it check for despawned vehicles.

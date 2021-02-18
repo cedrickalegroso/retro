@@ -269,6 +269,21 @@ ESX.RegisterServerCallback('retro_scripts:getCuffs', function(source,cb, cuff)
 
 end)
 
+ESX.RegisterServerCallback('retro_scripts:checkblack', function(source,cb, black)
+    local black = 0
+	local _source = source
+    local xPlayer = ESX.GetPlayerFromId(_source)
+    local count = xPlayer.getAccount('black_money').money 
+
+    if count >= 5000 then 
+        black = 1
+        xPlayer.removeAccountMoney('black_money', 5000)
+    end
+
+    cb(black)
+
+end)
+
 ESX.RegisterServerCallback('retro_scripts:getIDCARD', function(source,cb, item)
     local item = 0
 	local _source = source

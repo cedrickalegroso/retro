@@ -319,6 +319,138 @@ Citizen.CreateThread(function()
     end
 end)
 
+Citizen.CreateThread(function()
+
+    for place, value in pairs(ConfigAlbularyo.Zones) do
+		local blip = AddBlipForCoord(value["coords"].x, value["coords"].y)
+		SetBlipSprite (blip, 61)
+		SetBlipDisplay(blip, 4)
+		SetBlipScale  (blip, 0.6)
+		SetBlipColour (blip, 0)
+		SetBlipAsShortRange(blip, true)
+		BeginTextCommandSetBlipName("STRING")
+		AddTextComponentString(place)
+		EndTextCommandSetBlipName(blip)
+    end
+    
+    while true do
+        local sleepTime = 500
+        local coords = GetEntityCoords(PlayerPedId())
+
+        for place, value in pairs(ConfigAlbularyo.Zones) do
+            local dst = GetDistanceBetweenCoords(coords, value["coords"], true)
+            local text = place
+
+            if dst <= 7.5 then 
+                sleepTime = 5
+                
+                if dst <= 1.25 then
+                    text = "Press [~r~E~w~] to consult the " .. place
+                    if IsControlJustReleased(0, 38) then
+                        ESX.UI.Menu.CloseAll()
+						quantity = 1
+
+
+						local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
+
+						if closestPlayer == -1 or closestDistance > 1.0 then
+							ESX.ShowNotification('No Players nearby')
+						else
+							ESX.ShowNotification('The Albularyo gave you the magic spell to revive your crewmate!')
+							if quantity > 0 then
+								local closestPlayerPed = GetPlayerPed(closestPlayer)
+
+								if IsPedDeadOrDying(closestPlayerPed, 1) then
+									local playerPed = PlayerPedId()
+
+
+									ESX.TriggerServerCallback('retro_scripts:checkblack', function(black)
+										if black == 1 then 
+
+											ESX.ShowNotification('~r~ 5000 ~w~Black Money was deducted from your account.')
+											TriggerServerEvent('CUSTOM_esx_ambulance:requestCPR', GetPlayerServerId(closestPlayer), GetEntityHeading(playerPed), GetEntityCoords(playerPed), GetEntityForwardVector(playerPed))
+
+											ESX.UI.Menu.CloseAll()
+		
+											ESX.ShowNotification(_U('revive_inprogress'), "success")
+		
+		
+											-- print(GetAnimDuration(lib2, anim_success))
+		
+											local cpr = true
+		
+											Citizen.CreateThread(function()
+												while cpr do
+													Citizen.Wait(0)
+													DisableAllControlActions(0)
+													EnableControlAction(0, 1, true)
+												end
+											end)
+		
+											ClampGameplayCamPitch(0.0, -90.0)
+		
+											SetCurrentPedWeapon(playerPed, GetHashKey("WEAPON_UNARMED"), true)
+		
+											TaskPlayAnim(playerPed, lib1_char_a, anim_start, 8.0, 8.0, -1, 0, 0, false, false, false)
+		
+											Citizen.Wait(15800 - 900)
+											for i=1, 15, 1 do
+												Citizen.Wait(900)
+												TaskPlayAnim(playerPed, lib2_char_a, anim_pump, 8.0, 8.0, -1, 0, 0, false, false, false)
+											end
+		
+											cpr = false
+		
+											TaskPlayAnim(playerPed, lib2_char_a, anim_success, 8.0, 8.0, -1, 0, 0, false, false, false)
+		
+											Citizen.Wait(33590)
+		
+										--	TriggerServerEvent('esx_ambulancejob:removeItem', 'medikit')
+											TriggerServerEvent('esx_ambulancejob:revive', GetPlayerServerId(closestPlayer))
+		
+											-- Show revive award?
+											if ConfigAmbu.ReviveReward > 0 then
+												ESX.ShowNotification(_U('revive_complete_award', GetPlayerName(closestPlayer), ConfigAmbu.ReviveReward))
+											--	exports['mythic_notify']:DoCustomHudText('inform', _U('revive_complete_award', GetPlayerName(closestPlayer), ConfigAmbu.ReviveReward), 5000)
+											else
+												--ESX.ShowNotification(_U('revive_complete', GetPlayerName(closestPlayer)))
+											--	exports['mythic_notify']:DoCustomHudText('inform', _U('revive_complete', GetPlayerName(closestPlayer)), 2500, { ['background-color'] = '#008000', ['color'] = '#ffffff' })
+											end
+										else
+										  ESX.ShowNotification('You dont have enough dirty money') 
+										end
+									  end, source)
+
+                                   
+								else
+									ESX.ShowNotification(_U('player_not_unconscious'))
+								--	exports['mythic_notify']:DoCustomHudText('inform', _U('player_not_unconscious'), 2500, { ['background-color'] = '#FF0000', ['color'] = '#ffffff' })
+								end
+							else
+								ESX.ShowNotification(_U('not_enough_medikit'))
+								--exports['mythic_notify']:DoCustomHudText('inform', _U('not_enough_medikit'), 2500, { ['background-color'] = '#FF0000', ['color'] = '#ffffff' })
+							end
+						end
+
+
+						
+						
+							
+						
+						
+
+						
+                       
+                    end
+                end
+
+                Marker(text, value["coords"].x, value["coords"].y, value["coords"].z - 0.98) 
+            end
+        end
+
+        Citizen.Wait(sleepTime)
+    end
+end)
 
 
 function TakeXray(place, value) 
