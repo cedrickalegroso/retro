@@ -1668,7 +1668,7 @@ end
 -------------PLAYER----------------
 
 RegisterCommand('forcesearch', function(source)
-  --  if Config.Use.ForceSearch then
+    if Config.Use.ForceSearch then
   local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
   if closestPlayer ~= -1 and closestDistance <= 3.0 then
             local closestPed = GetPlayerPed(closestPlayer)
@@ -1683,9 +1683,9 @@ RegisterCommand('forcesearch', function(source)
         else
             ESX.ShowNotification('No Players Nearby')
         end
---    else
---        openInventory("normal")
---    end
+    else
+        openInventory("normal")
+   end
 
 end)
 
