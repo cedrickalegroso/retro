@@ -80,6 +80,10 @@ Config.Weight = {
     StashWeight = 5000,
     DefaultWeight = 500,
     ItemWeights = {
+        
+        ["whisky"] = 5,
+        ["vodka"] = 5,
+        ["tequila"] = 5,
         ["hotdog"] = 5,
         ["handcuffs"] = 8,
         ["key"] = 4,
