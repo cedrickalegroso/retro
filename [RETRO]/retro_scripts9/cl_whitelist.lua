@@ -71,6 +71,22 @@ RegisterCommand('goto', function(source, args, user)
 end)
 
 
+function fixVector(coords_vector3)
+    local x = coords_vector3.x
+    local y = coords_vector3.y
+    local z = coords_vector3.z
+
+    x = math.floor(x)
+    y = math.floor(y)
+    z = math.floor(z)
+
+    local fixed_coords = vector3(x, y, z)
+
+    return fixed_coords
+
+end
+
+
 RegisterNetEvent('retro_scripts:notifyemsdeads')
 AddEventHandler('retro_scripts:notifyemsdeads', function()
 	ESX.ShowNotification('~r~Someone is in need of medical attention. Check your Phone to get the GPS')
