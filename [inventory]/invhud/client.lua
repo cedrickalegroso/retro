@@ -1575,7 +1575,9 @@ InventoryThing = function()
                             Notify("This trunk is locked")
                         end
                     else
-                        if Config.Use.ForceSearch then
+
+                        --[[
+                           if Config.Use.ForceSearch then
                             local cP, cD = ESX.Game.GetClosestPlayer()
                             if cD > 0 and cD < 3.0 then
                                 local closestPed = GetPlayerPed(cP)
@@ -1593,9 +1595,13 @@ InventoryThing = function()
                         else
                             openInventory("normal")
                         end
+                        ]]--
+                       
                     end
                 else
-                    if Config.Use.ForceSearch then
+
+                    --[[
+ if Config.Use.ForceSearch then
                         local cP, cD = ESX.Game.GetClosestPlayer()
                         if cD > 0 and cD < 3.0 then
                             local closestPed = GetPlayerPed(cP)
@@ -1613,6 +1619,8 @@ InventoryThing = function()
                     else
                         openInventory("normal")
                     end
+                    ]]--
+                   
                 end
             end
         end
@@ -1658,6 +1666,28 @@ InventoryThing = function()
 end
 
 -------------PLAYER----------------
+
+RegisterCommand('testnear', function(source)
+    if Config.Use.ForceSearch then
+        local cP, cD = ESX.Game.GetClosestPlayer()
+        if cD > 0 and cD < 3.0 then
+            local closestPed = GetPlayerPed(cP)
+            local inTask = IsEntityPlayingAnim(closestPed, "missminuteman_1ig_2", "handsup_enter", 3)
+                local inTask2 = IsEntityPlayingAnim(closestPed, "mp_arresting", "idle", 3)
+            local isDead = GetEntityHealth(closestPed) < 100
+            if inTask or inTask2 or isDead then
+                TriggerEvent("invhud:openPlayerInventory", GetPlayerServerId(cP), GetPlayerName(cP))
+            else
+                Notify("This person must have their hands up")
+            end
+        else
+            openInventory("normal")
+        end
+    else
+        openInventory("normal")
+    end
+
+end)
 
 RegisterNetEvent("invhud:openPlayerInventory")
 AddEventHandler(
