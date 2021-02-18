@@ -22,7 +22,7 @@ ESX.StartPayCheck = function()
 								if account.money >= salary then -- does the society money to pay its employees?
 									
 									local tax = salary * 0.20
-									local playerSal  = playerSal - tax
+									local playerSal  = salary - tax
 									
 									
 									xPlayer.addAccountMoney('bank', playerSal)
