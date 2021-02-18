@@ -148,12 +148,20 @@ end)
 							end
 
 							if DoesEntityExist(vehicle) then
-								SetVehicleDoorOpen(vehicle, 5, false, false)
-								Citizen.Wait(2000)
-								SetVehicleDoorShut(vehicle, 5, false)
+
+								ESX.TriggerServerCallback('esx_vehiclelock:requestPlayerCars', function(isOwnedVehicle)
+									if isOwnedVehicle then
+										SetVehicleDoorOpen(vehicle, 5, false, false)
+										Citizen.Wait(2000)
+										SetVehicleDoorShut(vehicle, 5, false)
+									else 
+                                        ESX.ShowNotification('~r~ You must be near your own car!')
+									end
+								end, ESX.Math.Trim(GetVehicleNumberPlateText(vehicle)))
+								
 							else
 								SetCurrentPedWeapon(ped, GetHashKey('WEAPON_UNARMED'), true)
-								ESX.ShowNotification("~r~Action Impossible~s~ : You must have a bag or be near a car trunk.")
+								ESX.ShowNotification("~r~Action Impossible~s~ : You must be near your own car!")
 								
 								continue = false
 							end
