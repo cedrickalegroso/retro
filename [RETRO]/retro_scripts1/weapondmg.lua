@@ -155,6 +155,7 @@ end)
 										Citizen.Wait(2000)
 										SetVehicleDoorShut(vehicle, 5, false)
 									else 
+										continue = false
                                         ESX.ShowNotification('~r~ You must be near your own car!')
 									end
 								end, ESX.Math.Trim(GetVehicleNumberPlateText(vehicle)))
