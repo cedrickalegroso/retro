@@ -159,11 +159,6 @@ function inventorySetup(invOwner, items, money, invTier) {
     $('#player-black').html('Dirty Money: $' + formatCurrency(money.black_money) + ' ');
     $('#inventoryOne').data('invOwner', invOwner);
     $('#inventoryOne').data('invTier', invTier);
-
-    $('#cash').html('<img src="img/cash.png" class="moneyIcon"> $' + formatCurrency(money.cash));
-    $('#bank').html('<img src="img/bank.png" class="moneyIcon"> $' + formatCurrency(money.bank));
-    $('#black_money').html('<img src="img/black_money.png" class="moneyIcon"> $' + formatCurrency(money.black_money));
-
     firstUsed = 0;
     $.each(items, function(index, item) {
         var slot = $('#inventoryOne').find('.slot').filter(function() {
@@ -174,6 +169,12 @@ function inventorySetup(invOwner, items, money, invTier) {
         firstItems[slotId] = item;
         AddItemToSlot(slot, item);
     });
+
+
+    $('#cash').html('<img src="img/cash.png" class="moneyIcon"> $' + formatCurrency(money.cash));
+    $('#bank').html('<img src="img/bank.png" class="moneyIcon"> $' + formatCurrency(money.bank));
+    $('#black_money').html('<img src="img/black_money.png" class="moneyIcon"> $' + formatCurrency(money.black_money));
+
 
     $('#player-used').html(firstUsed);
     $("#inventoryOne > .slot:lt(4) .item").append('<div class="item-keybind"></div>');

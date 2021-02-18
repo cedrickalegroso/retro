@@ -94,6 +94,8 @@ AddEventHandler("ev-inventory:MoveToEmpty", function(data)
                     local destinationPlayer = ESX.GetPlayerFromIdentifier(data.destinationOwner)
                     TriggerEvent('ev-inventory:notifyImpendingAddition', data.originItem, data.originItem.qty, destinationPlayer.source)
                     destinationPlayer.addInventoryItem(data.originItem.id, data.originItem.qty)
+
+                    print('buy baby 1')
                 end
                 TriggerEvent('ev-inventory:refreshInventory', data.originOwner)
                 TriggerEvent('ev-inventory:refreshInventory', data.destinationOwner)
@@ -215,6 +217,8 @@ AddEventHandler("ev-inventory:CombineStack", function(data)
                     local destinationPlayer = ESX.GetPlayerFromIdentifier(data.destinationOwner)
                     TriggerEvent('ev-inventory:notifyImpendingAddition', data.originItem, data.originItem.qty, destinationPlayer.source)
                     destinationPlayer.addInventoryItem(data.originItem.id, data.originItem.qty)
+
+                    print('buy baby 2')
                 end
 
                 TriggerEvent('ev-inventory:refreshInventory', data.originOwner)
@@ -275,6 +279,8 @@ AddEventHandler("ev-inventory:TopoffStack", function(data)
                     local destinationPlayer = ESX.GetPlayerFromIdentifier(data.destinationOwner)
                     TriggerEvent('ev-inventory:notifyImpendingAddition', data.originItem, data.originItem.qty, destinationPlayer.source)
                     destinationPlayer.addInventoryItem(data.originItem.id, data.originItem.qty)
+
+                    print('buy baby 3')
                 end
 
                 TriggerEvent('ev-inventory:refreshInventory', data.originOwner)

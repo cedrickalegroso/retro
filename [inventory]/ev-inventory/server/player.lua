@@ -30,11 +30,18 @@ function getPlayerDisplayInventory(identifier, cb)
             table.insert(itemsObject, item)
         end
 
+        print(player.loadout)
+
+        for k, v in pairs(player.loadout) do
+            print(k, json.encode(v))
+        end
+
         local inv = {
             invId = identifier,
             invTier = InvType['player'],
             inventory = itemsObject,
             cash = player.getMoney(),
+            loadout = player.loadout,
             bank = player.getAccount('bank').money,
             black_money = player.getAccount('black_money').money,
         }
