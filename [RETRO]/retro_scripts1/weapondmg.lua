@@ -1,5 +1,7 @@
 
 
+--[[
+
 local weapons = {
 	[`WEAPON_UNARMED`] = {parameters = {anim = false, scoped = false, shakeCam = 0, infiniteAmmo = false}},
 
@@ -227,3 +229,6 @@ end)
 		end
 end)
 
+
+
+]]--
