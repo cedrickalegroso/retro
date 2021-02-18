@@ -69,7 +69,7 @@ end, false)
 RegisterCommand('gov', function(source, args, rawCommand)
     local _source = source
     local playerName = GetPlayerName(source)
-    local msg = rawCommand:sub(6)
+    local msg = rawCommand:sub(5)
     local name = getIdentity(source)
     fal = name.firstname .. " " .. name.lastname
 	xPlayer = ESX.GetPlayerFromId(source)
