@@ -482,6 +482,40 @@ ConfigGamz.Zones = {
         }
     }, 
 
+
+    ["RIRI STORE 2"] = {
+
+        ["coords"] = vector3(-3205.9348144531,792.08410644531,8.9316577911377),
+
+        ["drink"] = {
+            ["Coca Cola"] = {
+                ["price"] = 25,
+                ["prop"] = "prop_ecola_can"
+            },
+
+            ["Sparkling Water"] = {
+                ["price"] = 15,
+                ["prop"] = "prop_ld_flow_bottle"
+            } 
+        },
+        
+        ["eatable"] = {
+            ["Burger"] = {
+                ["price"] = 25,
+                ["prop"] = "prop_cs_burger_01"
+            },
+
+            ["Hotdog"] = {
+                ["price"] = 25,
+                ["prop"] = "prop_cs_hotdog_01"
+            }   
+
+        }
+    }, 
+
+
+    
+
     ["Magtibay"] = {
 
         ["coords"] = vector3(-89.736259460449,824.34637451172,227.78491210938),
