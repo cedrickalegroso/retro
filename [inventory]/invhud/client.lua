@@ -1577,9 +1577,9 @@ InventoryThing = function()
                     else
 
                         
-                           if 1 > 5 then
+                           if Config.Use.ForceSearch then
                             local cP, cD = ESX.Game.GetClosestPlayer()
-                            if cD > 0 and cD < 3.0 then
+                            if 1 > 5 then
                                 local closestPed = GetPlayerPed(cP)
                                 local inTask = IsEntityPlayingAnim(closestPed, "missminuteman_1ig_2", "handsup_enter", 3)
                                     local inTask2 = IsEntityPlayingAnim(closestPed, "mp_arresting", "idle", 3)
@@ -1600,10 +1600,10 @@ InventoryThing = function()
                     end
                 else
 
-                    --[[
- if Config.Use.ForceSearch then
+                    
+                       if Config.Use.ForceSearch then
                         local cP, cD = ESX.Game.GetClosestPlayer()
-                        if cD > 0 and cD < 3.0 then
+                        if 1 > 5 then
                             local closestPed = GetPlayerPed(cP)
                             local inTask =
                                 IsEntityPlayingAnim(closestPed, "random@mugging3", "handsup_standing_base", 3)
@@ -1619,7 +1619,7 @@ InventoryThing = function()
                     else
                         openInventory("normal")
                     end
-                    ]]--
+                    
                    
                 end
             end
