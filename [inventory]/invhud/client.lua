@@ -1669,9 +1669,9 @@ end
 
 RegisterCommand('testnear', function(source)
   --  if Config.Use.ForceSearch then
-        local cP, cD = ESX.Game.GetClosestPlayer()
-        if cD > 0 and cD < 3.0 then
-            local closestPed = GetPlayerPed(cP)
+  local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
+  if closestPlayer ~= -1 and closestDistance <= 3.0 then
+            local closestPed = GetPlayerPed(closestPlayer)
             local inTask = IsEntityPlayingAnim(closestPed, "missminuteman_1ig_2", "handsup_enter", 3)
                 local inTask2 = IsEntityPlayingAnim(closestPed, "mp_arresting", "idle", 3)
             local isDead = GetEntityHealth(closestPed) < 100
@@ -1681,7 +1681,7 @@ RegisterCommand('testnear', function(source)
                 Notify("This person must have their hands up")
             end
         else
-            Notify("No one nearby")
+            ESX.ShowNotification('No Players Nearby')
         end
 --    else
 --        openInventory("normal")
