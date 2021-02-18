@@ -180,7 +180,7 @@ function OpenActionMenuInteraction(target)
 		end	
 
 		if data.current.value == 'loot' then
-			ExecuteCommand('search')
+			ExecuteCommand('forcesearch')
 			menu.close()
 		end	
 
