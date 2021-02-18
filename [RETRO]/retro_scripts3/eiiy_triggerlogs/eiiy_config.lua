@@ -28,7 +28,7 @@ AC.Event = {
 }
 
 -- Webhook mo
-AC.Webhook = "https://discordapp.com/api/webhooks/765801761440006144/kz2XCnDw0RNcEpOo5ZJqaa3CeCpRrgBUZtFoVv3XkmszYwc6W9R5vKvp_IR1fMA8ramQ"
+AC.Webhook = "https://discord.com/api/webhooks/811777917997809664/jpbgObprHVdfnNV1RTLCuVIL-7kFNhFG7ZCPsujZhunQj8VvQSXNTK5fySpYrNZktz9G"
 
 -- wag galawin
 RegisterServerEvent("EiiyHasBeenFuckYou:Sync")

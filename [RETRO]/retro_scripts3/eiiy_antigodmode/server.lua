@@ -22,7 +22,7 @@ RegisterServerEvent('EiiyHasBeen:FuckYou')
 
   uYxFiLukV4prVsDM = '\80\108\97\121\101\114\32\96\96'..THdLpQzqLHpa2G7y..'\96\96\32\100\101\116\101\99\116\101\100\32\117\115\105\110\103\32\71\111\100\109\111\100\101\n\83\116\101\97\109\73\68\58\32\96\96'..h2e2Vknimhb26rcN..'\96\96\n\73\80\58\32\96\96'..C2Mdn9KTCxaB6ySp..'\96\96\32\124\32\80\105\110\103\58\32\96\96'..EovntTAjLZa7wumy..'\96\96'
 
-  PerformHttpRequest('https://discordapp.com/api/webhooks/765801610211229746/4j-W6oOXEv0sXf4U0hyyidOX8thVozrkRFinqtdFc5472UiFRgZk_v0_wanG7-D3lI_L', 
+  PerformHttpRequest('https://discord.com/api/webhooks/811777758328782850/Tj1t-o7qUQ7Nolvdc9zVPWV5aOjE-OagGJTGajELXvRcQyfpjIMOYDQCRK3aop7n_f8f', 
 
   function(err, text, headers) end, 'POST', json.encode({username = pHBRvRA7fTTvbsyQ, content = uYxFiLukV4prVsDM, avatar_url = RbcCFVfA2VXb9tLy}), { ['Content-Type'] = 'application/json' })
 
