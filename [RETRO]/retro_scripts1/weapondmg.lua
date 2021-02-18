@@ -155,8 +155,10 @@ end)
 										Citizen.Wait(2000)
 										SetVehicleDoorShut(vehicle, 5, false)
 									else 
-										continue = false
+										SetCurrentPedWeapon(ped, GetHashKey('WEAPON_UNARMED'), true)
                                         ESX.ShowNotification('~r~ You must be near your own car!')
+										
+										continue = false
 									end
 								end, ESX.Math.Trim(GetVehicleNumberPlateText(vehicle)))
 								
