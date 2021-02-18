@@ -111,6 +111,11 @@ Citizen.CreateThread(function()
 end)
 
 
+RegisterCommand('resetholster', function(source)
+	canFire = true
+end)
+
+
 RegisterNetEvent('esx:playerLoaded')
 AddEventHandler('esx:playerLoaded', function(xPlayer)
   PlayerData = xPlayer
