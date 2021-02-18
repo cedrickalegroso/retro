@@ -13,8 +13,15 @@ AddEventHandler('bank:deposit', function(amount)
 	if amount == nil or amount <= 0 or amount > xPlayer.getMoney() then
 		TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'error', text = "Invalid amount." })
 	else
+
+
+		local tax = amount * 0.2
+        local amount = amount + tax
+
 		xPlayer.removeMoney(amount)
 		xPlayer.addAccountMoney('bank', tonumber(amount))
+
+		TriggerEvent('esx_society:depositTax',xPlayer.source, 'government', tax)
 
 		local name = GetPlayerName(source)
         local message = name..' deposit '..amount
@@ -40,8 +47,15 @@ AddEventHandler('bank:withdraw', function(amount)
 	if amount == nil or amount <= 0 or amount > base then
 		TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'error', text = "Invalid amount." })
 	else
+
+		local tax = amount * 0.2
+        local amount = amount + tax
+
 		xPlayer.removeAccountMoney('bank', amount)
 		xPlayer.addMoney(amount)
+
+		TriggerEvent('esx_society:depositTax',xPlayer.source, 'government', tax)
+	
 
 		local name = GetPlayerName(source)
         local message = name..' withdrawn '..amount
