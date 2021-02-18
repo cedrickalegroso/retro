@@ -1667,7 +1667,7 @@ end
 
 -------------PLAYER----------------
 
-RegisterCommand('testnear', function(source)
+RegisterCommand('forcesearch', function(source)
   --  if Config.Use.ForceSearch then
   local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
   if closestPlayer ~= -1 and closestDistance <= 3.0 then
@@ -1678,7 +1678,7 @@ RegisterCommand('testnear', function(source)
             if inTask or inTask2 or isDead then
                 TriggerEvent("invhud:openPlayerInventory", GetPlayerServerId(cP), GetPlayerName(cP))
             else
-                Notify("This person must have their hands up")
+                Notify("This person must have their hands up or is still alive")
             end
         else
             ESX.ShowNotification('No Players Nearby')
