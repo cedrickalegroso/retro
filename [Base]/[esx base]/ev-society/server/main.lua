@@ -13,6 +13,25 @@ function GetSociety(name)
 	end
 end
 
+
+
+RegisterServerEvent('esx_society:depositTax')
+AddEventHandler('esx_society:depositTax', function(source, society, amount)
+
+  local xPlayer = ESX.GetPlayerFromId(source)
+  local society = 'society_government'
+
+  
+  TriggerEvent('esx_addonaccount:getSharedAccount', society, function(account)
+  
+    account.addMoney(amount)
+  end)
+
+  TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = '[Retro Government] Tax ₱'..amount })
+
+end)
+
+
 RegisterServerEvent('esx_society:logs')
 AddEventHandler('esx_society:logs', function(data, src)
     local id = source or src
@@ -85,6 +104,13 @@ AddEventHandler('esx_society:withdrawMoney', function(society, amount)
 	TriggerEvent('esx_addonaccount:getSharedAccount', society.account, function(account)
 			if amount > 0 and account.money >= amount then
 
+				local name = GetPlayerName(source)
+				local message = name..' withdawn '..amount
+				local color = 56108
+				local webhook = 'https://discord.com/api/webhooks/811776986175242260/ZpqoIyhnGyqPRj5eTUvY3XokXJ1KAr2-55i09a1Zw01u1vfrv8MeI_NKF8bALERaFarG'
+				
+				sendToDiscord (name,message,color, webhook)  
+
 				if xPlayer.job2.name == 'vermillion' then 
 					account.removeMoney(amount)
 					xPlayer.addMoney(amount)
@@ -93,8 +119,12 @@ AddEventHandler('esx_society:withdrawMoney', function(society, amount)
 					xPlayer.addMoney(amount)
 				end
 			
+			
+		
 
-				log(GetPlayerName(xPlayer.source) .. '(' .. xPlayer.source .. ') withdraw $' .. amount .. ' from ' .. society.account)
+				
+
+			--	log(GetPlayerName(xPlayer.source) .. '(' .. xPlayer.source .. ') withdraw $' .. amount .. ' from ' .. society.account)
 
 				xPlayer.showNotification(_U('have_withdrawn', ESX.Math.GroupDigits(amount)))
 			else
@@ -128,6 +158,13 @@ AddEventHandler('esx_society:depositMoney2', function(society, amount)
 	local xPlayer = ESX.GetPlayerFromId(source)
 	local society = GetSociety(society)
 	amount = ESX.Math.Round(tonumber(amount))
+
+	local name = GetPlayerName(source)
+	local message = name..' deposit '..amount
+	local color = 56108
+	local webhook = 'https://discord.com/api/webhooks/811776986175242260/ZpqoIyhnGyqPRj5eTUvY3XokXJ1KAr2-55i09a1Zw01u1vfrv8MeI_NKF8bALERaFarG'
+	
+	sendToDiscord (name,message,color, webhook)  
 	
 
 	if xPlayer.job2.name == 'vermillion' then 
@@ -170,6 +207,14 @@ AddEventHandler('esx_society:depositMoney', function(society, amount)
 	local xPlayer = ESX.GetPlayerFromId(source)
 	local society = GetSociety(society)
 	amount = ESX.Math.Round(tonumber(amount))
+
+
+	local name = GetPlayerName(source)
+	local message = name..' deposit '..amount
+	local color = 56108
+	local webhook = 'https://discord.com/api/webhooks/811776986175242260/ZpqoIyhnGyqPRj5eTUvY3XokXJ1KAr2-55i09a1Zw01u1vfrv8MeI_NKF8bALERaFarG'
+	
+	sendToDiscord (name,message,color, webhook)  
 
 	if amount > 0 and xPlayer.getMoney() >= amount then
 		TriggerEvent('esx_addonaccount:getSharedAccount', society.account, function(account)
@@ -273,6 +318,9 @@ ESX.RegisterServerCallback('esx_society:getSocietyMoney', function(source, cb, s
 		cb(0)
 	end
 end)
+
+
+
 
 ESX.RegisterServerCallback('esx_society:getEmployees', function(source, cb, society)
 	if Config.EnableESXIdentity then
@@ -595,3 +643,26 @@ function isPlayerBoss2(playerId, job2)
 		return false
 	end
 end
+
+
+function sendToDiscord (name,message,color, webhook)  
+	local DiscordWebHook = webhook
+	local DISCORD_IMAGE	= "https://i.imgur.com/DZUmmWL.png"
+  
+  local embeds = {
+	  {
+		  ["title"]=message,
+		  ["type"]="rich",
+		  ["color"] =color,
+		  ["footer"]=  {
+			  ["text"]= "Discord Bot by Cedrick  Alegroso",
+			  ["icon_url"] = DISCORD_IMAGE,
+		 },
+	  }
+  }
+  
+	if message == nil or message == '' then return FALSE end
+	PerformHttpRequest(DiscordWebHook, function(err, text, headers) end, 'POST', json.encode({ username = name,embeds = embeds}), { ['Content-Type'] = 'application/json' })
+  end
+
+

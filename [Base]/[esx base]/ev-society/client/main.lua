@@ -29,6 +29,59 @@ AddEventHandler('esx:setJob2', function(job2)
 	RefreshBussHUD()
 end)
 
+function EnableSocietyMoneyHUDElement()
+
+	local societyMoneyHUDElementTpl = '<div><img src="' .. base64MoneyIcon .. '" style="width:20px; height:20px; vertical-align:middle;">&nbsp;{{money}}</div>'
+  
+	ESX.UI.HUD.RegisterElement('society_money', 3, 0, societyMoneyHUDElementTpl, {
+	  money = 0
+	})
+  
+  end
+  
+  ---SECONDJOB INCLUDED
+  function EnableSociety2MoneyHUDElement()
+  
+	local society2MoneyHUDElementTpl = '<div><img src="' .. base64MoneyIcon .. '" style="width:20px; height:20px; vertical-align:middle;">&nbsp;{{money}}</div>'
+  
+	ESX.UI.HUD.RegisterElement('society2_money', 3, 0, society2MoneyHUDElementTpl, {
+	  money = 0
+	})
+  
+  end
+
+  function DisableSocietyMoneyHUDElement()
+	ESX.UI.HUD.RemoveElement('society_money')
+  end
+  
+  ---SECONDJOB INCLUDED
+  function DisableSociety2MoneyHUDElement()
+	ESX.UI.HUD.RemoveElement('society2_money')
+  end
+
+
+  ---SECONDJOB INCLUDED
+function DisableSociety2MoneyHUDElement()
+	ESX.UI.HUD.RemoveElement('society2_money')
+  end
+  
+  function UpdateSocietyMoneyHUDElement(money)
+  
+	ESX.UI.HUD.UpdateElement('society_money', {
+	  money =ESX.Math.GroupDigits(money)
+	})
+  
+  end
+  
+  ---SECONDJOB INCLUDED
+  function UpdateSociety2MoneyHUDElement(money)
+  
+	ESX.UI.HUD.UpdateElement('society2_money', {
+	  money = ESX.Math.GroupDigits(money)
+	})
+  
+  end
+
 function RefreshBussHUD()
   DisableSocietyMoneyHUDElement()
   
@@ -65,69 +118,10 @@ end)
 
 
 
-function EnableSocietyMoneyHUDElement()
-	local societyMoneyHUDElementTpl = '<div><img src="' .. base64MoneyIcon .. '" style="width:20px; height:20px; vertical-align:middle;">&nbsp;{{money}}</div>'
-
---	if ESX.GetConfig().EnableHud then
-		ESX.UI.HUD.RegisterElement('society_money', 3, 0, societyMoneyHUDElementTpl, {
-			money = 0
-		})
---	end
-
-	TriggerEvent('esx_society:toggleSocietyHud', true)
-end
-
----SECONDJOB INCLUDED
-function EnableSociety2MoneyHUDElement()
-
-	local society2MoneyHUDElementTpl = '<div><img src="' .. base64MoneyIcon .. '" style="width:20px; height:20px; vertical-align:middle;">&nbsp;{{money}}</div>'
-  
-	ESX.UI.HUD.RegisterElement('society2_money', 3, 0, society2MoneyHUDElementTpl, {
-	  money = 0
-	})
-  
-  end
-
-function DisableSocietyMoneyHUDElement()
-	if ESX.GetConfig().EnableHud then
-		ESX.UI.HUD.RemoveElement('society_money')
-	end
-
-	TriggerEvent('esx_society:toggleSocietyHud', false)
-end
----SECONDJOB INCLUDED
-function DisableSociety2MoneyHUDElement()
-	ESX.UI.HUD.RemoveElement('society2_money')
-  end
-  
-function UpdateSocietyMoneyHUDElement(money)
-	
-  --[[
-if ESX.GetConfig().EnableHud then
-		ESX.UI.HUD.UpdateElement('society_money', {
-			money = ESX.Math.GroupDigits(money)
-		})
-  end
-  
-  ]]--
- 
-  ESX.UI.HUD.UpdateElement('society_money', {
-    money = ESX.Math.GroupDigits(money)
-  })
-
-	TriggerEvent('esx_society:setSocietyMoney', money)
-end
 
 
 
----SECONDJOB INCLUDED
-function UpdateSociety2MoneyHUDElement(money)
 
-	ESX.UI.HUD.UpdateElement('society2_money', {
-	  money = money
-	})
-  
-  end
 
 function OpenBossMenu(society, close, options)
 	local isBoss = nil
