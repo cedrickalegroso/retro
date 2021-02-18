@@ -140,7 +140,7 @@ AddEventHandler('esx_basicneeds:onEatPancakes', function(prop_name)
 		useWhileDead = false,
 		canCancel = true,
 		controlDisables = {
-			disableMovement = true,
+			disableMovement = false,
 			disableCarMovement = true,
 			disableMouse = false,
 			disableCombat = true,
@@ -171,7 +171,7 @@ AddEventHandler('esx_basicneeds:onEat', function(prop_name)
 		useWhileDead = false,
 		canCancel = true,
 		controlDisables = {
-			disableMovement = true,
+			disableMovement = false,
 			disableCarMovement = true,
 			disableMouse = false,
 			disableCombat = true,
@@ -225,7 +225,7 @@ AddEventHandler('esx_basicneeds:onEatB', function(prop_name)
 		useWhileDead = false,
 		canCancel = true,
 		controlDisables = {
-			disableMovement = true,
+			disableMovement = false,
 			disableCarMovement = true,
 			disableMouse = false,
 			disableCombat = true,
@@ -300,7 +300,7 @@ AddEventHandler('esx_basicneeds:onEatHotdog', function()
 			useWhileDead = false,
 			canCancel = true,
 			controlDisables = {
-				disableMovement = true,
+				disableMovement = false,
 				disableCarMovement = true,
 				disableMouse = false,
 				disableCombat = true,
@@ -330,7 +330,7 @@ AddEventHandler('esx_basicneeds:onEatChocolate', function(prop_name)
 		useWhileDead = false,
 		canCancel = true,
 		controlDisables = {
-			disableMovement = true,
+			disableMovement = false,
 			disableCarMovement = true,
 			disableMouse = false,
 			disableCombat = true,
@@ -361,7 +361,7 @@ AddEventHandler('esx_basicneeds:onEatCandy', function(prop_name)
 		useWhileDead = false,
 		canCancel = true,
 		controlDisables = {
-			disableMovement = true,
+			disableMovement = false,
 			disableCarMovement = true,
 			disableMouse = false,
 			disableCombat = true,
@@ -397,7 +397,7 @@ AddEventHandler('esx_basicneeds:onEatChips', function(prop_name)
 			useWhileDead = false,
 			canCancel = true,
 			controlDisables = {
-				disableMovement = true,
+				disableMovement = false,
 				disableCarMovement = true,
 				disableMouse = false,
 				disableCombat = true,
@@ -454,7 +454,7 @@ AddEventHandler('esx_basicneeds:onEatCupCake', function(prop_name)
 			useWhileDead = false,
 			canCancel = true,
 			controlDisables = {
-				disableMovement = true,
+				disableMovement = false,
 				disableCarMovement = true,
 				disableMouse = false,
 				disableCombat = true,
@@ -576,7 +576,7 @@ AddEventHandler('esx_basicneeds:onDrink', function(prop_name)
 			useWhileDead = false,
 			canCancel = false,
 			controlDisables = {
-				disableMovement = true,
+				disableMovement = false,
 				disableCarMovement = true,
 				disableMouse = false,
 				disableCombat = true,
@@ -660,7 +660,7 @@ AddEventHandler('esx_basicneeds:onDrinkCocaCola', function(prop_name)
 			useWhileDead = false,
 			canCancel = false,
 			controlDisables = {
-				disableMovement = true,
+				disableMovement = false,
 				disableCarMovement = true,
 				disableMouse = false,
 				disableCombat = true,
@@ -753,7 +753,7 @@ end)
 			useWhileDead = false,
 			canCancel = true,
 			controlDisables = {
-				disableMovement = true,
+				disableMovement = false,
 				disableCarMovement = true,
 				disableMouse = false,
 				disableCombat = true,
@@ -1065,7 +1065,7 @@ AddEventHandler('retro_scripts:takePill', function()
         useWhileDead = false,
         canCancel = true,
         controlDisables = {
-            disableMovement = true,
+            disableMovement = false,
             disableCarMovement = true,
             disableMouse = false,
             disableCombat = true,
@@ -1099,7 +1099,7 @@ AddEventHandler('retro_scripts:onCigSmoke', function(prop_name)
 			useWhileDead = false,
 			canCancel = true,
 			controlDisables = {
-				disableMovement = true,
+				disableMovement = false,
 				disableCarMovement = true,
 				disableMouse = false,
 				disableCombat = true,
