@@ -1,3 +1,19 @@
+ESX = nil
+
+Citizen.CreateThread(function()
+	while ESX == nil do
+		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+		Citizen.Wait(0)
+	end
+
+	while ESX.GetPlayerData().job == nil do
+		Citizen.Wait(10)
+	end
+
+	ESX.PlayerData = ESX.GetPlayerData()
+	
+end)
+
 local Components = {
 	{label = _U('sex'),						name = 'sex',				value = 0,		min = 0,	zoomOffset = 0.6,		camOffset = 0.65},
 	{label = _U('face'),					name = 'face',				value = 0,		min = 0,	zoomOffset = 0.6,		camOffset = 0.65},
@@ -391,17 +407,21 @@ end)
 
 RegisterNetEvent('skinchanger:loadClothes')
 AddEventHandler('skinchanger:loadClothes', function(playerSkin, clothesSkin)
+	print(playerSkin['sex'])
 	if playerSkin['sex'] ~= LastSex then
 		LoadClothes = {
 			playerSkin	= playerSkin,
 			clothesSkin	= clothesSkin
 		}
 
-		if playerSkin['sex'] == 0 then
-			TriggerEvent('skinchanger:loadDefaultModel', true)
-		else
-			TriggerEvent('skinchanger:loadDefaultModel', false)
-		end
+		ESX.TriggerServerCallback("retro_scripts:getplayersex", function(sex)
+			if sex == "m" then
+				TriggerEvent('skinchanger:loadDefaultModel', true)
+			else
+				TriggerEvent('skinchanger:loadDefaultModel', false)
+			end
+		  end, source)
+		
 	else
 		ApplySkin(playerSkin, clothesSkin)
 	end

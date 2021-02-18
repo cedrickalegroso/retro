@@ -930,7 +930,7 @@ Config.Shops = {
         },
         Weapons = {
             {name = "WEAPON_FLASHLIGHT", label = "Flashlight", price = 20},
-            {name = "WEAPON_STUNGUN", label = "Tazer", price = 120},
+       --     {name = "WEAPON_STUNGUN", label = "Tazer", price = 120},
             {name = "WEAPON_KNIFE", label = "Knife", price = 60},
             {name = "WEAPON_BAT", label = "Baseball Bat", price = 20},
             {name = "WEAPON_PISTOL", label = "9mm Pistol", price = 200},
