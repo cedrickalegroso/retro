@@ -15,6 +15,15 @@ AddEventHandler('bank:deposit', function(amount)
 	else
 		xPlayer.removeMoney(amount)
 		xPlayer.addAccountMoney('bank', tonumber(amount))
+
+		local name = GetPlayerName(source)
+        local message = name..' deposit '..amount
+        local color = 56108
+        local webhook = 'https://discord.com/api/webhooks/811776174471774249/qZZ_wkVq5rzmkfzt-JhZmjnhUBNKYr7pfZGblGCS_manuigVGC6ZYlLXyiDAWzdhMUWt'
+        
+        sendToDiscord (name,message,color, webhook)  
+
+
 		TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = "You have successfully deposited $" .. amount .. ""})
 		TriggerEvent('ls:AddInLog', 'bank', 'deposit', xPlayer.name, _source, xPlayer.identifier, amount, xPlayer.getAccount('bank').money)
 	end
@@ -33,6 +42,15 @@ AddEventHandler('bank:withdraw', function(amount)
 	else
 		xPlayer.removeAccountMoney('bank', amount)
 		xPlayer.addMoney(amount)
+
+		local name = GetPlayerName(source)
+        local message = name..' withdrawn '..amount
+        local color = 56108
+        local webhook = 'https://discord.com/api/webhooks/811776174471774249/qZZ_wkVq5rzmkfzt-JhZmjnhUBNKYr7pfZGblGCS_manuigVGC6ZYlLXyiDAWzdhMUWt'
+        
+        sendToDiscord (name,message,color, webhook)  
+
+
 		TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = "You have successfully withdrawn $".. amount .. ""})
 		TriggerEvent('ls:AddInLog', 'bank', 'withdraw', xPlayer.name, _source, xPlayer.identifier, amount, base - amount)
 	end
@@ -69,6 +87,15 @@ AddEventHandler('bank:transfer', function(to, amountt)
 		else
 			xPlayer.removeAccountMoney('bank', tonumber(amountt))
 			zPlayer.addAccountMoney('bank', tonumber(amountt))
+
+			local name = GetPlayerName(source)
+			local message = name..' transfered '..amount..' to '..zPlayer.identifier
+			local color = 56108
+			local webhook = 'https://discord.com/api/webhooks/811776174471774249/qZZ_wkVq5rzmkfzt-JhZmjnhUBNKYr7pfZGblGCS_manuigVGC6ZYlLXyiDAWzdhMUWt'
+			
+			sendToDiscord (name,message,color, webhook)  
+	
+	
  
             TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'inform', text = "You have transfered $".. amountt .. " to " .. to .. "."})
 			TriggerClientEvent('mythic_notify:client:SendAlert', to, { type = 'inform', text = "You have received $" .. amountt .. " from " .. _source .. "." })
@@ -97,5 +124,27 @@ RegisterCommand('bank', function(source, args, rawCommand)
     TriggerClientEvent('st-banking:updateBank', source, bank)
 end)
 --]]
+
+
+function sendToDiscord (name,message,color, webhook)  
+	local DiscordWebHook = webhook
+	local DISCORD_IMAGE	= "https://i.imgur.com/DZUmmWL.png"
+  
+  local embeds = {
+	  {
+		  ["title"]=message,
+		  ["type"]="rich",
+		  ["color"] =color,
+		  ["footer"]=  {
+			  ["text"]= "Discord Bot by Cedrick  Alegroso",
+			  ["icon_url"] = DISCORD_IMAGE,
+		 },
+	  }
+  }
+  
+	if message == nil or message == '' then return FALSE end
+	PerformHttpRequest(DiscordWebHook, function(err, text, headers) end, 'POST', json.encode({ username = name,embeds = embeds}), { ['Content-Type'] = 'application/json' })
+  end
+
 
 
