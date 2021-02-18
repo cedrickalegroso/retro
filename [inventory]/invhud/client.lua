@@ -1676,7 +1676,7 @@ RegisterCommand('forcesearch', function(source)
                 local inTask2 = IsEntityPlayingAnim(closestPed, "mp_arresting", "idle", 3)
             local isDead = GetEntityHealth(closestPed) < 100
             if inTask or inTask2 or isDead then
-                TriggerEvent("invhud:openPlayerInventory", GetPlayerServerId(cP), GetPlayerName(cP))
+                TriggerEvent("invhud:openPlayerInventory", GetPlayerServerId(closestPed), GetPlayerName(closestPed))
             else
                 Notify("This person must have their hands up or is still alive")
             end
