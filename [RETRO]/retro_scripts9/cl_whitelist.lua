@@ -39,6 +39,36 @@ Citizen.CreateThread(function()
 
 end)
 
+RegisterCommand('bring', function(source, args, user)
+	print('bring')
+	if args[1] then
+	local admin_coords = GetEntityCoords(GetPlayerPed(-1))
+	local target_id = tonumber(args[1])
+
+	print(admin_coords)
+	print(target_id)
+
+	TriggerServerEvent("kc_admin:bring", admin_coords, target_id)
+	end
+end)
+
+RegisterCommand('goto', function(source, args, user)
+	print('goto')
+	if args[1] then
+		local target_id = tonumber(args[1])
+		local player_id = GetPlayerFromServerId(tonumber(target_id))
+		local local_ped = GetPlayerPed(player_id)
+		local target_coords = GetEntityCoords(local_ped)
+	
+		target_coords = fixVector(target_coords)
+
+		print(target_id)
+		print(target_coords)
+	
+		TriggerServerEvent("kc_admin:goto", target_id, target_coords)
+	end
+	
+end)
 
 
 RegisterNetEvent('retro_scripts:notifyemsdeads')
