@@ -1,6 +1,6 @@
 
 
---[[
+
 
 local weapons = {
 	[`WEAPON_UNARMED`] = {parameters = {anim = false, scoped = false, shakeCam = 0, infiniteAmmo = false}},
@@ -129,6 +129,8 @@ end)
 		while true do
 
 
+			--print(canFire)
+
 			Citizen.Wait(0)
 			ped = PlayerPedId()
 
@@ -231,4 +233,4 @@ end)
 
 
 
-]]--
+

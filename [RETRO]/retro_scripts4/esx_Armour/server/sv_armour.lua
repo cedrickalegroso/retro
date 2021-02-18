@@ -53,7 +53,7 @@ RegisterCommand("v", function(source)
 	local xPlayer = ESX.GetPlayerFromId(_source)
    local count
 
-  if xPlayer.getJob().name == 'police' then 
+  if xPlayer.getJob().name == 'police' or  xPlayer.getJob().name == 'ambulance' then 
 	 count = xPlayer.getInventoryItem('armor2').count
 	 
 	 if count > 0 then
