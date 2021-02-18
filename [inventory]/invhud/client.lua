@@ -1576,8 +1576,8 @@ InventoryThing = function()
                         end
                     else
 
-                        --[[
-                           if Config.Use.ForceSearch then
+                        
+                           if 1 > 5 then
                             local cP, cD = ESX.Game.GetClosestPlayer()
                             if cD > 0 and cD < 3.0 then
                                 local closestPed = GetPlayerPed(cP)
@@ -1595,7 +1595,7 @@ InventoryThing = function()
                         else
                             openInventory("normal")
                         end
-                        ]]--
+                        
                        
                     end
                 else
@@ -1668,7 +1668,7 @@ end
 -------------PLAYER----------------
 
 RegisterCommand('testnear', function(source)
-    if Config.Use.ForceSearch then
+  --  if Config.Use.ForceSearch then
         local cP, cD = ESX.Game.GetClosestPlayer()
         if cD > 0 and cD < 3.0 then
             local closestPed = GetPlayerPed(cP)
@@ -1681,11 +1681,11 @@ RegisterCommand('testnear', function(source)
                 Notify("This person must have their hands up")
             end
         else
-            openInventory("normal")
+            Notify("No one nearby")
         end
-    else
-        openInventory("normal")
-    end
+--    else
+--        openInventory("normal")
+--    end
 
 end)
 
