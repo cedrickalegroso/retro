@@ -2,6 +2,25 @@ var IsInMainMenu
 
 var create = 0
 
+var banner = 0
+
+function hidebanner() {
+
+    alert('ey')
+
+    if (banner == 1) {
+        document.getElementById("bannerImg").style.display = "block"
+        banner = 0
+    } else {
+        document.getElementById("bannerImg").style.display = "none"
+        banner = 1
+    }
+
+
+
+
+}
+
 function CreateCharacter(val) {
 
     document.getElementById("characters").style.display = "none"

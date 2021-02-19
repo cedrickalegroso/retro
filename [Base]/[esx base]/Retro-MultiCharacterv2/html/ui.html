@@ -99,9 +99,10 @@
             <div class="col">
                 <div class="pageHeader" style="text-align: center;">
 
-                    <img src="https://i.imgur.com/EcN1bIA.png" style="width: 60vw; margin-top: -2%;">
+                    <img id="bannerImg" src="https://i.imgur.com/EcN1bIA.png" style="width: 60vw; margin-top: -2%;">
+                    <br />
 
-
+                    <button style="font-size: 10px;" id="bannerImgb" onclick="hidebanner()"> Hide Banner </button>
 
                 </div>
             </div>
@@ -544,6 +545,17 @@
     </div>
     </div>
 
+
+    <script>
+        function hidebanner() {
+
+
+            document.getElementById("bannerImg").style.display = "none"
+            document.getElementById("bannerImgb").style.display = "none"
+
+
+        }
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
