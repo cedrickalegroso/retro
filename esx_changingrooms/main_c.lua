@@ -57,6 +57,8 @@ function OpenShopMenu()
 				
 
 					TriggerEvent('retro_scripts:loadclothesSaved', clothes)
+
+					TriggerEvent('esx:restoreLoadout')
 					--[[
 TriggerEvent('skinchanger:loadClothes', skin, clothes)
 					TriggerEvent('esx_skin:setLastSkin', skin)
