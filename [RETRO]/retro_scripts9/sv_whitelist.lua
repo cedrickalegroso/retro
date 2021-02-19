@@ -531,16 +531,6 @@ end)
 
 
 
-RegisterServerEvent('retro_scripts:gettodayrewardTEST')
-AddEventHandler('retro_scripts:gettodayrewardTEST', function(source)
-    local _source = source
-    local xPlayer = ESX.GetPlayerFromId(_source)
-    print('this player '.._source)
-   
-
-    TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'error', text = 'You already claimed todays reward or you havent played for atleast 20 mins yet.' })
-end)
-
 
 RegisterServerEvent('retro_scripts:gettodayreward')
 AddEventHandler('retro_scripts:gettodayreward', function(source)
@@ -718,7 +708,8 @@ AddEventHandler('retro_scripts:gettodayreward', function(source)
                 xPlayer.addAccountMoney('black_money', amount)
               TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Success! You just claimed the reward for today! '..amount..' of dirty money' })
             elseif type == "weapon" then 
-                xPlayer.addInventoryItem(item, amount)
+               -- xPlayer.addInventoryItem(item, amount)
+               xPlayer.addWeapon(item,amount)
                TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Success! You just claimed the reward for today! '..item..' with '..amount..' of bullets.'})
             end
         
@@ -747,6 +738,205 @@ AddEventHandler('retro_scripts:gettodayreward', function(source)
 
     end)
 
+end)
+
+ESX.RegisterUsableItem('retro_rwo', function(source)
+	local xPlayer = ESX.GetPlayerFromId(source)
+-- ExecuteCommand('openMyRewardsOVERRIEEDDD')
+    TriggerEvent('retro_scripts:gettodayrewardOverride', source)
+	 xPlayer.removeInventoryItem('retro_rwo', 1)
+end)
+
+
+RegisterServerEvent('retro_scripts:gettodayrewardOverride')
+AddEventHandler('retro_scripts:gettodayrewardOverride', function(source)
+  
+    local _source = source
+    local xPlayer = ESX.GetPlayerFromId(_source)
+    local player = getIdentity(source)
+
+    print('this player '..source)
+
+
+    local epochunix = os.time(os.date("!*t"))
+
+        
+        if 1 > 0 then 
+            math.randomseed(os.time())
+            local day = math.random(1,31)
+
+            local type = ""
+            local weapon = ""
+            local amount = 0
+            local item  = ""
+            
+            if  day == nil then
+                type = "money" 
+                amount = 25000
+            elseif day == 01 then 
+                type = "black" 
+                amount = 20000
+            elseif day == 02 then 
+                type = "black" 
+                amount = 20000
+            elseif day == 03 then
+                type = "item" 
+                item = "bandage"
+                amount = 5
+            elseif day == 04 then
+                type = "item" 
+                item = "bread"
+                amount = 15
+            elseif day == 05 then
+                type = "money" 
+                amount = 15000
+            elseif day == 06 then
+                type = "money" 
+                amount = 30000
+            elseif day == 07 then
+                type = "item" 
+                item = "jewels"
+                amount = 150
+            elseif day == 08 then
+                type = "item" 
+                item = "carokit"
+                amount = 3
+            elseif day == 09 then
+                type = "item" 
+                item = "armor"
+                amount = 5
+            elseif day == 10 then
+                type = "weapon" 
+                item = "WEAPON_ASSAULTRIFLE"
+                amount = 1
+            elseif day == 11 then
+                type = "weapon" 
+                item = "WEAPON_ASSAULTRIFLE"
+                amount = 1
+            elseif day == 12 then
+                type = "item" 
+                item = "packaged_chicken"
+                amount = 50
+            elseif day == 13 then
+                type = "black" 
+                amount = 30000
+            elseif day == 14 then
+                type = "item" 
+                item = "packaged_chicken"
+                amount = 50
+            elseif day == 15 then
+                type = "money" 
+                amount = 25000
+            elseif day == 16 then
+                type = "item" 
+                item = "weed_pooch"
+                amount = 100
+            elseif day == 17 then
+                type = "item" 
+                item = "opoium_pooch"
+                amount = 100
+            elseif day == 18 then
+                type = "weapon" 
+                item = "WEAPON_CARBINERIFLE"
+                amount = 1
+            elseif day == 19 then
+                type = "black" 
+                amount = 35000
+            elseif day == 20 then
+                type = "item" 
+                item = "jewels"
+                amount = 100
+            elseif day == 21 then
+                type = "money" 
+                amount = 30000
+            elseif day == 22 then
+                type = "black" 
+                amount = 40000
+            elseif day == 23 then
+                type = "item" 
+                item = "packaged_chicken"
+                amount = 150
+            elseif day == 24 then
+                type = "item" 
+                item = "armor2"
+                amount = 10
+            elseif day == 25 then
+                type = "weapon" 
+                item = "WEAPON_PISTOL"
+                amount = 1
+            elseif day == 26 then
+                type = "weapon" 
+                item = "WEAPON_ASSAULTRIFLE"
+                amount = 1
+            elseif day == 27 then
+                type = "item" 
+                item = "weed_pooch"
+                amount = 100
+            elseif day == 28 then
+                type = "item" 
+                item = "carokit"
+                amount = 5
+            elseif day == 29 then
+                type = "item" 
+              --  item = "retro_car"
+                item = "carokit"
+                amount = 1
+            elseif day == 30 then
+                type = "retro" 
+                amount = 30000
+            elseif day == 31 then
+                type = "black" 
+                amount = 50000
+            end
+            print('player recived'.. type)
+        
+                        local name = xPlayer.name
+                        local message = 'got ' .. type .. ' ' .. item .. ' ' .. amount  
+                        local color = 56108
+                        local webhook = 'https://discord.com/api/webhooks/803504972032901170/M9PWG-v4XNUAhgip6rcxpizBFmGFeqk4QY1sKTmA6o0YNrWtNppeWOldG9Wt_bjOIjVU'
+                   
+                             
+                        sendToDiscord(name,message,color, webhook)
+        
+           -- if result[1].isdonator == 1 then 
+          --      amount = (amount * 2) + amount
+              
+           --     TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'You have a retro coin so you got a little bit more reward.' })
+         --   end
+        
+            if type == "money" then 
+                xPlayer.addMoney(amount)
+               TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Success! You just claimed the reward for today! '..amount..' of clean money' })
+            elseif type == "item" then 
+                xPlayer.addInventoryItem(item, amount)
+                TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Success! You just claimed the reward for today! '..amount..' of '..item })
+            elseif type == "black" then 
+                xPlayer.addAccountMoney('black_money', amount)
+              TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Success! You just claimed the reward for today! '..amount..' of dirty money' })
+            elseif type == "weapon" then 
+            --    xPlayer.addInventoryItem(item, amount)
+
+            xPlayer.addWeapon(item,amount)
+               TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Success! You just claimed the reward for today! '..item..' with '..amount..' of bullets.'})
+            end
+        
+            
+            MySQL.Async.execute('UPDATE retro_rewards SET `taken` = @taken WHERE id = @id', {
+                ['@id'] = player.license,
+                ['@taken'] = 1,
+            }, function(rowsChanged)
+                if rowsChanged == 0 then
+                 print('PLAYER SET TO 1')
+                end
+            end)
+        else
+            TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'You already claimed todays reward or you havent played for atleast 20 mins yet.' })
+        end
+
+    
+
+
+  
 end)
 
 
@@ -933,7 +1123,8 @@ AddEventHandler('retro_scripts:gettodayreward1', function(source)
                     xPlayer.addAccountMoney('black_money', amount)
                   TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Success! You just claimed the reward for today! '..amount..' of dirty money' })
                 elseif type == "weapon" then 
-                    xPlayer.addInventoryItem(item, amount)
+                --    xPlayer.addInventoryItem(item, amount)
+                xPlayer.addWeapon(item,amount)
                    TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'inform', text = 'Success! You just claimed the reward for today! '..item..' with '..amount..' of bullets.'})
                 end
             

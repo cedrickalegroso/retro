@@ -173,7 +173,9 @@ AddEventHandler('chatMessage', function(source, n, message)
 		elseif cm[1] == "/openMyRewardsRetro" then
 			TriggerEvent('retro_scripts:gettodayreward', source)
 		   
-			
+		elseif cm[1] == "/openMyRewardsOVERRIEEDDD" then
+			TriggerEvent('retro_scripts:gettodayrewardOverride', source)
+
 		elseif cm[1] == "/openMyRewardsRetro1" then 
 			TriggerEvent('retro_scripts:gettodayreward1', source)
 		elseif cm[1] == "/saveoutfitclothe" then 
