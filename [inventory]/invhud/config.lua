@@ -80,6 +80,7 @@ Config.Weight = {
     StashWeight = 5000,
     DefaultWeight = 500,
     ItemWeights = {
+        ["lockpick"] = 3,
         ["sandwhich"] = 5,
         ["RetroID"] = 5,
         ["RetroWallet"] = 5,
