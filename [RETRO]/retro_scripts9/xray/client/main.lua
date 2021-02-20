@@ -406,7 +406,7 @@ Citizen.CreateThread(function()
 											Citizen.Wait(33590)
 		
 										--	TriggerServerEvent('esx_ambulancejob:removeItem', 'medikit')
-											TriggerServerEvent('esx_ambulancejob:revive', GetPlayerServerId(closestPlayer))
+											TriggerServerEvent('esx_ambulancejob:revive1', GetPlayerServerId(closestPlayer))
 		
 											-- Show revive award?
 											if ConfigAmbu.ReviveReward > 0 then
