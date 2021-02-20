@@ -15,6 +15,16 @@ AddEventHandler('esx_ambulancejob:revive', function(target)
 	end
 end)
 
+RegisterServerEvent('esx_ambulancejob:revive1')
+AddEventHandler('esx_ambulancejob:revive1', function(target)
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+		TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = 'You recieved 1500 bonus for reviving a citizen!'})
+		TriggerClientEvent('esx_ambulancejob:revive', target)
+	
+end)
+
+
 
 RegisterCommand("putveh", function(source)
 	TriggerClientEvent('esx_ambulancejob:putInVehicletest', source)
