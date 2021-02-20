@@ -9,8 +9,8 @@ Config.Recipes = {
 	
 
 		["lockpick"] = { 
-		 {item = "trunk", quantity = 2 }, 
-		 {item = "doors", quantity = 1 },
+		 {item = "copper", quantity = 2 }, 
+		 {item = "paper", quantity = 1 },
 		},
 
 		["advancedlockpick"] = { 

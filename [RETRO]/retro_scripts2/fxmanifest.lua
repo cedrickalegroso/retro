@@ -93,7 +93,7 @@ client_scripts {
   
 
   --cahingrooms
-  --'ChangingRooms/client.lua',
+  'ChangingRooms/client.lua',
 
   --moneywash
   'esx_moneywash/client/main.lua',

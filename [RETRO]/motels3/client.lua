@@ -574,8 +574,13 @@ motels.openInventory = function(zone,door)
   })
   ]]--
  
+
+  ESX.TriggerServerCallback('motels:getInventory', function(inventory)
+    TriggerEvent("esx_inventoryhud:openPropertyInventory", inventory, false, {zone = zone, door = door})
+ end,zone,door)
+ TriggerEvent('loaf:iteminventory')  
    
-  TriggerEvent('retro-inventory:Motel', motels.plyData.identifier )
+ -- TriggerEvent('retro-inventory:Motel', motels.plyData.identifier )
   end
 end
 
