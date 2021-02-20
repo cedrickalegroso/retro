@@ -16,5 +16,5 @@ RegisterServerEvent('fuel:givecan')
 AddEventHandler('fuel:givecan', function()
 	local xPlayer = ESX.GetPlayerFromId(source)
 
-	xPlayer.addInventoryItem('WEAPON_PETROLCAN', 1)
+	xPlayer.addWeapon('WEAPON_PETROLCAN', 1)
 end)
