@@ -338,6 +338,7 @@ ESX.RegisterServerCallback(
     function(source, cb, invType, id, class)
         local xPlayer = ESX.GetPlayerFromId(source)
         local weightLimit = Config.Weight.DefaultWeight
+        print(class)
         if class ~= nil then
             if class == "mailbox" then
                 weightLimit = Config.Weight.MailboxWeight
@@ -352,44 +353,50 @@ ESX.RegisterServerCallback(
         if invType == "stash" then
             weightLimit = Config.Weight.StashWeight
         end
-        if (not OpenedInventories[id]) or OpenedInventories[id] == xPlayer.source then
-            OpenedInventories[id] = xPlayer.source
-            MySQL.Async.fetchAll(
-                "SELECT * FROM inventories WHERE owner = @owner AND type = @type",
-                {["@owner"] = id, ["@type"] = invType},
-                function(result)
-                    if result[1] then
-                        cb(result[1])
-                    else
-                        MySQL.Async.execute(
-                            "INSERT INTO `inventories` (owner, type, data, `limit`) VALUES (@id, @type, @data, @limit)",
-                            {
-                                ["@id"] = id,
-                                ["@type"] = invType,
-                                ["@data"] = json.encode({items = {}, weapons = {}, blackMoney = 0, cash = 0}),
-                                ["@limit"] = weightLimit
-                            },
-                            function(rowsChanged)
-                                if rowsChanged then
-                                    logText(xPlayer, " created inventory for " .. id .. " with type " .. invType)
+        if invType == "property" then
+            
+        else 
+            if (not OpenedInventories[id]) or OpenedInventories[id] == xPlayer.source then
+                OpenedInventories[id] = xPlayer.source
+                MySQL.Async.fetchAll(
+                    "SELECT * FROM inventories WHERE owner = @owner AND type = @type",
+                    {["@owner"] = id, ["@type"] = invType},
+                    function(result)
+                        if result[1] then
+                            cb(result[1])
+                        else
+                            MySQL.Async.execute(
+                                "INSERT INTO `inventories` (owner, type, data, `limit`) VALUES (@id, @type, @data, @limit)",
+                                {
+                                    ["@id"] = id,
+                                    ["@type"] = invType,
+                                    ["@data"] = json.encode({items = {}, weapons = {}, blackMoney = 0, cash = 0}),
+                                    ["@limit"] = weightLimit
+                                },
+                                function(rowsChanged)
+                                    if rowsChanged then
+                                        logText(xPlayer, " created inventory for " .. id .. " with type " .. invType)
+                                    end
                                 end
-                            end
-                        )
-                        cb(
-                            {
-                                ["owner"] = id,
-                                ["type"] = invType,
-                                ["data"] = json.encode({items = {}, weapons = {}, blackMoney = 0, cash = 0}),
-                                ["limit"] = weightLimit
-                            }
-                        )
+                            )
+                            cb(
+                                {
+                                    ["owner"] = id,
+                                    ["type"] = invType,
+                                    ["data"] = json.encode({items = {}, weapons = {}, blackMoney = 0, cash = 0}),
+                                    ["limit"] = weightLimit
+                                }
+                            )
+                        end
                     end
-                end
-            )
-        else
-            Notify(xPlayer.source, "This inventory is already opened")
-            cb(nil)
+                )
+            else
+                Notify(xPlayer.source, "This inventory is already opened")
+                cb(nil)
+            end
         end
+
+     
     end
 )
 

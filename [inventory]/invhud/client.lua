@@ -205,7 +205,7 @@ Citizen.CreateThread(
                 Config.StashJ1
             ) do
                 -- print(PlayerData.identifier)
-                if PlayerData.job.name == v.job then
+                if PlayerData.job.name == v.job and PlayerData.job.grade >= v.mingrade  then
                     if v.markerType ~= -1 then
                         local dis = #(pos - v.coords)
                         if dis <= v.draw then
