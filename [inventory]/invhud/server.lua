@@ -1160,7 +1160,7 @@ ESX.RegisterServerCallback(
             itemInformation[itemResult[i].name].can_remove = itemResult[i].can_remove
             itemInformation[itemResult[i].name].price = itemResult[i].price
             if Config.Shops[shoptype].Account == "black_money" then
-                itemInformation[itemResult[i].name].price = itemInformation[itemResult[i].name].price * 2
+                itemInformation[itemResult[i].name].price = itemInformation[itemResult[i].name].price 
             end
 
             for _, v in pairs(Config.Shops[shoptype].Items) do
