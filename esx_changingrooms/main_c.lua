@@ -16,6 +16,7 @@ local Keys = {
   local CurrentAction           = nil
   local CurrentActionMsg        = 'Press [E] for the Changing Room!'
   local CurrentActionData       = {}
+  local pedArmor 
 
   Citizen.CreateThread(function()
 	while ESX == nil do
@@ -58,7 +59,9 @@ function OpenShopMenu()
 
 					TriggerEvent('retro_scripts:loadclothesSaved', clothes)
 
-					TriggerEvent('esx:restoreLoadout')
+				TriggerEvent('esx:restoreLoadout')
+					SetPedArmour(GetPlayerPed(-1), pedArmor)
+					
 					--[[
 TriggerEvent('skinchanger:loadClothes', skin, clothes)
 					TriggerEvent('esx_skin:setLastSkin', skin)
@@ -148,6 +151,10 @@ Citizen.CreateThread(function()
 			ESX.ShowHelpNotification(CurrentActionMsg)
 
 			if IsControlJustReleased(0, Keys['E']) then
+
+				pedArmor = GetPedArmour(GetPlayerPed(-1))
+
+				print(pedArmor)
 				if CurrentAction == 'change_clothes' then
 					OpenShopMenu()
 				end
