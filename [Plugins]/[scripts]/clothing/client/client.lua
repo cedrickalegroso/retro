@@ -724,7 +724,9 @@ function SwitchCam(name)
 end
 
 RegisterNUICallback('escape', function(data, cb)
-    Save(data['save'])
+    TriggerEvent('esx:restoreLoadout')
+   -- Save(data['save'])
+    TriggerEvent('clothing:loadclothes')
     EnableGUI(false, false)
     cb('ok')
 end)
@@ -807,6 +809,7 @@ end)
 
 function OpenMenu(name)
     player = GetPlayerPed(-1)
+  
     oldPed = GetCurrentPed()
     local isAllowed = false
     if(oldPed.model == 1885233650 or oldPed.model == -1667301416) then isAllowed = true end
@@ -824,6 +827,7 @@ function Save(save)
     if save then
         data = GetCurrentPed()
         TriggerServerEvent('clothing:save', data, currentTats)
+        TriggerEvent('esx:restoreLoadout')
     else
         LoadPed(oldPed)
     end
