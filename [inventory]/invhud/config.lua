@@ -1103,6 +1103,17 @@ Config.StashP = {
         markerColour = vector3(255, 255, 255),
         msg = "Magtibay Stash"
     },
+    ["NOSTRA"] = {
+        coords = vector3(-79.81965637207,836.65539550781,231.32997131348),
+        useText = true,
+        size = vector3(0.5, 0.5, 0.5),
+        steam = "steam:110000117850ef8",
+        mingrade = 0,
+        markerType = 2,
+        draw = 3,
+        markerColour = vector3(255, 255, 255),
+        msg = "NOSTRA Stash"
+    },
     ["RATRBU"] = {
         coords = vector3(-49.967166900635, 832.34808349609, 231.32977294922),
         useText = true,
