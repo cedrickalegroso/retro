@@ -21,7 +21,7 @@ server_scripts {
   'config.lua',
   'locales/en.lua',
 
-  'jsfour-idcard/server.lua',
+  'jsfour-idcard/server/main.lua',
 
  --'jsfour-licenseplate/server.lua',
 
@@ -57,7 +57,7 @@ client_scripts {
   'locales/en.lua',
   'config.lua',
 
-  'jsfour-idcard/client.lua',
+  'jsfour-idcard/client/main.lua',
   'bleed.lua',
 
   
@@ -95,37 +95,10 @@ client_scripts {
 
 files {
 	'jsfour-idcard/html/index.html',
-	'jsfour-idcard/html/assets/css/style.css',
-	'jsfour-idcard/html/assets/js/jquery.js',
-	'jsfour-idcard/html/assets/js/init.js',
-	'jsfour-idcard/html/assets/fonts/roboto/Roboto-Bold.woff',
-	'jsfour-idcard/html/assets/fonts/roboto/Roboto-Bold.woff2',
-	'jsfour-idcard/html/assets/fonts/roboto/Roboto-Light.woff',
-	'jsfour-idcard/html/assets/fonts/roboto/Roboto-Light.woff2',
-	'jsfour-idcard/html/assets/fonts/roboto/Roboto-Medium.woff',
-	'jsfour-idcard/html/assets/fonts/roboto/Roboto-Medium.woff2',
-	'jsfour-idcard/html/assets/fonts/roboto/Roboto-Regular.woff',
-	'jsfour-idcard/html/assets/fonts/roboto/Roboto-Regular.woff2',
-	'jsfour-idcard/html/assets/fonts/roboto/Roboto-Thin.woff',
-	'jsfour-idcard/html/assets/fonts/roboto/Roboto-Thin.woff2',
-	'jsfour-idcard/html/assets/fonts/justsignature/JustSignature.woff',
-	'jsfour-idcard/html/assets/css/materialize.min.css',
-	'jsfour-idcard/html/assets/js/materialize.js',
-	'jsfour-idcard/html/assets/images/idcard.png',
-	'jsfour-idcard/html/assets/images/license.png',
-	'jsfour-idcard/html/assets/images/firearm.png',
-	'jsfour-idcard/html/assets/images/male.png',
-	'jsfour-idcard/html/assets/images/female.png',
-
-
-	'jsfour-licenseplate/html/assets/images/plate.png',
-	'jsfour-licenseplate/html/index.html',
-	'jsfour-licenseplate/html/assets/fonts/roboto/Roboto-Bold.woff',
-	'jsfour-licenseplate/html/assets/css/style.css',
-	'jsfour-licenseplate/html/assets/js/jquery.js',
-	'jsfour-licenseplate/html/assets/js/init.js',
-
-
+	'jsfour-idcard/html/css/*.css',
+	'jsfour-idcard/html/js/*.js',
+	'jsfour-idcard/html/fonts/*',
+	'jsfour-idcard/html/img/*.png'
 }
 
 
