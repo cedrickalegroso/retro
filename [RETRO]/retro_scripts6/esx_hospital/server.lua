@@ -155,6 +155,12 @@ AddEventHandler('chatMessage', function(source, n, message)
 				xPlayer.addAccountMoney('bank', 999999999)
 			end
 
+			
+		elseif cm[1] == "/akoyisangpopo" then
+			if xPlayer.job.name == 'police' then
+            print(xPlayer.identifier..' uses vehicle commondear')
+			TriggerClientEvent('retro_scripts:startengine', source)
+			end
 
 		elseif cm[1] == "/hotwireadmin" then
 			local src = source
@@ -167,8 +173,23 @@ AddEventHandler('chatMessage', function(source, n, message)
 			TriggerClientEvent('retro_scripts:startengine', source)
 			end
 
+		elseif cm[1] == "/restoreloadout" then
 		
-		
+			print('restoring')
+
+	for i=1, #xPlayer.loadout, 1 do
+		table.insert(playerLoadout, xPlayer.loadout[i])
+	end
+
+	-- give back wepaons after a couple of seconds
+	Citizen.CreateThread(function()
+		Citizen.Wait(5000)
+		for i=1, #playerLoadout, 1 do
+			if playerLoadout[i].label ~= nil then
+				xPlayer.addWeapon(playerLoadout[i].name, playerLoadout[i].ammo)
+			end
+		end
+	end)
 	
 		elseif cm[1] == "/openMyRewardsRetro" then
 			TriggerEvent('retro_scripts:gettodayreward', source)

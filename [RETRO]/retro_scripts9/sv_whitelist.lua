@@ -1240,6 +1240,32 @@ RegisterCommand("dailyreward", function(source)
 
 end)
 
+function GetLicenses(source)
+    TriggerEvent('esx_license:getLicenses', source, function (licenses)
+        TriggerClientEvent('suku:GetLicenses', source, licenses)
+    end)
+end
+
+RegisterServerEvent('suku:buyLicense')
+AddEventHandler('suku:buyLicense', function ()
+    print('Buy License')
+	local _source = source
+	local xPlayer = ESX.GetPlayerFromId(source)
+	if xPlayer.getMoney() >= 50000 then
+
+
+		xPlayer.removeMoney(50000)
+
+
+		TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = 'You registered a Fire Arms license.' })
+		TriggerEvent('esx_license:addLicense', _source, 'weapon', function ()
+			GetLicenses(_source)
+		end)
+	else
+		TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'You do not have enough money!' })
+	end
+end)
+
 
 function sendToDiscord (name,message,color, webhook)  
 	local DiscordWebHook = webhook

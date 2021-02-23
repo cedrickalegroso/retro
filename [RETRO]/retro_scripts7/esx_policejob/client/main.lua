@@ -519,6 +519,7 @@ function OpenPoliceActionsMenu()
 				{label = 'Cuff',   value = 'ruskicuff'},
 				{label = 'Uncuff', value = 'handcuff'},
 				{label = 'Soft cuff', value = 'softcuff'},
+				{label = 'Manual Bill', value = 'manualbill'},
 				{label = _U('drag'),			value = 'drag'},
 				{label = _U('put_in_vehicle'),	value = 'put_in_vehicle'},
 				{label = _U('out_the_vehicle'),	value = 'out_the_vehicle'},
@@ -592,6 +593,28 @@ function OpenPoliceActionsMenu()
 						ShowPlayerLicensePolice(closestPlayer)
 					elseif action == 'unpaid_bills' then
 						OpenUnpaidBillsMenuPolice(closestPlayer)
+					elseif action == 'manualbill' then
+						TriggerServerEvent('esx_policejob:message', GetPlayerServerId(closestPlayer), 'You are being billed by the Police department')
+						ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'billing', {
+							title = _U('invoice_amount')
+						}, function(data, menu)
+							local amount = tonumber(data.value)
+
+							if amount == nil or amount < 0 then
+								ESX.ShowNotification(_U('amount_invalid'))
+							else
+								local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
+								if closestPlayer == -1 or closestDistance > 3.0 then
+									--ESX.ShowNotification(_U('no_players_nearby'))
+									exports['mythic_notify']:DoCustomHudText('inform', _U('no_players_nearby'), 2500, { ['background-color'] = '#FF0000', ['color'] = '#ffffff' })
+								else
+									menu.close()
+									TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(closestPlayer), 'society_police', police, amount)
+								end
+							end
+						end, function(data, menu)
+							menu.close()
+						end)
 					elseif action == 'gsr_test' then
 						TriggerServerEvent('GSR:Status2', GetPlayerServerId(closestPlayer))
 					end
@@ -615,6 +638,7 @@ function OpenPoliceActionsMenu()
 				table.insert(elements, {label = _U('pick_lock'),	value = 'hijack_vehicle'})
 				table.insert(elements, {label = _U('impound'),		value = 'impound'})
 				table.insert(elements, {label = 'ATTACH GPS', value = 'gps'})
+				table.insert(elements, {label = 'Commondear Vehicle', value = 'immapopo'})
 			end
 			
 			table.insert(elements, {label = _U('search_database'), value = 'search_database'})
@@ -633,6 +657,9 @@ function OpenPoliceActionsMenu()
 				if action == 'gps' then
 					TriggerEvent("esx_cichygps:lokalizator")
 					 end
+					 if action == 'immapopo' then
+						ExecuteCommand('akoyisangpopo')
+						 end
 				if action == 'search_database' then
 					LookupVehicle()
 				elseif DoesEntityExist(vehicle) then

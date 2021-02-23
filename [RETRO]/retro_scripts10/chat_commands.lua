@@ -77,7 +77,7 @@ RegisterCommand('gov', function(source, args, rawCommand)
 	
     if xPlayer.identifier == 'steam:1100001115e4c94' or xPlayer.identifier == 'steam:11000011693aece' then 
     TriggerClientEvent('chat:addMessage', -1, {
-        template = '<div class="chat-message " style="background-color:  rgba(0, 0, 0, 0.1);" ><i class="fas fa-shield-alt"></i> 🏛️ <strong> Government {0} </strong>:  {1}</div>',
+        template = '<div class="chat-message " style="background-color:  rgba(0, 0, 0, 0.1);" ><i class="fas fa-shield-alt"></i> 🏛️ <strong> Government  </strong>:  {1}</div>',
         args = { fal, msg }
     })
    end
@@ -97,7 +97,7 @@ RegisterCommand('rcems', function(source, args, rawCommand)
 	
 	if jobN == 'ambulance' then
     TriggerClientEvent('chat:addMessage', -1, {
-        template = '<div class="chat-message " style="background-color:  rgba(204, 0, 153, 0.1);" ><i class="fas fa-shield-alt"></i> 🏥 <strong> rcems {0} </strong>:  {1}</div>',
+        template = '<div class="chat-message " style="background-color:  rgba(204, 0, 153, 0.1);" ><i class="fas fa-shield-alt"></i> 🏥 <strong> RCEMS  </strong>:  {1}</div>',
         args = { fal, msg }
     })
    end
@@ -116,7 +116,7 @@ RegisterCommand('rcemsotw', function(source, args, rawCommand)
 	
 	if jobN == 'ambulance' then
     TriggerClientEvent('chat:addMessage', -1, {
-        template = '<div class="chat-message " style="background-color:  rgba(204, 0, 153, 0.1);" ><i class="fas fa-shield-alt"></i> 🏥 <strong> rcems {0} </strong>:  10-1 Taking distress. OTW to postal #{1} </div>',
+        template = '<div class="chat-message " style="background-color:  rgba(204, 0, 153, 0.1);" ><i class="fas fa-shield-alt"></i> 🏥 <strong> RCEMS  </strong>:  10-1 Taking distress. OTW to postal #{1} </div>',
         args = { fal, msg }
     })
    end
@@ -134,7 +134,7 @@ RegisterCommand('rcemsotw2', function(source, args, rawCommand)
 	
 	if jobN == 'ambulance' then
     TriggerClientEvent('chat:addMessage', -1, {
-        template = '<div class="chat-message " style="background-color:  rgba(204, 0, 153, 0.1);" ><i class="fas fa-shield-alt"></i> 🏥 <strong> rcems {0} </strong>:  EMS proceeding to the area. </div>',
+        template = '<div class="chat-message " style="background-color:  rgba(204, 0, 153, 0.1);" ><i class="fas fa-shield-alt"></i> 🏥 <strong> RCEMS  </strong>:  EMS proceeding to the area. </div>',
         args = { fal, msg }
     })
    end
@@ -152,7 +152,7 @@ RegisterCommand('rcemsotw3', function(source, args, rawCommand)
 	
 	if jobN == 'ambulance' then
     TriggerClientEvent('chat:addMessage', -1, {
-        template = '<div class="chat-message " style="background-color:  rgba(204, 0, 153, 0.1);" ><i class="fas fa-shield-alt"></i> 🏥 <strong> rcems {0} </strong>: EMS EN ROUTE TO GET THE HOSTAGE/S </div>',
+        template = '<div class="chat-message " style="background-color:  rgba(204, 0, 153, 0.1);" ><i class="fas fa-shield-alt"></i> 🏥 <strong> RCEMS  </strong>: EMS EN ROUTE TO GET THE HOSTAGE/S </div>',
         args = { fal, msg }
     })
    end
@@ -172,7 +172,7 @@ RegisterCommand('rcemsrip', function(source, args, rawCommand)
 	
 	if jobN == 'ambulance' then
     TriggerClientEvent('chat:addMessage', -1, {
-        template = '<div class="chat-message " style="background-color:  rgba(204, 0, 153, 0.1);" ><i class="fas fa-shield-alt"></i> 🏥 <strong> rcems {0} </strong>: RIP {1}. Time of Death '..date..' Condolences to family and friends </div>',
+        template = '<div class="chat-message " style="background-color:  rgba(204, 0, 153, 0.1);" ><i class="fas fa-shield-alt"></i> 🏥 <strong> RCEMS  </strong>: RIP {1}. Time of Death '..date..' Condolences to family and friends </div>',
         args = { fal, msg }
     })
    end
@@ -191,7 +191,7 @@ RegisterCommand('rcemsstandby', function(source, args, rawCommand)
 	
 	if jobN == 'ambulance' then
     TriggerClientEvent('chat:addMessage', -1, {
-        template = '<div class="chat-message " style="background-color:  rgba(204, 0, 153, 0.1);" ><i class="fas fa-shield-alt"></i> 🏥 <strong> rcems {0} </strong>:  ALL EMS ON STAND BY </div>',
+        template = '<div class="chat-message " style="background-color:  rgba(204, 0, 153, 0.1);" ><i class="fas fa-shield-alt"></i> 🏥 <strong> RCEMS  </strong>:  ALL EMS ON STAND BY </div>',
         args = { fal, msg }
     })
    end
@@ -211,7 +211,7 @@ RegisterCommand('rcemsdelay', function(source, args, rawCommand)
 	
 	if jobN == 'ambulance' then
     TriggerClientEvent('chat:addMessage', -1, {
-        template = '<div class="chat-message " style="background-color:  rgba(204, 0, 153, 0.1);" ><i class="fas fa-shield-alt"></i> 🏥 <strong> rcems {0} </strong>:  Priority in progress. There may be a delay on other distress calls. Your patience is much appreciated. </div>',
+        template = '<div class="chat-message " style="background-color:  rgba(204, 0, 153, 0.1);" ><i class="fas fa-shield-alt"></i> 🏥 <strong> RCEMS  </strong>:  Priority in progress. There may be a delay on other distress calls. Your patience is much appreciated. </div>',
         args = { fal, msg }
     })
    end
@@ -240,7 +240,7 @@ RegisterCommand('rcpd', function(source, args, rawCommand)
 	
 	if jobN == 'police' then
     TriggerClientEvent('chat:addMessage', -1, {
-        template = '<div class="chat-message " style="background-color: rgba(0, 0, 255, 0.1);" ><i class="fas fa-shield-alt"></i> 👮 <strong> rcpd {0} </strong>:  {1}</div>',
+        template = '<div class="chat-message " style="background-color: rgba(0, 0, 255, 0.1);" ><i class="fas fa-shield-alt"></i> 👮 <strong> RCPD  </strong>:  {1}</div>',
         args = { fal, msg }
     })
    end
@@ -258,7 +258,7 @@ RegisterCommand('warncarchase', function(source, args, rawCommand)
 	
 	if jobN == 'police' then
     TriggerClientEvent('chat:addMessage', -1, {
-        template = '<div class="chat-message " style="background-color: rgba(0, 0, 255, 0.1);" ><i class="fas fa-shield-alt"></i> 👮 <strong> rcpd {0} </strong>:  Retro citizens please be advised there is an ongoing carchase. If you are inside a 10 mile radius please dont try to interfere. </div>',
+        template = '<div class="chat-message " style="background-color: rgba(0, 0, 255, 0.1);" ><i class="fas fa-shield-alt"></i> 👮 <strong> RCPD  </strong>:  Retro citizens please be advised there is an ongoing carchase. If you are inside a 10 mile radius please dont try to interfere. </div>',
         args = { fal, msg }
     })
    end
@@ -276,7 +276,7 @@ RegisterCommand('warnshootout', function(source, args, rawCommand)
 	
 	if jobN == 'police' then
     TriggerClientEvent('chat:addMessage', -1, {
-        template = '<div class="chat-message " style="background-color: rgba(0, 0, 255, 0.1);" ><i class="fas fa-shield-alt"></i> 👮 <strong> rcpd {0} </strong>:  Retro citizens please be advised there is an ongoing shootout everyone inside 1 mile radius will be shot dead! </div>',
+        template = '<div class="chat-message " style="background-color: rgba(0, 0, 255, 0.1);" ><i class="fas fa-shield-alt"></i> 👮 <strong> RCPD  </strong>:  Retro citizens please be advised there is an ongoing shootout everyone inside 1 mile radius will be shot dead! </div>',
         args = { fal, msg }
     })
    end
@@ -348,7 +348,7 @@ RegisterCommand('rcmech', function(source, args, rawCommand)
 	
 	if jobN == 'groove' then
     TriggerClientEvent('chat:addMessage', -1, {
-        template = '<div class="chat-message " style="background-color: rgba(0, 153, 0, 0.1);" ><i class="fas fa-shield-alt"></i> 🔧 <strong> rcmech {0} </strong>:  {1}</div>',
+        template = '<div class="chat-message " style="background-color: rgba(0, 153, 0, 0.1);" ><i class="fas fa-shield-alt"></i> 🔧 <strong> RCMECH  </strong>:  {1}</div>',
         args = { fal, msg }
     })
    end
@@ -366,7 +366,7 @@ RegisterCommand('rcmechotw', function(source, args, rawCommand)
 	
 	if jobN == 'groove' then
     TriggerClientEvent('chat:addMessage', -1, {
-        template = '<div class="chat-message " style="background-color: rgba(0, 153, 0, 0.1);" ><i class="fas fa-shield-alt"></i> 🔧 <strong> rcmech {0} </strong>: RETRO CITY MECH IS ON THE WAY!</div>',
+        template = '<div class="chat-message " style="background-color: rgba(0, 153, 0, 0.1);" ><i class="fas fa-shield-alt"></i> 🔧 <strong> RCMECH  </strong>: RETRO CITY MECH IS ON THE WAY!</div>',
         args = { fal, msg }
     })
    end

@@ -453,6 +453,49 @@ Citizen.CreateThread(function()
 end)
 
 
+
+Citizen.CreateThread(function()
+
+    for place, value in pairs(ConfigGunLicense.Zones) do
+		local blip = AddBlipForCoord(value["coords"].x, value["coords"].y)
+		SetBlipSprite (blip, 110)
+		SetBlipDisplay(blip, 4)
+		SetBlipScale  (blip, 0.6)
+		SetBlipColour (blip, 0)
+		SetBlipAsShortRange(blip, true)
+		BeginTextCommandSetBlipName("STRING")
+		AddTextComponentString(place)
+		EndTextCommandSetBlipName(blip)
+    end
+    
+    while true do
+        local sleepTime = 500
+        local coords = GetEntityCoords(PlayerPedId())
+
+        for place, value in pairs(ConfigGunLicense.Zones) do
+            local dst = GetDistanceBetweenCoords(coords, value["coords"], true)
+            local text = place
+
+            if dst <= 7.5 then 
+                sleepTime = 5
+                
+                if dst <= 1.25 then
+                    text = "Press [~r~E~w~] to buy Gun License for 50000 "
+                    if IsControlJustReleased(0, 38) then
+                        ESX.UI.Menu.CloseAll()
+		                    print('BUY LICENSE!')
+                               TriggerServerEvent('suku:buyLicense')   
+                    end
+                end
+
+                Marker(text, value["coords"].x, value["coords"].y, value["coords"].z - 0.98) 
+            end
+        end
+
+        Citizen.Wait(sleepTime)
+    end
+end)
+
 function TakeXray(place, value) 
 
 

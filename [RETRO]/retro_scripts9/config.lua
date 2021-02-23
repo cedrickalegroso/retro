@@ -274,6 +274,33 @@ ConfigAlbularyo.Zones = {
 }
 
 
+ConfigGunLicense = {}
+
+ConfigGunLicense.XrayTime = 20000
+
+ConfigGunLicense.XrayPay = 250
+
+ConfigGunLicense.Zones = {
+
+ 
+
+	["Gun License"] = {
+
+		["coords"] = vector3(12.591694831848,-1105.4445800781,29.797019958496),
+
+
+        ["bed"] = vector4(-441.21328735352,-303.36676025391,35.779876708984, 115),
+        
+
+        ["timed"] = 1
+
+    }, --
+
+}
+
+
+
+
 intervals = { -- Unit: seconds
 	['save'] = 10, -- How often the vehicles' position should be saved. The save schedule is only useful after game crashes, or disconnects while in vehicle.
 	['check'] = 15 -- How often should it check for despawned vehicles.
