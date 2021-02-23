@@ -143,7 +143,7 @@ InvCanCarry = function(xPlayer, inv, name, count, totWeight)
         local xItem = xPlayer.getInventoryItem(k)
         print("was here")
         if xItem ~= nil then
-            print("item not nill " .. name)
+     --       print("item not nill " .. name)
             if xItem.weight ~= nil then
                 --	print('total 1'.. total)
                 total = total + Config.Weight.ItemWeights[name] * v[1].count
@@ -152,7 +152,7 @@ InvCanCarry = function(xPlayer, inv, name, count, totWeight)
                 itemWeight = Config.Weight.ItemWeights[name]
             end
         else
-            print("item  nill")
+          --  print("item  nill")
             total = Config.Weight.ItemWeights[name] + 0.01
 
             print(total)
@@ -254,7 +254,7 @@ ESX.RegisterServerCallback(
                                    -- print('item'.. xItem.name)
                                     local itemLimit = xItem.limit
                                     if itemLimit == -1 then
-                                        print("not nill 2")
+                                   --     print("not nill 2")
                                         itemLimit = 100000
                                     end
                                     total = total + Config.Weight.ItemWeights[xItem.name] * value.count
