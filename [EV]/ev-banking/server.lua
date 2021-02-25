@@ -48,10 +48,10 @@ AddEventHandler('bank:withdraw', function(amount)
 		TriggerClientEvent('mythic_notify:client:SendAlert', _source, { type = 'error', text = "Invalid amount." })
 	else
 
-		local tax = amount * 0.2
-        local amount = amount + tax
+		local tax = 15
+        local amount1 = amount + tax
 
-		xPlayer.removeAccountMoney('bank', amount)
+		xPlayer.removeAccountMoney('bank', amount1)
 		xPlayer.addMoney(amount)
 
 		TriggerEvent('esx_society:depositTax',xPlayer.source, 'government', tax)
