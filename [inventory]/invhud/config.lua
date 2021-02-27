@@ -416,7 +416,7 @@ Config.Weight = {
             [11] = {["gbox"] = 30, ["trunk"] = 6000}, -- UTILITY
             [12] = {["gbox"] = 30, ["trunk"] = 1600}, -- VANS
             [13] = {["gbox"] = 5, ["trunk"] = 0}, -- BICYCLES
-            [14] = {["gbox"] = 100, ["trunk"] = 0}, -- BOATS
+            [14] = {["gbox"] = 10000, ["trunk"] = 10000}, -- BOATS
             [15] = {["gbox"] = 100, ["trunk"] = 0}, -- HELICOPTERS
             [16] = {["gbox"] = 100, ["trunk"] = 0}, -- PLANES
             [17] = {["gbox"] = 30, ["trunk"] = 200}, -- SERVICE
