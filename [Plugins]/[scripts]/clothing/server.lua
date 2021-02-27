@@ -6,19 +6,7 @@ RegisterServerEvent('clothing:save')
 AddEventHandler('clothing:save', function(data,currentTats)
 	local xPlayer = ESX.GetPlayerFromId(source)
 
-	for i=1, #xPlayer.loadout, 1 do
-		table.insert(playerLoadout, xPlayer.loadout[i])
-	end
-
-	-- give back wepaons after a couple of seconds
-	Citizen.CreateThread(function()
-		Citizen.Wait(5000)
-		for i=1, #playerLoadout, 1 do
-			if playerLoadout[i].label ~= nil then
-				xPlayer.addWeapon(playerLoadout[i].name, playerLoadout[i].ammo)
-			end
-		end
-	end)
+	
 
 	MySQL.Async.execute('UPDATE users SET `skin` = @data WHERE identifier = @identifier',
 	{

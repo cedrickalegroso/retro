@@ -724,8 +724,8 @@ function SwitchCam(name)
 end
 
 RegisterNUICallback('escape', function(data, cb)
-    TriggerEvent('esx:restoreLoadout')
-   -- Save(data['save'])
+    
+    Save(data['save'])
     TriggerEvent('clothing:loadclothes')
     EnableGUI(false, false)
     cb('ok')
@@ -830,6 +830,7 @@ function Save(save)
         TriggerEvent('esx:restoreLoadout')
     else
         LoadPed(oldPed)
+        TriggerEvent('esx:restoreLoadout')
     end
 
     CustomCamera('torso')
