@@ -90,9 +90,9 @@
             "number": "ambulance"
         },
         {
-            "display": "Groove",
-            "backgroundColor": "orange",
-            "number": "groove"
+            "display": "Taxi",
+            "backgroundColor": "yellow",
+            "number": "taxi"
         }
     ],
 
@@ -109,10 +109,10 @@
             "letter": "P"
         },
         {
-            "number": "groove",
-            "display": "Groove",
-            "backgroundColor": "orange",
-            "letter": "G"
+            "number": "Taxi",
+            "display": "Taxi",
+            "backgroundColor": "green",
+            "letter": "T"
         }
     ],
     "apps": [{
@@ -196,14 +196,6 @@
             "tr_TR__name": "Dark Chat",
             "icons": "/html/static/img/icons_app/tchat.png",
             "routeName": "tchat",
-            "enabled": true
-        },
-        {
-            "name": "Valet",
-            "en_US__name": "Valet",
-            "tr_TR__name": "Vale",
-            "icons": "/html/static/img/icons_app/vale.png",
-            "routeName": "vale",
             "enabled": true
         }
 

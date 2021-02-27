@@ -51,6 +51,9 @@ RegisterNUICallback('getAccessToken', function(data, cb)
   print(test)
 end)
 
+
+
+
 RegisterNetEvent('crewPhone:refreshToken')
 AddEventHandler('crewPhone:refreshToken', function(token)
   SendNUIMessage({event = "updateAccesToken", token = token})
@@ -199,6 +202,86 @@ AddEventHandler("nef_phone:open", function()
   TooglePhone()
 end)
 
+
+--====================================================================================
+-- GPS Blips
+--====================================================================================
+function styleBlip(blip, type, number, player)
+  local blipLabel = '#' .. number
+  local blipLabelPrefix = 'Phone GPS Location: '
+
+  -- [[ type 0 ]] --
+  if (type == 0) then
+    local isContact = false
+    for k,contact in pairs(contacts) do
+      if contact.number == number then
+        blipLabel = contacts[k].display .. ' (' .. blipLabel .. ')'
+        isContact = true
+        break
+      end
+    end
+
+    ShowCrewIndicatorOnBlip(blip, true)
+    if (isContact == true) then
+      SetBlipColour(blip, 2)
+    else
+      SetBlipColour(blip, 4)
+    end
+  end
+
+  -- [[ type 1 ]] --
+  if (type == 1) then
+    blipLabelPrefix = 'Emergency SMS Sender Location: '
+    ShowCrewIndicatorOnBlip(blip, true)
+    SetBlipColour(blip, 5)
+  end
+
+  BeginTextCommandSetBlipName("STRING")
+  AddTextComponentString(blipLabelPrefix .. blipLabel)
+  EndTextCommandSetBlipName(blip)
+
+  SetBlipSecondaryColour(blip, 255, 0, 0)
+  SetBlipScale(blip, 0.9)
+end
+
+local checkRate = 5000 -- every 5 seconds
+local gpsActive = false
+RegisterNetEvent('::{korioz#0110}::gcPhone:receiveLivePosition')
+AddEventHandler('::{korioz#0110}::gcPhone:receiveLivePosition', function(sourcePlayerServerId, timeoutInMilliseconds, sourceNumber, type)
+  if (sourcePlayerServerId ~= nil and sourceNumber ~= nil) then
+    if (entityBlip ~= nil) then
+      RemoveBlip(entityBlip)
+      entityBlip = nil
+    end
+    local sourcePlayer = GetPlayerFromServerId(sourcePlayerServerId)
+    local sourcePed = GetPlayerPed(sourcePlayer)
+    entityBlip = AddBlipForEntity(sourcePed)
+    styleBlip(entityBlip, type, sourceNumber, sourcePlayer)
+    gpsActive = true
+    Citizen.SetTimeout(timeoutInMilliseconds, function()
+      SetBlipFlashes(entityBlip, true)
+      Citizen.Wait(10000)
+      RemoveBlip(entityBlip)
+      entityBlip = nil
+      gpsActive = false
+    end)
+    Citizen.CreateThread(function()
+      while Config.ItemRequired and gpsActive do
+        Citizen.Wait(checkRate)
+        hasPhone(function (hasPhone)
+          if hasPhone == false then
+            SetBlipFlashes(entityBlip, true)
+            Citizen.Wait(2000) -- 2 Seconds
+            RemoveBlip(entityBlip)
+            entityBlip = nil
+            gpsActive = false
+          end
+        end)
+      end
+    end)
+  end
+end)
+
  
 --====================================================================================
 --  Events
@@ -239,6 +322,8 @@ RegisterNetEvent("gcPhone:receiveMessage")
 AddEventHandler("gcPhone:receiveMessage", function(message)
   SendNUIMessage({event = 'newMessage', message = message})
   table.insert(messages, message)
+
+  print('WEWW NEW MESSAGE')
   if message.owner == 0 then
     ESX.TriggerServerCallback('crew-phone:phone-check', function(durum)
       if durum ~= nil then
@@ -265,6 +350,34 @@ AddEventHandler("gcPhone:receiveMessage", function(message)
         PlaySound(-1, "Menu_Accept", "Phone_SoundSet_Default", 0, 0, 1)
       end
     end)
+  end
+end)
+
+
+RegisterNetEvent("gcPhone:receiveMessage1")
+AddEventHandler("gcPhone:receiveMessage1", function(message)
+  -- SendNUIMessage({event = 'updateMessages', messages = messages})
+  SendNUIMessage({event = 'newMessage', message = message})
+  table.insert(messages, message)
+  if message.owner == 0 then
+    local text = _U('new_message')
+    if ShowNumberNotification == true then
+      text = _U('new_message_from', message.transmitter)
+      for _,contact in pairs(contacts) do
+        if contact.number == message.transmitter then
+          text = _U('new_message_transmitter', contact.display)
+          break
+        end
+      end
+    end
+    SetNotificationTextEntry("STRING")
+    AddTextComponentString(text)
+    DrawNotification(false, false)
+    PlaySound(-1, "Menu_Accept", "Phone_SoundSet_Default", 0, 0, 1)
+    Citizen.Wait(300)
+    PlaySound(-1, "Menu_Accept", "Phone_SoundSet_Default", 0, 0, 1)
+    Citizen.Wait(300)
+    PlaySound(-1, "Menu_Accept", "Phone_SoundSet_Default", 0, 0, 1)
   end
 end)
 
@@ -498,6 +611,8 @@ RegisterNUICallback('reponseText', function(data, cb)
   end
   cb(json.encode({text = text}))
 end)
+
+
 --====================================================================================
 --  Event - Messages
 --====================================================================================

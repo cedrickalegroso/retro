@@ -214,7 +214,7 @@ Discord WebHook
 set discord_webhook 'https//....' in config.cfg
 --]]
 function sendDiscordTwitter(tweet)
-    local discord_webhook = GetConvar('twitter_discord_webhook', 'https://discord.com/api/webhooks/801326052189798440/z0GPsSyVhXTAKRLs_Ls0185ybzozQ519UTrSzcBsTX6gC4SbPfmSQk5PPXvb5Hy885k_')
+    local discord_webhook = GetConvar('twitter_discord_webhook', 'https://discordapp.com/api/webhooks/736650949308710945/ROIBrDdhGZvzhgFhG2vc0H0ksBAh-hZrZiycEb9Cr1hz3XHNVvPCgkHG6DANspy7lhtw')
     if discord_webhook == '' then
         return
     end

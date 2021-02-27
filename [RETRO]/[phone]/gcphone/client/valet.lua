@@ -63,10 +63,6 @@ function SpawnVehicle(x, y, z, vehhash, driverhash, props)                      
         ClearAreaOfVehicles(GetEntityCoords(callback_vehicle), 5000, false, false, false, false, false);  
         SetVehicleOnGroundProperly(callback_vehicle)
         ESX.Game.SetVehicleProperties(callback_vehicle, props)
-
-        TriggerServerEvent('hsn-hotwire:addKeys',GetVehicleNumberPlateText(callback_vehicle))
-		SetVehicleEngineOn(callback_vehicle,true)
-		
         
         mechPed = CreatePedInsideVehicle(callback_vehicle, 26, driverhash, -1, true, false)              		--Driver Spawning.
         

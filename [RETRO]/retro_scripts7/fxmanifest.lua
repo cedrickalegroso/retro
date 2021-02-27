@@ -48,7 +48,7 @@ client_scripts {
 
    --ambu
  'esx_ambulancejob/client/job.lua',
-  'esx_ambulancejob/client/main.lua',
+ 'esx_ambulancejob/client/main.lua',
 
    --popo
   'esx_policejob/client/vehicle.lua',

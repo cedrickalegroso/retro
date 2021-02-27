@@ -1,4 +1,5 @@
 ESX = nil
+local PhoneNumbers        = {}
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 math.randomseed(os.time())
@@ -6,6 +7,7 @@ math.randomseed(os.time())
 ESX.RegisterServerCallback("crewPhone:getAccessToken",function(a,b)
     b(________)
 end)
+
 
 AddEventHandler('esx_phone:registerNumber', function(number, type, sharePos, hasDispatch, hideNumber, hidePosIfAnon)
     --print('= INFO = Enregistrement du telephone ' .. number .. ' => ' .. type)
@@ -405,6 +407,13 @@ AddEventHandler('gcPhone:sendMessage', function(phoneNumber, message)
     addMessage(sourcePlayer, identifier, phoneNumber, message)
 end)
 
+RegisterServerEvent('gcPhone:sendMessage1')
+AddEventHandler('gcPhone:sendMessage1', function(source, phoneNumber, message)
+    local sourcePlayer = tonumber(source)
+    local identifier = getPlayerID(sourcePlayer)
+    addMessage(sourcePlayer, identifier, phoneNumber, message)
+end)
+
 
 RegisterCommand('98send', function(source)
     local sourcePlayer = tonumber(source)
@@ -422,12 +431,20 @@ RegisterCommand('98send', function(source)
           --  print(xPlayer.identifier)
         --  TriggerClientEvent('mythic_notify:client:SendAlert', xPlayer.source, { type = 'inform', text = 'Hype! Custom Styling!', style = { ['background-color'] = '#ffffff', ['color'] = '#000000' } })
 
-             TriggerClientEvent('retro_scripts:notifyemsdeads', xPlayer.source)
+             TriggerClientEvent('_scripts:notifyemsdeads', xPlayer.source)
           end
       end	
 
   addMessage(sourcePlayer, identifier, 'ambu', message)
 end)
+
+
+RegisterCommand('taxi', function(source)
+    local xPlayer = ESX.GetPlayerFromId(source)
+   message = 'GPS: ' .. GetEntityCoords(GetPlayerPed(source)).x .. ', ' .. GetEntityCoords(GetPlayerPed(source)).y
+    TriggerEvent('gcPhone:sendMessage1', source, 'taxi',  message )
+end)
+
 
 RegisterServerEvent('gcPhone:deleteMessage')
 AddEventHandler('gcPhone:deleteMessage', function(msgId)
@@ -518,6 +535,42 @@ end
 function notifyNewAppelsHisto (src, num) 
     sendHistoriqueCall(src, num)
 end
+
+RegisterServerEvent('esx_addons_gcphone:startCall1')
+AddEventHandler('esx_addons_gcphone:startCall1', function (number, message, coords)
+    print('start call')
+  local source = source
+  if PhoneNumbers[number] ~= nil then
+    getPhoneNumber(source, function (phone) 
+        print(message)
+        print(coords)
+        print(phone)
+      notifyAlertSMS(number, {
+        message = message,
+        coords = coords,
+        numero = phone,
+      }, PhoneNumbers[number].sources)
+    end)
+  else
+    print('= WARNING = Appels sur un service non enregistre => numero : ' .. number)
+  end
+end)
+
+
+function getPhoneNumber (source, callback) 
+    local xPlayer = ESX.GetPlayerFromId(source)
+    if xPlayer == nil then
+      callback(nil)
+    end
+    MySQL.Async.fetchAll('SELECT * FROM users WHERE identifier = @identifier',{
+      ['@identifier'] = xPlayer.identifier
+    }, function(result)
+      callback(result[1].phone_number)
+    end)
+  end
+  
+
+
 
 RegisterServerEvent('gcPhone:getHistoriqueCall')
 AddEventHandler('gcPhone:getHistoriqueCall', function()

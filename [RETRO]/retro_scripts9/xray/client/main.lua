@@ -354,9 +354,10 @@ Citizen.CreateThread(function()
 						local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 
 						if closestPlayer == -1 or closestDistance > 1.0 then
+						--if 1 > 5 then
 							ESX.ShowNotification('No Players nearby')
 						else
-							ESX.ShowNotification('The Albularyo gave you the magic spell to revive your crewmate!')
+						
 							if quantity > 0 then
 								local closestPlayerPed = GetPlayerPed(closestPlayer)
 
@@ -367,71 +368,146 @@ Citizen.CreateThread(function()
 									ESX.TriggerServerCallback('retro_scripts:checkblack', function(black)
 										if black == 1 then 
 
-											ESX.ShowNotification('~r~ 5000 ~w~Black Money was deducted from your account.')
-											TriggerServerEvent('CUSTOM_esx_ambulance:requestCPR', GetPlayerServerId(closestPlayer), GetEntityHeading(playerPed), GetEntityCoords(playerPed), GetEntityForwardVector(playerPed))
-
-											ESX.UI.Menu.CloseAll()
-		
-											ESX.ShowNotification(_U('revive_inprogress'), "success")
-		
-		
-											-- print(GetAnimDuration(lib2, anim_success))
-		
-											local cpr = true
-		
-											Citizen.CreateThread(function()
-												while cpr do
-													Citizen.Wait(0)
-													DisableAllControlActions(0)
-													EnableControlAction(0, 1, true)
+										 
+											ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'citizen_interaction',
+											{
+												title		= 'Albularyo Menu',
+												align		= 'top-left',
+												elements	= {
+													{label = 'Revive nearest player', value = 'revive'},
+												--	{label = _U('ems_menu_small'), value = 'small'},
+													{label = 'Heal nearest player', value = 'big'},
+												--	{label = _U('ems_menu_putincar'), value = 'put_in_vehicle'}
+												}
+											}, function(data, menu)
+												if IsBusy then return end
+								
+												local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
+								
+												if closestPlayer == -1 or closestDistance > 1.0 then
+													ESX.ShowNotification(_U('no_players'))
+												else
+								
+													if data.current.value == 'revive' then
+								
+														ESX.ShowNotification('The Albularyo gave you the magic spell to revive your crewmate!')
+														
+																local closestPlayerPed = GetPlayerPed(closestPlayer)
+								
+																if IsPedDeadOrDying(closestPlayerPed, 1) then
+																	local playerPed = PlayerPedId()
+								
+																	TriggerServerEvent('CUSTOM_esx_ambulance:requestCPR', GetPlayerServerId(closestPlayer), GetEntityHeading(playerPed), GetEntityCoords(playerPed), GetEntityForwardVector(playerPed))
+								
+																	ESX.UI.Menu.CloseAll()
+								
+																	ESX.ShowNotification(_U('revive_inprogress'))
+								
+																	local lib, anim = 'mini@cpr@char_a@cpr_str', 'cpr_pumpchest'
+								
+																	for i=1, 15, 1 do
+																		Citizen.Wait(900)
+																
+																		ESX.Streaming.RequestAnimDict(lib, function()
+																			TaskPlayAnim(PlayerPedId(), lib, anim, 8.0, -8.0, -1, 0, 0, false, false, false)
+																		end)
+																	end
+									
+																
+																		TriggerServerEvent('esx_ambulancejob:reviveAlbularyo', GetPlayerServerId(closestPlayer))
+									
+																
+																			ESX.ShowNotification('Revived by Albularyo', GetPlayerName(closestPlayer))
+																	
+																else
+																	ESX.ShowNotification(_U('player_not_unconscious'))
+																end
+													
+								
+															
+								
+												
+								
+													elseif data.current.value == 'small' then
+								
+														ESX.TriggerServerCallback('esx_ambulancejob:getItemAmount', function(quantity)
+															if quantity > 0 then
+																local closestPlayerPed = GetPlayerPed(closestPlayer)
+																local health = GetEntityHealth(closestPlayerPed)
+								
+																if health > 0 then
+																	local playerPed = PlayerPedId()
+								
+																	IsBusy = true
+																	ESX.ShowNotification(_U('heal_inprogress'))
+																	TaskStartScenarioInPlace(playerPed, 'CODE_HUMAN_MEDIC_TEND_TO_DEAD', 0, true)
+																	Citizen.Wait(10000)
+																	ClearPedTasks(playerPed)
+								
+																	TriggerServerEvent('esx_ambulancejob:removeItem', 'bandage')
+																	TriggerServerEvent('esx_ambulancejob:heal', GetPlayerServerId(closestPlayer), 'small')
+																	ESX.ShowNotification(_U('heal_complete', GetPlayerName(closestPlayer)))
+																	IsBusy = false
+																else
+																	ESX.ShowNotification(_U('player_not_conscious'))
+																end
+															else
+																ESX.ShowNotification(_U('not_enough_bandage'))
+															end
+														end, 'bandage')
+								
+													elseif data.current.value == 'big' then
+								
+														ESX.TriggerServerCallback('esx_ambulancejob:getItemAmount', function(quantity)
+															if quantity > 0 then
+																local closestPlayerPed = GetPlayerPed(closestPlayer)
+																local health = GetEntityHealth(closestPlayerPed)
+								
+																if health > 0 then
+																	local playerPed = PlayerPedId()
+								
+																	IsBusy = true
+																	ESX.ShowNotification(_U('heal_inprogress'))
+																	TaskStartScenarioInPlace(playerPed, 'CODE_HUMAN_MEDIC_TEND_TO_DEAD', 0, true)
+																	Citizen.Wait(10000)
+																	ClearPedTasks(playerPed)
+								
+																	TriggerServerEvent('esx_ambulancejob:removeItem', 'medikit')
+																	TriggerServerEvent('esx_ambulancejob:heal', GetPlayerServerId(closestPlayer), 'big')
+																	ESX.ShowNotification(_U('heal_complete', GetPlayerName(closestPlayer)))
+																	IsBusy = false
+																else
+																	ESX.ShowNotification(_U('player_not_conscious'))
+																end
+															else
+																ESX.ShowNotification(_U('not_enough_medikit'))
+															end
+														end, 'medikit')
+								
+													elseif data.current.value == 'put_in_vehicle' then
+														TriggerServerEvent('esx_ambulancejob:putInVehicle', GetPlayerServerId(closestPlayer))
+													end
 												end
+											end, function(data, menu)
+												menu.close()
 											end)
-		
-											ClampGameplayCamPitch(0.0, -90.0)
-		
-											SetCurrentPedWeapon(playerPed, GetHashKey("WEAPON_UNARMED"), true)
-		
-											TaskPlayAnim(playerPed, lib1_char_a, anim_start, 8.0, 8.0, -1, 0, 0, false, false, false)
-		
-											Citizen.Wait(15800 - 900)
-											for i=1, 15, 1 do
-												Citizen.Wait(900)
-												TaskPlayAnim(playerPed, lib2_char_a, anim_pump, 8.0, 8.0, -1, 0, 0, false, false, false)
-											end
-		
-											cpr = false
-		
-											TaskPlayAnim(playerPed, lib2_char_a, anim_success, 8.0, 8.0, -1, 0, 0, false, false, false)
-		
-											Citizen.Wait(33590)
-		
-										--	TriggerServerEvent('esx_ambulancejob:removeItem', 'medikit')
-											TriggerServerEvent('esx_ambulancejob:revive1', GetPlayerServerId(closestPlayer))
-		
-											-- Show revive award?
-											if ConfigAmbu.ReviveReward > 0 then
-												ESX.ShowNotification(_U('revive_complete_award', GetPlayerName(closestPlayer), ConfigAmbu.ReviveReward))
-											--	exports['mythic_notify']:DoCustomHudText('inform', _U('revive_complete_award', GetPlayerName(closestPlayer), ConfigAmbu.ReviveReward), 5000)
-											else
-												--ESX.ShowNotification(_U('revive_complete', GetPlayerName(closestPlayer)))
-											--	exports['mythic_notify']:DoCustomHudText('inform', _U('revive_complete', GetPlayerName(closestPlayer)), 2500, { ['background-color'] = '#008000', ['color'] = '#ffffff' })
-											end
+
 										else
 										  ESX.ShowNotification('You dont have enough dirty money') 
 										end
 									  end, source)
 
                                    
-								else
-									ESX.ShowNotification(_U('player_not_unconscious'))
+							--	else
+							--		ESX.ShowNotification(_U('player_not_unconscious'))
 								--	exports['mythic_notify']:DoCustomHudText('inform', _U('player_not_unconscious'), 2500, { ['background-color'] = '#FF0000', ['color'] = '#ffffff' })
-								end
+							--	end
 							else
 								ESX.ShowNotification(_U('not_enough_medikit'))
 								--exports['mythic_notify']:DoCustomHudText('inform', _U('not_enough_medikit'), 2500, { ['background-color'] = '#FF0000', ['color'] = '#ffffff' })
 							end
 						end
-
+					end
 
 						
 						
