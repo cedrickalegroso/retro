@@ -619,6 +619,57 @@ Config.Shops = {
             Display = 4
         }
     },
+	["Dark PawnShop"] = {
+        Type = "purchase",
+        Account = "money",
+        Society = {
+            Name = false,
+            OnlySociety = false,
+            Options = {
+                withdraw = true,
+                deposit = true,
+                wash = false,
+                employess = true,
+                grades = true
+            }
+        },
+        BuyBack = 0.5,
+        Locations = {
+            Store = {
+                vector3(412.43139648438,314.63217163086,103.02115631104),
+				--vector3(3807.9057617188,4478.6000976562,5.3653311729431),
+            },
+            Boss = {
+            --    vector3(372.875, 322.896, 102.566)
+            }
+        },
+        Items = {
+            {name = "shovel", price = 650},
+			{name = "lockpick", price = 10},
+			{name = "cashregbypass", price = 450},
+			{name = "VaultDoorBypass", price = 500},
+            {name = "VaultDoorBypass1", price = 500},
+            {name = "VaultDoorBypass2", price = 500},
+            {name = "VaultDoorCrowBar", price = 500},
+			{name = "illegalcashbank", price = 2500},
+            {name = "armor", price = 5000}
+        },
+        Markers = {
+            Use = true,
+            Type = 1,
+            Draw = 3,
+            UseText = true,
+            RGB = vector3(255, 255, 255)
+        },
+        Blips = {
+            Use = true,
+            Sprite = 52,
+            Color = 2,
+            Scale = 0.5,
+            Display = 4
+        }
+    },
+
 	["Isdaan ni Ryster"] = {
         Type = "purchase",
         Account = "money",
@@ -682,7 +733,7 @@ Config.Shops = {
         BuyBack = 0.5,
         Locations = {
             Store = {
-                vector3(-281.13446044922, 6405.59375, 30.389196395874)
+                vector3(-281.13446044922, 6405.59375, 29.389196395874)
             },
             Boss = {
               --  vector3(372.875, 322.896, 102.566)
@@ -708,7 +759,10 @@ Config.Shops = {
 			{name = "shovel", price = 650},
 			{name = "lockpick", price = 10},
 			{name = "cashregbypass", price = 450},
-			{name = "VaultDoorBypass", price = 2500},
+			{name = "VaultDoorBypass", price = 500},
+            {name = "VaultDoorBypass1", price = 500},
+            {name = "VaultDoorBypass2", price = 500},
+            {name = "VaultDoorCrowBar", price = 500},
 			{name = "illegalcashbank", price = 2500},
             {name = "armor", price = 5000}
 		},
