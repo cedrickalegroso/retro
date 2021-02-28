@@ -875,9 +875,9 @@ end
 function OpenHelicopterSpawnerMenu(hospital, partNum)
 	local playerCoords = GetEntityCoords(PlayerPedId())
 	local elements = {
-		{label = _U('helicopter_garage'), action = 'garage'},
-		{label = _U('helicopter_store'), action = 'store_garage'},
-		{label = _U('helicopter_buy'), action = 'buy_helicopter'}
+		{label = 'Spawn Heli', action = 'spawn'},
+	--	{label = _U('helicopter_store'), action = 'store_garage'},
+	--	{label = _U('helicopter_buy'), action = 'buy_helicopter'}
 	}
 
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'helicopter_spawner', {
@@ -908,59 +908,16 @@ function OpenHelicopterSpawnerMenu(hospital, partNum)
 			end
 
 			OpenShopMenu(shopElements, playerCoords, shopCoords)
-		elseif data.current.action == 'garage' then
-			local garage = {}
+		elseif data.current.action == 'spawn' then
+			
 
-			ESX.TriggerServerCallback('esx_vehicleshop:retrieveJobVehicles', function(jobVehicles)
-				if #jobVehicles > 0 then
-					for k,v in ipairs(jobVehicles) do
-						local props = json.decode(v.vehicle)
-						local vehicleName = GetLabelText(GetDisplayNameFromVehicleModel(props.model))
-						local label = ('%s - <span style="color:darkgoldenrod;">%s</span>: '):format(vehicleName, props.plate)
+			ESX.Game.SpawnVehicle('supervolito', vector3(-505.49179077148,-306.15591430664,73.168014526367), 100, function(vehicle)
+				SetVehicleModKit(vehicle, 0)
+				SetVehicleLivery(vehicle, 0)
 
-						if v.stored then
-							label = label .. ('<span style="color:green;">%s</span>'):format(_U('garage_stored'))
-						else
-							label = label .. ('<span style="color:darkred;">%s</span>'):format(_U('garage_notstored'))
-						end
-
-						table.insert(garage, {
-							label = label,
-							stored = v.stored,
-							model = props.model,
-							vehicleProps = props
-						})
-					end
-
-					ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'helicopter_garage', {
-						title    = _U('helicopter_garage_title'),
-						align    = 'top-left',
-						elements = garage
-					}, function(data2, menu2)
-						if data2.current.stored then
-							local foundSpawn, spawnPoint = GetAvailableVehicleSpawnPoint(hospital, 'Helicopters', partNum)
-
-							if foundSpawn then
-								menu2.close()
-
-								ESX.Game.SpawnVehicle(data2.current.model, spawnPoint.coords, spawnPoint.heading, function(vehicle)
-									ESX.Game.SetVehicleProperties(vehicle, data2.current.vehicleProps)
-
-									TriggerServerEvent('esx_vehicleshop:setJobVehicleState', data2.current.vehicleProps.plate, false)
-									ESX.ShowNotification(_U('garage_released'))
-								end)
-							end
-						else
-							ESX.ShowNotification(_U('garage_notavailable'))
-						end
-					end, function(data2, menu2)
-						menu2.close()
-					end)
-
-				else
-					ESX.ShowNotification(_U('garage_empty'))
-				end
-			end, 'helicopter')
+				TriggerServerEvent('hsn-hotwire:addKeys',GetVehicleNumberPlateText(vehicle))
+				SetVehicleEngineOn(vehicle,true)
+			end)
 
 		elseif data.current.action == 'store_garage' then
 			StoreNearbyVehicle(playerCoords)
