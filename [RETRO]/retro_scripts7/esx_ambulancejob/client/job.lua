@@ -100,6 +100,7 @@ function OpenMobileAmbulanceActionsMenu()
 		align		= 'top-left',
 		elements	= {
 			{label = _U('ems_menu'), value = 'citizen_interaction'},
+			{label = 'Bill', value = 'billing'},
 			{label = 'EMS QUICK CHAT', value = 'qchat'},
 			{label = 'Skeletal System', value = 'Skel'},
 			{label = 'EMS UNCONCIOUS PATIENT MENU', value = 'skeletal'},
@@ -128,7 +129,31 @@ function OpenMobileAmbulanceActionsMenu()
 					menu.close()
 				end
 			end)
+		elseif data.current.value == 'billing' then
 
+			TriggerServerEvent('esx_policejob:message', GetPlayerServerId(closestPlayer), 'You are being billed by the EMS department')
+
+			ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'billing', {
+				title = _U('invoice_amount')
+			}, function(data, menu)
+				local amount = tonumber(data.value)
+
+				if amount == nil or amount < 0 then
+					ESX.ShowNotification(_U('amount_invalid'))
+				else
+					local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
+					if closestPlayer == -1 or closestDistance > 3.0 then
+						--ESX.ShowNotification(_U('no_players_nearby'))
+						exports['mythic_notify']:DoCustomHudText('inform', _U('no_players_nearby'), 2500, { ['background-color'] = '#FF0000', ['color'] = '#ffffff' })
+					else
+						menu.close()
+						TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(closestPlayer), 'society_ambulance', _U('ambulance'), amount)
+					end
+				end
+			end, function(data, menu)
+				menu.close()
+			end)
+			
 		elseif data.current.value == 'skeletal' then
 				ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'armory', {
 					title    = 'EMS MENU',
