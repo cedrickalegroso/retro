@@ -8,10 +8,10 @@ Citizen.CreateThread(function()
 		Citizen.Wait(0) -- prevent crashing
 
 		-- These natives have to be called every frame.
-		SetPedDensityMultiplierThisFrame(0.1) -- set npc/ai peds density to 0
-		SetRandomVehicleDensityMultiplierThisFrame(0.1) -- set random vehicles (car scenarios / cars driving off from a parking spot etc.) to 0
-		SetParkedVehicleDensityMultiplierThisFrame(0.1)
-		SetScenarioPedDensityMultiplierThisFrame(0.0, 0.1) -- set random npc/ai peds or scenario peds to 0
+		SetPedDensityMultiplierThisFrame(0.3) -- set npc/ai peds density to 0
+		SetRandomVehicleDensityMultiplierThisFrame(0.3) -- set random vehicles (car scenarios / cars driving off from a parking spot etc.) to 0
+		SetParkedVehicleDensityMultiplierThisFrame(0.3)
+		SetScenarioPedDensityMultiplierThisFrame(0.0, 0.3) -- set random npc/ai peds or scenario peds to 0
 		SetGarbageTrucks(false) -- Stop garbage trucks from randomly spawning
 		SetRandomBoats(false) -- Stop random boats from spawning in the water.
 		SetCreateRandomCops(false) -- disable random cops walking/driving around.
@@ -29,15 +29,15 @@ local x,y,z = table.unpack(GetEntityCoords(PlayerPedId()))
         if IsPedSittingInAnyVehicle(GetPlayerPed(-1)) then
 
             if GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1),false),-1) == GetPlayerPed(-1) then
-                SetVehicleDensityMultiplierThisFrame(0.0)
-                SetParkedVehicleDensityMultiplierThisFrame(0.1)
+                SetVehicleDensityMultiplierThisFrame(0.2)
+                SetParkedVehicleDensityMultiplierThisFrame(0.3)
             else
-                SetVehicleDensityMultiplierThisFrame(0.0)
-                SetParkedVehicleDensityMultiplierThisFrame(0.1)
+                SetVehicleDensityMultiplierThisFrame(0.2)
+                SetParkedVehicleDensityMultiplierThisFrame(0.3)
             end
         else
-          SetParkedVehicleDensityMultiplierThisFrame(0.1)
-          SetVehicleDensityMultiplierThisFrame(0.1)
+          SetParkedVehicleDensityMultiplierThisFrame(0.3)
+          SetVehicleDensityMultiplierThisFrame(0.3)
         end
 	end
 end)
@@ -71,11 +71,11 @@ Citizen.CreateThread(function()
 		Citizen.Wait(0) -- prevent crashing
 
 		-- These natives have to be called every frame.
-		SetVehicleDensityMultiplierThisFrame(0.1) -- set traffic density to 0 
+		SetVehicleDensityMultiplierThisFrame(0.3) -- set traffic density to 0 
 		SetPedDensityMultiplierThisFrame(0.3) -- set npc/ai peds density to 0
 		SetRandomVehicleDensityMultiplierThisFrame(0.3) -- set random vehicles (car scenarios / cars driving off from a parking spot etc.) to 0
 		SetParkedVehicleDensityMultiplierThisFrame(0.3) -- set random parked vehicles (parked car scenarios) to 0
-		SetScenarioPedDensityMultiplierThisFrame(0.0, 0.1) -- set random npc/ai peds or scenario peds to 0
+		SetScenarioPedDensityMultiplierThisFrame(0.0, 0.3) -- set random npc/ai peds or scenario peds to 0
 		SetGarbageTrucks(false) -- Stop garbage trucks from randomly spawning
 		SetRandomBoats(false) -- Stop random boats from spawning in the water.
 		SetCreateRandomCops(false) -- disable random cops walking/driving around.

@@ -25,9 +25,11 @@ AddEventHandler("retro_scripts:emsbed1", function(tPID, source)
 	local pP = GetPlayerPed(-1)
 
 
-	SetEntityCoords(PlayerPedId(pP), -448.35134887695,-283.72018432617,35.833194732666, true, true, true, false)
-	SetEntityHeading(PlayerPedId(pP), 21)
+	--SetEntityCoords(PlayerPedId(pP), -448.35134887695,-283.72018432617,35.833194732666, true, true, true, false)
+    SetEntityCoords(PlayerPedId(pP), -258.48245239258,6309.3671875,33.355800628662, true, true, true, false)
+	SetEntityHeading(PlayerPedId(pP), 221.60)
 
+    --
 	
 
 	TriggerEvent("mythic_progbar:client:progress", {
@@ -78,8 +80,8 @@ AddEventHandler("retro_scripts:emsbed1", function(tPID, source)
 end)
 
 function emsbed1done(pP)
-    SetEntityCoords(PlayerPedId(pP), -448.35134887695,-283.72018432617,35.833194732666, true, true, true, false)
-    SetEntityHeading(PlayerPedId(pP), 21)
+    SetEntityCoords(PlayerPedId(pP), -256.84561157227,6309.646484375,32.431488037109, true, true, true, false)
+    SetEntityHeading(PlayerPedId(pP), 221.60)
 end
 
 
@@ -93,8 +95,8 @@ AddEventHandler("retro_scripts:emsbed2", function(tPID)
 	local pP = GetPlayerPed(-1)
 
 
-	SetEntityCoords(PlayerPedId(pP), -451.35906982422,-285.08215332031,35.833198547363, true, true, true, false)
-	SetEntityHeading(PlayerPedId(pP), 21)
+	SetEntityCoords(PlayerPedId(pP), -255.85194396973,6311.8125,33.355800628662, true, true, true, false)
+	SetEntityHeading(PlayerPedId(pP), 221.60)
 
 	TriggerEvent("mythic_progbar:client:progress", {
         name = "unique_action_name",
@@ -117,8 +119,8 @@ AddEventHandler("retro_scripts:emsbed2", function(tPID)
         }
     }, function(status)
         if not status then
-            SetEntityCoords(PlayerPedId(pP), -451.35906982422,-285.08215332031,35.833198547363, true, true, true, false)
-            SetEntityHeading(PlayerPedId(pP), 21)
+            SetEntityCoords(PlayerPedId(pP), -254.22267150879,6311.7944335938,32.431495666504, true, true, true, false)
+            SetEntityHeading(PlayerPedId(pP), 221.60)
         
         end
     end)

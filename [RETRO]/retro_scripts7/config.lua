@@ -134,19 +134,37 @@ ConfigAmbu.RemoveItemsAfterRPDeath    = true
 ConfigAmbu.EarlyRespawnFine           = true
 ConfigAmbu.EarlyRespawnFineAmount     = 20000
 
-ConfigAmbu.RespawnPoint = {coords = vector3(-444.88052368164,-366.28948974609,33.315761566162), heading = 48.5}
+ConfigAmbu.RespawnPoint = {coords = vector3(-238.38833618164,6321.3564453125,32.397315979004), heading = 48.5}
 
 
 ConfigAmbu.Hospitals = {
 
 	PillBoxHospital = {
+	--[[
+-238.38833618164,6321.3564453125,32.397315979004
+
+ConfigAmbu.RespawnPoint = {coords = vector3(-444.88052368164,-366.28948974609,33.315761566162), heading = 48.5}
 	
-		Blip = {
+Blip = {
 			coords = vector3( 	-444.88052368164,-366.28948974609,33.315761566162), --pillbox
 			sprite = 61,
 			scale  = 0.7,
 			color  = 2
 		},
+
+			AmbulanceActions = {
+			vector3(-510.49713134766,-312.13687133789,41.320701599121)
+		},
+
+		-255.15818786621,6329.41796875,32.431537628174
+	]]--
+		
+	Blip = {
+		coords = vector3( 	-235.31678771973,6314.6484375,31.475980758667), --pillbox
+		sprite = 61,
+		scale  = 0.7,
+		color  = 2
+	},
 
 		Blip2 = {
 			coords = vector3(-240.00073242188,6328.1376953125,32.400386810303), --pillbox
@@ -158,7 +176,7 @@ ConfigAmbu.Hospitals = {
 
 
 		AmbulanceActions = {
-			vector3(-510.49713134766,-312.13687133789,41.320701599121)
+			vector3(-255.15818786621,6329.41796875,32.131537628174)
 		},
 
 		
@@ -466,8 +484,9 @@ ConfigPOPO.PoliceStations = {
 
 	
 
-Armories = {
-		--	{ x = 451.699, y = -980.356, z = 29.689 },
+Armories = { -- ,,
+			{ x = 487.08944702148, y = -996.74365234375, z = 29.689645767212 },
+			{ x = 1849.8963623047, y = 3686.1931152344, z = 33.267040252686 },
 		},
 
 

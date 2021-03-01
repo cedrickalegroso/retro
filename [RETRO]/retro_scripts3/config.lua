@@ -970,7 +970,36 @@ Config.ZonesLS = {
 		Hint  = _U('press_custom')
 	},
 	
+	ls4 = {
+		Pos   = { x = 109.8450012207, y = 6629.15234375, z = 31.787237167358},
+		Size  = {x = 3.0, y = 3.0, z = 0.2},
+		Color = {r = 204, g = 204, b = 0},
+		Marker= 1,
+		Name  = 'LS CUSTOMS',
+		Hint  = _U('press_custom')
+	},
 
+	ls5 = { --,,31.787237167358
+		Pos   = { x =  108.37076568604, y = 6626.2421875, z = 31.787237167358},
+		Size  = {x = 3.0, y = 3.0, z = 0.2},
+		Color = {r = 204, g = 204, b = 0},
+		Marker= 1,
+		Name  = 'LS CUSTOMS',
+		Hint  = _U('press_custom')
+	},
+
+	ls6 = { --,,31.787237167358
+	Pos   = { x =   103.88739776611, y = 6622.4770507812, z = 31.787237167358},
+	Size  = {x = 3.0, y = 3.0, z = 0.2},
+	Color = {r = 204, g = 204, b = 0},
+	Marker= 1,
+	Name  = 'LS CUSTOMS',
+	Hint  = _U('press_custom')
+},
+
+
+
+	--,,,,31.828512191772
 }
 
 Config.Colors = {

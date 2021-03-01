@@ -97,10 +97,12 @@ end)
 
 
 
-local blips = {
+local blips = { -- ,,31.787231445312
     -- Example {title="", colour=, id=, x=, y=, z=},
 	{title="GS Customs", colour=-1, id=446, x =-116.20, y = -1772.08, z = 26.85,}, -- Location to obtain supplies needed to make cocaine at Drug Processing Location
-  }
+	{title="GS Customs", colour=-1, id=446, x =109.20963287354, y = 6626.7768554688, z = 26.85,},
+
+}
 
 Citizen.CreateThread(function()
 
