@@ -140,6 +140,7 @@ Config.Weight = {
         ["amphetamines"] = 6,
         ["amphetamines_pooch"] = 12,
         ["anti"] = 8,
+        ["sciroppo"] = 8,
         ["antibiotico"] = 8,
         ["antibioticorosacea"] = 8,
         ["apple"] = 3,
