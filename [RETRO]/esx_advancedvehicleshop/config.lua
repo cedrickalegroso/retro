@@ -53,23 +53,26 @@ Config.PlateUseSpace = true
 -- ShopOutside = Marker for Purchasing Vehicles | ResellVehicle = Marker for Selling Vehicles
 
 Config.ZonesVEHICLESHOP = {
-	-- Ambulance Shop
+	-- Ambulance Shop  -254.85147094727,6325.4111328125,32.431541442871 180.59048461914,6632.3203125,31.579090118408
 	ShopEnteringAmbulance = {
-		Pos    = vector3(-436.9846496582,-316.04748535156,33.910766601562),
+		-- Pos    = vector3(-436.9846496582,-316.04748535156,33.910766601562),
+		Pos    = vector3(-254.85147094727,6325.4111328125,32.431541442871),
 		Marker = {r = 255, g = 0, b = 0},
 		Size   = {x = 1.5, y = 1.5, z = 1.0},
 		Type   = 27,
 		ShopId = 1
 	},
 	ShopInsideAmbulance = {
-		Pos     = vector3(334.89, -1639.38, 98.5),
+	--	Pos     = vector3(334.89, -1639.38, 98.5),
+	Pos     = vector3(180.59048461914,6632.3203125,31.579090118408),
 		Size    = {x = 1.5, y = 1.5, z = 1.0},
 		Heading = 320.14,
 		Type    = -1,
 		ShopId  = 1
 	},
 	ShopOutsideAmbulance = {
-		Pos     = vector3(-491.13467407227,-342.97076416016,34.367904663086),
+--		Pos     = vector3(-491.13467407227,-342.97076416016,34.367904663086),
+Pos     = vector3(180.59048461914,6632.3203125,31.579090118408),
 		Size    = {x = 1.5, y = 1.5, z = 1.0},
 		Heading = 318.34,
 		Type    = -1,
@@ -95,24 +98,27 @@ Config.ZonesVEHICLESHOP = {
 		Size   = {x = 3.0, y = 3.0, z = 1.0},
 		Type   = 1,
 		ShopId = 1
-	},
-	-- Police Shop
+	}, 
+	-- Police Shop -447.35833740234,6007.8471679688,31.716394424438
 	ShopEnteringPolice = {
-		Pos    = vector3(452.49633789062,-977.48028564453,29.989512252808),
+	--	Pos    = vector3(452.49633789062,-977.48028564453,29.989512252808),
+	Pos    = vector3(-447.35833740234,6007.8471679688,31.716394424438),
 		Marker = {r = 0, g = 0, b = 255},
 		Size   = {x = 1.0, y = 1.0, z = 1.0},
 		Type   = 27,
 		ShopId = 2
 	},
 	ShopInsidePolice = {
-		Pos     = vector3(334.89, -1639.38, 98.5),
+	--	Pos     = vector3(334.89, -1639.38, 98.5),
+	Pos     = vector3(180.59048461914,6632.3203125,31.579090118408),
 		Size    = {x = 1.5, y = 1.5, z = 1.0},
 		Heading = 320.14,
 		Type    = -1,
 		ShopId  = 2
 	},
 	ShopOutsidePolice = {
-		Pos     = vector3(391.74, -1619.0, 28.29),
+	--	Pos     = vector3(391.74, -1619.0, 28.29),
+	Pos     = vector3(180.59048461914,6632.3203125,31.579090118408),
 		Size    = {x = 1.5, y = 1.5, z = 1.0},
 		Heading = 318.34,
 		Type    = -1,

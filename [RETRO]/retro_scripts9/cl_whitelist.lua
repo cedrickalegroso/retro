@@ -23,18 +23,27 @@ Citizen.CreateThread(function()
 --	TriggerServerEvent('retro_scripts:updateEmsBlips1')
 	Citizen.Wait(5000)
 	TriggerEvent('retro_scripts:initems')
+	 TriggerEvent('retro_scripts:stopCalled', source)
+	
   elseif ESX.PlayerData.job.name == 'groove' then 
 --	print('calling groove blips')
 --	TriggerServerEvent('retro_scripts:updateGrooveBlips1')
 	Citizen.Wait(5000)
 	TriggerEvent('retro_scripts:initgroove')
+	 TriggerEvent('retro_scripts:stopCalled', source)
+	
   elseif ESX.PlayerData.job.name == 'police' then 
 --	print('calling police blips')
 --	TriggerServerEvent('retro_scripts:updatePoliceBlips1')
 	Citizen.Wait(5000)
 	TriggerEvent('retro_scripts:initpolice')
+	 TriggerEvent('retro_scripts:stopCalled', source)
+	
   end
 
+
+  Citizen.Wait(5000)
+  TriggerEvent('retro_scripts:stopCalled', source)
 	
 
 end)

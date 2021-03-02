@@ -1,161 +1,238 @@
-local Keys = {
-	["ESC"] = 322, ["F1"] = 288, ["F2"] = 289, ["F3"] = 170, ["F5"] = 166, ["F6"] = 167, ["F7"] = 168, ["F8"] = 169, ["F9"] = 56, ["F10"] = 57,
-	["~"] = 243, ["1"] = 157, ["2"] = 158, ["3"] = 160, ["4"] = 164, ["5"] = 165, ["6"] = 159, ["7"] = 161, ["8"] = 162, ["9"] = 163, ["-"] = 84, ["="] = 83, ["F"] = 177,
-	["TAB"] = 37, ["Q"] = 44, ["W"] = 32, ["E"] = 38, ["R"] = 45, ["T"] = 245, ["Y"] = 246, ["U"] = 303, ["P"] = 199, ["["] = 39, ["]"] = 40, ["ENTER"] = 18,
-	["CAPS"] = 137, ["A"] = 34, ["S"] = 8, ["D"] = 9, ["F"] = 23, ["G"] = 47, ["H"] = 74, ["K"] = 311, ["L"] = 182,
-	["LEFTSHIFT"] = 21, ["Z"] = 20, ["X"] = 73, ["C"] = 26, ["V"] = 0, ["B"] = 29, ["N"] = 249, ["M"] = 244, [","] = 82, ["."] = 81,
-	["LEFTCTRL"] = 36, ["LEFTALT"] = 19, ["SPACE"] = 22, ["RIGHTCTRL"] = 70,
-	["HOME"] = 213, ["PAGEUP"] = 10, ["PAGEDOWN"] = 11, ["DELETE"] = 178,
-	["LEFT"] = 174, ["RIGHT"] = 175, ["TOP"] = 27, ["DOWN"] = 173,
-	["NENTER"] = 201, ["N4"] = 108, ["N5"] = 60, ["N6"] = 107, ["N+"] = 96, ["N-"] = 97, ["N7"] = 117, ["N8"] = 61, ["N9"] = 118
-}
-
-ConfigDes = {}
-ConfigDes.ChanceDoenca = 0.5 -- Percentage 0-100%
+local mTosse = false
+local mStomaco = false
+local mPelle = false
+local possTosse = 70
+local possStomaco = 5
+local possPelle = 6
 
 ESX = nil
-local isSick = false
+
 Citizen.CreateThread(function()
 	while ESX == nil do
 		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 		Citizen.Wait(0)
 	end
-	
-	getSick()
-	
 end)
-function getSick()
-	SetTimeout(5 * 60000, function()
-		if not isSick then
-			local prob = ConfigDes.ChanceDoenca
-			if prob < 0 then
-				prob = 0
-			elseif prob > 100 then
-			prob = 100
-			end
-			local getSickChance = math.random(1,1/(prob/100))
-			if getSickChance == (1/(prob/100)) then
-				isSick = true
-				changeStatus()
-			end
-		end
-		getSick()
-	end)
-end
-function startAttitude(lib, anim)
-	Citizen.CreateThread(function()
-	
-		local playerPed = GetPlayerPed(-1)
-		RequestAnimSet(anim)
-		
-		while not HasAnimSetLoaded(anim) do
-			Citizen.Wait(1)
-		end
-		SetPedMovementClipset(playerPed, anim, true)
-	end)
-end
-function changeStatus()
-	if isSick then
-		SetTimecycleModifier("spectator5")
-		SetPedMotionBlur(GetPlayerPed(-1), true)
-		SetPedIsDrunk(GetPlayerPed(-1), true)
-	else
-		ClearTimecycleModifier()
-		SetPedIsDrunk(GetPlayerPed(-1), false)
-		SetPedMotionBlur(GetPlayerPed(-1), false)
-	end
-end
-RegisterNetEvent("esx_doencas:doenca")
-AddEventHandler("esx_doencas:doenca",function()
-	if isSick then
-	isSick = false
-	else
-	isSick = true
-	end
-	changeStatus()
-end)
-Citizen.CreateThread(function()
-	while true do
-		Citizen.Wait(1000)
-		if isSick then
-			DrawMissionText("You have Disease see a doctor or take pills!", 1000)
-		end
-	end
-end)
-function DrawMissionText(m_text, showtime)
-    ClearPrints()
-    SetTextEntry_2("STRING")
-    AddTextComponentString(m_text)
-    DrawSubtitleTimed(showtime, 1)
-end
-RegisterNetEvent("esx_doencas:healingPlayer")
-AddEventHandler("esx_doencas:healingPlayer",function(target)
-	ESX.ShowNotification("You are a healer or individual!")
-	Citizen.CreateThread(function()
-		RequestAnimDict('mini@repair')
-		while not HasAnimDictLoaded( 'mini@repair') do
-			Citizen.Wait(1)
-		end
-		FreezeEntityPosition(GetPlayerPed(-1), true)
-		makeEntityFaceEntity(GetPlayerPed(-1),GetPlayerPed(target))
-		TaskPlayAnim(GetPlayerPed(-1), 'mini@repair' ,'fixing_a_ped' ,8.0, -8.0, -1, 0, 0, false, false, false )
-		Citizen.Wait(2700)
-		ClearPedTasks(GetPlayerPed(-1))
-		FreezeEntityPosition(GetPlayerPed(-1), false)
-    end)
-	Citizen.Wait(2700)
-end)
-function makeEntityFaceEntity( entity1, entity2 )
-    local p1 = GetEntityCoords(entity1, true)
-    local p2 = GetEntityCoords(entity2, true)
 
-    local dx = p2.x - p1.x
-    local dy = p2.y - p1.y
+RegisterNetEvent("subtitle:missiontext")
+AddEventHandler("subtitle:missiontext", function(text, time)
+  ClearPrints()
+  SetTextEntry_2("STRING")
+  AddTextComponentString(text)
+  DrawSubtitleTimed(time, 1)
+end)
 
-    local heading = GetHeadingFromVector_2d(dx, dy)
-    SetEntityHeading( entity1, heading )
+Citizen.CreateThread(function() 
+
+  while true do
+	  Citizen.Wait(0)
+
+    if mTosse or mStomaco or mPelle then
+      drawTxt(0.3, 1.4, 0.45, '🤢', 185, 185, 185, 255)
+    end
+
+  end
+end)
+
+Citizen.CreateThread(function() 
+
+  while true do
+	  Citizen.Wait(Config.milliSecondiTosse)
+
+    local numRandomTosse = math.random(1, 100)
+    local scritturaTosse = "tosse"
+
+    if numRandomTosse <= possTosse and not mTosse and not mStomaco and not mPelle then 
+      mTosse = true 
+      TriggerServerEvent('esx_disease:malato', scritturaTosse)
+      TriggerEvent('subtitle:missiontext', _U('have_cought'), 10000)
+    end
+  end
+end)
+
+Citizen.CreateThread(function() 
+
+  while true do
+    Citizen.Wait(Config.milliSecondiStomaco)
+
+    local numRandomStomaco = math.random(1, 100)
+    local scritturaStomaco = "stomaco"
+
+    if numRandomStomaco <= possStomaco and not mTosse and not mStomaco and not mPelle then 
+      mStomaco = true 
+      TriggerServerEvent('esx_disease:malatostomaco', scritturaStomaco)
+      TriggerEvent('subtitle:missiontext', _U('stomach_disease'), 10000)
+    end
+  end
+end)
+
+Citizen.CreateThread(function() 
+
+  while true do
+    Citizen.Wait(Config.milliSecondiPelle)
+
+    local numRandomPelle = math.random(1, 100)
+    local playerPed = PlayerPedId()
+
+    if numRandomPelle <= possPelle and not mTosse and not mStomaco and not mPelle then 
+        mPelle = true 
+        TriggerServerEvent('esx_disease:malatopelle')
+        TriggerEvent('subtitle:missiontext', _U('skin_disease'), 10000)
+        SetPedHeadOverlay(playerPed, 5,	26, (3 / 10) + 0.0)
+        SetPedHeadOverlayColor(playerPed, 5, 2,	0)	
+        SetPedHeadOverlay(playerPed, 7,	9,	(10 / 10) + 0.0)
+    end
+  end
+end)
+
+Citizen.CreateThread(function() 
+
+  while true do
+
+    local secondsBetweenAnimTosse = math.random(Config.MinMillSecTosse, Config.MaxMillSecTosse)
+
+	  Citizen.Wait(secondsBetweenAnimTosse)
+
+    if mTosse then
+
+	    RequestAnimDict("timetable@gardener@smoking_joint")
+      while not HasAnimDictLoaded("timetable@gardener@smoking_joint") do
+      Citizen.Wait(100)
+      end
+
+      TaskPlayAnim(GetPlayerPed(-1), "timetable@gardener@smoking_joint", "idle_cough", 8.0, 8.0, -1, 50, 0, false, false, false)
+      Citizen.Wait(3000)
+      ClearPedSecondaryTask(GetPlayerPed(-1))
+    end
+  end
+end)
+
+Citizen.CreateThread(function()  
+
+  while true do
+
+    local secondsBetweenAnimStomaco = math.random(Config.MinMillSecStomaco, Config.MaxMillSecStomaco)
+    local playerPed = GetPlayerPed(-1)
+    local maxHealth = GetEntityMaxHealth(playerPed)
+    local health = GetEntityHealth(playerPed)
+    local newHealth = math.min(maxHealth , math.floor(health - maxHealth/19))
+
+	  Citizen.Wait(secondsBetweenAnimStomaco)
+
+    if mStomaco then
+
+	    RequestAnimDict("oddjobs@taxi@tie")
+      while not HasAnimDictLoaded("oddjobs@taxi@tie") do
+      Citizen.Wait(100)
+      end
+
+      TaskPlayAnim(GetPlayerPed(-1), "oddjobs@taxi@tie", "vomit_outside", 8.0, 8.0, -1, 50, 0, false, false, false)
+      Citizen.Wait(7000)
+
+      ClearPedSecondaryTask(GetPlayerPed(-1))
+      SetEntityHealth(playerPed, newHealth)
+    end
+  end
+end)
+
+Citizen.CreateThread(function() 
+
+  while true do
+
+    local playerPed = GetPlayerPed(-1)
+
+	  Citizen.Wait(Config.milliSecondiPelleMalata)
+
+    if mPelle then
+      SetPedHeadOverlay(playerPed, 5,	26, (3 / 10) + 0.0)	
+      SetPedHeadOverlayColor(playerPed, 5, 2,	0)	
+      SetPedHeadOverlay(playerPed, 7,	10,	(10 / 10) + 0.0)
+    end
+  end
+end)
+
+RegisterNetEvent('esx_disease:guarigionetosse')
+AddEventHandler('esx_disease:guarigionetosse', function()
+
+  mTosse = false
+
+  Citizen.Wait(3000)
+
+  TriggerServerEvent('esx_disease:guarito')
+  TriggerEvent('subtitle:missiontext', _U('no_disease'), 10000)
+  
+end)
+
+RegisterNetEvent('esx_disease:guarigionestomaco')
+AddEventHandler('esx_disease:guarigionestomaco', function()
+
+  mStomaco = false
+  local playerPed  = GetPlayerPed(-1)
+  local maxHealth = GetEntityMaxHealth(playerPed)
+
+  RequestAnimDict("mp_suicide")
+  while not HasAnimDictLoaded("mp_suicide") do
+  Citizen.Wait(100)
+  end
+
+  TaskPlayAnim(GetPlayerPed(-1), "mp_suicide", "pill_fp", 8.0, 8.0, -1, 50, 0, false, false, false)
+  Citizen.Wait(3000)
+  ClearPedSecondaryTask(GetPlayerPed(-1))
+  TriggerServerEvent('esx_disease:guarito')
+  TriggerEvent('subtitle:missiontext', _U('no_disease'), 10000)
+  
+end)
+
+RegisterNetEvent('esx_disease:guarigionepelle')
+AddEventHandler('esx_disease:guarigionepelle', function()
+
+  mPelle = false
+  local playerPed  = GetPlayerPed(-1)
+
+  RequestAnimDict("mp_suicide")
+  while not HasAnimDictLoaded("mp_suicide") do
+  Citizen.Wait(100)
+  end
+
+  TaskPlayAnim(GetPlayerPed(-1), "mp_suicide", "pill_fp", 8.0, 8.0, -1, 50, 0, false, false, false)
+  Citizen.Wait(3000)
+  ClearPedSecondaryTask(GetPlayerPed(-1))
+  TriggerServerEvent('esx_disease:guarito')
+  TriggerEvent('subtitle:missiontext', _U('no_disease'), 10000)
+  ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin)
+    TriggerEvent('skinchanger:loadSkin', skin)
+  end)
+  
+end)
+
+AddEventHandler('playerSpawned', function()
+	ESX.TriggerServerCallback('esx_disease:quadroclinico', function(malato)
+    if malato == 'tosse' then
+      mTosse = true
+      TriggerServerEvent('esx_disease:malato')
+      TriggerEvent('subtitle:missiontext', _U('have_cought'), 10000)
+    elseif malato == 'stomaco' then
+      mStomaco = true
+      TriggerServerEvent('esx_disease:malatostomaco')
+      TriggerEvent('subtitle:missiontext', _U('stomach_disease'), 10000)
+    elseif malato == 'rosacea' then
+      mPelle = true
+      TriggerServerEvent('esx_disease:malatopelle')
+      TriggerEvent('subtitle:missiontext', _U('skin_disease'), 10000)
+		end
+  end)
+end)
+
+function drawTxt(x, y, scale, text, red, green, blue, alpha)
+  SetTextFont(4)
+  SetTextProportional(1)
+  SetTextScale(0.64, 0.64)
+  SetTextColour(red, green, blue, alpha)
+  SetTextDropShadow(0, 0, 0, 0, 255)
+  SetTextEdge(1, 0, 0, 0, 255)
+  SetTextDropShadow()
+  SetTextOutline()
+  SetTextEntry("STRING")
+  AddTextComponentString(text)
+  DrawText(0.940, 0.935)
 end
-RegisterNetEvent("esx_doencas:getHealedComp")
-AddEventHandler("esx_doencas:getHealedComp",function()
-	isSick = false
-	changeStatus()
-	startAttitude("move_m@shocked@a","move_m@shocked@a")
-	ESX.ShowNotification("You were healed!")
-end)
-RegisterNetEvent("esx_doencas:getHealed")
-AddEventHandler("esx_doencas:getHealed",function()
-	ESX.ShowNotification("You are being healed!")
-	Citizen.CreateThread(function()
-	FreezeEntityPosition(GetPlayerPed(-1), true)
-	Citizen.Wait(3000)
-	FreezeEntityPosition(GetPlayerPed(-1), false)
-	end)
-	Citizen.Wait(3000)
-	isSick = false
-	changeStatus()
-	startAttitude("move_m@shocked@a","move_m@shocked@a")
-	ESX.ShowNotification("You were healed!")
-end)
-Citizen.CreateThread(function()
-	while true do
-		Citizen.Wait(1)
-		if isSick then
-			DisableControlAction(2, Keys['SPACE'], true) -- Jump
-			DisableControlAction(0, Keys['LEFTSHIFT'], true) -- Jump
-			DisableControlAction(2, Keys['Q'], true) -- Cover
-			DisableControlAction(2, 59, true) -- Disable steering in vehicle
-			DisableControlAction(0, 36, true) -- Disable going stealth
-		else
-			Citizen.Wait(500)
-		end
-	end
-end)
-Citizen.CreateThread(function()
-	while true do
-		Citizen.Wait(500)
-		if isSick then
-			startAttitude("move_m@depressed@a","move_m@depressed@a")
-		end
-	end
-
-end)

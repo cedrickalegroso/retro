@@ -98,7 +98,7 @@ client_script {
   --   'EMS-toggleid/client.lua',
 
       --emstoggle
-  --  'cl_zone.lua',
+    'cl_zone.lua',
 
 
       --emstoggle

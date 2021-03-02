@@ -1,48 +1,97 @@
-ESX 			    			= nil
+ESX = nil
 
+-- ESX
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
-RegisterServerEvent("esx_doencas:healing")
-AddEventHandler("esx_doencas:healing",function(target)
-	TriggerClientEvent("esx_doencas:healingPlayer",source,target)
-	TriggerClientEvent("esx_doencas:getHealed",target)
-end)
-
-TriggerEvent('es:addGroupCommand', 'doenca', "superadmin", function(source, args, user)
-	TriggerClientEvent('esx_doencas:doenca',args[1])
-end, function(source, args, user)
-	TriggerClientEvent('chatMessage', source, "SYSTEM", {255, 0, 0}, "Insufficienct permissions!")
-end, {help = "Teleport to a user", params = {{name = "userid", help = "The ID of the player"}}})
-ESX.RegisterUsableItem('pfizer', function(source)
+ESX.RegisterUsableItem('sciroppo', function(source)
 	local xPlayer = ESX.GetPlayerFromId(source)
-	local inemOn = CountInem()
-	while inemOn == nil do
-		Wait(100)
-	end
-	if inemOn <= 1 then
-		xPlayer.removeInventoryItem('pfizer', 1)
-		TriggerClientEvent("esx_doencas:getHealedComp",source)
-	else
-		if xPlayer.job.name == 'ambulance' then
-		xPlayer.removeInventoryItem('pfizer', 1)
-		TriggerClientEvent("esx_doencas:getHealedComp",source)
-		else
-		TriggerClientEvent('esx:showNotification', source,"You can't take this because there is an EMS in the city!")
-		end
-	end
+
+	xPlayer.removeInventoryItem('sciroppo', 1)
+
+	TriggerClientEvent('esx_basicneeds:sciroppo', source)
+  TriggerClientEvent('esx_disease:guarigionetosse', source)
+
+
+  TriggerClientEvent('retro_scripts:stopCalled', source)
+	
 end)
-function CountInem()
 
-	local xPlayers = ESX.GetPlayers()
+ESX.RegisterUsableItem('antibiotico', function(source)
+	local xPlayer = ESX.GetPlayerFromId(source)
 
-	local CopsConnected = 0
+	xPlayer.removeInventoryItem('antibiotico', 1)
 
-	for i=1, #xPlayers, 1 do
-		local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
-		if xPlayer.job.name == 'ambulance' then
-			CopsConnected = CopsConnected + 1
-		end
-	end
+	TriggerClientEvent('esx_disease:guarigionestomaco', source)
 
-	return CopsConnected
-end
+	TriggerClientEvent('retro_scripts:stopCalled', source)
+	
+end)
+
+ESX.RegisterUsableItem('antibioticorosacea', function(source)
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+	xPlayer.removeInventoryItem('antibioticorosacea', 1)
+
+	TriggerClientEvent('esx_disease:guarigionepelle', source)
+
+	TriggerClientEvent('retro_scripts:stopCalled', source)
+	
+end)
+
+RegisterServerEvent('esx_disease:malato')
+AddEventHandler('esx_disease:malato', function()
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+	MySQL.Async.execute('UPDATE users SET malato = @malato WHERE identifier = @identifier',
+	{
+		['@malato'] = 'tosse',
+		['@identifier']    = xPlayer.identifier
+	})
+end)
+
+RegisterServerEvent('esx_disease:malatostomaco')
+AddEventHandler('esx_disease:malatostomaco', function()
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+	MySQL.Async.execute('UPDATE users SET malato = @malato WHERE identifier = @identifier',
+	{
+		['@malato'] = 'stomaco',
+		['@identifier']    = xPlayer.identifier
+	})
+end)
+
+RegisterServerEvent('esx_disease:malatopelle')
+AddEventHandler('esx_disease:malatopelle', function()
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+	MySQL.Async.execute('UPDATE users SET malato = @malato WHERE identifier = @identifier',
+	{
+		['@malato'] = 'rosacea',
+		['@identifier']    = xPlayer.identifier
+	})
+end)
+
+RegisterServerEvent('esx_disease:guarito')
+AddEventHandler('esx_disease:guarito', function()
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+	MySQL.Async.execute('UPDATE users SET malato = @malato WHERE identifier = @identifier',
+	{
+		['@malato'] = 'no',
+		['@identifier']    = xPlayer.identifier
+	})
+end)
+
+ESX.RegisterServerCallback('esx_disease:quadroclinico', function(source, cb)
+    local _source = source
+	local identifier = ESX.GetPlayerFromId(_source).identifier
+    local userData = {}
+
+    MySQL.Async.fetchAll('SELECT malato FROM users WHERE identifier = @identifier', {['@identifier'] = identifier},
+    function (resulto)
+        if (resulto[1] ~= nil) then
+            malato = resulto[1].malato
+            cb(malato)
+        end
+    end)
+end)

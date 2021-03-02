@@ -50,7 +50,7 @@ server_scripts {
  --'esx_holdupbank/server/server.lua',
 
  --sakit
- -- 'esx_disease/server/main.lua',
+  'esx_disease/server/main.lua',
 
 
    --drugs
@@ -117,7 +117,7 @@ client_scripts {
     --  'esx_holdupbank/client/server.lua',
 
       --sakit
-     -- 'esx_disease/client/main.lua',
+     'esx_disease/client/main.lua',
 
       --drugs
      -- 'esx_drugsv2/client/client.lua',

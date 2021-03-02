@@ -233,6 +233,12 @@ ConfigFishing.MarkerZones = {
 		Return = vec3(-3420.2, 996.51, -0.2) -- Boat Return Point
 	},
 	{
+		Marker = vec3(-280.73822021484,6622.5512695312,6.3889527320862),
+		Spawn = vec3(-332.61822509766,6675.4008789062,-0.27882355451584),
+		SpawnHeading = 40.0,
+		Return = vec3(-332.61822509766,6675.4008789062, 0.0)
+	},  
+	{
 		Marker = vec3(-732.9, -1309.7, 4.0),
 		Spawn = vec3(-725.7, -1351.5, 0.5),
 		SpawnHeading = 135.0,
