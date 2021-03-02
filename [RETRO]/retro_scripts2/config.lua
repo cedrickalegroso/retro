@@ -2025,6 +2025,7 @@ Config.DoorListLOCK = {
 	},
 
 
+	
 
 	{
 		objHash = 493136920,
@@ -2204,6 +2205,19 @@ Config.DoorListLOCK = {
 		doors = {
 			{objHash = -1547307588, objHeading = -180.0, objCoords  = vector3(442.38534545898,-998.95629882812,30.725801467896)},
 			{objHash = -1547307588, objHeading = 0.0, objCoords  = vector3(441.46054077148,-998.78619384766,30.726587295532)}
+		}
+	},
+
+
+
+	{
+		textCoords = vector3(-259.11511230469,6315.021484375,32.458763122559),
+		authorizedJobs = {'ambulance'},
+		locked = true,
+		maxDistance = 4,
+		doors = {
+			{objHash = -131296141, objHeading = -225.0, objCoords  = vector3(-259.49673461914,6315.3330078125,32.459453582764)},
+			{objHash = -131296141, objHeading = -45.0, objCoords  = vector3(-258.75970458984,6314.3540039062,32.458862304688)}
 		}
 	},
 	--PD PARKING
