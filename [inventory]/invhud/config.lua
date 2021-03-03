@@ -57,6 +57,7 @@ Config.CurrencyIcon = " " -- SET CURRENCY ICON FOR NON HTML INSTANCES(NOTIFCATIO
 -- List of item names that will close ui when used
 Config.CloseUiItems = {
     "headbag",
+    "cashregbypass",
     "fishingrod",
     "tunerlaptop",
     "binoculars",
