@@ -23,6 +23,8 @@ server_scripts {
   'retro_logs/server/server.lua',
   'retro_logs/versioncheck.lua',
 
+  --'hunting/server/main.lua',
+
     'esx_TruckRobbery/server.lua',
 	
 	'esx_AdvancedFishing/server.lua',
@@ -47,6 +49,8 @@ client_scripts {
  'retro_logs/client/client.lua',
 
  'HideInTrunk/client.lua',
+
+ --'hunting/client/main.lua',
 
  'esx_TruckRobbery/client.lua',
  

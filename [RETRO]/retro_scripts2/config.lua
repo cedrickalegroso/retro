@@ -2232,6 +2232,30 @@ Config.DoorListLOCK = {
 	},
 
 	{
+		objHash = 631614199,
+		objHeading = -45.0,
+		objCoords = vector3(-431.92468261719,6000.212890625,31.716190338135),
+		textCoords = vector3(-431.92468261719,6000.212890625,31.716190338135),
+		authorizedJobs = {'police'},
+		locked = true,
+		maxDistance = 1.25
+	},
+
+
+	{
+		objHash = 631614199,
+		objHeading = -45.0,
+		objCoords = vector3(-428.53656005859,5997.056640625,31.716196060181),
+		textCoords = vector3(-428.53656005859,5997.056640625,31.716196060181),
+		authorizedJobs = {'police'},
+		locked = true,
+		maxDistance = 1.25
+	},
+
+	
+
+
+	{
 		objHash = 1830360419,
 		objHeading = 90.0,
 		objCoords = vector3(464.34381103516,-996.80541992188,26.373168945312),

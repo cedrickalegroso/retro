@@ -199,9 +199,9 @@ AddEventHandler('esx_disease:guarigionepelle', function()
   ClearPedSecondaryTask(GetPlayerPed(-1))
   TriggerServerEvent('esx_disease:guarito')
   TriggerEvent('subtitle:missiontext', _U('no_disease'), 10000)
-  ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin)
-    TriggerEvent('skinchanger:loadSkin', skin)
-  end)
+ -- ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin)
+ --   TriggerEvent('skinchanger:loadSkin', skin)
+ -- end)
   
 end)
 
