@@ -50,7 +50,8 @@ RegisterNUICallback("LastLocation", function()
 end)
 
 RegisterNUICallback("SpawnAirport", function()
-    selectedspawnposition = { x = -1037.74, y = -2738.04, z = 20.1693, h = 282.91 }
+    --selectedspawnposition = { x = -1037.74, y = -2738.04, z = 20.1693, h = 282.91 }
+    selectedspawnposition = { x = -427.02304077148, y = 6029.087890625, z = 31.490114212036, h = 309.91 }
     local playerPed = PlayerPedId()
     local campos = selectedspawnposition
 
