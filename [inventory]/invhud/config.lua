@@ -90,6 +90,7 @@ Config.Weight = {
         ["sandwhich"] = 5,
         ["RetroID"] = 5,
         ["RetroWallet"] = 5,
+        ["coke"] = 3,
         ["coke_pooch"] = 5,
         ["coke_pooch"] = 5,
         ["coke10g"] = 5,
