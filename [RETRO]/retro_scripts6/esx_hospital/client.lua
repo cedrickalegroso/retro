@@ -26,8 +26,8 @@ AddEventHandler("retro_scripts:emsbed1", function(tPID, source)
 
 
 	--SetEntityCoords(PlayerPedId(pP), -448.35134887695,-283.72018432617,35.833194732666, true, true, true, false)
-    SetEntityCoords(PlayerPedId(pP), -258.48245239258,6309.3671875,33.355800628662, true, true, true, false)
-	SetEntityHeading(PlayerPedId(pP), 221.60)
+    SetEntityCoords(PlayerPedId(pP), -245.42086791992,6315.9897460938,33.342178344727, true, true, true, false)
+	SetEntityHeading(PlayerPedId(pP), 131.60)
 
     --
 	
@@ -80,8 +80,8 @@ AddEventHandler("retro_scripts:emsbed1", function(tPID, source)
 end)
 
 function emsbed1done(pP)
-    SetEntityCoords(PlayerPedId(pP), -256.84561157227,6309.646484375,32.431488037109, true, true, true, false)
-    SetEntityHeading(PlayerPedId(pP), 221.60)
+    SetEntityCoords(PlayerPedId(pP), -247.42111206055,6315.2397460938,32.42724609375, true, true, true, false)
+    SetEntityHeading(PlayerPedId(pP), 131.60)
 end
 
 
@@ -95,8 +95,8 @@ AddEventHandler("retro_scripts:emsbed2", function(tPID)
 	local pP = GetPlayerPed(-1)
 
 
-	SetEntityCoords(PlayerPedId(pP), -255.85194396973,6311.8125,33.355800628662, true, true, true, false)
-	SetEntityHeading(PlayerPedId(pP), 221.60)
+	SetEntityCoords(PlayerPedId(pP), -247.04943847656,6317.9658203125,33.342174530029, true, true, true, false)
+	SetEntityHeading(PlayerPedId(pP), 131.60)
 
 	TriggerEvent("mythic_progbar:client:progress", {
         name = "unique_action_name",
@@ -119,8 +119,8 @@ AddEventHandler("retro_scripts:emsbed2", function(tPID)
         }
     }, function(status)
         if not status then
-            SetEntityCoords(PlayerPedId(pP), -254.22267150879,6311.7944335938,32.431495666504, true, true, true, false)
-            SetEntityHeading(PlayerPedId(pP), 221.60)
+            SetEntityCoords(PlayerPedId(pP), -248.47018432617,6318.5131835938,32.423889160156, true, true, true, false)
+            SetEntityHeading(PlayerPedId(pP), 131.60)
         
         end
     end)

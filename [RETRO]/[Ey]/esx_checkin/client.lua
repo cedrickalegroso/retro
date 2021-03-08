@@ -304,7 +304,7 @@ AddEventHandler('esx_checkin:checkIn', function()
 	if chance == 4 then 
 		RespawnPed(ped, coords4, 0.0)
 		--TaskStartScenarioAtPosition(ped, 'WORLD_HUMAN_SUNBATHE_BACK', 356.72, -585.88, 43.12 + 1, 360.0, 0, false, true)
-		SetEntityCoords(ped, -255.91809082031,6311.9282226562,33.355800628662, false, false, false, false)
+		SetEntityCoords(ped, -254.26287841797,6314.033203125,33.342170715332, false, false, false, false)
 		
 		--FreezeEntityPosition(ped, true)
 		TriggerEvent("mythic_progbar:client:progress", {
@@ -337,7 +337,7 @@ AddEventHandler('esx_checkin:checkIn', function()
 	--	ESX.showNotification('You have been healed by the RETRO CITY EMS')
 	TriggerEvent('notification', 'You have been treated by the RETRO CITY EMS.', 1)
 		--TriggerClientEvent('notification', source, '')
-		SetEntityCoords(ped, -254.24517822266,6312.2026367188,32.428016662598, false, false, false, false)
+		SetEntityCoords(ped, -252.70135498047,6315.1479492188,32.395359039307, false, false, false, false)
 			end
 		end)
 	

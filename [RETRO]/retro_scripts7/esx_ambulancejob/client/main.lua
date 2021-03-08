@@ -287,6 +287,87 @@ function RemoveItemsAfterRPDeath()
 	end)
 end
 
+
+RegisterNetEvent('retro_scripts:newlife')
+AddEventHandler('retro_scripts:newlife', function(ttPID)
+
+	local pP = GetPlayerPed(ttPID)
+
+	local ped = GetPlayerPed(-1)
+
+
+
+	print('newlife '..pP)
+	SetEntityCoords(PlayerPedId(pP), -260.37762451172,6326.5541992188,33.421516418457, true, true, true, false)
+
+	--print(targetPlayer)
+
+	ESX.TriggerServerCallback('esx_ambulancejob:removeItemsAfterRPDeath', function()
+
+			local playerpos = GetEntityCoords( GetPlayerPed(-1) )
+				
+			ESX.SetPlayerData('lastPosition', playerpos)
+			ESX.SetPlayerData('loadout', {})
+
+
+			TriggerEvent("mythic_progbar:client:progress", {
+				name = "unique_action_name",
+				duration = 120000,
+				label = "Purgatory Time",
+				useWhileDead = false,
+				canCancel = true,
+				controlDisables = {
+					disableMovement = true,
+					disableCarMovement = true,
+					disableMouse = false,
+					disableCombat = true,
+				},
+				animation = {
+					animDict = "",
+					anim = "",
+				},
+				prop = {
+					model = "",
+				}
+			}, function(status)
+				if not status then
+				--RespawnPed(PlayerPedId(), pos, ConfigAmbu.RespawnPoint.heading)
+
+				RespawnPed(PlayerPedId(), playerpos, ConfigAmbu.RespawnPoint.heading)
+
+
+				exports['mythic_notify']:DoHudText('inform', 'You just landed at Retro City!.')
+			
+			--	TriggerServerEvent('esx_ambulancejob:reRETROvive', GetPlayerServerId(pP))
+			
+			--	TriggerClientEvent('esx_ambulancejob:reRETROvive', PlayerPedId(pP))
+			
+				TriggerServerEvent('esx:updateLastPosition', playerpos)
+			--	TriggerServerEvent('mythic_hospital:server:RequestBed')
+					Citizen.Wait(10)
+					StopScreenEffect('DeathFailOut')
+					DoScreenFadeIn(800)
+					
+				end
+			end)
+	
+	
+
+--	RemoveItemsAfterRPDeath2(targetPlayer)
+--	SetEntityCoords(PlayerPedId(pP), -517.13684082031,-252.81938171387,35.655345916748, true, true, true, false)
+
+--local pos =  -517.13684082031,-252.81938171387,35.655345916748
+
+
+
+	
+	end)
+	
+
+	
+
+end)
+
 function RespawnPed(ped, coords, heading)
 	SetEntityCoordsNoOffset(ped, coords.x, coords.y, coords.z, false, false, false, true)
 	NetworkResurrectLocalPlayer(coords.x, coords.y, coords.z, heading, true, false)

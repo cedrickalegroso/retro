@@ -2313,6 +2313,18 @@ Config.DoorListLOCK = {
 	},
 
 
+	{
+		objHash = -131296141,
+		objHeading = -135.0,
+		objCoords = vector3(-256.6858215332,6323.1967773438,32.427276611328),
+		textCoords = vector3(-256.6858215332,6323.1967773438,32.427276611328),
+		authorizedJobs = {'ambulance'},
+		locked = true,
+		maxDistance = 1.25
+	},
+
+
+
 	--MAGTIBAY
 	{
 		objHash = -1119680854,
