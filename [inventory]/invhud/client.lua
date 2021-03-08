@@ -399,8 +399,8 @@ end
 InStashZone = function(pos)
     local atStash, stashAt = false, nil
     for k, v in pairs(Config.StashJ1) do
-        local dis = #(pos - v.coords)
-        if dis < 1.5 and PlayerData.job.name == v.job then
+        local dis = #(pos - v.coords)  
+        if dis < 1.5 and PlayerData.job.name == v.job  and PlayerData.job.grade >= v.mingrade then
             atStash = true
             stashAt = k
         end

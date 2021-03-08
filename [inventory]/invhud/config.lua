@@ -1322,7 +1322,9 @@ Config.StashJ1 = {
     ["RCEMS"] = { --  
       --  coords = vector3(-452.08367919922, -324.60824584961, 34.91077041626),
       -- -252.77421569824,6318.6713867188,32.431507110596
-      coords = vector3(-252.77421569824,6318.6713867188,32.431507110596),
+      -- 
+    --  coords = vector3(-252.77421569824,6318.6713867188,32.431507110596),
+    coords = vector3(-254.96647644043,6326.5678710938,32.427299499512),
         useText = true,
         size = vector3(1.0, 1.0, 1.0),
         job = "ambulance",
@@ -1331,7 +1333,23 @@ Config.StashJ1 = {
         draw = 2,
         markerColour = vector3(255, 255, 255),
         msg = "Retro City EMS Stash"
-    }
+    },
+
+    ["RCEMS 2"] = { --  
+    --  coords = vector3(-452.08367919922, -324.60824584961, 34.91077041626),
+    -- -252.77421569824,6318.6713867188,32.431507110596
+    -- 
+  --  coords = vector3(-252.77421569824,6318.6713867188,32.431507110596),
+  coords = vector3(-264.62484741211,6321.4038085938,32.427276611328),
+      useText = true,
+      size = vector3(1.0, 1.0, 1.0),
+      job = "ambulance",
+      mingrade = 8,
+      markerType = 2,
+      draw = 2,
+      markerColour = vector3(255, 255, 255),
+      msg = "Retro City EMS Stash 2"
+  }
 }
 
 for k, v in pairs(Config.Bullets.Items) do
