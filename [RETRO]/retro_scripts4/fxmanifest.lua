@@ -56,7 +56,7 @@ server_scripts {
  'esx_vangelico_robbery/server/esx_vangelico_robbery_sv.lua',
 
   --velock
-  'esx_vehiclelock/server/main.lua',
+ -- 'esx_vehiclelock/server/main.lua',
 
 
 
@@ -122,7 +122,7 @@ client_scripts {
 ---- 'esx_zipties/client.lua',
 
  --velock
- 'esx_vehiclelock/client/main.lua',
+-- 'esx_vehiclelock/client/main.lua',
 
 
  --RAD
