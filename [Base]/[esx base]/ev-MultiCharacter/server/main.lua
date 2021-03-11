@@ -46,8 +46,8 @@ AddEventHandler('multicharacter:server:CharacterChosen', function(charid, ischar
     if ischar == "true" then
         spawn = GetSpawnPos(src)
     else
-        TriggerClientEvent('multicharacter:client:loadDefaultModel', src)
-        spawn = { x = -1037.79, y = -2737.78, z = 20.17 } -- DEFAULT SPAWN POSITION
+        TriggerClientEvent('multicharacter:client:loadDefaultModel', src)  -- -427.82369995117,6031.6337890625,31.49010848999
+        spawn = { x =-427.82369995117, y = 6031.6337890625, z = 31.49010848999 } -- DEFAULT SPAWN POSITION
     end
     TriggerClientEvent("multicharacter:client:SpawnCharacter", src, spawn,ischar)
 end)
