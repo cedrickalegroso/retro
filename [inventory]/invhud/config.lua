@@ -142,6 +142,7 @@ Config.Weight = {
         ["amphetamines"] = 6,
         ["amphetamines_pooch"] = 12,
         ["anti"] = 8,
+        ["shark"] = 10,
         ["sciroppo"] = 8,
         ["antibiotico"] = 8,
         ["antibioticorosacea"] = 8,
@@ -537,7 +538,8 @@ Config.Shops = {
                 vector3(-707.501, -914.260, 18.215),
                 vector3(-1820.523, 792.518, 137.118),
                 vector3(1698.388, 4924.404, 41.063),
-                vector3(25.723, -1346.966, 28.497)
+                vector3(25.723, -1346.966, 28.497),
+                vector3(161.25, 6640.38, 31.61)
             },
             Boss = {
                 vector3(372.875, 322.896, 102.566)
