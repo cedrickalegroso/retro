@@ -1,0 +1,289 @@
+Config = {}
+
+Config.AllLogs = true											-- Enable/Disable All Logs Channel
+Config.postal = true  											-- set to false if you want to disable nerest postal (https://forum.cfx.re/t/release-postal-code-map-minimap-new-improved-v1-2/147458)
+Config.username = "MayorLogs" 							-- Bot Username
+Config.avatar = "https://i.imgur.com/qc1eK1g.jpg"				-- Bot Avatar
+Config.communtiyName = "MayorLogs"					-- Icon top of the Embed
+Config.communtiyLogo = "https://i.imgur.com/qc1eK1g.jpg"		-- Icon top of the Embed
+
+
+Config.weaponLog = true  			-- set to false to disable the shooting weapon logs
+Config.weaponLogDelay = 1000		-- delay to wait after someone fired a weapon to check again in ms (put to 0 to disable) Best to keep this at atleast 1000
+
+Config.playerID = true				-- set to false to disable Player ID in the logs
+Config.steamID = true				-- set to false to disable Steam ID in the logs
+Config.steamURL = true				-- set to false to disable Steam URL in the logs
+Config.discordID = true				-- set to false to disable Discord ID in the logs
+
+
+-- Change color of the default embeds here
+-- It used Decimal color codes witch you can get and convert here: https://jokedevil.com/colorPicker
+Config.joinColor = "3863105" 		-- Player Connecting
+Config.leaveColor = "15874618"		-- Player Disconnected
+Config.chatColor = "10592673"		-- Chat Message
+Config.shootingColor = "10373"		-- Shooting a weapon
+Config.deathColor = "000000"		-- Player Died
+Config.resourceColor = "15461951"	-- Resource Stopped/Started
+
+
+
+Config.webhooks = {
+	all = "https://discord.com/api/webhooks/772915462082134056/a9h_Xl6InO4jsACS1tof6Fps9c4CLAXYiCjU-V_26kJl4RuIZk8kL3_D1wEtAyTkng9F",
+	chat = "https://discord.com/api/webhooks/765801934371291166/dZS_rTkKn-y3rUuFYmG4v3lPWDfuu-IKdbf4CZ5iEdTDZnTul_xeSbMJ5MYtiEWZGo9D",
+	joins = "https://discord.com/api/webhooks/772915633045897277/C5zzRMocO9I71khQffxjctiS96mTdycQS5CK3-WLUN0O8CtSbU6WYzXLC9Ixz8ai1Kag",
+	leaving = "https://discord.com/api/webhooks/772915635998294037/lgMSK-NYFrpLwCtQopQL280nsERsCE6bm_B2ecOzfFj6LMALdSwXWUmo4LBCXpT-aFcI",
+	deaths = "https://discord.com/api/webhooks/772915914319724614/fzZau47MwemF9sBxBHeae9EKPNt9PRbKusLJ6rZ79aTXeeKDdZhDOaon4WpZ9CPdhcOY",
+	shooting = "https://discord.com/api/webhooks/772915914319724614/fzZau47MwemF9sBxBHeae9EKPNt9PRbKusLJ6rZ79aTXeeKDdZhDOaon4WpZ9CPdhcOY",
+	resources = "https://discord.com/api/webhooks/772916000135708722/_5lOIvkoibzbYdUPjaxHAEPKH0B200QscfzP2Mr8yuru-9HcUUcFu3qXBW6XzfaVUzVf",
+
+  -- How you add more logs is explained on https://docs.jokedevil.com/JD_logs
+  }
+
+
+ --Debug shizzels :D
+Config.debug = false
+Config.versionCheck = "1.1.0"
+
+
+
+--truck
+
+
+
+--------------------------------
+------- Created by Hamza -------
+-------------------------------- 
+
+Config = {}
+
+-- Police Settings:
+Config.RequiredPoliceOnline = 0		-- required police online for players to do missions
+Config.PoliceDatabaseName = "police"	-- set the exact name from your jobs database for police
+Config.PoliceNotfiyEnabled = true		-- police notification upon truck robbery enabled (true) or disabled (false)
+Config.PoliceBlipShow = true			-- enable or disable blip on map on police notify
+Config.PoliceBlipTime = 30				-- miliseconds that blip is active on map (this value is multiplied with 4 in the script)
+Config.PoliceBlipRadius = 50.0			-- set radius of the police notify blip
+Config.PoliceBlipAlpha = 250			-- set alpha of the blip
+Config.PoliceBlipColor = 5				-- set blip color
+
+-- Set cooldown timer, which player has to wait before being able to do a mission again, in minutes here:
+Config.CooldownTimer = 120
+
+-- Enable or disable player wearing a 'heist money bag' after the robbery:
+Config.EnablePlayerMoneyBag = true
+
+-- Hacking Settings:
+Config.EnableAnimationB4Hacking = true			-- enable/disable hacking or typing animation
+Config.HackingBlocks = 4						-- amount of blocks u have to match
+Config.HackingSeconds = 40						-- seconds to hack
+
+-- Mission Cost Settings:
+Config.MissionCost = 30000		-- taken from bank account // set to 0 to disable mission cost
+
+-- Reward Settings:
+Config.MinReward = 100000						-- set minimum reward amount
+Config.MaxReward = 250000						-- set maximum reward amount
+Config.RewardInDirtyMoney = true			-- reward as dirty money (true) or as normal cash (false)
+Config.EnableItemReward = false 				-- requires to add your desired items into your items table in database
+Config.ItemName1 = "jewels"				-- exact name of your item1
+Config.ItemMinAmount1 = 50					-- set minimum reward amount of item1
+Config.ItemMaxAmount1 = 100					-- set maximum reward amount of item1
+Config.EnableRareItemReward = false			-- add another item as reward but this has only 25% chance 
+Config.ItemName2 = "PutItemNameHere"				-- exact name of your item2
+Config.ItemMinAmount2 = 1					-- set minimum reward amount of item2
+Config.ItemMaxAmount2 = 3					-- set maximum reward amount of item2
+Config.RandomChance = 2						-- Set chance, 1/2 is default, which is 50% chance. If u e.g. change value to 4, then 1/4 equals 25% chance.
+
+-- Mission Blip Settings:
+Config.EnableMapBlip = true							-- set between true/false
+Config.BlipNameOnMap = "Armored Truck Mission"		-- set name of the blip
+Config.BlipSprite = 67								-- set blip sprite, lists of sprite ids are here: https://docs.fivem.net/game-references/blips/
+Config.BlipDisplay = 4								-- set blip display behaviour, find list of types here: https://runtime.fivem.net/doc/natives/#_0x9029B2F3DA924928
+Config.BlipScale = 0.7								-- set blip scale/size on your map
+Config.BlipColour = 5								-- set blip color, list of colors available in the bottom of this link: https://docs.fivem.net/game-references/blips/
+
+-- Armored Truck Blip Settings:
+Config.BlipNameForTruck = "Armored Truck"			-- set name of the blip
+Config.BlipSpriteTruck = 67							-- set blip sprite, lists of sprite ids are here: https://docs.fivem.net/game-references/blips/
+Config.BlipColourTruck = 4							-- set blip color, list of colors available in the bottom of this link: https://docs.fivem.net/game-references/blips/
+Config.BlipScaleTruck = 1.0							-- set blip scale/size on your map
+
+-- Mission Start Location:
+Config.MissionSpot = { -- -450.97204589844,6269.8715820312,30.040332794189
+	{ ["x"] = -450.97204589844, ["y"] = 6269.8715820312, ["z"] = 30.040332794189, ["h"] = 0 },
+}
+
+-- Mission Marker Settings:
+Config.MissionMarker = 27 												-- marker type
+Config.MissionMarkerColor = { r = 240, g = 52, b = 52, a = 100 } 		-- rgba color of the marker
+Config.MissionMarkerScale = { x = 1.25, y = 1.25, z = 1.25 }  			-- the scale for the marker on the x, y and z axis
+Config.Draw3DText = "Press ~g~[E]~s~ for ~y~Mission~s~"					-- set your desired text here
+
+-- Control Keys
+Config.KeyToStartMission = 38	-- default: [E] // set key to start the mission
+Config.KeyToOpenTruckDoor = 47
+Config.KeyToRobFromTruck = 38										
+
+-- ESX.ShowNotifications:
+Config.NoMissionsAvailable = "No ~y~missions~s~ are currently available, please try again later!"
+Config.HackingFailed = "You ~r~failed~s~ the hacking~s~"
+Config.TruckMarkedOnMap = "~y~Armored Truck~s~ is marked on your map"
+Config.KillTheGuards = "~r~Kill~s~ the guards in the ~y~Armored Truck~s~"
+Config.MissionCompleted = "~g~Mission Completed:~s~ You successfully ~r~robbed~s~ the ~y~Armored Truck~s~"
+Config.BeginToRobTruck = "Go to the ~y~Armored Truck~s~ and begin to rob"
+Config.GuardsNotKilledYet = "Take out the ~b~driver~s~ and/or the ~b~passenger~s~ from the ~y~Armored Truck~s~"
+Config.TruckIsNotStopped = "Stop the ~y~Armored Truck~s~ before ~r~robbing~s~!"
+Config.NotEnoughMoney = "You need ~g~$"..Config.MissionCost.."~s~ on your ~b~bank-account~s~ to get a ~y~mission~s~"
+Config.NotEnoughPolice = "To do ~y~missions~s~ there needs to be at least: ~b~"..Config.RequiredPoliceOnline.. " cops~s~ online!"
+Config.CooldownMessage = "You can do another ~y~mission~s~ in: ~b~%s minutes~s~"
+Config.RewardMessage = "You received ~g~$%s ~s~ from the ~y~Armored Truck~s~"
+Config.Item1Message = "You received ~b~%sx~s~ Jewels from the ~y~Armored Truck~s~"
+Config.Item2Message = "You received ~b~%sx~s~ Jewels Bars from the ~y~Armored Truck~s~"
+Config.DispatchMessage = "^3 10-90 ^0 on a Armored Truck at ^5%s^0"
+
+-- ESX.ShowHelpNotifications:
+Config.OpenTruckDoor = "Press ~INPUT_DETONATE~ to open the door"
+Config.RobFromTruck = "Press ~INPUT_PICKUP~ to rob from the Truck"
+
+-- ProgressBars text
+Config.Progress1 = "RETRIEVING TRUCK INFO"
+Config.Progress2 = "PLANTING C4"
+Config.Progress3 = "TIME UNTIL DETONATION"
+Config.Progress4 = "ROBBING THE TRUCK"
+
+-- ProgressBar Timers, in seconds:
+Config.RetrieveMissionTimer = 7.5	-- time from pressed E to receving location on the truck
+Config.DetonateTimer = 10			-- time until bomb is detonated
+Config.RobTruckTimer = 10			-- time spent to rob the truck
+
+-- Guards Weapons:
+Config.DriverWeapon = "WEAPON_PUMPSHOTGUN"		-- weapon for driver
+Config.PassengerWeapon = "WEAPON_SMG" 			-- weapon for passenger
+
+-- Armored Truck Spawn Locations
+Config.ArmoredTruck = 
+{
+	{ 
+		Location = vector3(-452.48278808594,6256.091796875,28.325971603394), 
+		InUse = false
+	},
+
+}
+
+--Advanced Fishing Sidejob
+ConfigFishing = {}
+	---------------------------------------------------------------
+	--=====How long should it take for player to catch a fish=======--
+	---------------------------------------------------------------
+	--Time in miliseconds
+	ConfigFishing.FishTime = {a = 20000, b = 44000}
+
+	--------------------------------------------------------
+	--=====Locations where players can sell stuff========--
+	--------------------------------------------------------
+
+	ConfigFishing.Sell = {
+		{
+		--	pos = vec3(-3251.2, 991.5, 11.49),  -17.427061080933,6303.642578125,31.374618530273
+		pos = vec3( -17.427061080933,6303.642578125,30.374618530273),
+			type = "fish",
+			sellText = "Fish Dealer",
+			blip = 356,
+			colour = 17
+		},
+		{
+		-- 	pos = vec3(3804.0, 4443.3, 3.0),  408.24716186523,6498.4565429688,27.755802154541
+
+		pos = vec3( 408.24716186523,6498.4565429688,26.755802154541),
+			type = "turtle",
+			sellText = "Sea Turtle Dealer",
+			blip = 68,
+			colour = 49
+		},
+		{
+		-- 	pos = vec3(2517.6 , 4218.0, 38.8),  178.86526489258,6393.0517578125,31.373672485352
+		pos = vec3(178.86526489258,6393.0517578125,30.373672485352),
+			type = "shark",
+			sellText = "Shark Dealer",
+			blip = 68,
+			colour = 49
+		}
+	}
+
+	--------------------------------------------------------
+	--=====Locations where players can rent boats========--
+	--------------------------------------------------------
+ConfigFishing.MarkerZones = { 
+	{
+		Marker = vec3(-3426.7,	955.66, 7.35), -- Rental Marker
+		Spawn = vec3(-3426.2, 942.4, 1.1), -- Boat Spawn Point
+		SpawnHeading = 90.0, -- Boat Heading
+		Return = vec3(-3420.2, 996.51, -0.2) -- Boat Return Point
+	},
+	{
+		Marker = vec3(-280.73822021484,6622.5512695312,6.3889527320862),
+		Spawn = vec3(-332.61822509766,6675.4008789062,-0.27882355451584),
+		SpawnHeading = 40.0,
+		Return = vec3(-332.61822509766,6675.4008789062, 0.0)
+	},  
+	{
+		Marker = vec3(-732.9, -1309.7, 4.0),
+		Spawn = vec3(-725.7, -1351.5, 0.5),
+		SpawnHeading = 135.0,
+		Return = vec3(-712.78, -1338.49, 0.0)
+	},  
+	{
+		Marker = vec3(-281.25,	6632.1, 6.4),
+		Spawn = vec3(-330.22, 6660.0, 1.0),
+		SpawnHeading = 45.0,
+		Return = vec3(-268.4, 6697.04, -0.2)
+	},
+	{
+		Marker = vec3(3855.0, 4463.7, 1.6),
+		Spawn = vec3(3885.2, 4507.2, 1.0),
+		SpawnHeading = 300.0,
+		Return = vec3(3862.1, 4440.4, -0.2)
+	},
+	{
+		Marker = vec3(1330.8, 4226.6, 32.9),
+		Spawn = vec3(1343.44, 4190.42, 30.0),
+		SpawnSpawnHeading = 200.0,
+		Return = vec3(1295.0, 4198.43, 30.0)
+	},
+}
+
+ConfigFishing.RentalBoats = {
+	-- Fee and Deposit is 50% of the price, you get the deposit returned
+	-- Add more boats if you want
+	{model = "tug", price = 5000},
+	{model = "smallboat", price = 2000},
+}
+
+-- Bottles Sideline
+ConfigBottles = {}
+
+ConfigBottles.BottleRecieve = { 1, 3 } -- This is the math random ex. math.random(1, 6) this will give you 1 - 6 bottles when searching a bin.
+ConfigBottles.BottleReward = { 1, 4 } -- This is the math random ex. math.random(1, 4) this will give a random payout between 1 - 4
+
+-- Here you add all the bins you are going to search.
+ConfigBottles.BinsAvailable = {
+	"prop_dumpster_4b",
+	"prop_dumpster_4a",
+	"prop_dumpster_02b",
+	"prop_dumpster_02a",
+	"prop_dumpster_01a",
+	"prop_cs_dumpster_01a",
+	"p_dumpster_t"
+}
+
+-- This is where you add the locations where you sell the bottles.
+ConfigBottles.SellBottleLocations = {
+    vector3(29.337753295898, -1770.3348388672, 29.607357025146),
+    vector3(388.30194091797, -874.88238525391, 29.295169830322),
+    vector3(26.877752304077, -1343.0764160156, 29.497024536133)
+}
+
+ConfigWaterCraft = {}
+ConfigWaterCraft.SpawnBike = {x = -1609.12, y = -1120.5, z = 1.63, xs = -1632.16, ys = -1176.45,  zs= 0.5}
+ConfigWaterCraft.DeleteBike = {x = -1618.35, y = -1174.15, z = 0.5}

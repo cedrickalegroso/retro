@@ -40,9 +40,9 @@ server_scripts {
 
 
   --HUMANE
-  'esx_borrmaskin/server/main.lua',
-  'esx_borrmaskin_humane/server/main.lua',
-  'esx-br-rob-humane/server/server.lua',
+ -- 'esx_borrmaskin/server/main.lua',
+ -- 'esx_borrmaskin_humane/server/main.lua',
+  --'esx-br-rob-humane/server/server.lua',
 
   --Pacific
  -- 'PacificStandard/incl.lua',
@@ -142,9 +142,9 @@ client_scripts {
  
 
   --HUMANE
-  'esx_borrmaskin/client/main.lua',
-  'esx_borrmaskin_humane/client/main.lua',
-  'esx-br-rob-humane/client/client.lua',
+  --'esx_borrmaskin/client/main.lua',
+  --'esx_borrmaskin_humane/client/main.lua',
+ -- 'esx-br-rob-humane/client/client.lua',
 
   --pacific
  -- 'PacificStandard/utils.lua',

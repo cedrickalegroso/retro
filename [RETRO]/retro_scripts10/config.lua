@@ -58,7 +58,7 @@ Config.versionCheck = "1.1.0"
 ConfigTrucj = {}
 
 -- Police Settings:
-ConfigTrucj.RequiredPoliceOnline = 4			-- required police online for players to do missions
+ConfigTrucj.RequiredPoliceOnline = 0		-- required police online for players to do missions
 ConfigTrucj.PoliceDatabaseName = "police"	-- set the exact name from your jobs database for police
 ConfigTrucj.PoliceNotfiyEnabled = true		-- police notification upon truck robbery enabled (true) or disabled (false)
 ConfigTrucj.PoliceBlipShow = true			-- enable or disable blip on map on police notify
@@ -105,13 +105,13 @@ ConfigTrucj.BlipColour = 5								-- set blip color, list of colors available in
 
 -- Armored Truck Blip Settings:
 ConfigTrucj.BlipNameForTruck = "Armored Truck"			-- set name of the blip
-ConfigTrucj.BlipSpriteTruck = 1							-- set blip sprite, lists of sprite ids are here: https://docs.fivem.net/game-references/blips/
-ConfigTrucj.BlipColourTruck = 5							-- set blip color, list of colors available in the bottom of this link: https://docs.fivem.net/game-references/blips/
-ConfigTrucj.BlipScaleTruck = 0.9							-- set blip scale/size on your map
+ConfigTrucj.BlipSpriteTruck = 67							-- set blip sprite, lists of sprite ids are here: https://docs.fivem.net/game-references/blips/
+ConfigTrucj.BlipColourTruck = 4							-- set blip color, list of colors available in the bottom of this link: https://docs.fivem.net/game-references/blips/
+ConfigTrucj.BlipScaleTruck = 1.0							-- set blip scale/size on your map
 
 -- Mission Start Location:
-ConfigTrucj.MissionSpot = {
-	{ ["x"] = 1275.55, ["y"] = -1710.4, ["z"] = 54.77, ["h"] = 0 },
+ConfigTrucj.MissionSpot = { -- -450.97204589844,6269.8715820312,30.040332794189
+	{ ["x"] = -450.97204589844, ["y"] = 6269.8715820312, ["z"] = 30.040332794189, ["h"] = 0 },
 }
 
 -- Mission Marker Settings:
@@ -165,25 +165,10 @@ ConfigTrucj.PassengerWeapon = "WEAPON_SMG" 			-- weapon for passenger
 ConfigTrucj.ArmoredTruck = 
 {
 	{ 
-		Location = vector3(-1327.479736328,-86.045326232910,49.31), 
+		Location = vector3(-452.48278808594,6256.091796875,28.325971603394), 
 		InUse = false
 	},
-	{ 
-		Location = vector3(-2075.888183593,-233.73908996580,21.10), 
-		InUse = false
-	},
-	{ 
-		Location = vector3(-972.1781616210,-1530.9045410150,4.890), 
-		InUse = false
-	},
-	{ 
-		Location = vector3(798.184265136720,-1799.8173828125,29.33), 
-		InUse = false
-	},
-	{ 
-		Location = vector3(1247.0718994141,-344.65634155273,69.08), 
-		InUse = false
-	}
+
 }
 
 --Advanced Fishing Sidejob
