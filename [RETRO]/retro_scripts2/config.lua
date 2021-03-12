@@ -2228,6 +2228,18 @@ Config.DoorListLOCK = {
 	},
 
 	{
+		objHash = 749848321,
+		objHeading = 45.0,
+		objCoords = vector3(-14.478174209595,6481.1772460938,31.473348617554),
+		textCoords = vector3(-14.478174209595,6481.1772460938,31.473348617554),
+		authorizedJobs = {'government'},
+		locked = true,
+		maxDistance = 1.25
+	},
+
+	
+
+	{
 		objHash = 631614199,
 		objHeading = -45.0,
 		objCoords = vector3(-431.92468261719,6000.212890625,31.716190338135),
