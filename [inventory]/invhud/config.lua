@@ -741,7 +741,7 @@ Config.Shops = {
         BuyBack = 0.5,
         Locations = {
             Store = {
-                vector3(-281.13446044922, 6405.59375, 29.389196395874)
+                vector3(-1146.4978027344,4940.8247070312,222.26873779297)
             },
             Boss = {
               --  vector3(372.875, 322.896, 102.566)
@@ -772,7 +772,9 @@ Config.Shops = {
             {name = "VaultDoorBypass2", price = 500},
             {name = "VaultDoorCrowBar", price = 500},
 			{name = "illegalcashbank", price = 2500},
-            {name = "armor", price = 5000}
+            {name = "armor", price = 5000},
+            {name = "hackerDevice", price = 1500},
+            {name = "yusuf", price = 3500}
 		},
         Markers = {
             Use = true,

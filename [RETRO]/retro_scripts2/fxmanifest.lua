@@ -47,7 +47,7 @@ server_scripts {
 
   
  --holdupbank
- --'esx_holdupbank/server/server.lua',
+ 'esx_holdupbank/server/server.lua',
 
  --sakit
   'esx_disease/server/main.lua',
@@ -143,7 +143,7 @@ client_scripts {
     'esx_doorlock/client/main.lua',
 
        --holdupbank
- --  'esx_holdupbank/client/client.lua',
+  'esx_holdupbank/client/client.lua',
 
    
    --'jsfour-idcard/client.lua',

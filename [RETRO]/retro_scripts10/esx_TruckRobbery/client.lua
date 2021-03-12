@@ -22,7 +22,7 @@ local playerGender
 
 Citizen.CreateThread(function()
 	while ESX == nil do
-		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+		TriggerEvent('esx:getShRETROaredObjRETROect', function(obj) ESX = obj end)
 		Citizen.Wait(0)
 	end
 	while ESX.GetPlayerData().job == nil do
@@ -101,19 +101,6 @@ Citizen.CreateThread(function()
 		AddTextComponentString(ConfigTrucj.BlipNameOnMap)
 		EndTextCommandSetBlipName(blip)
 
-
-										-- Add all the cool info to the blip
-	exports['blip_info']:SetBlipInfoTitle(blip, ConfigTrucj.BlipNameOnMap, false)
-	exports['blip_info']:SetBlipInfoImage(blip, "world_blips", "illegal")
-	--exports['blip_info']:AddBlipInfoText(blip, "Area", "La Mesa")
-	exports['blip_info']:AddBlipInfoHeader(blip, "") -- Empty header adds the header line
-	exports['blip_info']:AddBlipInfoText(blip, "Type", "Illegal")
-
-	exports['blip_info']:AddBlipInfoText(blip, "Police Units", "All Units")
-	exports['blip_info']:AddBlipInfoText(blip, "Required Police", "4 Officers")
-	exports['blip_info']:AddBlipInfoText(blip, "Minimum EMS", "2")
-	exports['blip_info']:AddBlipInfoText(blip, "Minimum Robbers", "4")
-	--exports['blip_info']:AddBlipInfoText(blip, "Sell your jewelries here!")
 
 									
 
@@ -194,19 +181,40 @@ RequestAnimDict(anim_lib)
 	
 	--FreezeEntityPosition(player,true)
 	
-	exports['progressBars']:startUI((ConfigTrucj.RetrieveMissionTimer * 1000), ConfigTrucj.Progress1)
-	Citizen.Wait((ConfigTrucj.RetrieveMissionTimer * 1000))	
-		
-	TriggerEvent("utk_fingerprint:Start", 2, 6, 5, function(outcome, reason)
-		if outcome == true then -- reason will be nil if outcome is true
-		--	FreezeEntityPosition(player,false)
-			ESX.TriggerServerCallback("esx_TruckRobbery:StartMissionNow",function()	end)
-		elseif outcome == false then
-			ESX.ShowNotification(ConfigTrucj.HackingFailed)
-			ClearPedTasks(player)
-			ClearPedSecondaryTask(player)
+	TriggerEvent("mythic_progbar:client:progress", {
+		name = "unique_action_name",
+		duration = ConfigTrucj.RetrieveMissionTimer * 1000,
+		label = "Getting Truck Locations",
+		useWhileDead = false,
+		canCancel = true,
+		controlDisables = {
+			disableMovement = true,
+			disableCarMovement = true,
+			disableMouse = false,
+			disableCombat = true,
+		},
+		animation = {
+			animDict = "missheistdockssetup1clipboard@idle_a",
+			anim = "idle_a",
+		},
+		prop = {
+			model = "prop_paper_bag_small",
+		}
+	}, function(status)
+		if not status then
+			TriggerEvent("utk_fingerprint:Start", 2, 6, 5, function(outcome, reason)
+				if outcome == true then -- reason will be nil if outcome is true
+				--	FreezeEntityPosition(player,false)
+					ESX.TriggerServerCallback("esx_TruckRobbery:StartMissionNow",function()	end)
+				elseif outcome == false then
+					ESX.ShowNotification(ConfigTrucj.HackingFailed)
+					ClearPedTasks(player)
+					ClearPedSecondaryTask(player)
+				end
+			end)
 		end
 	end)
+	
 		
 --	FreezeEntityPosition(player,false)
 end

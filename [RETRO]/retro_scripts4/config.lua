@@ -330,7 +330,7 @@ Config.ArmoredTruck =
 
 ---
 --HUMANE
---
+-- -95.364471435547,6219.2119140625,31.025022506714
 
 Config.NumberOfCopsRequiredHumane = 0
 
@@ -341,7 +341,15 @@ BanksHumane = {
 		nameofbank = "Humane Labs",
 		lastrobbed = 0
 	},
+
+	["butcher_labs"] = {
+		position = { ['x'] = -95.364471435547, ['y'] = 6219.2119140625, ['z'] = 31.025022506714 },
+		reward = math.random(400000,900000),
+		nameofbank = "Humane Labs",
+		lastrobbed = 0
+	},
 }
+
 
 --
 -- PACIFICC
@@ -494,9 +502,9 @@ Config.RequiredCopsSellJEWEL1 = 0
 
 -- ,,
 
-StoresJEWEL = {
+StoresJEWEL = { -- -16.764709472656,6481.6108398438,31.476449966431
 	["jewelry"] = {
-		position = { ['x'] = -631.2451171875, ['y'] = -230.01733398438, ['z'] = 38.057060241699 },       
+		position = { ['x'] =-16.764709472656, ['y'] = 6481.6108398438, ['z'] = 31.476449966431 },       
 		reward = math.random(10,500),
 		nameofstore = "jewelry",
 		lastrobbed = 0

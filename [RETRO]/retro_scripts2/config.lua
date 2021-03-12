@@ -1189,9 +1189,9 @@ local hour = 60 * minute
 
 Config.ZonesMoneywash = {
 	
-	['LaundryMat'] = {	
+	['LaundryMat'] = {	 -- -1139.4580078125,4964.8662109375,222.24336242676
 		Pos = { 
-			{x = 1122.5 , y = -3194.98 , z = -40.60},
+			{x = -1139.4580078125 , y = 4964.8662109375 , z = 221.44336242676},
 		},
 		
 		Jobs = {
@@ -1377,30 +1377,26 @@ StoresHOLDUP  = {
 -- HOLDUP
 -----------
 
-Config.NumberOfCopsRequiredholdapbank = 4
+Config.NumberOfCopsRequiredholdapbank = 5
 
 BanksHoldap = {
-	["fleeca"] = {
-		position = { ['x'] = 147.04908752441, ['y'] = -1044.9448242188, ['z'] = 29.36802482605 },
-		reward = math.random(25000,85000),
-		nameofbank = "Fleeca Bank",
-		blockOfbank = "8170",
-		lastrobbed = 0
-	},
-	["fleeca2"] = {
-		position = { ['x'] = -2957.6674804688, ['y'] = 481.45776367188, ['z'] = 15.697026252747 },
-		reward = math.random(25000,85000),
-		nameofbank = "Fleeca Bank (Highway)",
-		blockOfbank = "5070",
-		lastrobbed = 0
-	},
+	
 	["blainecounty"] = {
 		position = { ['x'] = -107.06505584717, ['y'] = 6474.8012695313, ['z'] = 31.62670135498 },
-		reward = math.random(25000,85000),
+		reward = math.random(1000000,2500000),
 		nameofbank = "Blaine County Savings",
 		blockOfbank = "1055",
 		lastrobbed = 0
 	},
+	["butcherlab"] = { -- -96.387763977051,6219.5595703125,31.025026321411
+		position = { ['x'] = -96.387763977051, ['y'] = 6219.5595703125, ['z'] = 31.025026321411 },
+		reward = math.random(3000000,6000000),
+		nameofbank = "Butcher Lab",
+		blockOfbank = "1025",
+		lastrobbed = 0
+	},
+
+
 
 }
 
@@ -2230,6 +2226,18 @@ Config.DoorListLOCK = {
 		locked = true,
 		maxDistance = 1.25
 	},
+
+	{
+		objHash = 749848321,
+		objHeading = 45.0,
+		objCoords = vector3(-14.478174209595,6481.1772460938,31.473348617554),
+		textCoords = vector3(-14.478174209595,6481.1772460938,31.473348617554),
+		authorizedJobs = {'government'},
+		locked = true,
+		maxDistance = 1.25
+	},
+
+	
 
 	{
 		objHash = 631614199,

@@ -106,19 +106,7 @@ Citizen.CreateThread(function()
 		AddTextComponentString(_U('bank_robbery'))
 		EndTextCommandSetBlipName(blip)
 
-										-- Add all the cool info to the blip
-	exports['blip_info']:SetBlipInfoTitle(blip, _U('bank_robbery'), false)
-	exports['blip_info']:SetBlipInfoImage(blip, "world_blips", "illegal")
-	--exports['blip_info']:AddBlipInfoText(blip, "Area", "La Mesa")
-	exports['blip_info']:AddBlipInfoHeader(blip, "") -- Empty header adds the header line
-	exports['blip_info']:AddBlipInfoText(blip, "Type", "Illegal")
-
-	exports['blip_info']:AddBlipInfoText(blip, "Police Units", "[STRICT] POLICE+2")
-	exports['blip_info']:AddBlipInfoText(blip, "Required Police", "5 Officers")
-	exports['blip_info']:AddBlipInfoText(blip, "Minimum EMS", "2")
-	exports['blip_info']:AddBlipInfoText(blip, "Minimum Robbers", "5")
-	--exports['blip_info']:AddBlipInfoText(blip, "Sell your jewelries here!")
-
+		
 									
 
 	end
@@ -138,7 +126,7 @@ Citizen.CreateThread(function()
 
 					if(Vdist(pos.x, pos.y, pos.z, pos2.x, pos2.y, pos2.z) < 1.0)then
 						if (incircle == false) then
-							DisplayHelpText(_U('press_to_rob') .. v.nameofbank)
+							DisplayHelpText(_U('press_to_rob1') .. v.nameofbank)
 						end
 						incircle = true
 						if IsControlJustReleased(1, 51) then

@@ -27,7 +27,7 @@ RegisterCommand('adminrep', function(source, args, user)
 for i = 1, #xPlayers, 1 do
 		local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
 
-		if xPlayer and xPlayer.getGroup() == 'superadmin' and xPlayer.getGroup() == 'moderator' and xPlayer.source ~= source then
+		if xPlayer and xPlayer.getGroup() == 'superadmin' and xPlayer.getGroup() == 'moderator' and xPlayer.getGroup() == 'admin' and xPlayer.source ~= source then
 			TriggerClientEvent('chatMessage', xPlayer.source, "SUPPORT", {0, 0, 255}, " (^2" .. GetPlayerName(source) .. " | " .. source .. "^0) " .. table.concat(args, " "))
 		end
 	end	

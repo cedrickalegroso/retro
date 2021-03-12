@@ -25,7 +25,7 @@ server_scripts {
 
   --'hunting/server/main.lua',
 
-    'esx_TruckRobbery/server.lua',
+    --'esx_TruckRobbery/server.lua',
 	
 	'esx_AdvancedFishing/server.lua',
 	'esx_AdvancedFishing/server_config.lua',
@@ -52,7 +52,7 @@ client_scripts {
 
  --'hunting/client/main.lua',
 
- 'esx_TruckRobbery/client.lua',
+-- 'esx_TruckRobbery/client.lua',
  
  'esx_AdvancedFishing/client.lua',
  

@@ -210,7 +210,7 @@ Citizen.CreateThread(function()
 										}
 									}, function(status)
 										if not status then
-											gioielli1 = AddBlipForCoord(-626.5326, -238.3758, 38.05)
+											gioielli1 = AddBlipForCoord(-21.699983596802,6487.1201171875,31.514856338501)
 											SetBlipSprite(gioielli1,1)
 											SetBlipColour(gioielli1,16742399)
 											SetBlipScale(gioielli1,0.5)
@@ -218,7 +218,7 @@ Citizen.CreateThread(function()
 											AddTextComponentString(_U('jewelsblipmap'))
 											EndTextCommandSetBlipName(gioielli1)
 				
-											gioielli2 = AddBlipForCoord(-625.6032, -237.5273, 38.05)
+											gioielli2 = AddBlipForCoord(-20.171915054321,6487.8793945312,31.514869689941)
 											SetBlipSprite(gioielli2,1)
 											SetBlipColour(gioielli2,16742399)
 											SetBlipScale(gioielli2,0.5)
@@ -226,7 +226,7 @@ Citizen.CreateThread(function()
 											AddTextComponentString(_U('jewelsblipmap'))
 											EndTextCommandSetBlipName(gioielli2)
 				
-											gioielli3 = AddBlipForCoord(-626.9178, -235.5166, 38.05)
+											gioielli3 = AddBlipForCoord(-18.816240310669,6487.4448242188,31.514904022217)
 											SetBlipSprite(gioielli3,1)
 											SetBlipColour(gioielli3,16742399)
 											SetBlipScale(gioielli3,0.5)
@@ -234,7 +234,7 @@ Citizen.CreateThread(function()
 											AddTextComponentString(_U('jewelsblipmap'))
 											EndTextCommandSetBlipName(gioielli3)
 				
-											gioielli4 = AddBlipForCoord(-625.6701, -234.6061, 38.05)
+											gioielli4 = AddBlipForCoord(-17.928033828735,6485.69140625,31.509088516235)
 											SetBlipSprite(gioielli4,1)
 											SetBlipColour(gioielli4,16742399)
 											SetBlipScale(gioielli4,0.5)
@@ -243,7 +243,7 @@ Citizen.CreateThread(function()
 											EndTextCommandSetBlipName(gioielli4)
 				
 				
-											gioielli5 = AddBlipForCoord(-626.8935, -233.0814, 38.05)
+											gioielli5 = AddBlipForCoord(-18.292133331299,6484.4794921875,31.499258041382)
 											SetBlipSprite(gioielli5,1)
 											SetBlipColour(gioielli5,16742399)
 											SetBlipScale(gioielli5,0.5)
@@ -251,7 +251,7 @@ Citizen.CreateThread(function()
 											AddTextComponentString(_U('jewelsblipmap'))
 											EndTextCommandSetBlipName(gioielli5)
 				
-											gioielli6 = AddBlipForCoord(-627.9514, -233.8582, 38.05)
+											gioielli6 = AddBlipForCoord(-17.561706542969,6487.6884765625,31.514965057373)
 											SetBlipSprite(gioielli6,1)
 											SetBlipColour(gioielli6,16742399)
 											SetBlipScale(gioielli6,0.5)
@@ -259,7 +259,7 @@ Citizen.CreateThread(function()
 											AddTextComponentString(_U('jewelsblipmap'))
 											EndTextCommandSetBlipName(gioielli6)
 				
-											gioielli7 = AddBlipForCoord(-624.5250, -231.0555, 38.05)
+											gioielli7 = AddBlipForCoord(-18.229818344116,6489.1909179688,31.514934539795)
 											SetBlipSprite(gioielli7,1)
 											SetBlipColour(gioielli7,16742399)
 											SetBlipScale(gioielli7,0.5)
@@ -267,7 +267,7 @@ Citizen.CreateThread(function()
 											AddTextComponentString(_U('jewelsblipmap'))
 											EndTextCommandSetBlipName(gioielli7)
 				
-											gioielli8 = AddBlipForCoord(-623.0003, -233.0833, 38.05)
+											gioielli8 = AddBlipForCoord(-17.724700927734,6490.5473632812,31.514928817749)
 											SetBlipSprite(gioielli8,1)
 											SetBlipColour(gioielli8,16742399)
 											SetBlipScale(gioielli8,0.5)
@@ -275,7 +275,7 @@ Citizen.CreateThread(function()
 											AddTextComponentString(_U('jewelsblipmap'))
 											EndTextCommandSetBlipName(gioielli8)
 				
-											gioielli9 = AddBlipForCoord(-620.1098, -233.3672, 38.05)
+											gioielli9 = AddBlipForCoord(-15.999079704285,6491.4272460938,31.514972686768)
 											SetBlipSprite(gioielli9,1)
 											SetBlipColour(gioielli9,16742399)
 											SetBlipScale(gioielli9,0.5)
@@ -283,7 +283,7 @@ Citizen.CreateThread(function()
 											AddTextComponentString(_U('jewelsblipmap'))
 											EndTextCommandSetBlipName(gioielli9)
 				
-											gioielli10 = AddBlipForCoord(-620.2979, -234.4196, 38.05)
+											gioielli10 = AddBlipForCoord(-14.381952285767,6490.6884765625,31.515020370483)
 											SetBlipSprite(gioielli10,1)
 											SetBlipColour(gioielli10,16742399)
 											SetBlipScale(gioielli10,0.5)
@@ -291,7 +291,7 @@ Citizen.CreateThread(function()
 											AddTextComponentString(_U('jewelsblipmap'))
 											EndTextCommandSetBlipName(gioielli10)
 				
-											gioielli11 = AddBlipForCoord(-619.0646, -233.5629, 38.05)
+											gioielli11 = AddBlipForCoord(-16.235395431519,6489.2719726562,31.515003204346)
 											SetBlipSprite(gioielli11,1)
 											SetBlipColour(gioielli11,16742399)
 											SetBlipScale(gioielli11,0.5)
@@ -299,7 +299,7 @@ Citizen.CreateThread(function()
 											AddTextComponentString(_U('jewelsblipmap'))
 											EndTextCommandSetBlipName(gioielli11)
 				
-											gioielli12 = AddBlipForCoord(-617.4846, -230.6598, 38.05)
+											gioielli12 = AddBlipForCoord(-14.062242507935,6485.9965820312,31.512163162231)
 											SetBlipSprite(gioielli12,1)
 											SetBlipColour(gioielli12,16742399)
 											SetBlipScale(gioielli12,0.5)
@@ -307,7 +307,7 @@ Citizen.CreateThread(function()
 											AddTextComponentString(_U('jewelsblipmap'))
 											EndTextCommandSetBlipName(gioielli12)
 				
-											gioielli13 = AddBlipForCoord(-618.3619, -229.4285, 38.05)
+											gioielli13 = AddBlipForCoord(-13.067048072815,6485.1313476562,31.505477905273)
 											SetBlipSprite(gioielli13,1)
 											SetBlipColour(gioielli13,16742399)
 											SetBlipScale(gioielli13,0.5)
@@ -315,7 +315,7 @@ Citizen.CreateThread(function()
 											AddTextComponentString(_U('jewelsblipmap'))
 											EndTextCommandSetBlipName(gioielli13)
 				
-											gioielli14 = AddBlipForCoord(-619.6064, -230.5518, 38.05)
+											gioielli14 = AddBlipForCoord(-10.970438957214,6486.7802734375,31.515144348145)
 											SetBlipSprite(gioielli14,1)
 											SetBlipColour(gioielli14,16742399)
 											SetBlipScale(gioielli14,0.5)
@@ -323,7 +323,7 @@ Citizen.CreateThread(function()
 											AddTextComponentString(_U('jewelsblipmap'))
 											EndTextCommandSetBlipName(gioielli14)
 				
-											gioielli15 = AddBlipForCoord(-620.8951, -228.6519, 38.05)
+											gioielli15 = AddBlipForCoord(-11.918348312378,6487.7563476562,31.515130996704)
 											SetBlipSprite(gioielli15,1)
 											SetBlipColour(gioielli15,16742399)
 											SetBlipScale(gioielli15,0.5)
@@ -331,7 +331,7 @@ Citizen.CreateThread(function()
 											AddTextComponentString(_U('jewelsblipmap'))
 											EndTextCommandSetBlipName(gioielli15)
 				
-											gioielli16 = AddBlipForCoord(-619.7905, -227.5623, 38.05)
+											gioielli16 = AddBlipForCoord(-13.277973175049,6487.2563476562,31.51508140564)
 											SetBlipSprite(gioielli16,1)
 											SetBlipColour(gioielli16,16742399)
 											SetBlipScale(gioielli16,0.5)
@@ -339,7 +339,7 @@ Citizen.CreateThread(function()
 											AddTextComponentString(_U('jewelsblipmap'))
 											EndTextCommandSetBlipName(gioielli16)
 				
-											gioielli17 = AddBlipForCoord(-620.6110, -226.4467, 38.05)
+											gioielli17 = AddBlipForCoord(-11.914082527161,6485.8461914062,31.511383056641)
 											SetBlipSprite(gioielli17,1)
 											SetBlipColour(gioielli17,16742399)
 											SetBlipScale(gioielli17,0.5)
@@ -347,7 +347,7 @@ Citizen.CreateThread(function()
 											AddTextComponentString(_U('jewelsblipmap'))
 											EndTextCommandSetBlipName(gioielli17)
 				
-											gioielli18 = AddBlipForCoord(-623.9951, -228.1755, 38.05)
+											gioielli18 = AddBlipForCoord(-16.1535987854,6480.4604492188,31.467273712158)
 											SetBlipSprite(gioielli18,1)
 											SetBlipColour(gioielli18,16742399)
 											SetBlipScale(gioielli18,0.5)
@@ -355,7 +355,7 @@ Citizen.CreateThread(function()
 											AddTextComponentString(_U('jewelsblipmap'))
 											EndTextCommandSetBlipName(gioielli18)
 				
-											gioielli19 = AddBlipForCoord(-624.8832, -227.8645, 38.05)
+											gioielli19 = AddBlipForCoord(-13.39221572876,6482.5834960938,31.484991073608)
 											SetBlipSprite(gioielli19,1)
 											SetBlipColour(gioielli19,16742399)
 											SetBlipScale(gioielli19,0.5)
@@ -363,7 +363,7 @@ Citizen.CreateThread(function()
 											AddTextComponentString(_U('jewelsblipmap'))
 											EndTextCommandSetBlipName(gioielli19)
 				
-											gioielli20 = AddBlipForCoord(-623.6746, -227.0025, 38.05)
+											gioielli20 = AddBlipForCoord(-20.044359207153,6485.8798828125,31.510192871094)
 											SetBlipSprite(gioielli20,1)
 											SetBlipColour(gioielli20,16742399)
 											SetBlipScale(gioielli20,0.5)
@@ -393,7 +393,7 @@ Citizen.CreateThread(function()
 		end
 
 		if holdingup then
-							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -626.5326, -238.3758, 38.05, true) < 0.5 ) then
+							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -21.699983596802,6487.1201171875,31.514856338501, true) < 0.5 ) then
 								if (hasrobbed == false) then
 							DisplayHelpText(_U('field'))
 							if IsControlJustReleased(1, 51) then
@@ -405,7 +405,7 @@ Citizen.CreateThread(function()
 	                            Citizen.Wait(0)
                                 end
                                 SetPtfxAssetNextCall("scr_jewelheist")
-								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -626.5326, -238.3758, 38.05, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
+								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -21.699983596802,6487.1201171875,31.514856338501, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
 								loadAnimDict( "missheist_jewel" ) 
 								TaskPlayAnim( player, "missheist_jewel", "smash_case", 8.0, 1.0, -1, 2, 0, 0, 0, 0 ) 
 								DisplayHelpText(_U('collectinprogress'))
@@ -420,7 +420,7 @@ Citizen.CreateThread(function()
 							end
 							end
 
-							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -625.6032, -237.5273, 38.05, true) < 0.5 ) then
+							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)),-20.171915054321,6487.8793945312,31.514869689941, true) < 0.5 ) then
 								if (hasrobbed2 == false) then
 							DisplayHelpText(_U('field'))
 							if IsControlJustReleased(1, 51) then
@@ -432,7 +432,7 @@ Citizen.CreateThread(function()
 	                            Citizen.Wait(0)
                                 end
                                 SetPtfxAssetNextCall("scr_jewelheist")
-								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -625.6032, -237.5273, 38.05, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
+								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -20.171915054321,6487.8793945312,31.514869689941, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
 								loadAnimDict( "missheist_jewel" ) 
 								TaskPlayAnim( player, "missheist_jewel", "smash_case", 8.0, 1.0, -1, 2, 0, 0, 0, 0 ) 
 								DisplayHelpText(_U('collectinprogress'))
@@ -447,7 +447,7 @@ Citizen.CreateThread(function()
 							end
 							end
 
-							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -626.9178, -235.5166, 38.05, true) < 0.5 ) then
+							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -18.816240310669,6487.4448242188,31.514904022217, true) < 0.5 ) then
 								if (hasrobbed3 == false) then
 							DisplayHelpText(_U('field'))
 							if IsControlJustReleased(1, 51) then
@@ -459,7 +459,7 @@ Citizen.CreateThread(function()
 	                            Citizen.Wait(0)
                                 end
                                 SetPtfxAssetNextCall("scr_jewelheist")
-								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -626.9178, -235.5166, 38.05, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
+								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -18.816240310669,6487.4448242188,31.514904022217, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
 								loadAnimDict( "missheist_jewel" ) 
 								TaskPlayAnim( player, "missheist_jewel", "smash_case", 8.0, 1.0, -1, 2, 0, 0, 0, 0 ) 
 								DisplayHelpText(_U('collectinprogress'))
@@ -474,7 +474,7 @@ Citizen.CreateThread(function()
 							end
 							end
 
-							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -625.6701, -234.6061, 38.05, true) < 0.5 ) then
+							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -17.928033828735,6485.69140625,31.509088516235, true) < 0.5 ) then
 								if (hasrobbed4 == false) then
 							DisplayHelpText(_U('field'))
 							if IsControlJustReleased(1, 51) then
@@ -486,7 +486,7 @@ Citizen.CreateThread(function()
 	                            Citizen.Wait(0)
                                 end
                                 SetPtfxAssetNextCall("scr_jewelheist")
-								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -625.6701, -234.6061, 38.05, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
+								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -17.928033828735,6485.69140625,31.509088516235, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
 								loadAnimDict( "missheist_jewel" ) 
 								TaskPlayAnim( player, "missheist_jewel", "smash_case", 8.0, 1.0, -1, 2, 0, 0, 0, 0 ) 
 								DisplayHelpText(_U('collectinprogress'))
@@ -501,7 +501,7 @@ Citizen.CreateThread(function()
 							end
 							end
 
-							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -626.8935, -233.0814, 38.05, true) < 0.5 ) then
+							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -18.292133331299,6484.4794921875,31.499258041382, true) < 0.5 ) then
 								if (hasrobbed5 == false) then
 							DisplayHelpText(_U('field'))
 							if IsControlJustReleased(1, 51) then
@@ -513,7 +513,7 @@ Citizen.CreateThread(function()
 	                            Citizen.Wait(0)
                                 end
                                 SetPtfxAssetNextCall("scr_jewelheist")
-								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -626.8935, -233.0814, 38.05, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
+								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -18.292133331299,6484.4794921875,31.499258041382, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
 								loadAnimDict( "missheist_jewel" ) 
 								TaskPlayAnim( player, "missheist_jewel", "smash_case", 8.0, 1.0, -1, 2, 0, 0, 0, 0 ) 
 								DisplayHelpText(_U('collectinprogress'))
@@ -528,7 +528,7 @@ Citizen.CreateThread(function()
 							end
 							end
 
-							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -627.9514, -233.8582, 38.05, true) < 0.5 ) then
+							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -17.561706542969,6487.6884765625,31.514965057373, true) < 0.5 ) then
 								if (hasrobbed6 == false) then
 							DisplayHelpText(_U('field'))
 							if IsControlJustReleased(1, 51) then
@@ -540,7 +540,7 @@ Citizen.CreateThread(function()
 	                            Citizen.Wait(0)
                                 end
                                 SetPtfxAssetNextCall("scr_jewelheist")
-								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -627.9514, -233.8582, 38.05, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
+								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -17.561706542969,6487.6884765625,31.514965057373, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
 								loadAnimDict( "missheist_jewel" ) 
 								TaskPlayAnim( player, "missheist_jewel", "smash_case", 8.0, 1.0, -1, 2, 0, 0, 0, 0 ) 
 								DisplayHelpText(_U('collectinprogress'))
@@ -555,7 +555,7 @@ Citizen.CreateThread(function()
 							end
 							end
 
-							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -624.5250, -231.0555, 38.05, true) < 0.5 ) then
+							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -18.229818344116,6489.1909179688,31.514934539795, true) < 0.5 ) then
 								if (hasrobbed7 == false) then
 							DisplayHelpText(_U('field'))
 							if IsControlJustReleased(1, 51) then
@@ -567,7 +567,7 @@ Citizen.CreateThread(function()
 	                            Citizen.Wait(0)
                                 end
                                 SetPtfxAssetNextCall("scr_jewelheist")
-								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -624.5250, -231.0555, 38.05, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
+								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -18.229818344116,6489.1909179688,31.514934539795, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
 								loadAnimDict( "missheist_jewel" ) 
 								TaskPlayAnim( player, "missheist_jewel", "smash_case", 8.0, 1.0, -1, 2, 0, 0, 0, 0 ) 
 								DisplayHelpText(_U('collectinprogress'))
@@ -582,7 +582,7 @@ Citizen.CreateThread(function()
 							end
 							end
 
-							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -623.0003, -233.0833, 38.05, true) < 0.5 ) then
+							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -17.724700927734,6490.5473632812,31.514928817749, true) < 0.5 ) then
 								if (hasrobbed8 == false) then
 							DisplayHelpText(_U('field'))
 							if IsControlJustReleased(1, 51) then
@@ -594,7 +594,7 @@ Citizen.CreateThread(function()
 	                            Citizen.Wait(0)
                                 end
                                 SetPtfxAssetNextCall("scr_jewelheist")
-								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -623.0003, -233.0833, 38.05, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
+								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -17.724700927734,6490.5473632812,31.514928817749, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
 								loadAnimDict( "missheist_jewel" ) 
 								TaskPlayAnim( player, "missheist_jewel", "smash_case", 8.0, 1.0, -1, 2, 0, 0, 0, 0 ) 
 								DisplayHelpText(_U('collectinprogress'))
@@ -609,7 +609,7 @@ Citizen.CreateThread(function()
 							end
 							end
 
-							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -620.1098, -233.3672, 38.05, true) < 0.5 ) then
+							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -15.999079704285,6491.4272460938,31.514972686768, true) < 0.5 ) then
 							if (hasrobbed9 == false) then
 							DisplayHelpText(_U('field'))
 							if IsControlJustReleased(1, 51) then
@@ -621,7 +621,7 @@ Citizen.CreateThread(function()
 	                            Citizen.Wait(0)
                                 end
                                 SetPtfxAssetNextCall("scr_jewelheist")
-								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -620.1098, -233.3672, 38.05, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
+								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash",-15.999079704285,6491.4272460938,31.514972686768, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
 								loadAnimDict( "missheist_jewel" ) 
 								TaskPlayAnim( player, "missheist_jewel", "smash_case", 8.0, 1.0, -1, 2, 0, 0, 0, 0 ) 
 								DisplayHelpText(_U('collectinprogress'))
@@ -636,7 +636,7 @@ Citizen.CreateThread(function()
 							end
 							end
 
-							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -620.2979, -234.4196, 38.05, true) < 0.5 ) then
+							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)),-14.381952285767,6490.6884765625,31.515020370483, true) < 0.5 ) then
 							if (hasrobbed10 == false) then
 							DisplayHelpText(_U('field'))
 							if IsControlJustReleased(1, 51) then
@@ -648,7 +648,7 @@ Citizen.CreateThread(function()
 	                            Citizen.Wait(0)
                                 end
                                 SetPtfxAssetNextCall("scr_jewelheist")
-								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -620.2979, -234.4196, 38.05, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
+								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -14.381952285767,6490.6884765625,31.515020370483, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
 								loadAnimDict( "missheist_jewel" ) 
 								TaskPlayAnim( player, "missheist_jewel", "smash_case", 8.0, 1.0, -1, 2, 0, 0, 0, 0 ) 
 								DisplayHelpText(_U('collectinprogress'))
@@ -663,7 +663,7 @@ Citizen.CreateThread(function()
 							end
 							end
 
-							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -619.0646, -233.5629, 38.05, true) < 0.5 ) then
+							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -16.235395431519,6489.2719726562,31.515003204346, true) < 0.5 ) then
 							if (hasrobbed11 == false) then
 							DisplayHelpText(_U('field'))
 							if IsControlJustReleased(1, 51) then
@@ -675,7 +675,7 @@ Citizen.CreateThread(function()
 	                            Citizen.Wait(0)
                                 end
                                 SetPtfxAssetNextCall("scr_jewelheist")
-								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -619.0646, -233.5629, 38.05, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
+								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -16.235395431519,6489.2719726562,31.515003204346, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
 								loadAnimDict( "missheist_jewel" ) 
 								TaskPlayAnim( player, "missheist_jewel", "smash_case", 8.0, 1.0, -1, 2, 0, 0, 0, 0 ) 
 								DisplayHelpText(_U('collectinprogress'))
@@ -690,7 +690,7 @@ Citizen.CreateThread(function()
 							end
 							end
 
-							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -617.4846, -230.6598, 38.05, true) < 0.5 ) then
+							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -14.062242507935,6485.9965820312,31.512163162231, true) < 0.5 ) then
 							if (hasrobbed12 == false) then
 							DisplayHelpText(_U('field'))
 							if IsControlJustReleased(1, 51) then
@@ -702,7 +702,7 @@ Citizen.CreateThread(function()
 	                            Citizen.Wait(0)
                                 end
                                 SetPtfxAssetNextCall("scr_jewelheist")
-								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -617.4846, -230.6598, 38.05, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
+								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -14.062242507935,6485.9965820312,31.512163162231, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
 								loadAnimDict( "missheist_jewel" ) 
 								TaskPlayAnim( player, "missheist_jewel", "smash_case", 8.0, 1.0, -1, 2, 0, 0, 0, 0 ) 
 								DisplayHelpText(_U('collectinprogress'))
@@ -717,7 +717,7 @@ Citizen.CreateThread(function()
 							end
 							end
 
-							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -618.3619, -229.4285, 38.05, true) < 0.5 ) then
+							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -13.067048072815,6485.1313476562,31.505477905273, true) < 0.5 ) then
 							if (hasrobbed13 == false) then
 							DisplayHelpText(_U('field'))
 							if IsControlJustReleased(1, 51) then
@@ -729,7 +729,7 @@ Citizen.CreateThread(function()
 	                            Citizen.Wait(0)
                                 end
                                 SetPtfxAssetNextCall("scr_jewelheist")
-								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -618.3619, -229.4285, 38.05, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
+								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash",-13.067048072815,6485.1313476562,31.505477905273, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
 								loadAnimDict( "missheist_jewel" ) 
 								TaskPlayAnim( player, "missheist_jewel", "smash_case", 8.0, 1.0, -1, 2, 0, 0, 0, 0 ) 
 								DisplayHelpText(_U('collectinprogress'))
@@ -744,7 +744,7 @@ Citizen.CreateThread(function()
 							end
 							end
 
-							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -619.6064, -230.5518, 38.05, true) < 0.5 ) then
+							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -10.970438957214,6486.7802734375,31.515144348145, true) < 0.5 ) then
 							if (hasrobbed14 == false) then
 							DisplayHelpText(_U('field'))
 							if IsControlJustReleased(1, 51) then
@@ -756,7 +756,7 @@ Citizen.CreateThread(function()
 	                            Citizen.Wait(0)
                                 end
                                 SetPtfxAssetNextCall("scr_jewelheist")
-								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -619.6064, -230.5518, 38.05, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
+								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -10.970438957214,6486.7802734375,31.515144348145, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
 								loadAnimDict( "missheist_jewel" ) 
 								TaskPlayAnim( player, "missheist_jewel", "smash_case", 8.0, 1.0, -1, 2, 0, 0, 0, 0 ) 
 								DisplayHelpText(_U('collectinprogress'))
@@ -771,7 +771,7 @@ Citizen.CreateThread(function()
 							end
 							end
 
-							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -620.8951, -228.6519, 38.05, true) < 0.5 ) then
+							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -11.918348312378,6487.7563476562,31.515130996704, true) < 0.5 ) then
 							if (hasrobbed15 == false) then
 							DisplayHelpText(_U('field'))
 							if IsControlJustReleased(1, 51) then
@@ -783,7 +783,7 @@ Citizen.CreateThread(function()
 	                            Citizen.Wait(0)
                                 end
                                 SetPtfxAssetNextCall("scr_jewelheist")
-								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -620.8951, -228.6519, 38.05, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
+								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -11.918348312378,6487.7563476562,31.515130996704, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
 								loadAnimDict( "missheist_jewel" ) 
 								TaskPlayAnim( player, "missheist_jewel", "smash_case", 8.0, 1.0, -1, 2, 0, 0, 0, 0 ) 
 								DisplayHelpText(_U('collectinprogress'))
@@ -798,7 +798,7 @@ Citizen.CreateThread(function()
 							end
 							end
 
-							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -619.7905, -227.5623, 38.05, true) < 0.5 ) then
+							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -13.277973175049,6487.2563476562,31.51508140564, true) < 0.5 ) then
 							if (hasrobbed16 == false) then
 							DisplayHelpText(_U('field'))
 							if IsControlJustReleased(1, 51) then
@@ -810,7 +810,7 @@ Citizen.CreateThread(function()
 	                            Citizen.Wait(0)
                                 end
                                 SetPtfxAssetNextCall("scr_jewelheist")
-								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -619.7905, -227.5623, 38.05, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
+								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -13.277973175049,6487.2563476562,31.51508140564, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
 								loadAnimDict( "missheist_jewel" ) 
 								TaskPlayAnim( player, "missheist_jewel", "smash_case", 8.0, 1.0, -1, 2, 0, 0, 0, 0 ) 
 								DisplayHelpText(_U('collectinprogress'))
@@ -825,7 +825,7 @@ Citizen.CreateThread(function()
 							end
 							end
 
-							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -620.6110, -226.4467, 38.05, true) < 0.5 ) then
+							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -11.914082527161,6485.8461914062,31.511383056641, true) < 0.5 ) then
 							if (hasrobbed17 == false) then
 							DisplayHelpText(_U('field'))
 							if IsControlJustReleased(1, 51) then
@@ -837,7 +837,7 @@ Citizen.CreateThread(function()
 	                            Citizen.Wait(0)
                                 end
                                 SetPtfxAssetNextCall("scr_jewelheist")
-								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -620.6110, -226.4467, 38.05, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
+								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash",-11.914082527161,6485.8461914062,31.511383056641, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
 								loadAnimDict( "missheist_jewel" ) 
 								TaskPlayAnim( player, "missheist_jewel", "smash_case", 8.0, 1.0, -1, 2, 0, 0, 0, 0 ) 
 								DisplayHelpText(_U('collectinprogress'))
@@ -852,7 +852,7 @@ Citizen.CreateThread(function()
 							end
 							end
 
-							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -623.9951, -228.1755, 38.05, true) < 0.5 ) then
+							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -16.1535987854,6480.4604492188,31.467273712158, true) < 0.5 ) then
 							if (hasrobbed18 == false) then
 							DisplayHelpText(_U('field'))
 							if IsControlJustReleased(1, 51) then
@@ -864,7 +864,7 @@ Citizen.CreateThread(function()
 	                            Citizen.Wait(0)
                                 end
                                 SetPtfxAssetNextCall("scr_jewelheist")
-								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -623.9951, -228.1755, 38.05, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
+								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -16.1535987854,6480.4604492188,31.467273712158, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
 								loadAnimDict( "missheist_jewel" ) 
 								TaskPlayAnim( player, "missheist_jewel", "smash_case", 8.0, 1.0, -1, 2, 0, 0, 0, 0 ) 
 								DisplayHelpText(_U('collectinprogress'))
@@ -879,7 +879,7 @@ Citizen.CreateThread(function()
 							end
 							end
 
-							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -624.8832, -227.8645, 38.05, true) < 0.5 ) then
+							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)),-13.39221572876,6482.5834960938,31.484991073608, true) < 0.5 ) then
 							if (hasrobbed19 == false) then
 							DisplayHelpText(_U('field'))
 							if IsControlJustReleased(1, 51) then
@@ -891,7 +891,7 @@ Citizen.CreateThread(function()
 	                            Citizen.Wait(0)
                                 end
                                 SetPtfxAssetNextCall("scr_jewelheist")
-								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -624.8832, -227.8645, 38.05, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
+								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -13.39221572876,6482.5834960938,31.484991073608, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
 								loadAnimDict( "missheist_jewel" ) 
 								TaskPlayAnim( player, "missheist_jewel", "smash_case", 8.0, 1.0, -1, 2, 0, 0, 0, 0 ) 
 								DisplayHelpText(_U('collectinprogress'))
@@ -906,7 +906,7 @@ Citizen.CreateThread(function()
 							end
 							end
 
-							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -623.6746, -227.0025, 38.05, true) < 0.5 ) then
+							if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -20.044359207153,6485.8798828125,31.510192871094, true) < 0.5 ) then
 							if (hasrobbed20 == false) then
 							DisplayHelpText(_U('field'))
 							if IsControlJustReleased(1, 51) then
@@ -918,7 +918,7 @@ Citizen.CreateThread(function()
 	                            Citizen.Wait(0)
                                 end
                                 SetPtfxAssetNextCall("scr_jewelheist")
-								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -623.6746, -227.0025, 38.05, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
+								StartParticleFxLoopedAtCoord("scr_jewel_cab_smash", -20.044359207153,6485.8798828125,31.510192871094, 0.0, 0.0, 0.0, 1.0, false, false, false, false)
 								loadAnimDict( "missheist_jewel" ) 
 								TaskPlayAnim( player, "missheist_jewel", "smash_case", 8.0, 1.0, -1, 2, 0, 0, 0, 0 ) 
 								DisplayHelpText(_U('collectinprogress'))
@@ -984,7 +984,7 @@ Citizen.CreateThread(function()
 
 			local pos2 = StoresJEWEL[store].position
 
-			if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -622.566, -230.183, 38.057, true) > 11.5 ) then
+			if (GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -16.266967773438,6487.2094726562,31.515008926392, true) > 11.5 ) then
 				TriggerServerEvent('esx_vangelico_robbery:toofar', store)
 				holdingup = false
 				RemoveBlip(gioielli1)
@@ -1097,7 +1097,11 @@ AddEventHandler("lester:createBlip", function(type, x, y, z)
 end)
 
 Citizen.CreateThread(function()
-		TriggerEvent('lester:createBlip', 77, 706.669, -966.898, 30.413)
+
+	-- -1124.5552978516,4892.5874023438,218.47245788574
+	--	TriggerEvent('lester:createBlip', 77, 706.669, -966.898, 30.413)
+
+	TriggerEvent('lester:createBlip', 77, -1124.5552978516,4892.5874023438,218.47245788574)
 
     while true do
        Citizen.Wait(0)
@@ -1106,7 +1110,7 @@ Citizen.CreateThread(function()
 		
 		if pos then
 				
-				if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), 706.669, -966.898, 30.413, true) <= 5 then
+				if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), -1124.5552978516,4892.5874023438,218.47245788574, true) <= 5 then
 					TriggerServerEvent('lester:vendita')
 					Citizen.Wait(4000)
 					
