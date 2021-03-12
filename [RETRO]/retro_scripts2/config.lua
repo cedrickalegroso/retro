@@ -1377,7 +1377,7 @@ StoresHOLDUP  = {
 -- HOLDUP
 -----------
 
-Config.NumberOfCopsRequiredholdapbank = 5
+Config.NumberOfCopsRequiredholdapbank = 4
 
 BanksHoldap = {
 	
