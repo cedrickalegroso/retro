@@ -220,7 +220,7 @@ AddEventHandler('fishing:fishstart', function()
 	if IsPedInAnyVehicle(playerPed) then
 		ESX.ShowNotification("~r~You can not fish from a vehicle")
 	else
-		if pos.y >= 7700 or pos.y <= -4000 or pos.x <= -3700 or pos.x >= 4300 then
+		if pos.y >= 0 or pos.y <= 1 or pos.x <= 1 or pos.x >= 0 then
 			ESX.ShowNotification("Fishing started\nPress ~y~X~s~ to stop fishing")
 			TaskStartScenarioInPlace(PlayerPedId(), "WORLD_HUMAN_STAND_FISHING", 0, true)
 			fishing = true

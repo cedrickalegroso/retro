@@ -447,12 +447,12 @@ Config.BoatPounds = {
 		Marker = vector3(-738.67, -1400.43, 4.0),
 		Spawner = vector3(-738.33, -1381.51, 0.12),
 		Heading = 137.85
-	}
-	--[[Sandy_Shores_Dock = {
-		Marker = vector3(1299.36, 4217.93, 32.91),
-		Spawner = vector3(1294.35, 4226.31, 29.86),
-		Heading = 345.0
 	},
+	--[[Sandy_Shores_Dock = {
+	--	Marker = vector3(1299.36, 4217.93, 32.91),
+	--	Spawner = vector3(1294.35, 4226.31, 29.86),
+	--	Heading = 345.0
+	}--,
 	Paleto_Bay_Dock = {
 		Marker = vector3(-270.2, 6642.43, 6.36),
 		Spawner = vector3(-290.38, 6638.54, -0.47),
@@ -527,9 +527,15 @@ Config.CarGarages = {
 		Spawner = vector3(-103.76957702637,824.73309326172,234.72528076172),
 		Deleter = vector3(-107.10875701904,824.41345214844,235.72468566895),
 		Heading = 8.14
+	},
+	Mech_Paleto = {
+		Marker = vector3(115.96,6633.76,32.01),
+		Spawner = vector3(123.83,6620.55,31.82),
+		Deleter = vector3(111.74,6607.34,31.88),
+		Heading = 314.20
 	}
+	
 }
-
 Config.CarPounds = {
 	Los_Santos = {
 		Marker = vector3(-56.369331359863,-1825.5596923828,26.905891418457),
@@ -557,17 +563,20 @@ Config.CarPounds = {
 		Spawner = vector3(2481.794921875,6115.5756835938,169.03796386719),
 		Heading = 125.0
 	},
+
+	Mech_Paleto= {
+		Marker = vector3(114.49,6635.29,31.97),
+		Spawner = vector3(123.83,6620.55,31.82),
+		Heading = 314.20
+	},
 	--[[
 
-CUATRO = {
+	CUATRO = {
 		Marker = vector3(-1919.4547119141,2048.3176269531,140.73526000977),
 		Spawner = vector3(-778.91241455078,-198.19789123535,37.283695220947),
 		Heading = 24
 	}
-
-	]]--
-	
-	
+	--]]--
 }
 -- End of Cars
 

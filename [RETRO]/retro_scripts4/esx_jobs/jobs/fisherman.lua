@@ -26,7 +26,7 @@ Config.Jobs.fisherman = {
 	Zones = {
 
 		CloakRoom = {
-			Pos   = {x = 868.39, y = -1639.75, z = 29.33},
+			Pos   = {x = -182.52, y = 6551.07, z = 11.1},
 			Size  = {x = 3.0, y = 3.0, z = 1.0},
 			Color = {r = 204, g = 204, b = 0},
 			Marker= 1,
@@ -34,11 +34,11 @@ Config.Jobs.fisherman = {
 			Name  = _U('fm_fish_locker'),
 			Type  = "cloakroom",
 			Hint  = _U('cloak_change'),
-			GPS = {x = 880.74, y = -1663.96, z = 29.37}
+			GPS = {x = -182.52, y = 6551.07, z = 11.1}
 		},
 
 		FishingSpot = {
-			Pos   = {x = 4435.21, y = 4829.60, z = 0.34},
+			Pos   = {x = -841.15, y = 6922.53, z = 0.50},
 			Color = {r = 204, g = 204, b = 0},
 			Size  = {x = 110.0, y = 110.0, z = 10.0},
 			Marker= 1,
@@ -46,7 +46,7 @@ Config.Jobs.fisherman = {
 			Name  = _U('fm_fish_area'),
 			Type  = "work",
 			Hint  = _U('fm_fish_button'),
-			GPS   = {x = 3859.43, y = 4448.83, z = 0.39},
+			GPS   = {x = -841.15, y = 6922.53, z = 0.50},
 			Item = {
 				{
 					name   = _U('fm_fish'),

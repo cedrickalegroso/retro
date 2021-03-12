@@ -52,20 +52,20 @@ grooveActions = {
 	},
 
 	VehicleSpawnPoint = {
-		Pos   = { x = -71.229, y = -1833.25, z = 26.94 },
+		Pos   = { x = 118.76, y = 6594.67, z = 32.05 },
 		Size  = { x = 1.5, y = 1.5, z = 1.0 },
 		Type  = -1,
 	},
 
 	VehicleDeleter = {
-		Pos   = { x = -71.229, y = -1833.25, z = 25.94 },
+		Pos   = { x = 119.03, y = 6609.23, z = 31.89},
 		Size  = { x = 3.0, y = 3.0, z = 3.0 },
 		Color = { r = 204, g = 0, b = 0 },
 		Type  = 1,
 	},
 
 	VehicleDelivery = {
-		Pos   = { x = -71.229, y = -1833.25, z = 26.94 },
+		Pos   = { x = 118.76, y = 6594.67, z = 32.05 },
 		Size  = { x = 20.0, y = 20.0, z = 3.0 },
 		Color = { r = 204, g = 204, b = 0 },
 		Type  = -1,

@@ -52,11 +52,14 @@ Config['Objects'] = {
         ['Distance'] = 7.5,
     },
     {
-        ['Object'] = 'prop_tv_flat_02',
-        ['Scale'] = 0.026,
-        ['Offset'] = vec3(-0.5, -0.012, 0.525),
-        ['Distance'] = 7.5,
+        ['Object'] = 'apa_mp_h_str_avunitl_01_b',
+        ['Scale'] = 1,
+        ['Offset'] = vec3(5, -5, 5),
+        ['Distance'] = 10.5,
     },
+	
+	
+	
 }
 
 Strings = {

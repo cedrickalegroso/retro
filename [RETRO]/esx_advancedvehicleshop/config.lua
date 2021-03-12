@@ -205,21 +205,21 @@ Pos     = vector3(180.59048461914,6632.3203125,31.579090118408),
 	},
 	-- Car Shop
 	ShopEnteringCar = {
-		Pos    = vector3(-33.7, -1102.0, 25.4),
+		Pos    = vector3(-231.77, 6235.27, 31.5),
 		Marker = {r = 0, g = 255, b = 0},
 		Size   = {x = 1.5, y = 1.5, z = 1.0},
 		Type   = 1,
 		ShopId = 5
 	},
 	ShopInsideCar = {
-		Pos     = vector3(-47.5, -1097.2, 25.4),
+		Pos     = vector3(-236.59, 6252.21, 31.49),
 		Size    = {x = 1.5, y = 1.5, z = 1.0},
 		Heading = -20.0,
 		Type    = -1,
 		ShopId  = 5
 	},
 	ShopOutsideCar = {
-		Pos     = vector3(-26.8, -1083.5, 26.6),
+		Pos     = vector3(-224.4, 6250.82, 31.49),
 		Size    = {x = 1.5, y = 1.5, z = 1.0},
 		Heading = 70.68,
 		Type    = -1,
