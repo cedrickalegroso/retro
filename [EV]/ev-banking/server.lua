@@ -15,7 +15,7 @@ AddEventHandler('bank:deposit', function(amount)
 	else
 
 
-		local tax = amount * 0.2
+		local tax = 15
         local amount = amount + tax
 
 		xPlayer.removeMoney(amount)
@@ -49,9 +49,9 @@ AddEventHandler('bank:withdraw', function(amount)
 	else
 
 		local tax = 15
-        local amount1 = amount + tax
+        local amount = amount + tax
 
-		xPlayer.removeAccountMoney('bank', amount1)
+		xPlayer.removeAccountMoney('bank', amount)
 		xPlayer.addMoney(amount)
 
 		TriggerEvent('esx_society:depositTax',xPlayer.source, 'government', tax)
