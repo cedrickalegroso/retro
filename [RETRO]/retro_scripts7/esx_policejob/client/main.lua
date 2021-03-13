@@ -603,14 +603,11 @@ function OpenPoliceActionsMenu()
 							if amount == nil or amount < 0 then
 								exports['mythic_notify']:DoCustomHudText('inform', 'Invalid Amount', 2500, { ['background-color'] = '#FF0000', ['color'] = '#ffffff' })
 							else
-								local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
-								if closestPlayer == -1 or closestDistance > 3.0 then
-									--ESX.ShowNotification(_U('no_players_nearby'))
-									exports['mythic_notify']:DoCustomHudText('inform', 'No Players Nearby', 2500, { ['background-color'] = '#FF0000', ['color'] = '#ffffff' })
-								else
+								
+							
 									menu.close()
-									TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(closestPlayer), 'society_police', police, amount)
-								end
+									TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(closestPlayer), 'society_police',  'FTHEPOPO', amount)
+								
 							end
 						end, function(data, menu)
 							menu.close()
