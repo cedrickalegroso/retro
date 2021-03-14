@@ -29,7 +29,7 @@ Config.BoatBlip = {Coords = vector3(-714.3, -1297.3, 4.1), Sprite = 410, Color =
 
 Config.UseCarShop = true -- true = Use Car Shop | false = Does Opposite
 Config.UseCarBlip = true -- true = Use Car Blip | false = Does Opposite
-Config.CarBlip = {Coords = vector3(-33.7, -1102.0, 25.4), Sprite = 326, Color = 2, Display = 4, Scale = 1.0}
+Config.CarBlip = {Coords = vector3(1776.9, 3327.54, 31.43), Sprite = 326, Color = 2, Display = 4, Scale = 1.0}
 
 Config.UseTruckShop = true -- true = Use Truck Shop | false = Does Opposite
 Config.UseTruckBlip = true -- true = Use Truck Blip | false = Does Opposite
@@ -205,23 +205,23 @@ Pos     = vector3(180.59048461914,6632.3203125,31.579090118408),
 	},
 	-- Car Shop
 	ShopEnteringCar = {
-		Pos    = vector3(-231.77, 6235.27, 31.5),
+		Pos    = vector3(1776.69, 3327.65, 40.43),
 		Marker = {r = 0, g = 255, b = 0},
 		Size   = {x = 1.5, y = 1.5, z = 1.0},
 		Type   = 1,
 		ShopId = 5
 	},
 	ShopInsideCar = {
-		Pos     = vector3(-236.59, 6252.21, 31.49),
+		Pos     = vector3(1768.58, 3308, 41.16),
 		Size    = {x = 1.5, y = 1.5, z = 1.0},
-		Heading = -20.0,
+		Heading = 234.82,
 		Type    = -1,
 		ShopId  = 5
 	},
 	ShopOutsideCar = {
-		Pos     = vector3(-224.4, 6250.82, 31.49),
+		Pos     = vector3(1728.45, 3313.78, 198.44),
 		Size    = {x = 1.5, y = 1.5, z = 1.0},
-		Heading = 70.68,
+		Heading = 199.59,
 		Type    = -1,
 		ShopId  = 5
 	},

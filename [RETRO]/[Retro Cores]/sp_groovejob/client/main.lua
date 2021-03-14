@@ -1000,12 +1000,8 @@ function OpenMobilegrooveActionsMenu()
 			css		= 'metier',
 			title    = _U('objects'),
 			align    = 'left',
-			elements = {			
-				{label = 'Machine water', value = 'prop_watercooler_dark'},				
-				{label = 'Fence', value = 'prop_barrier_work06a'},				
-				{label = 'Repair', value = 'imp_prop_impexp_postlift'},	
-				{label = 'Trolley', value = 'prop_cs_trolley_01'},					
-				{label = 'Wall Wheel', value = 'imp_prop_impexp_hub_rack_01a'},				
+			elements = {								
+				{label = 'Trolley', value = 'prop_cs_trolley_01'},							
 				{label = 'Chair', value = 'v_ret_gc_chair02'},			
 				{label = _U('roadcone'), value = 'prop_roadcone02a'},
 				{label = _U('toolbox'),  value = 'prop_toolchest_01'}

@@ -236,10 +236,10 @@ ConfigT.Shops = {
 	vec(-293.7, 6200.0, 31.4)
 }
 
-ConfigT.interiorIds = {}
-for k, v in ipairs(ConfigT.Shops) do
-    ConfigT.interiorIds[#ConfigT.interiorIds + 1] = GetInteriorAtCoords(v)
-end
+--ConfigT.interiorIds = {}
+--for k, v in ipairs(ConfigT.Shops) do
+  --  ConfigT.interiorIds[#ConfigT.interiorIds + 1] = GetInteriorAtCoords(v)
+--end
 
 ---carwash
 
