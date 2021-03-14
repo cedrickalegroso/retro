@@ -574,7 +574,7 @@ function OpenPoliceActionsMenu()
 						Citizen.Wait(4000)
 						TriggerServerEvent('retro_gordo:handcuff', GetPlayerServerId(closestPlayer))
 					elseif action == 'uncuff' then						
-						TriggerServerEvent('esx_policejob:handcuff', GetPlayerServerId(closestPlayer))
+						TriggerServerEvent('retro_gordo:handcuff', GetPlayerServerId(closestPlayer))
 					elseif action == 'comserve' then						
 						SendToCommunityService(GetPlayerServerId(closestPlayer))
 					elseif action == 'jail' then						
@@ -585,7 +585,7 @@ function OpenPoliceActionsMenu()
 					elseif action == 'put_in_vehicle' then
 						TriggerServerEvent('retro_gordo:putInVehicle', GetPlayerServerId(closestPlayer))
 					elseif action == 'out_the_vehicle' then
-						TriggerServerEvent('retro_gordo:OutVehicle', GetPlayerServerId(closestPlayer))
+						TriggerServerEvent('esx_policejob:OutVehicle', GetPlayerServerId(closestPlayer))
 					elseif action == 'fine' then
 						TriggerServerEvent('esx_policejob:message', GetPlayerServerId(closestPlayer), 'You are being billed by the Police')
 						OpenFineMenuPolice(closestPlayer)

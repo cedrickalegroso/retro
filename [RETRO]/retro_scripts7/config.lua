@@ -472,6 +472,8 @@ ConfigPOPO.PoliceStations = {
 			{ name = 'WEAPON_PUMPSHOTGUN',      price = 600 },
 			{ name = 'WEAPON_STUNGUN',          price = 500 },
 			{ name = 'WEAPON_FLASHLIGHT',       price = 80 },
+			{ name = 'WEAPON_BZGAS',       price = 80 },
+			
 			--{ name = 'WEAPON_FIREEXTINGUISHER', price = 120 },
 			--{ name = 'WEAPON_FLAREGUN',         price = 60 },
 		--	{ name = 'WEAPON_STICKYBOMB',       price = 250 },
