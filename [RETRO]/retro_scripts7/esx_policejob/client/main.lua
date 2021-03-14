@@ -519,6 +519,7 @@ function OpenPoliceActionsMenu()
 				{label = 'Cuff',   value = 'ruskicuff'},
 				{label = 'Uncuff', value = 'handcuff'},
 				{label = 'Soft cuff', value = 'softcuff'},
+				{label = 'Remove Soft cuff', value = 'rsoftcuff'},
 				{label = 'Manual Bill', value = 'manualbill'},
 				{label = _U('drag'),			value = 'drag'},
 				{label = _U('put_in_vehicle'),	value = 'put_in_vehicle'},
@@ -553,6 +554,9 @@ function OpenPoliceActionsMenu()
 					elseif action == 'body_search' then
 						TriggerServerEvent('esx_policejob:message', GetPlayerServerId(closestPlayer), _U('being_searched'))
 						OpenBodySearchMenuPolice(closestPlayer)	
+					elseif action == 'rsoftcuff' then
+						TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 2.0, 'cuff', 0.7)
+						TriggerServerEvent('retro_gordo:SoftCuff',  GetPlayerServerId(closestPlayer))		
 					elseif action == 'softcuff' then
 						TriggerServerEvent('InteractSound_SV:PlayWithinDistance', 2.0, 'cuff', 0.7)
 						TriggerServerEvent('retro_gordo:SoftCuff',  GetPlayerServerId(closestPlayer))					
