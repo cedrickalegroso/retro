@@ -130,10 +130,10 @@ Config.Recipes = {
 
 
 
--- Enable a shop to access the crafting menu
+-- Enable a shop to access the crafting menu -1135.2388916016,4944.7412109375,222.26870727539
 Config.Shop = {
 	useShop = true,
-	shopCoordinates = { x=962.5, y=-1585.5, z=29.6 },
+	shopCoordinates = { x=-1135.2388916016, y=4944.7412109375, z=221.26870727539 },
 	shopName = "Crafting Station",
 	shopBlipID = 446,
 	zoneSize = { x = 2.5, y = 2.5, z = 1.5 },
