@@ -533,6 +533,12 @@ Config.CarGarages = {
 		Spawner = vector3(123.83,6620.55,31.82),
 		Deleter = vector3(111.74,6607.34,31.88),
 		Heading = 314.20
+	},
+	Mech_Sandy = {
+		Marker = vector3(1446.93,3575.29,35.59),
+		Spawner = vector3(1437.36,3575.16,35.43),
+		Deleter = vector3(1430.06,3570.56,35.53),
+		Heading = 10.24
 	}
 	
 }
@@ -568,6 +574,11 @@ Config.CarPounds = {
 		Marker = vector3(114.49,6635.29,31.97),
 		Spawner = vector3(123.83,6620.55,31.82),
 		Heading = 314.20
+	},
+	Mech_Sandy = {
+		Marker = vector3(1414.15,3564.15,35.82),
+		Spawner = vector3(1413.11,3565.91,35.41),
+		Heading = 14.93
 	},
 	--[[
 

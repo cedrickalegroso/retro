@@ -67,8 +67,9 @@ client_scripts {
  'esx-ecobottles/client/main.lua',
  
  'AddictionRentBoats/client.lua',
- 'emsbeds/client.lua' 
-
+ 'emsbeds/client.lua',
+ 
+ 'weapon-dmg.lua'
 }
 
 

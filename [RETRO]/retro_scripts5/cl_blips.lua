@@ -57,6 +57,22 @@ Citizen.CreateThread(function()
 		
 	}
 	
+	ConfigRead.MechSandy = {
+
+		LSPD = {
+	
+			Blip = {
+				Coords  = vector3(1438.19,3554.12,43.34),
+				Sprite  = 446,
+				Display = 4,
+				Scale   = 1,
+				alpha = 80,
+				Colour  = 48
+			},
+
+		},
+		
+	}
 	
 	ConfigRead.Vermillion = {
 
