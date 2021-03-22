@@ -90,12 +90,12 @@ RegisterNUICallback('register', function(data, cb)
 	if reason == "" then
 		EnableGui(false)
 		DoScreenFadeOut(1000)
-		SetCamActive(cam,  false)
+		SetCamActive(cam,  false)  -- 415.53329467773,-1097.3330078125,30.057830810547
 		RenderScriptCams(false,  false,  0,  true,  true)
 		SetEntityCollision(GetPlayerPed(-1),  true,  true)
 		SetEntityVisible(GetPlayerPed(-1),  true) 
 		FreezeEntityPosition(GetPlayerPed(-1), false) ---426.76852416992,6027.8901367188,31.490123748779  -516.95764160156,-253.60173034668,35.645721435547
-		SetEntityCoords(GetPlayerPed(-1), -427.25744628906,6028.5087890625,31.490135192871)
+		SetEntityCoords(GetPlayerPed(-1), 415.53329467773,-1097.3330078125,30.057830810547)
 		DoScreenFadeIn(1000)
 		Wait(1000)
 		TriggerServerEvent('esx_identity:setIdentity', data, myIdentifiers)
