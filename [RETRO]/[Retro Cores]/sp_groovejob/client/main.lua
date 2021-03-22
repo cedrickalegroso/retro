@@ -97,10 +97,10 @@ end)
 
 
 
-local blips = { -- ,,31.787231445312
-    -- Example {title="", colour=, id=, x=, y=, z=},
+local blips = { -- ,,31.787231445312  -207.89691162109,-1320.5983886719,30.890306472778
+    -- Example {title="", colour=, id=, x=, y=, z=},  
 	{title="GS Customs", colour=-1, id=446, x =-116.20, y = -1772.08, z = 26.85,}, -- Location to obtain supplies needed to make cocaine at Drug Processing Location
-	{title="GS Customs", colour=-1, id=446, x =109.20963287354, y = 6626.7768554688, z = 26.85,},
+	{title="GS Customs", colour=-1, id=446, x =-207.89691162109, y = -1320.5983886719, z = 30.890306472778,},
 
 }
 

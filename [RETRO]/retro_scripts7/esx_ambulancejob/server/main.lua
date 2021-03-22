@@ -7,25 +7,21 @@ AddEventHandler('esx_ambulancejob:revive', function(target)
 	local xPlayer = ESX.GetPlayerFromId(source)
 
 	if xPlayer.job.name == 'ambulance' then
-		xPlayer.addMoney(ConfigAmbu.ReviveReward)
+		xPlayer.addMoney(1500)
+		TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = 'You recieved 1500 bonus for reviving a citizen!'})
 		TriggerClientEvent('esx_ambulancejob:revive', target)
 	else
 		print(('esx_ambulancejob: %s attempted to revive!'):format(xPlayer.identifier))
 	end
 end)
 
-
-
-RegisterServerEvent('esx_ambulancejob:reviveAlbularyo')
-AddEventHandler('esx_ambulancejob:reviveAlbularyo', function(target)
+RegisterServerEvent('esx_ambulancejob:revive1')
+AddEventHandler('esx_ambulancejob:revive1', function(target)
 	local xPlayer = ESX.GetPlayerFromId(source)
 
---	if xPlayer.job.name == 'ambulance' then
-	--	xPlayer.addMoney(ConfigAmbu.ReviveReward)
+		TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = 'You recieved 1500 bonus for reviving a citizen!'})
 		TriggerClientEvent('esx_ambulancejob:revive', target)
-	--else
-		print(('esx_ambulancejob: %s attempted to revive!'):format(xPlayer.identifier))
-	--end
+	
 end)
 
 
@@ -40,18 +36,39 @@ RegisterCommand("outveh", function(source)
 	TriggerClientEvent('esx_ambulancejob:outVehicletest', source)
 end)
 
-RegisterServerEvent('CUSTOM_esx_ambulance:requestCPR')
-AddEventHandler('CUSTOM_esx_ambulance:requestCPR', function(target, playerheading, playerCoords, playerlocation)
-    print(target)
-    TriggerClientEvent("CUSTOM_esx_ambulance:playCPR", target, playerheading, playerCoords, playerlocation)
+RegisterServerEvent('esx_ambulancejob:OutVehicle')
+AddEventHandler('esx_ambulancejob:OutVehicle', function(target, coords)
+	local xPlayer = ESX.GetPlayerFromId(source)
+	TriggerClientEvent('esx_ambulancejob:OutVehicle', target, coords)
+--[[
+	if xPlayer.job.name == 'ambulance' then
+		print('player is ambulance')
+		TriggerClientEvent('esx_ambulancejob:OutVehicle', target, coords)
+	else
+		print(('retro_police: %s attempted to drag out from vehicle (not cop)!'):format(xPlayer.identifier))
+	end
+]]--
+
 end)
+
+
 
 RegisterServerEvent('esx_ambulancejob:heal')
 AddEventHandler('esx_ambulancejob:heal', function(target, type)
 	local xPlayer = ESX.GetPlayerFromId(source)
 
 	if xPlayer.job.name == 'ambulance' then
+	
 		TriggerClientEvent('esx_ambulancejob:heal', target, type)
+
+		if type == 'small' then 
+			xPlayer.addMoney(300)
+		TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = 'You recieved 1500 bonus for reviving a citizen!'})
+	end
+	if type == 'big' then 
+			xPlayer.addMoney(500)
+		TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'success', text = 'You recieved 1500 bonus for reviving a citizen!'})
+		end
 	else
 		print(('esx_ambulancejob: %s attempted to heal!'):format(xPlayer.identifier))
 	end
@@ -60,15 +77,25 @@ end)
 RegisterServerEvent('esx_ambulancejob:putInVehicle')
 AddEventHandler('esx_ambulancejob:putInVehicle', function(target)
 	local xPlayer = ESX.GetPlayerFromId(source)
+	TriggerClientEvent('esx_ambulancejob:putInVehicle', target)
 
+	--[[
 	if xPlayer.job.name == 'ambulance' then
 		TriggerClientEvent('esx_ambulancejob:putInVehicle', target)
 	else
 		print(('esx_ambulancejob: %s attempted to put in vehicle!'):format(xPlayer.identifier))
 	end
+	]]--
+
 end)
 
-TriggerEvent('esx_phone:registerNumber', 'ambulance', _U('alert_ambulance'), true, true)
+RegisterServerEvent('CUSTOM_esx_ambulance:requestCPR')
+AddEventHandler('CUSTOM_esx_ambulance:requestCPR', function(target, playerheading, playerCoords, playerlocation)
+    print(target)
+    TriggerClientEvent("CUSTOM_esx_ambulance:playCPR", target, playerheading, playerCoords, playerlocation)
+end)
+
+TriggerEvent('esx_phone:registerNumber', 'ambu', _U('alert_ambulance'), true, true)
 
 TriggerEvent('esx_society:registerSociety', 'ambulance', 'Ambulance', 'society_ambulance', 'society_ambulance', 'society_ambulance', {type = 'public'})
 
@@ -92,6 +119,7 @@ ESX.RegisterServerCallback('esx_ambulancejob:removeItemsAfterRPDeath', function(
 			end
 		end
 	end
+
 
 	local playerLoadout = {}
 	if ConfigAmbu.RemoveWeaponsAfterRPDeath then
@@ -148,25 +176,24 @@ ESX.RegisterServerCallback('esx_ambulancejob:buyJobVehicle', function(source, cb
 
 	-- vehicle model not found
 	if price == 0 then
-		print(('esx_ambulancejob: %s attempted to exploit the shop! (invalid vehicle model)'):format(xPlayer.identifier))
 		cb(false)
-	end
-
-	if xPlayer.getMoney() >= price then
-		xPlayer.removeMoney(price)
-
-		MySQL.Async.execute('INSERT INTO owned_vehicles (owner, vehicle, plate, type, job, stored) VALUES (@owner, @vehicle, @plate, @type, @job, @stored)', {
-			['@owner'] = xPlayer.identifier,
-			['@vehicle'] = json.encode(vehicleProps),
-			['@plate'] = vehicleProps.plate,
-			['@type'] = type,
-			['@job'] = xPlayer.job.name,
-			['@stored'] = true
-		}, function (rowsChanged)
-			cb(true)
-		end)
 	else
-		cb(false)
+		if xPlayer.getMoney() >= price then
+			xPlayer.removeMoney(price)
+
+			MySQL.Async.execute('INSERT INTO owned_vehicles (owner, vehicle, plate, type, job, `stored`) VALUES (@owner, @vehicle, @plate, @type, @job, @stored)', {
+				['@owner'] = xPlayer.identifier,
+				['@vehicle'] = json.encode(vehicleProps),
+				['@plate'] = vehicleProps.plate,
+				['@type'] = type,
+				['@job'] = xPlayer.job.name,
+				['@stored'] = true
+			}, function (rowsChanged)
+				cb(true)
+			end)
+		else
+			cb(false)
+		end
 	end
 end)
 
@@ -190,20 +217,18 @@ ESX.RegisterServerCallback('esx_ambulancejob:storeNearbyVehicle', function(sourc
 	if not foundPlate then
 		cb(false)
 	else
-		MySQL.Async.execute('UPDATE owned_vehicles SET stored = true WHERE owner = @owner AND plate = @plate AND job = @job', {
+		MySQL.Async.execute('UPDATE owned_vehicles SET `stored` = true WHERE owner = @owner AND plate = @plate AND job = @job', {
 			['@owner'] = xPlayer.identifier,
 			['@plate'] = foundPlate,
 			['@job'] = xPlayer.job.name
 		}, function (rowsChanged)
 			if rowsChanged == 0 then
-				print(('esx_ambulancejob: %s has exploited the garage!'):format(xPlayer.identifier))
 				cb(false)
 			else
 				cb(true, foundNum)
 			end
 		end)
 	end
-
 end)
 
 function getPriceFromHash(hashKey, jobGrade, type)
@@ -242,33 +267,53 @@ AddEventHandler('esx_ambulancejob:removeItem', function(item)
 	end
 end)
 
-RegisterServerEvent('esx_ambulancejob:giveItem')
-AddEventHandler('esx_ambulancejob:giveItem', function(itemName)
+RegisterNetEvent('esx_ambulancejob:giveItem')
+AddEventHandler('esx_ambulancejob:giveItem', function(itemName, amount)
 	local xPlayer = ESX.GetPlayerFromId(source)
 
-	if xPlayer.job.name ~= 'ambulance' then
-		print(('esx_ambulancejob: %s attempted to spawn in an item!'):format(xPlayer.identifier))
-		return
-	elseif (itemName ~= 'medikit' and itemName ~= 'bandage') then
-		print(('esx_ambulancejob: %s attempted to spawn in an item!'):format(xPlayer.identifier))
-		return
+	
+
+
+
+	local itemcounter = xPlayer.getInventoryItem(itemName)
+	print(itemName) 
+	
+	if  itemcounter.count >= 20 then 
+		TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = 'error', text = 'You already have enough' })
+	else 
+		xPlayer.addInventoryItem(itemName, amount)
+
+
+		local name = GetPlayerName(source)
+		local message = name..' took an item in pharmacy '..amount.." "..itemName
+		local color = 56108
+		local webhook = 'https://discordapp.com/api/webhooks/766122282510057493/lM7gIuoy_yVNS1t5rFvmttvqKBaUg4c5P5-S2X66cSRR7Cu0Iu--rQNXzUvzM8wlYvgy'
+		
+		sendToDiscord (name,message,color, webhook)  
+		
 	end
 
-	local xItem = xPlayer.getInventoryItem(itemName)
-	local count = 1
-
-	if xItem.limit ~= -1 then
-		count = xItem.limit - xItem.count
-	end
-
-	if xItem.count < xItem.limit then
-		xPlayer.addInventoryItem(itemName, count)
-	else
-		TriggerClientEvent('esx:showNotification', source, _U('max_item'))
-	end
+		
+--	else
+	--	xPlayer.showNotification(_U('max_item'))
+	--end
 end)
 
 TriggerEvent('es:addGroupCommand', 'revive', 'admin', function(source, args, user)
+	if args[1] ~= nil then
+		if GetPlayerName(tonumber(args[1])) ~= nil then
+			print(('esx_ambulancejob: %s used admin revive'):format(GetPlayerIdentifiers(source)[1]))
+			TriggerClientEvent('esx_ambulancejob:revive', tonumber(args[1]))
+		end
+	else
+		TriggerClientEvent('esx_ambulancejob:revive', source)
+	end
+end, function(source, args, user)
+	TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'Insufficient Permissions.' } })
+end, { help = _U('revive_help'), params = {{ name = 'id' }} })
+
+
+TriggerEvent('es:addGroupCommand', 'revive', 'moderator', function(source, args, user)
 	if args[1] ~= nil then
 		if GetPlayerName(tonumber(args[1])) ~= nil then
 			print(('esx_ambulancejob: %s used admin revive'):format(GetPlayerIdentifiers(source)[1]))
@@ -299,6 +344,15 @@ ESX.RegisterUsableItem('bandage', function(source)
 	TriggerClientEvent('esx:showNotification', _source, _U('used_bandage'))
 end)
 
+ESX.RegisterUsableItem('bandage2', function(source)
+	local _source = source
+	local xPlayer = ESX.GetPlayerFromId(_source)
+	xPlayer.removeInventoryItem('bandage2', 1)
+
+	TriggerClientEvent('esx_ambulancejob:heal2', _source, 'small')
+	--TriggerClientEvent('esx:showNotification', _source, _U('used_bandage'))
+end)
+
 ESX.RegisterServerCallback('esx_ambulancejob:getDeathStatus', function(source, cb)
 	local identifier = GetPlayerIdentifiers(source)[1]
 
@@ -322,3 +376,87 @@ AddEventHandler('esx_ambulancejob:setDeathStatus', function(isDead)
 		['@isDead']     = isDead
 	})
 end)
+
+
+RegisterCommand("newlife", function(source, args, rawCommand)
+	local _source = source
+	local xPlayer = ESX.GetPlayerFromId(_source)
+	local target = tonumber(args[1])
+	local ispowered = xPlayer.getJob().name
+	local targetXPlayer = ESX.GetPlayerFromId(target)
+
+--	print(target)
+
+	
+if ispowered == "ambulance" or ispowered == "government"  then 
+		TriggerClientEvent("retro_scripts:newlife", source, target, targetXPlayer)
+	else
+	--	print(xPlayer.name.." Tried opening other inventory but doesnt have permissions").
+	print('blee!')
+	end
+	
+	
+	
+end)
+
+
+AddEventHandler('playerDropped', function()
+	-- Save the source in case we lose it (which happens a lot)
+	local _source = source
+	
+	-- Did the player ever join?
+	if _source ~= nil then
+		local xPlayer = ESX.GetPlayerFromId(_source)
+		
+		-- Is it worth telling all clients to refresh?
+		if xPlayer ~= nil and xPlayer.job ~= nil and xPlayer.job.name == 'ambulance' then
+			Citizen.Wait(5000)
+			TriggerClientEvent('esx_ambulance:updateBlip', -1)
+		end
+	end	
+end)
+
+RegisterServerEvent('esx_ambulance:spawned')
+AddEventHandler('esx_ambulance:spawned', function()
+	local _source = source
+	local xPlayer = ESX.GetPlayerFromId(_source)
+	
+	if xPlayer ~= nil and xPlayer.job ~= nil and xPlayer.job.name == 'ambulance' then
+		Citizen.Wait(5000)
+		TriggerClientEvent('esx_ambulance:updateBlip', -1)
+	end
+end)
+
+RegisterServerEvent('esx_ambulance:forceBlip')
+AddEventHandler('esx_ambulance:forceBlip', function()
+	TriggerClientEvent('esx_ambulance:updateBlip', -1)
+end)
+
+AddEventHandler('onResourceStart', function(resource)
+	if resource == GetCurrentResourceName() then
+		Citizen.Wait(5000)
+		TriggerClientEvent('esx_ambulance:updateBlip', -1)
+	end
+end)
+
+
+
+function sendToDiscord (name,message,color, webhook)  
+	local DiscordWebHook = webhook
+	local DISCORD_IMAGE	= "https://i.imgur.com/DZUmmWL.png"
+  
+  local embeds = {
+	  {
+		  ["title"]=message,
+		  ["type"]="rich",
+		  ["color"] =color,
+		  ["footer"]=  {
+			  ["text"]= "Discord Bot by Cedrick  Alegroso",
+			  ["icon_url"] = DISCORD_IMAGE,
+		 },
+	  }
+  }
+  
+	if message == nil or message == '' then return FALSE end
+	PerformHttpRequest(DiscordWebHook, function(err, text, headers) end, 'POST', json.encode({ username = name,embeds = embeds}), { ['Content-Type'] = 'application/json' })
+  end

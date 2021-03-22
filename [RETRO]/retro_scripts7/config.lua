@@ -134,7 +134,7 @@ ConfigAmbu.RemoveItemsAfterRPDeath    = true
 ConfigAmbu.EarlyRespawnFine           = true
 ConfigAmbu.EarlyRespawnFineAmount     = 20000
 
-ConfigAmbu.RespawnPoint = {coords = vector3(-238.38833618164,6321.3564453125,32.397315979004), heading = 48.5}
+ConfigAmbu.RespawnPoint = {coords = vector3(331.06079101562,-558.64654541016,28.744050979614), heading = 48.5}
 
 
 ConfigAmbu.Hospitals = {
@@ -160,7 +160,7 @@ Blip = {
 	]]--
 		
 	Blip = {
-		coords = vector3( 	-235.31678771973,6314.6484375,31.475980758667), --pillbox
+		coords = vector3( 	302.0583190918,-585.83581542969,43.284057617188), --pillbox
 		sprite = 61,
 		scale  = 0.7,
 		color  = 2
@@ -176,7 +176,7 @@ Blip = {
 
 
 		AmbulanceActions = {
-			vector3(-266.9521484375,6321.7587890625,31.427284240723)
+			vector3(334.85607910156,-593.48504638672,42.284099578857)
 		},
 
 		
@@ -201,11 +201,11 @@ Pharmacies = {
 		},
 		Helicopters = {
 			{
-				Spawner = vector3(-497.10940551758,-314.81079101562,73.168067932129),
-				InsideShop = vector3(-507.1201171875,-304.92623901367,73.168067932129),
+				Spawner = vector3(341.45550537109,-592.00897216797,74.16170501709),
+				InsideShop = vector3(349.92587280273,-588.6240234375,74.161720275879),
 				Marker = { type = 34, x = 1.5, y = 1.5, z = 1.5, r = 100, g = 150, b = 150, a = 100, rotate = true },
 				SpawnPoints = {
-					{ coords = vector3(-504.11968994141,-312.94424438477,73.168067932129), heading = 314.29, radius = 10.0 },
+					{ coords = vector3(351.12930297852,-588.33154296875,74.161720275879), heading = 314.29, radius = 10.0 },
 					--{ coords = vector3(299.5, -1453.2, 46.5), heading = 142.7, radius = 10.0 }
 				}
 			}
@@ -1201,6 +1201,24 @@ ConfigGANG1.AuthorizedVehicles = {
 		}
 	}
 }
+
+
+ConfigCheckin = {}
+
+ConfigCheckin.Locale = 'en'   
+
+-- Distance before text is shown
+ConfigCheckin.TextDrawDistance = 5  
+
+-- Time in seconds before player gets out of bed 
+ConfigCheckin.BedTime = 10
+
+ConfigCheckin.Locations = {
+	PillBoxHospital = {  -- 308.79141235352,-592.53088378906,43.284061431885
+		Coords = {x = 308.79141235352, y = -592.53088378906, z = 44.284061431885}
+	}
+}
+
 
 ConfigGANG1.CustomPeds = {
 	shared = {

@@ -10,7 +10,8 @@ Keys = {
 	["NENTER"] = 201, ["N4"] = 108, ["N5"] = 60, ["N6"] = 107, ["N+"] = 96, ["N-"] = 97, ["N7"] = 117, ["N8"] = 61, ["N9"] = 118
 }
 
-local FirstSpawn, PlayerLoaded = true, false
+local FirstSpawn,  PlayerLoaded = true, false
+local blipsCops               = {}
 
 IsDead = false
 ESX = nil
@@ -27,6 +28,9 @@ Citizen.CreateThread(function()
 
 	PlayerLoaded = true
 	ESX.PlayerData = ESX.GetPlayerData()
+
+	
+
 end)
 
 RegisterNetEvent('esx:playerLoaded')
@@ -38,11 +42,17 @@ end)
 RegisterNetEvent('esx:setJob')
 AddEventHandler('esx:setJob', function(job)
 	ESX.PlayerData.job = job
+
+
+	Citizen.Wait(5000)
+	TriggerServerEvent('esx_ambulance:forceBlip')
 end)
+
+
 
 AddEventHandler('playerSpawned', function()
 	IsDead = false
-
+	TriggerServerEvent('esx_ambulance:spawned')
 	if FirstSpawn then
 		exports.spawnmanager:setAutoSpawn(false) -- disable respawn
 		FirstSpawn = false
@@ -54,6 +64,7 @@ AddEventHandler('playerSpawned', function()
 				end
 
 				ESX.ShowNotification(_U('combatlog_message'))
+				--exports['mythic_notify']:DoCustomHudText('inform', _U('combatlog_message'), 5000)
 				RemoveItemsAfterRPDeath()
 			end
 		end)
@@ -74,6 +85,66 @@ Citizen.CreateThread(function()
 		AddTextComponentSubstringPlayerName(_U('hospital'))
 		EndTextCommandSetBlipName(blip)
 	end
+
+	for k,v in pairs(ConfigAmbu.Hospitals) do
+		local blip2 = AddBlipForCoord(v.Blip2.coords)
+
+		SetBlipSprite(blip2, v.Blip2.sprite)
+		SetBlipScale(blip2, v.Blip2.scale)
+		SetBlipColour(blip2, v.Blip2.color)
+		SetBlipAsShortRange(blip2, true)
+
+		BeginTextCommandSetBlipName('STRING')
+		AddTextComponentSubstringPlayerName(_U('hospital'))
+		EndTextCommandSetBlipName(blip2)
+	end
+end)
+
+-- Create blip for colleagues
+function createBlip(id)
+	local ped = GetPlayerPed(id)
+	local blip = GetBlipFromEntity(ped)
+
+	if not DoesBlipExist(blip) then -- Add blip and create head display on player
+		blip = AddBlipForEntity(ped)
+		SetBlipSprite(blip, 1)
+		ShowHeadingIndicatorOnBlip(blip, true) -- Player Blip indicator
+		SetBlipRotation(blip, math.ceil(GetEntityHeading(ped))) -- update rotation
+		SetBlipNameToPlayerName(blip, id) -- update blip name
+		SetBlipScale(blip, 0.85) -- set scale
+		SetBlipAsShortRange(blip, true)
+		
+		table.insert(blipsCops, blip) -- add blip to array so we can remove it later
+	end
+end
+
+RegisterNetEvent('esx_ambulance:updateBlip')
+AddEventHandler('esx_ambulance:updateBlip', function()
+	
+	-- Refresh all blips
+	for k, existingBlip in pairs(blipsCops) do
+		RemoveBlip(existingBlip)
+	end
+	
+	-- Clean the blip table
+	blipsCops = {}
+
+
+	
+	-- Is the player a cop? In that case show all the blips for other cops
+	if PlayerData.job ~= nil and PlayerData.job.name == 'ambulance' then
+		ESX.TriggerServerCallback('esx_society:getOnlinePlayers', function(players)
+			for i=1, #players, 1 do
+				if players[i].job.name == 'ambulance' then
+					local id = GetPlayerFromServerId(players[i].source)
+					if NetworkIsPlayerActive(id) and GetPlayerPed(id) ~= PlayerPedId() then
+						createBlip(id)
+					end
+				end
+			end
+		end)
+	end
+
 end)
 
 -- Disable most inputs when dead
@@ -86,6 +157,7 @@ Citizen.CreateThread(function()
 			EnableControlAction(0, Keys['G'], true)
 			EnableControlAction(0, Keys['T'], true)
 			EnableControlAction(0, Keys['E'], true)
+			EnableControlAction(0, Keys['H'], true)
 		else
 			Citizen.Wait(500)
 		end
@@ -94,13 +166,65 @@ end)
 
 function OnPlayerDeath()
 	IsDead = true
+	local second = 1000
+	Citizen.CreateThread(function()
+		repeat
+			Citizen.Wait(300 * second)
+			ClearPedTasksImmediately(GetPlayerPed(-1))
+		until IsDead == false
+	end)
+		
+	ESX.UI.Menu.CloseAll()
 	TriggerServerEvent('esx_ambulancejob:setDeathStatus', true)
 
 	StartDeathTimer()
 	StartDistressSignal()
 
+	ClearPedTasksImmediately(GetPlayerPed(-1))
 	StartScreenEffect('DeathFailOut', 0, false)
 end
+
+RegisterNetEvent('esx_ambulancejob:useItem')
+AddEventHandler('esx_ambulancejob:useItem', function(itemName)
+	ESX.UI.Menu.CloseAll()
+
+	if itemName == 'medikit' then
+		local lib, anim = 'anim@heists@narcotics@funding@gang_idle', 'gang_chatting_idle01' -- TODO better animations
+		local playerPed = PlayerPedId()
+
+		ESX.Streaming.RequestAnimDict(lib, function()
+			TaskPlayAnim(playerPed, lib, anim, 8.0, -8.0, -1, 0, 0, false, false, false)
+
+			Citizen.Wait(500)
+			while IsEntityPlayingAnim(playerPed, lib, anim, 3) do
+				Citizen.Wait(0)
+				DisableAllControlActions(0)
+			end
+	
+			TriggerEvent('esx_ambulancejob:heal', 'big', true)
+			--ESX.ShowNotification(_U('used_medikit'))
+			exports['mythic_notify']:DoCustomHudText('inform', _U('used_medikit'), 5000)
+		end)
+
+	elseif itemName == 'bandage' then
+		local lib, anim = 'anim@heists@narcotics@funding@gang_idle', 'gang_chatting_idle01' -- TODO better animations
+		local playerPed = PlayerPedId()
+
+		ESX.Streaming.RequestAnimDict(lib, function()
+			TaskPlayAnim(playerPed, lib, anim, 8.0, -8.0, -1, 0, 0, false, false, false)
+
+			Citizen.Wait(500)
+			while IsEntityPlayingAnim(playerPed, lib, anim, 3) do
+				Citizen.Wait(0)
+				DisableAllControlActions(0)
+			end
+
+			TriggerEvent('esx_ambulancejob:heal', 'small', true)
+			--ESX.ShowNotification(_U('used_bandage'))
+			exports['mythic_notify']:DoCustomHudText('inform', _U('used_bandage'), 5000)
+		end)
+	end
+end)
 
 function StartDistressSignal()
 	Citizen.CreateThread(function()
@@ -111,15 +235,15 @@ function StartDistressSignal()
 			timer = timer - 30
 
 			SetTextFont(4)
-			SetTextProportional(1)
 			SetTextScale(0.45, 0.45)
 			SetTextColour(185, 185, 185, 255)
-			SetTextDropShadow(0, 0, 0, 0, 255)
+			SetTextDropshadow(0, 0, 0, 0, 255)
 			SetTextEdge(1, 0, 0, 0, 255)
 			SetTextDropShadow()
 			SetTextOutline()
 			BeginTextCommandDisplayText('STRING')
 			AddTextComponentSubstringPlayerName(_U('distress_send'))
+			
 			EndTextCommandDisplayText(0.175, 0.805)
 
 			if IsControlPressed(0, Keys['G']) then
@@ -139,20 +263,29 @@ function StartDistressSignal()
 end
 
 function SendDistressSignal()
-	local playerPed = PlayerPedId()
-	local coords = GetEntityCoords(playerPed)
 
-	ESX.ShowNotification(_U('distress_sent'))
-	TriggerServerEvent('esx_phone:send', 'ambulance', _U('distress_message'), false, {
-		x = coords.x,
-		y = coords.y,
-		z = coords.z
+	ExecuteCommand('icu')
+	Citizen.Wait(1000)
+	ExecuteCommand('98send')
+	--[[
+local playerPed = PlayerPedId()
+	PedPosition		= GetEntityCoords(playerPed)
+	
+	local PlayerCoords = { x = PedPosition.x, y = PedPosition.y, z = PedPosition.z }
+
+	--ESX.ShowNotification(_U('distress_sent'))
+	exports['mythic_notify']:DoCustomHudText('inform', _U('distress_sent'), 5000)
+
+    TriggerServerEvent('esx_addons_gcphone:startCall', 'ambulance', _U('distress_message'), PlayerCoords, {
+
+		PlayerCoords = { x = PedPosition.x, y = PedPosition.y, z = PedPosition.z },
 	})
+	]]--
+	
 end
 
 function DrawGenericTextThisFrame()
 	SetTextFont(4)
-	SetTextProportional(0)
 	SetTextScale(0.0, 0.5)
 	SetTextColour(255, 255, 255, 255)
 	SetTextDropshadow(0, 0, 0, 0, 255)
@@ -264,28 +397,157 @@ function StartDeathTimer()
 	end)
 end
 
-function RemoveItemsAfterRPDeath()
+
+
+
+
+
+
+function RespawnPed(ped, coords, heading, isrevived)
+
+	if isrevived == 1 then 
+		SetEntityCoordsNoOffset(ped, coords.x, coords.y, coords.z, false, false, false, true)
+		NetworkResurrectLocalPlayer(coords.x, coords.y, coords.z, heading, true, false)
+		SetPlayerInvincible(ped, false)
+		TriggerEvent('playerSpawned', coords.x, coords.y, coords.z)
+		--SetPedCoordsKeepVehicle(PlayerPedId(), -496.27166748047,-335.36077880859,34.501598358154)
+		ClearPedBloodDamage(ped)
+	else 
+		SetEntityCoordsNoOffset(ped, coords.x, coords.y, coords.z, false, false, false, true)
+		NetworkResurrectLocalPlayer(coords.x, coords.y, coords.z, heading, true, false)
+		SetPlayerInvincible(ped, false)
+		TriggerEvent('playerSpawned', coords.x, coords.y, coords.z)
+		SetPedCoordsKeepVehicle(PlayerPedId(), -496.27166748047,-335.36077880859,34.501598358154)
+		ClearPedBloodDamage(ped)
+	end
+
+
+	ESX.UI.Menu.CloseAll()
+end
+
+RegisterNetEvent('esx_phone:loaded')
+AddEventHandler('esx_phone:loaded', function(phoneNumber, contacts)
+	local specialContact = {
+		name       = 'Ambulance',
+		number     = 'ambulance',
+		base64Icon = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAABp5JREFUWIW1l21sFNcVhp/58npn195de23Ha4Mh2EASSvk0CPVHmmCEI0RCTQMBKVVooxYoalBVCVokICWFVFVEFeKoUdNECkZQIlAoFGMhIkrBQGxHwhAcChjbeLcsYHvNfsx+zNz+MBDWNrYhzSvdP+e+c973XM2cc0dihFi9Yo6vSzN/63dqcwPZcnEwS9PDmYoE4IxZIj+ciBb2mteLwlZdfji+dXtNU2AkeaXhCGteLZ/X/IS64/RoR5mh9tFVAaMiAldKQUGiRzFp1wXJPj/YkxblbfFLT/tjq9/f1XD0sQyse2li7pdP5tYeLXXMMGUojAiWKeOodE1gqpmNfN2PFeoF00T2uLGKfZzTwhzqbaEmeYWAQ0K1oKIlfPb7t+7M37aruXvEBlYvnV7xz2ec/2jNs9kKooKNjlksiXhJfLqf1PXOIU9M8fmw/XgRu523eTNyhhu6xLjbSeOFC6EX3t3V9PmwBla9Vv7K7u85d3bpqlwVcvHn7B8iVX+IFQoNKdwfstuFtWoFvwp9zj5XL7nRlPXyudjS9z+u35tmuH/lu6dl7+vSVXmDUcpbX+skP65BxOOPJA4gjDicOM2PciejeTwcsYek1hyl6me5nhNnmwPXBhjYuGC699OpzoaAO0PbYJSy5vgt4idOPrJwf6QuX2FO0oOtqIgj9pDU5dCWrMlyvXf86xsGgHyPeLos83Brns1WFXLxxgVBorHpW4vfQ6KhkbUtCot6srns1TLPjNVr7+1J0PepVc92H/Eagkb7IsTWd4ZMaN+yCXv5zLRY9GQ9xuYtQz4nfreWGdH9dNlkfnGq5/kdO88ekwGan1B3mDJsdMxCqv5w2Iq0khLs48vSllrsG/Y5pfojNugzScnQXKBVA8hrX51ddHq0o6wwIlgS8Y7obZdUZVjOYLC6e3glWkBBVHC2RJ+w/qezCuT/2sV6Q5VYpowjvnf/iBJJqvpYBgBS+w6wVB5DLEOiTZHWy36nNheg0jUBs3PoJnMfyuOdAECqrZ3K7KcACGQp89RAtlysCphqZhPtRzYlcPx+ExklJUiq0le5omCfOGFAYn3qFKS/fZAWS7a3Y2wa+GJOEy4US+B3aaPUYJamj4oI5LA/jWQBt5HIK5+JfXzZsJVpXi/ac8+mxWIXWzAG4Wb4g/jscNMp63I4U5FcKaVvsNyFALokSA47Kx8PVk83OabCHZsiqwAKEpjmfUJIkoh/R+L9oTpjluhRkGSPG4A7EkS+Y3HZk0OXYpIVNy01P5yItnptDsvtIwr0SunqoVP1GG1taTHn1CloXm9aLBEIEDl/IS2W6rg+qIFEYR7+OJTesqJqYa95/VKBNOHLjDBZ8sDS2998a0Bs/F//gvu5Z9NivadOc/U3676pEsizBIN1jCYlhClL+ELJDrkobNUBfBZqQfMN305HAgnIeYi4OnYMh7q/AsAXSdXK+eH41sykxd+TV/AsXvR/MeARAttD9pSqF9nDNfSEoDQsb5O31zQFprcaV244JPY7bqG6Xd9K3C3ALgbfk3NzqNE6CdplZrVFL27eWR+UASb6479ULfhD5AzOlSuGFTE6OohebElbcb8fhxA4xEPUgdTK19hiNKCZgknB+Ep44E44d82cxqPPOKctCGXzTmsBXbV1j1S5XQhyHq6NvnABPylu46A7QmVLpP7w9pNz4IEb0YyOrnmjb8bjB129fDBRkDVj2ojFbYBnCHHb7HL+OC7KQXeEsmAiNrnTqLy3d3+s/bvlVmxpgffM1fyM5cfsPZLuK+YHnvHELl8eUlwV4BXim0r6QV+4gD9Nlnjbfg1vJGktbI5UbN/TcGmAAYDG84Gry/MLLl/zKouO2Xukq/YkCyuWYV5owTIGjhVFCPL6J7kLOTcH89ereF1r4qOsm3gjSevl85El1Z98cfhB3qBN9+dLp1fUTco+0OrVMnNjFuv0chYbBYT2HcBoa+8TALyWQOt/ImPHoFS9SI3WyRajgdt2mbJgIlbREplfveuLf/XXemjXX7v46ZxzPlfd8YlZ01My5MUEVdIY5rueYopw4fQHkbv7/rZkTw6JwjyalBCHur9iD9cI2mU0UzD3P9H6yZ1G5dt7Gwe96w07dl5fXj7vYqH2XsNovdTI6KMrlsAXhRyz7/C7FBO/DubdVq4nBLPaohcnBeMr3/2k4fhQ+Uc8995YPq2wMzNjww2X+vwNt1p00ynrd2yKDJAVN628sBX1hZIdxXdStU9G5W2bd9YHR5L3f/CNmJeY9G8WAAAAAElFTkSuQmCC'
+	}
+
+	TriggerEvent('esx_phone:addSpecialContact', specialContact.name, specialContact.number, specialContact.base64Icon)
+end)
+
+AddEventHandler('esx:onPlayerDeath', function(data)
+	OnPlayerDeath()
+end)
+
+RegisterNetEvent('esx_ambulancejob:revive')
+AddEventHandler('esx_ambulancejob:revive', function()
+	local playerPed = PlayerPedId()
+	local coords = GetEntityCoords(playerPed)
+
 	TriggerServerEvent('esx_ambulancejob:setDeathStatus', false)
 
 	Citizen.CreateThread(function()
 		DoScreenFadeOut(800)
 
 		while not IsScreenFadedOut() do
-			Citizen.Wait(10)
+			Citizen.Wait(50)
 		end
 
-		ESX.TriggerServerCallback('esx_ambulancejob:removeItemsAfterRPDeath', function()
-			ESX.SetPlayerData('lastPosition', ConfigAmbu.RespawnPoint.coords)
-			ESX.SetPlayerData('loadout', {})
+		local formattedCoords = {
+			x = ESX.Math.Round(coords.x, 1),
+			y = ESX.Math.Round(coords.y, 1),
+			z = ESX.Math.Round(coords.z, 1)
+		}
 
-			TriggerServerEvent('esx:updateLastPosition', ConfigAmbu.RespawnPoint.coords)
-			RespawnPed(PlayerPedId(), ConfigAmbu.RespawnPoint.coords, ConfigAmbu.RespawnPoint.heading)
+		ESX.SetPlayerData('lastPosition', formattedCoords)
 
-			StopScreenEffect('DeathFailOut')
-			DoScreenFadeIn(800)
-		end)
+		TriggerServerEvent('esx:updateLastPosition', formattedCoords)
+
+		RespawnPed(playerPed, formattedCoords, 0.0, 1)
+
+		StopScreenEffect('DeathFailOut')
+		DoScreenFadeIn(800)
+	end)
+end)
+
+-- Load unloaded IPLs
+if ConfigAmbu.LoadIpl then
+	Citizen.CreateThread(function()
+		RequestIpl('Coroner_Int_on') -- Morgue
 	end)
 end
+
+-- Create blip for colleagues
+function createBlipambu(id)
+	local ped = GetPlayerPed(id)
+	local blip = GetBlipFromEntity(ped)
+
+	if not DoesBlipExist(blip) then -- Add blip and create head display on player
+		blip = AddBlipForEntity(ped)
+		SetBlipSprite(blip, 1)
+		ShowHeadingIndicatorOnBlip(blip, true) -- Player Blip indicator
+		SetBlipRotation(blip, math.ceil(GetEntityHeading(ped))) -- update rotation
+		SetBlipNameToPlayerName(blip, id) -- update blip name
+		SetBlipScale(blip, 0.85) -- set scale
+		SetBlipAsShortRange(blip, true)
+		
+		table.insert(blipsAmbu, blip) -- add blip to array so we can remove it later
+	end
+end
+
+
+RegisterNetEvent('retro_scripts:takedeadveh')
+AddEventHandler('retro_scripts:takedeadveh', function()
+
+
+	local pP = GetPlayerPed(-1)
+
+	local ped = GetPlayerPed(-1)
+
+	local playerPed = PlayerPedId()
+	local coords    = GetEntityCoords(playerPed)
+
+	local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
+
+	print('inter '..playerPed)
+	print('inter coord '..coords)
+	print('closes dead '..GetPlayerServerId(closestPlayer))
+
+	print('newlife '..ped)
+	--SetEntityCoords(PlayerPedId(pP), 251.18321228027, -1348.2706298828, 24.537813186646, true, true, true, false)
+
+	--[[
+
+
+	local playerPed = PlayerPedId()
+	local coords    = GetEntityCoords(playerPed)
+
+	
+
+	if closestPlayer == -1 or closestDistance > 5.0 then
+		ESX.ShowNotification('no_players')
+	--	exports['mythic_notify']:DoCustomHudText('inform', _U('no_players'), 2500, { ['background-color'] = '#FF0000', ['color'] = '#ffffff' })
+	else
+		ESX.ShowNotification('yes_players')
+	--	TriggerServerEvent('esx_ambulancejob:OutVehicle', GetPlayerServerId(closestPlayer))
+	local pP = GetPlayerPed(-1)
+	
+		print('inter '..playerPed)
+		print('inter coord '..coords)
+		print('closes dead '..GetPlayerServerId(closestPlayer))
+
+	
+
+		SetEntityCoords(pP,  coords, false, false, false, true)
+		
+		--SetEntityCoords(PlayerPedId(),  -9.6956329345703,-733.22845458984,32.198596954346, false, false, false, true)
+	end
+
+	]]--
+	
+
+end)
 
 
 RegisterNetEvent('retro_scripts:newlife')
@@ -298,7 +560,7 @@ AddEventHandler('retro_scripts:newlife', function(ttPID)
 
 
 	print('newlife '..pP)
-	SetEntityCoords(PlayerPedId(pP), -260.37762451172,6326.5541992188,33.421516418457, true, true, true, false)
+	SetEntityCoords(PlayerPedId(pP), 363.11184692383,-584.53057861328,43.28405380249, true, true, true, false)
 
 	--print(targetPlayer)
 
@@ -314,7 +576,7 @@ AddEventHandler('retro_scripts:newlife', function(ttPID)
 				name = "unique_action_name",
 				duration = 120000,
 				label = "Purgatory Time",
-				useWhileDead = false,
+				useWhileDead = true,
 				canCancel = true,
 				controlDisables = {
 					disableMovement = true,
@@ -368,73 +630,154 @@ AddEventHandler('retro_scripts:newlife', function(ttPID)
 
 end)
 
-function RespawnPed(ped, coords, heading)
-	SetEntityCoordsNoOffset(ped, coords.x, coords.y, coords.z, false, false, false, true)
-	NetworkResurrectLocalPlayer(coords.x, coords.y, coords.z, heading, true, false)
-	SetPlayerInvincible(ped, false)
-	TriggerEvent('playerSpawned', coords.x, coords.y, coords.z)
-	ClearPedBloodDamage(ped)
 
-	ESX.UI.Menu.CloseAll()
-end
-
-RegisterNetEvent('esx_phone:loaded')
-AddEventHandler('esx_phone:loaded', function(phoneNumber, contacts)
-	local specialContact = {
-		name		= 'Ambulance',
-		number		= 'ambulance',
-		base64Icon	= 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAABp5JREFUWIW1l21sFNcVhp/58npn195de23Ha4Mh2EASSvk0CPVHmmCEI0RCTQMBKVVooxYoalBVCVokICWFVFVEFeKoUdNECkZQIlAoFGMhIkrBQGxHwhAcChjbeLcsYHvNfsx+zNz+MBDWNrYhzSvdP+e+c973XM2cc0dihFi9Yo6vSzN/63dqcwPZcnEwS9PDmYoE4IxZIj+ciBb2mteLwlZdfji+dXtNU2AkeaXhCGteLZ/X/IS64/RoR5mh9tFVAaMiAldKQUGiRzFp1wXJPj/YkxblbfFLT/tjq9/f1XD0sQyse2li7pdP5tYeLXXMMGUojAiWKeOodE1gqpmNfN2PFeoF00T2uLGKfZzTwhzqbaEmeYWAQ0K1oKIlfPb7t+7M37aruXvEBlYvnV7xz2ec/2jNs9kKooKNjlksiXhJfLqf1PXOIU9M8fmw/XgRu523eTNyhhu6xLjbSeOFC6EX3t3V9PmwBla9Vv7K7u85d3bpqlwVcvHn7B8iVX+IFQoNKdwfstuFtWoFvwp9zj5XL7nRlPXyudjS9z+u35tmuH/lu6dl7+vSVXmDUcpbX+skP65BxOOPJA4gjDicOM2PciejeTwcsYek1hyl6me5nhNnmwPXBhjYuGC699OpzoaAO0PbYJSy5vgt4idOPrJwf6QuX2FO0oOtqIgj9pDU5dCWrMlyvXf86xsGgHyPeLos83Brns1WFXLxxgVBorHpW4vfQ6KhkbUtCot6srns1TLPjNVr7+1J0PepVc92H/Eagkb7IsTWd4ZMaN+yCXv5zLRY9GQ9xuYtQz4nfreWGdH9dNlkfnGq5/kdO88ekwGan1B3mDJsdMxCqv5w2Iq0khLs48vSllrsG/Y5pfojNugzScnQXKBVA8hrX51ddHq0o6wwIlgS8Y7obZdUZVjOYLC6e3glWkBBVHC2RJ+w/qezCuT/2sV6Q5VYpowjvnf/iBJJqvpYBgBS+w6wVB5DLEOiTZHWy36nNheg0jUBs3PoJnMfyuOdAECqrZ3K7KcACGQp89RAtlysCphqZhPtRzYlcPx+ExklJUiq0le5omCfOGFAYn3qFKS/fZAWS7a3Y2wa+GJOEy4US+B3aaPUYJamj4oI5LA/jWQBt5HIK5+JfXzZsJVpXi/ac8+mxWIXWzAG4Wb4g/jscNMp63I4U5FcKaVvsNyFALokSA47Kx8PVk83OabCHZsiqwAKEpjmfUJIkoh/R+L9oTpjluhRkGSPG4A7EkS+Y3HZk0OXYpIVNy01P5yItnptDsvtIwr0SunqoVP1GG1taTHn1CloXm9aLBEIEDl/IS2W6rg+qIFEYR7+OJTesqJqYa95/VKBNOHLjDBZ8sDS2998a0Bs/F//gvu5Z9NivadOc/U3676pEsizBIN1jCYlhClL+ELJDrkobNUBfBZqQfMN305HAgnIeYi4OnYMh7q/AsAXSdXK+eH41sykxd+TV/AsXvR/MeARAttD9pSqF9nDNfSEoDQsb5O31zQFprcaV244JPY7bqG6Xd9K3C3ALgbfk3NzqNE6CdplZrVFL27eWR+UASb6479ULfhD5AzOlSuGFTE6OohebElbcb8fhxA4xEPUgdTK19hiNKCZgknB+Ep44E44d82cxqPPOKctCGXzTmsBXbV1j1S5XQhyHq6NvnABPylu46A7QmVLpP7w9pNz4IEb0YyOrnmjb8bjB129fDBRkDVj2ojFbYBnCHHb7HL+OC7KQXeEsmAiNrnTqLy3d3+s/bvlVmxpgffM1fyM5cfsPZLuK+YHnvHELl8eUlwV4BXim0r6QV+4gD9Nlnjbfg1vJGktbI5UbN/TcGmAAYDG84Gry/MLLl/zKouO2Xukq/YkCyuWYV5owTIGjhVFCPL6J7kLOTcH89ereF1r4qOsm3gjSevl85El1Z98cfhB3qBN9+dLp1fUTco+0OrVMnNjFuv0chYbBYT2HcBoa+8TALyWQOt/ImPHoFS9SI3WyRajgdt2mbJgIlbREplfveuLf/XXemjXX7v46ZxzPlfd8YlZ01My5MUEVdIY5rueYopw4fQHkbv7/rZkTw6JwjyalBCHur9iD9cI2mU0UzD3P9H6yZ1G5dt7Gwe96w07dl5fXj7vYqH2XsNovdTI6KMrlsAXhRyz7/C7FBO/DubdVq4nBLPaohcnBeMr3/2k4fhQ+Uc8995YPq2wMzNjww2X+vwNt1p00ynrd2yKDJAVN628sBX1hZIdxXdStU9G5W2bd9YHR5L3f/CNmJeY9G8WAAAAAElFTkSuQmCC'
-	}
-
-	TriggerEvent('esx_phone:addSpecialContact', specialContact.name, specialContact.number, specialContact.base64Icon)
-end)
-
-AddEventHandler('esx:onPlayerDeath', function(reason)
-	OnPlayerDeath()
-end)
-
-RegisterNetEvent('esx_ambulancejob:revive')
-AddEventHandler('esx_ambulancejob:revive', function()
-	local playerPed = PlayerPedId()
-	local coords = GetEntityCoords(playerPed)
+function RemoveItemsAfterRPDeath()
 	TriggerServerEvent('esx_ambulancejob:setDeathStatus', false)
 
 	Citizen.CreateThread(function()
 		DoScreenFadeOut(800)
 
 		while not IsScreenFadedOut() do
-			Citizen.Wait(50)
+			Citizen.Wait(10)
 		end
 
-		ESX.SetPlayerData('lastPosition', {
-			x = coords.x,
-			y = coords.y,
-			z = coords.z
-		})
+		ESX.TriggerServerCallback('esx_ambulancejob:removeItemsAfterRPDeath', function()
+			local playerpos = GetEntityCoords( GetPlayerPed(-1) )
+				
+			ESX.SetPlayerData('lastPosition', playerpos)
+			ESX.SetPlayerData('loadout', {})
 
-		TriggerServerEvent('esx:updateLastPosition', {
-			x = coords.x,
-			y = coords.y,
-			z = coords.z
-		})
+			
+			RespawnPed(PlayerPedId(), playerpos, ConfigAmbu.RespawnPoint.heading)
 
-		RespawnPed(playerPed, {
-			x = coords.x,
-			y = coords.y,
-			z = coords.z,
-			heading = 0.0
-		})
-
-		StopScreenEffect('DeathFailOut')
-		DoScreenFadeIn(800)
-	end)
-end)
-
--- Load unloaded IPLs
-if ConfigAmbu.LoadIpl then
-	Citizen.CreateThread(function()
-		LoadMpDlcMaps()
-		EnableMpDlcMaps(true)
-		RequestIpl('Coroner_Int_on') -- Morgue
+			TriggerServerEvent('esx:updateLastPosition', playerpos)
+			TriggerServerEvent('mythic_hospital:server:RequestBed')
+			Citizen.Wait(10)
+			StopScreenEffect('DeathFailOut')
+			DoScreenFadeIn(800)
+		end)
 	end)
 end
+
+
+
+function RemoveItemsAfterRPDeath2(targetPlayer)
+	TriggerServerEvent('esx_ambulancejob:setDeathStatus', false)
+
+	Citizen.CreateThread(function()
+		DoScreenFadeOut(800)
+
+		while not IsScreenFadedOut() do
+			Citizen.Wait(10)
+		end
+
+		ESX.TriggerServerCallback('esx_ambulancejob:removeItemsAfterRPDeath', function()
+
+			
+			RespawnPed2(PlayerPedId(5), vector3( 251.18321228027, -1348.2706298828, 24.537813186646), ConfigAmbu.RespawnPoint.heading)
+			Citizen.wait(100)
+
+			TriggerServerEvent('esx:updateLastPosition', playerpos)
+			TriggerServerEvent('mythic_hospital:server:RequestBed')
+			Citizen.Wait(10)
+			StopScreenEffect('DeathFailOut')
+			DoScreenFadeIn(800)
+
+			--[[
+function purg()
+	--SetEntityCoords(PlayerPedId(source), 251.18321228027, -1348.2706298828, 24.537813186646, true, true, true, false)
+
+	exports['mythic_notify']:DoHudText('inform', 'You just died. Please wait for 2 mins before being born again.')
+
+	
+	exports['progressBars']:startUI(120000, "Purgatory time")
+
+	Citizen.wait(120000)
+
+	
+
+	SetEntityCoords(PlayerPedId(source), -517.89129638672, -251.77812194824, 35.671451568604, true, true, true, false)
+
+	exports['mythic_notify']:DoHudText('inform', 'You just landed at Retro City!.')
+end
+
+
+			]]
+			
+		
+		end)
+	end)
+end
+
+
+
+function RespawnPed2(ped, coords, heading, isrevived, targetPlayer)
+
+	if isrevived == 1 then 
+		SetEntityCoordsNoOffset(ped, coords.x, coords.y, coords.z, false, false, false, true)
+		NetworkResurrectLocalPlayer(coords.x, coords.y, coords.z, heading, true, false)
+		SetPlayerInvincible(ped, false)
+		TriggerEvent('playerSpawned', coords.x, coords.y, coords.z)
+		--SetPedCoordsKeepVehicle(PlayerPedId(), -496.27166748047,-335.36077880859,34.501598358154)
+		ClearPedBloodDamage(ped)
+	else 
+		SetEntityCoordsNoOffset(ped, coords.x, coords.y, coords.z, false, false, false, true)
+		NetworkResurrectLocalPlayer(coords.x, coords.y, coords.z, heading, true, false)
+		SetPlayerInvincible(ped, false)
+		TriggerEvent('playerSpawned', coords.x, coords.y, coords.z)
+		SetPedCoordsKeepVehicle(PlayerPedId(targetPlayer), 251.18321228027, -1348.2706298828, 24.537813186646)
+		ClearPedBloodDamage(targetPlayer)
+
+		exports['mythic_notify']:DoHudText('inform', 'You just died. Please wait for 2 mins before being born again.')
+		
+		exports['progressBars']:startUI(120000, "Purgatory time")
+		Citizen.Wait(120000)
+		
+	SetPedCoordsKeepVehicle(PlayerPedId(targetPlayer), -517.89129638672, -251.77812194824, 35.671451568604)
+	--SetEntityCoords(PlayerPedId(source), , true, true, true, false)
+
+	exports['mythic_notify']:DoHudText('inform', 'You just landed at Retro City!.')
+	end
+
+
+	ESX.UI.Menu.CloseAll()
+end
+
+
+RegisterNetEvent('esx_ambulancejob:updateBlip')
+AddEventHandler('esx_ambulancejob:updateBlip', function()
+
+	print('show blips on all ems!')
+	
+	-- Refresh all blips
+	for k, existingBlip in pairs(blipsAmbu) do
+		RemoveBlip(existingBlip)
+	end
+	
+	-- Clean the blip table
+	blipsAmbu = {}
+
+	-- Enable blip?
+	if ConfigPOPO.MaxInService ~= -1 and not playerInService then
+		return
+	end
+
+	if not ConfigPOPO.EnableJobBlip then
+		return
+	end
+	
+	-- Is the player a cop? In that case show all the blips for other cops
+	if PlayerData.job ~= nil and PlayerData.job.name == 'ambulance' then
+		ESX.TriggerServerCallback('esx_society:getOnlinePlayers', function(players)
+			for i=1, #players, 1 do
+				if players[i].job.name == 'ambulance' then
+					local id = GetPlayerFromServerId(players[i].source)
+					if NetworkIsPlayerActive(id) and GetPlayerPed(id) ~= PlayerPedId() then
+						createBlipambu(id)
+					end
+				end
+			end
+		end)
+	end
+
+end)

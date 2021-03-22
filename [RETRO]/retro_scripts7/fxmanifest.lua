@@ -24,6 +24,9 @@ server_scripts {
    --ambu
  'esx_policejob/server/main.lua',
 
+  --checkin
+ --'esx_checkin/server.lua',
+
    --ambu
  -- 'nef_guerrero/server/main.lua',
   -- 'nef_tamasak/server/main.lua',
@@ -45,6 +48,10 @@ client_scripts {
   'config.lua',
 
   'cl_avr.lua',
+
+
+   --checkin
+ --'esx_checkin/client.lua',
 
    --ambu
  'esx_ambulancejob/client/job.lua',

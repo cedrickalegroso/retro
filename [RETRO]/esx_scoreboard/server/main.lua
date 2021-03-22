@@ -1,3 +1,4 @@
+--- CrazyFox Discord Channel: https://discord.gg/4E8sth5
 ESX = nil
 local connectedPlayers = {}
 
@@ -9,12 +10,6 @@ end)
 
 AddEventHandler('esx:setJob', function(playerId, job, lastJob)
 	connectedPlayers[playerId].job = job.name
-
-	TriggerClientEvent('esx_scoreboard:updateConnectedPlayers', -1, connectedPlayers)
-end)
-
-AddEventHandler('esx:setJob2', function(playerId, job2, lastJob2)
-	connectedPlayers[playerId].job = job2.name
 
 	TriggerClientEvent('esx_scoreboard:updateConnectedPlayers', -1, connectedPlayers)
 end)
@@ -51,15 +46,14 @@ function AddPlayerToScoreboard(xPlayer, update)
 	connectedPlayers[playerId] = {}
 	connectedPlayers[playerId].ping = GetPlayerPing(playerId)
 	connectedPlayers[playerId].id = playerId
-	connectedPlayers[playerId].name = xPlayer.getName()
+	connectedPlayers[playerId].name = GetPlayerName(playerId)
 	connectedPlayers[playerId].job = xPlayer.job.name
-	connectedPlayers[playerId].job2 = xPlayer.job2.name
 
 	if update then
 		TriggerClientEvent('esx_scoreboard:updateConnectedPlayers', -1, connectedPlayers)
 	end
 
-	if xPlayer.getGroup() == 'user' then
+	if xPlayer.permission_level == 0 then
 		Citizen.CreateThread(function()
 			Citizen.Wait(3000)
 			TriggerClientEvent('esx_scoreboard:toggleID', playerId, false)
@@ -81,24 +75,40 @@ end
 function UpdatePing()
 	for k,v in pairs(connectedPlayers) do
 		v.ping = GetPlayerPing(k)
+		TriggerClientEvent('status:updatePing', k, v.ping)
 	end
-
 	TriggerClientEvent('esx_scoreboard:updatePing', -1, connectedPlayers)
 end
 
-TriggerEvent('es:addGroupCommand', 'screfresh', 'admin', function(source, args, user)
-	AddPlayersToScoreboard()
-end, function(source, args, user)
-	TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'Insufficient Permissions.' } })
-end, {help = "Refresh esx_scoreboard names!"})
+RegisterCommand('screfresh', function(source, args, user)
 
-TriggerEvent('es:addGroupCommand', 'sctoggle', 'admin', function(source, args, user)
-	TriggerClientEvent('esx_scoreboard:toggleID', source)
-end, function(source, args, user)
-	TriggerClientEvent('chat:addMessage', source, { args = { '^1SYSTEM', 'Insufficient Permissions.' } })
-end, {help = "Toggle ID column on the scoreboard!"})
+	local xPlayer = ESX.GetPlayerFromId(source)
 
-ESX.RegisterServerCallback('zetka-ping', function(source, cb)
-	local data = GetPlayerPing(source)
-	cb(data)
-end)
+		if xPlayer.getGroup() == 'admin' or xPlayer.getGroup() == 'superadmin' then
+
+			AddPlayersToScoreboard()
+
+		else
+
+			TriggerClientEvent('chatMessage', source, "[CONSOLE]", {255, 0, 0}, " ^0Shoma ^1Admin ^0nistid!")
+
+		end
+
+end, false)
+
+RegisterCommand('sctoggle', function(source, args, user)
+
+	local xPlayer = ESX.GetPlayerFromId(source)
+
+		if xPlayer.getGroup() == 'admin' or xPlayer.getGroup() == 'superadmin' then
+
+			TriggerClientEvent('esx_scoreboard:toggleID', source)
+			
+		else
+
+			TriggerClientEvent('chatMessage', source, "[CONSOLE]", {255, 0, 0}, " ^0Shoma ^1Admin ^0nistid!")
+
+		end
+
+end, false)
+

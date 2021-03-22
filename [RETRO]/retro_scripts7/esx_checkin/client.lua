@@ -19,23 +19,8 @@ AddEventHandler('esx:setJob', function(job)
 	PlayerData.job = job 
 end) 
 
---[[
-Citizen.CreateThread(function()
 
-	local hash = GetHashKey('s_m_m_paramedic_01')
-	while not HasModelLoaded(hash) do
-		RequestModel(hash)
-		Wait(20)
-	end 
-	
 
-	local ped = CreatePed(21, hash, -434.92080688477,-323.99914550781, 34.910774230957 -1, 150.0, true, true)
-	FreezeEntityPosition(ped, true)
-    SetEntityInvincible(ped, true)
-    TaskStartScenarioInPlace(ped, 'WORLD_HUMAN_GUARD_STAND', 0, true)
-end)
-]]--
--- Set Ped 
 
 
 -- Draw 3D text 
@@ -43,10 +28,10 @@ Citizen.CreateThread(function ()
 	while true do
 		Citizen.Wait(0)
 		local coords = GetEntityCoords(PlayerPedId())
-		for k,v in pairs(Config.Locations) do
-            if GetDistanceBetweenCoords(coords, v.Coords.x, v.Coords.y, v.Coords.z, true) < Config.TextDrawDistance then
+		for k,v in pairs(ConfigCheckin.Locations) do
+            if GetDistanceBetweenCoords(coords, v.Coords.x, v.Coords.y, v.Coords.z, true) < ConfigCheckin.TextDrawDistance then
                 local location = v
-                DrawText3D(v.Coords.x, v.Coords.y, v.Coords.z - 1.0, _U('requestCheckIn'))
+                DrawText3D(v.Coords.x, v.Coords.y, v.Coords.z - 1.0, 'Press ~g~E~w~ to check in')
 				if IsControlJustReleased(0, 38) then
 					
 					TriggerEvent("mythic_progbar:client:progress", {
@@ -175,7 +160,7 @@ AddEventHandler('esx_checkin:checkIn', function()
 	if chance == 1 then 
 		RespawnPed(ped, coords1, 0.0)
 		--TaskStartScenarioAtPosition(ped, 'WORLD_HUMAN_SUNBATHE_BACK', -466.97103881836,-291.20452880859,35.835048675537, 360.0, 0, false, true)
-		SetEntityCoords(ped, 322.71408081055,-587.27258300781,44.203968048096, false, false, false, false)
+		SetEntityCoords(ped, -466.97103881836,-291.20452880859,35.835048675537, false, false, false, false)
 		FreezeEntityPosition(ped, true)
 		TriggerEvent("mythic_progbar:client:progress", {
 			name = "unique_action_name",
@@ -198,20 +183,20 @@ AddEventHandler('esx_checkin:checkIn', function()
 			}
 		}, function(status)
 			if not status then
-				--	exports['mythic_notify']:DoCustomHudText('inform', _U('notificationText1'), Config.BedTime * 1000)
+				--	exports['mythic_notify']:DoCustomHudText('inform', _U('notificationText1'), ConfigCheckin.BedTime * 1000)
 
 				--TriggerEvent('MF_SkeletalSystem:HealBones',ped,"all");
 
 			
 
-		--Citizen.Wait(Config.BedTime * 1000)
+		--Citizen.Wait(ConfigCheckin.BedTime * 1000)
 		FreezeEntityPosition(ped, false) 
 		ClearPedTasksImmediately(ped)
 		TriggerServerEvent('esx_checkin:takeMoney')
 		TriggerEvent('MF_SkeletalSystem:HealBones', "all")
 		TriggerEvent('esx_basicneeds:healPlayer')
 		TriggerEvent('notification', 'You have been treated by the RETRO CITY EMS.', 1)
-		SetEntityCoords(ped, 321.96743774414,-585.76940917969,43.283344268799, false, false, false, false)
+		SetEntityCoords(ped, -467.75576782227,-289.34811401367,34.91134262085, false, false, false, false)
 			end
 		end)
 
@@ -244,9 +229,9 @@ AddEventHandler('esx_checkin:checkIn', function()
 		}
 	}, function(status)
 		if not status then
-			--	exports['mythic_notify']:DoCustomHudText('inform', _U('notificationText1'), Config.BedTime * 1000)
+			--	exports['mythic_notify']:DoCustomHudText('inform', _U('notificationText1'), ConfigCheckin.BedTime * 1000)
 
-	--Citizen.Wait(Config.BedTime * 1000)
+	--Citizen.Wait(ConfigCheckin.BedTime * 1000)
 	FreezeEntityPosition(ped, false) 
 	ClearPedTasksImmediately(ped)
 	TriggerServerEvent('esx_checkin:takeMoney')
@@ -286,9 +271,9 @@ AddEventHandler('esx_checkin:checkIn', function()
 			}
 		}, function(status)
 			if not status then
-				--	exports['mythic_notify']:DoCustomHudText('inform', _U('notificationText1'), Config.BedTime * 1000)
+				--	exports['mythic_notify']:DoCustomHudText('inform', _U('notificationText1'), ConfigCheckin.BedTime * 1000)
 	
-		--Citizen.Wait(Config.BedTime * 1000)
+		--Citizen.Wait(ConfigCheckin.BedTime * 1000)
 		FreezeEntityPosition(ped, false) 
 		ClearPedTasksImmediately(ped)
 		TriggerServerEvent('esx_checkin:takeMoney')
@@ -304,7 +289,7 @@ AddEventHandler('esx_checkin:checkIn', function()
 	if chance == 4 then 
 		RespawnPed(ped, coords4, 0.0)
 		--TaskStartScenarioAtPosition(ped, 'WORLD_HUMAN_SUNBATHE_BACK', 356.72, -585.88, 43.12 + 1, 360.0, 0, false, true)
-		SetEntityCoords(ped, 322.86486816406,-587.02471923828,44.203979492188, false, false, false, false)
+		SetEntityCoords(ped, -254.26287841797,6314.033203125,33.342170715332, false, false, false, false)
 		
 		--FreezeEntityPosition(ped, true)
 		TriggerEvent("mythic_progbar:client:progress", {
@@ -328,16 +313,16 @@ AddEventHandler('esx_checkin:checkIn', function()
 			}
 		}, function(status)
 			if not status then
-				--	exports['mythic_notify']:DoCustomHudText('inform', _U('notificationText1'), Config.BedTime * 1000)
+				--	exports['mythic_notify']:DoCustomHudText('inform', _U('notificationText1'), ConfigCheckin.BedTime * 1000)
 	
-		--Citizen.Wait(Config.BedTime * 1000)
+		--Citizen.Wait(ConfigCheckin.BedTime * 1000)
 		FreezeEntityPosition(ped, false) 
 		ClearPedTasksImmediately(ped)
 		TriggerServerEvent('esx_checkin:takeMoney')
 	--	ESX.showNotification('You have been healed by the RETRO CITY EMS')
 	TriggerEvent('notification', 'You have been treated by the RETRO CITY EMS.', 1)
 		--TriggerClientEvent('notification', source, '')
-		SetEntityCoords(ped, 322.86486816406,-587.02471923828,44.203979492188, false, false, false, false)
+		SetEntityCoords(ped, -252.70135498047,6315.1479492188,32.395359039307, false, false, false, false)
 			end
 		end)
 	
@@ -368,9 +353,9 @@ AddEventHandler('esx_checkin:checkIn', function()
 			}
 		}, function(status)
 			if not status then
-				--	exports['mythic_notify']:DoCustomHudText('inform', _U('notificationText1'), Config.BedTime * 1000)
+				--	exports['mythic_notify']:DoCustomHudText('inform', _U('notificationText1'), ConfigCheckin.BedTime * 1000)
 	
-		--Citizen.Wait(Config.BedTime * 1000)
+		--Citizen.Wait(ConfigCheckin.BedTime * 1000)
 		FreezeEntityPosition(ped, false) 
 		ClearPedTasksImmediately(ped)
 		TriggerServerEvent('esx_checkin:takeMoney')
@@ -408,9 +393,9 @@ AddEventHandler('esx_checkin:checkIn', function()
 			}
 		}, function(status)
 			if not status then
-				--	exports['mythic_notify']:DoCustomHudText('inform', _U('notificationText1'), Config.BedTime * 1000)
+				--	exports['mythic_notify']:DoCustomHudText('inform', _U('notificationText1'), ConfigCheckin.BedTime * 1000)
 	
-		--Citizen.Wait(Config.BedTime * 1000)
+		--Citizen.Wait(ConfigCheckin.BedTime * 1000)
 		FreezeEntityPosition(ped, false) 
 		ClearPedTasksImmediately(ped)
 		TriggerServerEvent('esx_checkin:takeMoney')
@@ -427,8 +412,8 @@ AddEventHandler('esx_checkin:checkIn', function()
 		RespawnPed(ped, coords7, 0.0)
 		TaskStartScenarioAtPosition(ped, 'WORLD_HUMAN_SUNBATHE_BACK', 347.0, -590.4, 43.12 + 1, 360.0, 0, false, true)
 		FreezeEntityPosition(ped, true)
-		exports['mythic_notify']:DoCustomHudText('inform', _U('notificationText1'), Config.BedTime * 1000)
-		Citizen.Wait(Config.BedTime * 1000)
+		exports['mythic_notify']:DoCustomHudText('inform', _U('notificationText1'), ConfigCheckin.BedTime * 1000)
+		Citizen.Wait(ConfigCheckin.BedTime * 1000)
 		FreezeEntityPosition(ped, false) 
 		ClearPedTasksImmediately(ped)
 		TriggerServerEvent('esx_checkin:takeMoney')
@@ -440,8 +425,8 @@ AddEventHandler('esx_checkin:checkIn', function()
 		RespawnPed(ped, coords8, 0.0)
 		TaskStartScenarioAtPosition(ped, 'WORLD_HUMAN_SUNBATHE_BACK', 349.6, -583.36, 43.0 + 1, 360.0, 0, false, true)
 		FreezeEntityPosition(ped, true)
-		exports['mythic_notify']:DoCustomHudText('inform', _U('notificationText1'), Config.BedTime * 1000)
-		Citizen.Wait(Config.BedTime * 1000)
+		exports['mythic_notify']:DoCustomHudText('inform', _U('notificationText1'), ConfigCheckin.BedTime * 1000)
+		Citizen.Wait(ConfigCheckin.BedTime * 1000)
 		FreezeEntityPosition(ped, false) 
 		ClearPedTasksImmediately(ped)
 		TriggerServerEvent('esx_checkin:takeMoney')

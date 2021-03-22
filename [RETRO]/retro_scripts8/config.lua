@@ -267,95 +267,6 @@ ConfigGamz.Zones = {
     }, --
 
 
-    ["RCEMS Store"] = {
-
-        ["coords"] = vector3(-433.22155761719,-341.61465454102,34.910751342773),
-
-        ["drink"] = {
-            ["Coca Cola"] = {
-                ["price"] = 50,
-                ["prop"] = "prop_ecola_can"
-            },
-
-            ["Sparkling Water"] = {
-                ["price"] = 35,
-                ["prop"] = "prop_ld_flow_bottle"
-            } 
-        },
-        
-        ["eatable"] = {
-            ["Burger"] = {
-                ["price"] = 50,
-                ["prop"] = "prop_cs_burger_01"
-            },
-
-            ["Hotdog"] = {
-                ["price"] = 50,
-                ["prop"] = "prop_cs_hotdog_01"
-            }
-
-        }
-    }, --
-
-    ["RCEMS Store 2"] = {
-
-        ["coords"] = vector3(-455.76086425781,-332.03594970703,42.329776763916),
-
-        ["drink"] = {
-            ["Coca Cola"] = {
-                ["price"] = 50,
-                ["prop"] = "prop_ecola_can"
-            },
-
-            ["Sparkling Water"] = {
-                ["price"] = 35,
-                ["prop"] = "prop_ld_flow_bottle"
-            } 
-        },
-        
-        ["eatable"] = {
-            ["Burger"] = {
-                ["price"] = 50,
-                ["prop"] = "prop_cs_burger_01"
-            },
-
-            ["Hotdog"] = {
-                ["price"] = 50,
-                ["prop"] = "prop_cs_hotdog_01"
-            }
-
-        }
-    }, --
-
-    ["City Hall Store "] = {
-
-        ["coords"] = vector3(-551.20831298828,-192.60929870605,38.28006362915),
-
-        ["drink"] = {
-            ["Coca Cola"] = {
-                ["price"] = 50,
-                ["prop"] = "prop_ecola_can"
-            },
-
-            ["Sparkling Water"] = {
-                ["price"] = 35,
-                ["prop"] = "prop_ld_flow_bottle"
-            } 
-        },
-        
-        ["eatable"] = {
-            ["Burger"] = {
-                ["price"] = 50,
-                ["prop"] = "prop_cs_burger_01"
-            },
-
-            ["Hotdog"] = {
-                ["price"] = 50,
-                ["prop"] = "prop_cs_hotdog_01"
-            }
-
-        }
-    }, --
 
 
     ["CUATRO HERMANOS Store "] = {
@@ -483,9 +394,12 @@ ConfigGamz.Zones = {
     }, 
 
 
-    ["RIRI STORE 2"] = {
+    
+    
 
-        ["coords"] = vector3(-3205.9348144531,792.08410644531,8.9316577911377),
+    ["RECEMS STORE 2"] = {
+
+        ["coords"] = vector3(309.57934570312,-585.60845947266,43.284091949463),
 
         ["drink"] = {
             ["Coca Cola"] = {
@@ -513,6 +427,73 @@ ConfigGamz.Zones = {
         }
     }, 
 
+    
+    ["RECEMS STORE 3"] = {
+
+        ["coords"] = vector3( 357.23461914062,-585.17791748047,28.796838760376),
+
+        ["drink"] = {
+            ["Coca Cola"] = {
+                ["price"] = 25,
+                ["prop"] = "prop_ecola_can"
+            },
+
+            ["Sparkling Water"] = {
+                ["price"] = 15,
+                ["prop"] = "prop_ld_flow_bottle"
+            } 
+        },
+        
+        ["eatable"] = {
+            ["Burger"] = {
+                ["price"] = 25,
+                ["prop"] = "prop_cs_burger_01"
+            },
+
+            ["Hotdog"] = {
+                ["price"] = 25,
+                ["prop"] = "prop_cs_hotdog_01"
+            }   
+
+        }
+    }, 
+
+
+    ["RCMECH STORE"] = {
+
+        ["coords"] = vector3(  -208.04772949219,-1342.0877685547,34.894313812256),
+
+        ["drink"] = {
+            ["Coca Cola"] = {
+                ["price"] = 25,
+                ["prop"] = "prop_ecola_can"
+            },
+
+            ["Sparkling Water"] = {
+                ["price"] = 15,
+                ["prop"] = "prop_ld_flow_bottle"
+            } 
+        },
+        
+        ["eatable"] = {
+            ["Burger"] = {
+                ["price"] = 25,
+                ["prop"] = "prop_cs_burger_01"
+            },
+
+            ["Hotdog"] = {
+                ["price"] = 25,
+                ["prop"] = "prop_cs_hotdog_01"
+            }   
+
+        }
+    }, 
+
+
+
+
+   
+   
 
     
 
