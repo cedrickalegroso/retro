@@ -1286,7 +1286,7 @@ Config.StashJ1 = {
         msg = "Retro City Police Confiscated items Stash"
     },
     ["LSPD3"] = {
-        coords = vector3(486.06884765625,-995.54522705078,30.689645767212),
+        coords = vector3(463.15075683594,-984.98638916016,30.68968963623),
         useText = true,
         size = vector3(1.0, 1.0, 1.0),
         job = "police",
@@ -1323,12 +1323,44 @@ Config.StashJ1 = {
         markerColour = vector3(255, 255, 255),
         msg = "Retro City Groove Stash"
     },
+
+    ["Groove 3"] = {
+        --   coords = vector3(-100.11833953857, -1792.5531005859, 32.195148468018),
+   
+        coords = vector3(-224.9924621582,-1319.9857177734,30.890312194824),
+           useText = true,
+           size = vector3(1.0, 1.0, 1.0),
+           job = "groove",
+           mingrade = 0,
+           markerType = 2,
+           draw = 2,
+           markerColour = vector3(255, 255, 255),
+           msg = "Retro City Groove Stash [STAFFS]"
+       },
+
+
+    
+
+
+    ["Groove 2 "] = {
+        --   coords = vector3(-100.11833953857, -1792.5531005859, 32.195148468018),
+   
+        coords = vector3(-196.01553344727,-1340.1469726562,34.899444580078),
+           useText = true,
+           size = vector3(1.0, 1.0, 1.0),
+           job = "groove",
+           mingrade = 3,
+           markerType = 2,
+           draw = 2,
+           markerColour = vector3(255, 255, 255),
+           msg = "Retro City Groove Stash [BOSS]"
+       },
     ["RCEMS"] = { --  
       --  coords = vector3(-452.08367919922, -324.60824584961, 34.91077041626),
       -- -252.77421569824,6318.6713867188,32.431507110596
       -- 
     --  coords = vector3(-252.77421569824,6318.6713867188,32.431507110596),
-    coords = vector3(-254.96647644043,6326.5678710938,32.427299499512),
+    coords = vector3(309.69448852539,-561.11547851562,43.284088134766),
         useText = true,
         size = vector3(1.0, 1.0, 1.0),
         job = "ambulance",
