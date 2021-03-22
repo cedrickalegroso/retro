@@ -26,14 +26,14 @@ Config.SpeedLimits = {
 Config.Zones = {
 
 	DMVSchool = {
-		Pos   = {x = 113.83, y = 6630.64, z = 31.97},
+		Pos   = {x = 239.471, y = -1380.960, z = 32.741},
 		Size  = {x = 1.5, y = 1.5, z = 1.0},
 		Color = {r = 204, g = 204, b = 0},
 		Type  = 1
 	},
 
 	VehicleSpawnPoint = {
-		Pos   = {x = 126.83, y = 6585.85, z = 31.96, h = 266.43},
+		Pos   = {x = 249.409, y = -1407.230, z = 30.4094, h = 317.0},
 		Size  = {x = 1.5, y = 1.5, z = 1.0},
 		Color = {r = 204, g = 204, b = 0},
 		Type  = -1
@@ -44,21 +44,21 @@ Config.Zones = {
 Config.CheckPoints = {
 
 	{
-		Pos = {x = 135.97, y = 6585.37, z = 31.96},
+		Pos = {x = 255.139, y = -1400.731, z = 29.537},
 		Action = function(playerPed, vehicle, setCurrentZoneType)
 			DrawMissionText(_U('next_point_speed', Config.SpeedLimits['residence']), 5000)
 		end
 	},
 
 	{
-		Pos = {x = 159.6, y = 6574.06, z = 31.83},
+		Pos = {x = 271.874, y = -1370.574, z = 30.932},
 		Action = function(playerPed, vehicle, setCurrentZoneType)
 			DrawMissionText(_U('go_next_point'), 5000)
 		end
 	},
 
 	{
-		Pos = {x = 167.72, y = 6563.46, z = 31.77},
+		Pos = {x = 234.907, y = -1345.385, z = 29.542},
 		Action = function(playerPed, vehicle, setCurrentZoneType)
 			Citizen.CreateThread(function()
 				DrawMissionText(_U('stop_for_ped'), 5000)
@@ -73,7 +73,7 @@ Config.CheckPoints = {
 	},
 
 	{
-		Pos = {x = 170.46, y = 6558.5, z = 31.85},
+		Pos = {x = 217.821, y = -1410.520, z = 28.292},
 		Action = function(playerPed, vehicle, setCurrentZoneType)
 			setCurrentZoneType('town')
 
@@ -90,21 +90,21 @@ Config.CheckPoints = {
 	},
 
 	{
-		Pos = {x = 159.81, y = 6538.88, z = 31.82},
+		Pos = {x = 178.550, y = -1401.755, z = 27.725},
 		Action = function(playerPed, vehicle, setCurrentZoneType)
 			DrawMissionText(_U('watch_traffic_lightson'), 5000)
 		end
 	},
 
 	{
-		Pos = {x = 45.37, y = 6432.38, z = 31.31},
+		Pos = {x = 113.160, y = -1365.276, z = 27.725},
 		Action = function(playerPed, vehicle, setCurrentZoneType)
 			DrawMissionText(_U('go_next_point'), 5000)
 		end
 	},
 
 	{
-		Pos = {x = -91.1, y = 6296.2, z = 31.32},
+		Pos = {x = -73.542, y = -1364.335, z = 27.789},
 		Action = function(playerPed, vehicle, setCurrentZoneType)
 			DrawMissionText(_U('stop_for_passing'), 5000)
 			PlaySound(-1, 'RACE_PLACED', 'HUD_AWARDS', false, 0, true)
@@ -115,21 +115,21 @@ Config.CheckPoints = {
 	},
 
 	{
-		Pos = {x = -176.17, y = 6210.04, z = 31.22},
+		Pos = {x = -355.143, y = -1420.282, z = 27.868},
 		Action = function(playerPed, vehicle, setCurrentZoneType)
 			DrawMissionText(_U('go_next_point'), 5000)
 		end
 	},
 
 	{
-		Pos = {x = -164.3, y = 6203.74, z = 31.21},
+		Pos = {x = -439.148, y = -1417.100, z = 27.704},
 		Action = function(playerPed, vehicle, setCurrentZoneType)
 			DrawMissionText(_U('go_next_point'), 5000)
 		end
 	},
 
 	{
-		Pos = {x = -111.55, y = 6255.48, z = 31.19},
+		Pos = {x = -453.790, y = -1444.726, z = 27.665},
 		Action = function(playerPed, vehicle, setCurrentZoneType)
 			setCurrentZoneType('freeway')
 
@@ -139,28 +139,28 @@ Config.CheckPoints = {
 	},
 
 	{
-		Pos = {x = 292.36, y = 6563.43, z = 29.9},
+		Pos = {x = -463.237, y = -1592.178, z = 37.519},
 		Action = function(playerPed, vehicle, setCurrentZoneType)
 			DrawMissionText(_U('go_next_point'), 5000)
 		end
 	},
 
 	{
-		Pos = {x = 364.12, y = 6563.29, z = 28.11},
+		Pos = {x = -900.647, y = -1986.28, z = 26.109},
 		Action = function(playerPed, vehicle, setCurrentZoneType)
 			DrawMissionText(_U('go_next_point'), 5000)
 		end
 	},
 
 	{
-		Pos = {x = 364.12, y = 6563.29, z = 28.11},
+		Pos = {x = 1225.759, y = -1948.792, z = 38.718},
 		Action = function(playerPed, vehicle, setCurrentZoneType)
 			DrawMissionText(_U('go_next_point'), 5000)
 		end
 	},
 
 	{
-		Pos = {x = 365.48, y = 6577.9, z = 28.11},
+		Pos = {x = 1225.759, y = -1948.792, z = 38.718},
 		Action = function(playerPed, vehicle, setCurrentZoneType)
 			setCurrentZoneType('town')
 			DrawMissionText(_U('in_town_speed', Config.SpeedLimits['town']), 5000)
@@ -168,7 +168,7 @@ Config.CheckPoints = {
 	},
 
 	{
-		Pos = {x = 234.22, y = 6570.09, z = 31.6},
+		Pos = {x = 1163.603, y = -1841.771, z = 35.679},
 		Action = function(playerPed, vehicle, setCurrentZoneType)
 			DrawMissionText(_U('gratz_stay_alert'), 5000)
 			PlaySound(-1, 'RACE_PLACED', 'HUD_AWARDS', false, 0, true)
@@ -176,7 +176,7 @@ Config.CheckPoints = {
 	},
 
 	{
-		Pos = {x = 133.62, y = 6614.12, z = 31.84},
+		Pos = {x = 235.283, y = -1398.329, z = 28.921},
 		Action = function(playerPed, vehicle, setCurrentZoneType)
 			ESX.Game.DeleteVehicle(vehicle)
 		end
