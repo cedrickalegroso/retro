@@ -9,11 +9,11 @@ Config.MarkerColor = { r = 255, g = 0, b = 0 } -- Change the marker color.
 -- Set the time (in minutes) during the player is markered
 Config.Timer = 2
 
-Config.CooldownMinutes = 10
+Config.CooldownMinutes = 0
 
 Config.CallCops = true -- Set to true if you want cops to be alerted when chopping is in progress
 Config.CallCopsPercent = 1 -- (min1) if 1 then cops will be called every time=100%, 2=50%, 3=33%, 4=25%, 5=20%.
-Config.CopsRequired = 1
+Config.CopsRequired = 0
 Config.ShowCopsMisbehave = true --show notification when cops steal too
 
 Config.NPCEnable = true -- Set to false to disable NPC Ped at shop location.

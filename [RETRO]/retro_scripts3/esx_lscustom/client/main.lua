@@ -368,6 +368,98 @@ function GetAction(data)
 
 	OpenLSMenu(elements, menuName, menuTitle, parent)
 end
+
+
+
+local circleA =
+    CircleZone:Create(
+    vector3(-237.13369750977,-1338.3156738281,30.902793884277),
+    0.5,
+    {
+        name = 'a',
+        data = {job = 'police'}
+    }
+)
+
+local circleB =
+    CircleZone:Create(
+    vector3(-238.84635925293,-1328.7312011719,30.902782440186),
+    0.5,
+    {
+        name = 'b',
+        data = {job = 'ambulance'}
+    }
+)
+
+local circleC =
+    CircleZone:Create(
+    vector3(-233.80848693848,-1316.1268310547,30.902788162231),
+    0.5,
+    {
+        name = 'c',
+        data = {job = 'groove'}
+    }
+)
+
+local comboLS = ComboZone:Create({circleA, circleB, circleC}, {name = 'comboLS', debugPoly = false})
+comboLS:onPlayerInOut(
+    function(isPointInside, point, zone)
+        -- print("combo: isPointInside is", isPointInside, " for point", point)
+     --   if zone and PlayerData.job.name == zone.data.job  then
+          if zone and  PlayerData.job.name == "groove"  then
+
+			local playerPed = PlayerPedId()
+
+			if IsPedInAnyVehicle(playerPed, false) then
+
+			ESX.UI.Menu.CloseAll()
+
+            ESX.UI.Menu.Open(
+                'default',
+                GetCurrentResourceName(),
+                'police_actions',
+                {
+                    title = 'Retro City Mechanic Upgrade',
+                    align = 'top-left',
+                    elements = {
+                        {label = 'Open Upgrade Menu', value = 'open'},
+                        {label = 'Close', value = 'close'}
+                    }
+                },
+                function(data, menu)
+                    if data.current.value == 'open' then
+					
+
+							lsMenuIsShowed = true
+
+						local vehicle = GetVehiclePedIsIn(playerPed, false)
+						FreezeEntityPosition(vehicle, true)
+	
+						myCar = ESX.Game.GetVehicleProperties(vehicle)
+	
+						ESX.UI.Menu.CloseAll()
+						GetAction({value = 'main'})
+
+
+						
+						
+                       
+                    elseif data.current.value == 'close' then
+                        menu.close()
+                    end
+                end,
+                function(data, menu)
+                    menu.close()
+                end
+            )
+
+		end
+        end
+    end
+)
+
+--[[
+
 -- Blips
 Citizen.CreateThread(function()
 	for k,v in pairs(Config.ZonesLS) do
@@ -430,6 +522,7 @@ Citizen.CreateThread(function()
 		end
 	end
 end)
+]]--
 
 -- Prevent Free Tunning Bug
 Citizen.CreateThread(function()

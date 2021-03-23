@@ -19,25 +19,96 @@ AddEventHandler('esx:setJob', function(job)
 	PlayerData.job = job 
 end) 
 
---[[
-Citizen.CreateThread(function()
 
-	local hash = GetHashKey('s_m_m_paramedic_01')
-	while not HasModelLoaded(hash) do
-		RequestModel(hash)
-		Wait(20)
-	end 
+-- POLYZONES
+
+local isinsideCheckin = false
+
+--Name: checkin | 2021-03-23T11:49:15Z
+local checkin = CircleZone:Create(vector3(308.52, -592.51, 43.28), 0.55, {
+	name="checkin",
+	useZ=false,
+	--debugPoly=true
+  })
+
+
+  checkin:onPointInOut(PolyZone.getPlayerPosition, function(isPointInside, point)
+    isinsideCheckin = isPointInside
+    if isPointInside then
+      
+		ESX.UI.Menu.CloseAll()
+
+		ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'police_actions',
+		{
+			title    = 'RETRO CITY MEDICAL CENTER',
+			align    = 'top-left',
+			elements = {
+				{label = 'Check In',	value = 'Admit'},
+				
+				{label = 'Close',	value = 'close'},
+
+			}
+		}, function(data, menu)
+
+
+			if data.current.value == 'Admit' then
+				TriggerEvent("mythic_progbar:client:progress", {
+					name = "unique_action_name",
+					duration = 10000,
+					label = "Checking in to the Hospital",
+					useWhileDead = false,
+					canCancel = false,
+					controlDisables = {
+						disableMovement = true,
+						disableCarMovement = true,
+						disableMouse = false,
+						disableCombat = true,
+					},
+					animation = {
+						animDict = "missheistdockssetup1clipboard@idle_a",
+						anim = "idle_a",
+					},
+					prop = {
+						model = "prop_fib_clipboard",
+					}
+				}, function(status)
+					if not status then
+						ExecuteCommand('huhuhuhuhsakitkatawanpahilot')
+						Citizen.Wait(500)
+						TriggerServerEvent('esx_checkin:keyPressed')
+					end
+				end)
+				menu.close()
+			elseif  data.current.value == 'close' then
+				menu.close()
+			end
+
+		end, function(data, menu)
+			menu.close()
+		end)
 	
 
-	local ped = CreatePed(21, hash, -434.92080688477,-323.99914550781, 34.910774230957 -1, 150.0, true, true)
-	FreezeEntityPosition(ped, true)
-    SetEntityInvincible(ped, true)
-    TaskStartScenarioInPlace(ped, 'WORLD_HUMAN_GUARD_STAND', 0, true)
+        isinsideCheckin = true
+    else
+		isinsideCheckin = false
+    end
 end)
-]]--
--- Set Ped 
 
 
+
+
+Citizen.CreateThread(function()
+
+    local plyPed = PlayerPedId()
+    local coord = GetEntityCoords(plyPed)
+    insideChopShop = checkin:isPointInside(coord)
+    Citizen.Wait(500)
+  
+
+end)
+
+
+--[[
 -- Draw 3D text 
 Citizen.CreateThread(function ()
 	while true do
@@ -81,7 +152,7 @@ Citizen.CreateThread(function ()
                 	TaskStartScenarioInPlace(ped, 'WORLD_HUMAN_CLIPBOARD', 0, true)
                 	Citizen.Wait(5000)
                     
-					]]--
+					
 					
                 
                 end
@@ -89,6 +160,9 @@ Citizen.CreateThread(function ()
 		end
 	end
 end)
+]]--
+  
+
 
 -- 3D text function
 function DrawText3D(x,y,z, text)

@@ -304,9 +304,7 @@ Citizen.CreateThread(function()
                             menu.close()
                         end)
 
-                        --[[
- TakeXray(place, value) 
-                        ]]
+
                        
                     end
                 end

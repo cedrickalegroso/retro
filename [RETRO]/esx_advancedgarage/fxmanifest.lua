@@ -19,6 +19,12 @@ server_scripts {
 }
 
 client_scripts {
+	'@PolyZone/client.lua',
+	'@PolyZone/BoxZone.lua',
+	'@PolyZone/EntityZone.lua',
+	'@PolyZone/CircleZone.lua',
+	'@PolyZone/ComboZone.lua',
+	'@PolyZone/client.lua',
 	'@es_extended/locale.lua',
 	'locales/de.lua',
 	'locales/en.lua',

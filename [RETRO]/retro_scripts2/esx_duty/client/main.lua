@@ -1,46 +1,188 @@
 local Keys = {
-  ["ESC"] = 322, ["F1"] = 288, ["F2"] = 289, ["F3"] = 170, ["F5"] = 166, ["F6"] = 167, ["F7"] = 168, ["F8"] = 169, ["F9"] = 56, ["F10"] = 57,
-  ["~"] = 243, ["1"] = 157, ["2"] = 158, ["3"] = 160, ["4"] = 164, ["5"] = 165, ["6"] = 159, ["7"] = 161, ["8"] = 162, ["9"] = 163, ["-"] = 84, ["="] = 83, ["BACKSPACE"] = 177,
-  ["TAB"] = 37, ["Q"] = 44, ["W"] = 32, ["E"] = 38, ["R"] = 45, ["T"] = 245, ["Y"] = 246, ["U"] = 303, ["P"] = 199, ["["] = 39, ["]"] = 40, ["ENTER"] = 18,
-  ["CAPS"] = 137, ["A"] = 34, ["S"] = 8, ["D"] = 9, ["F"] = 23, ["G"] = 47, ["H"] = 74, ["K"] = 311, ["L"] = 182,
-  ["LEFTSHIFT"] = 21, ["Z"] = 20, ["X"] = 73, ["C"] = 26, ["V"] = 0, ["B"] = 29, ["N"] = 249, ["M"] = 244, [","] = 82, ["."] = 81,
-  ["LEFTCTRL"] = 36, ["LEFTALT"] = 19, ["SPACE"] = 22, ["RIGHTCTRL"] = 70,
-  ["HOME"] = 213, ["PAGEUP"] = 10, ["PAGEDOWN"] = 11, ["DELETE"] = 178,
-  ["LEFT"] = 174, ["RIGHT"] = 175, ["TOP"] = 27, ["DOWN"] = 173,
+    ['ESC'] = 322,
+    ['F1'] = 288,
+    ['F2'] = 289,
+    ['F3'] = 170,
+    ['F5'] = 166,
+    ['F6'] = 167,
+    ['F7'] = 168,
+    ['F8'] = 169,
+    ['F9'] = 56,
+    ['F10'] = 57,
+    ['~'] = 243,
+    ['1'] = 157,
+    ['2'] = 158,
+    ['3'] = 160,
+    ['4'] = 164,
+    ['5'] = 165,
+    ['6'] = 159,
+    ['7'] = 161,
+    ['8'] = 162,
+    ['9'] = 163,
+    ['-'] = 84,
+    ['='] = 83,
+    ['BACKSPACE'] = 177,
+    ['TAB'] = 37,
+    ['Q'] = 44,
+    ['W'] = 32,
+    ['E'] = 38,
+    ['R'] = 45,
+    ['T'] = 245,
+    ['Y'] = 246,
+    ['U'] = 303,
+    ['P'] = 199,
+    ['['] = 39,
+    [']'] = 40,
+    ['ENTER'] = 18,
+    ['CAPS'] = 137,
+    ['A'] = 34,
+    ['S'] = 8,
+    ['D'] = 9,
+    ['F'] = 23,
+    ['G'] = 47,
+    ['H'] = 74,
+    ['K'] = 311,
+    ['L'] = 182,
+    ['LEFTSHIFT'] = 21,
+    ['Z'] = 20,
+    ['X'] = 73,
+    ['C'] = 26,
+    ['V'] = 0,
+    ['B'] = 29,
+    ['N'] = 249,
+    ['M'] = 244,
+    [','] = 82,
+    ['.'] = 81,
+    ['LEFTCTRL'] = 36,
+    ['LEFTALT'] = 19,
+    ['SPACE'] = 22,
+    ['RIGHTCTRL'] = 70,
+    ['HOME'] = 213,
+    ['PAGEUP'] = 10,
+    ['PAGEDOWN'] = 11,
+    ['DELETE'] = 178,
+    ['LEFT'] = 174,
+    ['RIGHT'] = 175,
+    ['TOP'] = 27,
+    ['DOWN'] = 173
 }
 
-
 --- action functions
-local CurrentAction           = nil
-local CurrentActionMsg        = ''
-local CurrentActionData       = {}
+local CurrentAction = nil
+local CurrentActionMsg = ''
+local CurrentActionData = {}
 local HasAlreadyEnteredMarker = false
-local LastZone                = nil
-
+local LastZone = nil
 
 --- esx
 local GUI = {}
-ESX                           = nil
-GUI.Time                      = 0
-local PlayerData              = {}
+ESX = nil
+GUI.Time = 0
+local PlayerData = {}
 
-Citizen.CreateThread(function ()
-  while ESX == nil do
-    TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
-    Citizen.Wait(0)
-  PlayerData = ESX.GetPlayerData()
-  end
-end)
+Citizen.CreateThread(
+    function()
+        while ESX == nil do
+            TriggerEvent(
+                'esx:getSharedObject',
+                function(obj)
+                    ESX = obj
+                end
+            )
+            Citizen.Wait(0)
+            PlayerData = ESX.GetPlayerData()
+        end
+    end
+)
 
 RegisterNetEvent('esx:playerLoaded')
-AddEventHandler('esx:playerLoaded', function(xPlayer)
-  PlayerData = xPlayer
-end)
+AddEventHandler(
+    'esx:playerLoaded',
+    function(xPlayer)
+        PlayerData = xPlayer
+    end
+)
 
 RegisterNetEvent('esx:setJob')
-AddEventHandler('esx:setJob', function(job)
-  PlayerData.job = job
-end)
+AddEventHandler(
+    'esx:setJob',
+    function(job)
+        PlayerData.job = job
+    end
+)
+
+local circleA =
+    CircleZone:Create(
+    vector3(441.83938598633,-979.47137451172,30.689502716064),
+    0.5,
+    {
+        name = 'a',
+        data = {job = 'police'}
+    }
+)
+
+local circleB =
+    CircleZone:Create(
+    vector3(307.7428894043, -588.87615966797, 43.284061431885),
+    0.5,
+    {
+        name = 'b',
+        data = {job = 'ambulance'}
+    }
+)
+
+local circleC =
+    CircleZone:Create(
+    vector3(-204.44822692871,-1326.9790039062,30.890310287476),
+    0.5,
+    {
+        name = 'c',
+        data = {job = 'groove'}
+    }
+)
+
+local combo = ComboZone:Create({circleA, circleB, circleC}, {name = 'combo', debugPoly = false})
+combo:onPlayerInOut(
+    function(isPointInside, point, zone)
+        -- print("combo: isPointInside is", isPointInside, " for point", point)
+     --   if zone and PlayerData.job.name == zone.data.job  then
+          if zone   then
+
+            ESX.UI.Menu.CloseAll()
+
+            ESX.UI.Menu.Open(
+                'default',
+                GetCurrentResourceName(),
+                'police_actions',
+                {
+                    title = 'Retro City Duty',
+                    align = 'top-left',
+                    elements = {
+                        {label = 'On/Off Duty', value = 'duty'},
+                        {label = 'Close', value = 'close'}
+                    }
+                },
+                function(data, menu)
+                    if data.current.value == 'duty' then
+                        TriggerServerEvent('duty:onoff')
+                        Citizen.Wait(1500)
+                        print('Radio Debug Checking')
+                        ExecuteCommand('ondutyradio')
+                        menu.close()
+                    elseif data.current.value == 'close' then
+                        menu.close()
+                    end
+                end,
+                function(data, menu)
+                    menu.close()
+                end
+            )
+        end
+    end
+)
+ --
+
+--[[
 
 ----markers
 AddEventHandler('esx_duty:hasEnteredMarker', function (zone, zonejob)
@@ -135,63 +277,74 @@ Citizen.CreateThread(function ()
 
     for k,v in pairs(Config.ZonesDUTY) do
   
-   --[[
+   
         local job1 = 'off'..PlayerData.job.name
     print('job 1'..job1)
     print('job 2'..'off'..v.job)
  if PlayerData.job.name == v.job or 'off'..PlayerData.job.name == 'off'..v.job  then
  end
-   ]]--
-
-        if(GetDistanceBetweenCoords(coords, v.Pos.x, v.Pos.y, v.Pos.z, true) < v.Size.x) then
-          isInMarker  = true
-          currentZone = k
-          zonejob = v.job
-        end
  
-      
-     
-    
-    end
 
-   
-
-    if (isInMarker and not HasAlreadyEnteredMarker) or (isInMarker and LastZone ~= currentZone) then
-      HasAlreadyEnteredMarker = true
-      LastZone                = currentZone
-      TriggerEvent('esx_duty:hasEnteredMarker', currentZone, zonejob)
-    end
-
-    if not isInMarker and HasAlreadyEnteredMarker then
-      HasAlreadyEnteredMarker = false
-      TriggerEvent('esx_duty:hasExitedMarker', LastZone)
-    end
+   if(GetDistanceBetweenCoords(coords, v.Pos.x, v.Pos.y, v.Pos.z, true) < v.Size.x) then
+    isInMarker  = true
+    currentZone = k
+    zonejob = v.job
   end
-end)
 
 
-RegisterNetEvent('retro_scripts:radiofreqoff')
-AddEventHandler('retro_scripts:radiofreqoff', function(job)
-  exports["rp-radio"]:RemovePlayerAccessToFrequencies(1, 2, 3)
+
+
+end
+
+
+
+if (isInMarker and not HasAlreadyEnteredMarker) or (isInMarker and LastZone ~= currentZone) then
+HasAlreadyEnteredMarker = true
+LastZone                = currentZone
+TriggerEvent('esx_duty:hasEnteredMarker', currentZone, zonejob)
+end
+
+if not isInMarker and HasAlreadyEnteredMarker then
+HasAlreadyEnteredMarker = false
+TriggerEvent('esx_duty:hasExitedMarker', LastZone)
+end
+end
 end)
+
+]]
+RegisterNetEvent(
+    'retro_scripts:radiofreqoff'
+)
+AddEventHandler(
+    'retro_scripts:radiofreqoff',
+    function(job)
+        exports['rp-radio']:RemovePlayerAccessToFrequencies(1, 2, 3)
+    end
+)
 
 RegisterNetEvent('retro_scripts:radiofreqgrooveon')
-AddEventHandler('retro_scripts:radiofreqgrooveon', function(job)
-  print('give player access to groove radio')
-  exports["rp-radio"]:GivePlayerAccessToFrequency(3)
-end)
+AddEventHandler(
+    'retro_scripts:radiofreqgrooveon',
+    function(job)
+        print('give player access to groove radio')
+        exports['rp-radio']:GivePlayerAccessToFrequency(3)
+    end
+)
 
 RegisterNetEvent('retro_scripts:radiofreqemson')
-AddEventHandler('retro_scripts:radiofreqemson', function(job)
-  print('give player access to ems radio')
-  exports["rp-radio"]:GivePlayerAccessToFrequency(1)
-end)
+AddEventHandler(
+    'retro_scripts:radiofreqemson',
+    function(job)
+        print('give player access to ems radio')
+        exports['rp-radio']:GivePlayerAccessToFrequency(1)
+    end
+)
 
 RegisterNetEvent('retro_scripts:radiofreqpolon')
-AddEventHandler('retro_scripts:radiofreqpolon', function(job)
-  print('give player access to police radio')
-  exports["rp-radio"]:GivePlayerAccessToFrequency(2)
-end)
-
-
-
+AddEventHandler(
+    'retro_scripts:radiofreqpolon',
+    function(job)
+        print('give player access to police radio')
+        exports['rp-radio']:GivePlayerAccessToFrequency(2)
+    end
+)

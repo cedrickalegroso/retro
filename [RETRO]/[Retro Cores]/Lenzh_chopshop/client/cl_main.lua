@@ -68,6 +68,142 @@ function refreshPlayerWhitelisted()
     return false
 end
 
+-- POLYZONES
+
+local insideChopShop = false
+
+--Name: chopshop | 2021-03-23T10:34:03Z
+local chopshop = CircleZone:Create(vector3(-555.59, -1695.75, 19.28), 1.75, {
+    name="chopshop",
+    useZ=false,
+  --  debugPoly=true
+})
+
+
+chopshop:onPointInOut(PolyZone.getPlayerPosition, function(isPointInside, point)
+    insideChopShop = isPointInside
+    if isPointInside then
+        if IsDriver() then
+            
+                ChopVehicle()
+            
+       
+        end
+        insideChopShop = true
+    else
+		insideChopShop = false
+    end
+end)
+
+
+
+
+
+
+
+Citizen.CreateThread(function()
+
+    local plyPed = PlayerPedId()
+    local coord = GetEntityCoords(plyPed)
+    insideChopShop = chopshop:isPointInside(coord)
+    Citizen.Wait(500)
+
+   
+
+  
+  
+        if Config.EnableBlips == true then
+            for k,zone in pairs(Config.Zones) do
+                CreateBlipCircle(zone.coords, zone.name, zone.radius, zone.color, zone.sprite)
+            end
+        end
+   
+
+end)
+
+
+function CreateBlipCircle(coords, text, radius, color, sprite)
+
+    local blip = AddBlipForCoord(coords)
+    SetBlipSprite(blip, sprite)
+    SetBlipColour(blip, color)
+    SetBlipScale(blip, 0.8)
+    SetBlipAsShortRange(blip, true)
+    BeginTextCommandSetBlipName("STRING")
+    AddTextComponentString(text)
+    EndTextCommandSetBlipName(blip)
+end
+
+
+-- 3D text function
+function DrawText3D(x,y,z, text)
+	local onScreen, _x, _y = World3dToScreen2d(x, y, z)
+	local p = GetGameplayCamCoords()
+	local distance = GetDistanceBetweenCoords(p.x, p.y, p.z, x, y, z, 1)
+	local scale = (1 / distance) * 2
+	local fov = (1 / GetGameplayCamFov()) * 100
+	local scale = scale * fov
+	if onScreen then
+		  SetTextScale(0.35, 0.35)
+		  SetTextFont(4)
+		  SetTextProportional(1)
+		  SetTextColour(255, 255, 255, 215)
+		  SetTextEntry("STRING")
+		  SetTextCentre(1)
+		  AddTextComponentString(text)
+		  DrawText(_x,_y)
+		  local factor = (string.len(text)) / 370
+		  DrawRect(_x,_y+0.0125, 0.015+ factor, 0.03, 41, 11, 41, 68)
+	  end
+end
+
+
+--[[
+
+
+
+
+-- Key controls
+Citizen.CreateThread(function()
+    while insideChopShop do
+        Citizen.Wait(0)
+        if CurrentAction ~= nil then
+            ESX.ShowHelpNotification(CurrentActionMsg, true, true)
+            if IsControlJustReleased(0, 38) then
+                if IsDriver() then
+                    if CurrentAction == 'Chopshop' then
+                        ChopVehicle()
+                    end
+                elseif CurrentAction == 'StanleyShop' then
+                    OpenShopMenu()
+                end
+                CurrentAction = nil
+            end
+        else
+            Citizen.Wait(500)
+        end
+    end
+end)
+
+
+
+ if Config.EnableBlips == true then
+        for k,zone in pairs(Config.Zones) do
+            CreateBlipCircle(zone.coords, zone.name, zone.radius, zone.color, zone.sprite)
+        end
+    end
+
+function CreateBlipCircle(coords, text, radius, color, sprite)
+
+    local blip = AddBlipForCoord(coords)
+    SetBlipSprite(blip, sprite)
+    SetBlipColour(blip, color)
+    SetBlipScale(blip, 0.8)
+    SetBlipAsShortRange(blip, true)
+    BeginTextCommandSetBlipName("STRING")
+    AddTextComponentString(text)
+    EndTextCommandSetBlipName(blip)
+end
 
 -- Display Marker
 Citizen.CreateThread(function()
@@ -87,26 +223,6 @@ Citizen.CreateThread(function()
         end
         if letSleep then
             Citizen.Wait(500)
-        end
-    end
-end)
-
-function CreateBlipCircle(coords, text, radius, color, sprite)
-
-    local blip = AddBlipForCoord(coords)
-    SetBlipSprite(blip, sprite)
-    SetBlipColour(blip, color)
-    SetBlipScale(blip, 0.8)
-    SetBlipAsShortRange(blip, true)
-    BeginTextCommandSetBlipName("STRING")
-    AddTextComponentString(text)
-    EndTextCommandSetBlipName(blip)
-end
-
-Citizen.CreateThread(function()
-    if Config.EnableBlips == true then
-        for k,zone in pairs(Config.Zones) do
-            CreateBlipCircle(zone.coords, zone.name, zone.radius, zone.color, zone.sprite)
         end
     end
 end)
@@ -162,28 +278,12 @@ AddEventHandler('Lenzh_chopshop:hasExitedMarker', function(zone)
     CurrentAction = nil
 end)
 
+]]--
 
--- Key controls
-Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(0)
-        if CurrentAction ~= nil then
-            ESX.ShowHelpNotification(CurrentActionMsg, true, true)
-            if IsControlJustReleased(0, 38) then
-                if IsDriver() then
-                    if CurrentAction == 'Chopshop' then
-                        ChopVehicle()
-                    end
-                elseif CurrentAction == 'StanleyShop' then
-                    OpenShopMenu()
-                end
-                CurrentAction = nil
-            end
-        else
-            Citizen.Wait(500)
-        end
-    end
-end)
+
+
+
+
 
 Citizen.CreateThread(function()
     if Config.NPCEnable == true then

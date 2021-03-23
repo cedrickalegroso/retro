@@ -4,6 +4,12 @@ description 'Check in at the hospital.'
 version '1.1'
  
 client_scripts {
+	'@PolyZone/client.lua',
+	'@PolyZone/BoxZone.lua',
+	'@PolyZone/EntityZone.lua',
+	'@PolyZone/CircleZone.lua',
+	'@PolyZone/ComboZone.lua',
+	'@PolyZone/client.lua',
 	'@es_extended/locale.lua',
     'locales/en.lua',
     'config.lua', 

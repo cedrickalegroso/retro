@@ -23,6 +23,141 @@ AddEventHandler('esx_Cshop:hasExitedMarker', function(zone)
 	currentAction = nil
 end)
 
+-- POLYZONES
+
+local isinsideChaning = false
+
+local circleA = CircleZone:Create(vector3(429.77243041992,-811.68133544922,29.491144180298), 0.5, {
+	name="a",
+	data={foo=1}
+  })
+  
+  local circleB = CircleZone:Create(vector3(429.661,-811.554,28.591), 0.5, {
+	name="b",
+	data={foo=2}
+  })
+  
+  local circleC = CircleZone:Create(vector3(-119.53133392334,-1780.7321777344,28.938479995728), 0.5, {
+	name="c",
+	data={foo=3}
+  })
+
+  local circleD = CircleZone:Create(vector3(-819.987,-1067.44,11.328), 0.5, {
+	name="d",
+	data={foo=4}
+  })
+
+
+  local circleE = CircleZone:Create(vector3(-1447.1,-240.396,49.819), 0.5, {
+	name="d",
+	data={foo=4}
+  })
+
+
+  local circleF = CircleZone:Create(vector3(3.917,6506.042,31.878), 0.5, {
+	name="d",
+	data={foo=4}
+  })
+
+  local circleG = CircleZone:Create(vector3(118.674,-224.98,54.558), 0.5, {
+	name="d",
+	data={foo=4}
+  })
+
+  local circleH = CircleZone:Create(vector3(1698.673,4818.352,42.063), 0.5, {
+	name="d",
+	data={foo=4}
+  })
+
+  local circleI = CircleZone:Create(vector3(620.432,2766.495,42.088), 0.5, {
+	name="d",
+	data={foo=4}
+  })
+
+  local circleJ = CircleZone:Create(vector3(-3177.755,1043.381,20.863), 0.5, {
+	name="d",
+	data={foo=4}
+  })
+
+  local circleK = CircleZone:Create(vector3(-1889.5599365234,2060.9504394531,139.99999999027), 0.5, {
+	name="d",
+	data={foo=4}
+  })
+
+  local circleL = CircleZone:Create(vector3(-2734.2880859375,-94.493133544922,16.196044540405), 0.5, {
+	name="d",
+	data={foo=4}
+  })
+
+
+  local circleM = CircleZone:Create(vector3(993.59,-135.82,73.10), 0.5, {
+	name="d",
+	data={foo=4}
+  })
+
+
+  local circleN = CircleZone:Create(vector3(-1407.8740234375,632.34246826172,196.52646484375), 0.5, {
+	name="d",
+	data={foo=4}
+  })
+
+  local circleO = CircleZone:Create(vector3(-1435.3162841797,660.93664550781,196.59989929199), 0.5, {
+	name="d",
+	data={foo=4}
+  })
+
+  local circleP = CircleZone:Create(vector3(-68.592948913574,829.22790527344,231.32997131348), 0.5, {
+	name="d",
+	data={foo=4}
+  })
+
+  local circleQ = CircleZone:Create(vector3(1201.7416992188,2714.5510253906,37.222560882568), 0.5, {
+	name="d",
+	data={foo=4}
+  })
+
+  local circleR = CircleZone:Create(vector3(463.3381652832,-999.15411376953,29.989514160156), 0.5, {
+	name="d",
+	data={foo=4}
+  })
+
+
+  local circleS = CircleZone:Create(vector3(301.66177368164,-598.90185546875,42.484091949463), 0.5, {
+	name="d",
+	data={foo=4}
+  })
+
+  local circleT = CircleZone:Create(vector3(956.54693603516,-145.66270446777,74.330993652344), 0.5, {
+	name="T",
+	data={foo=4}
+  })
+
+  local combo = ComboZone:Create({circleA, circleB, circleC, circleD, circleE, circleF, circleG, circleH, circleI, circleJ, circleK, circleL, circleM, circleN, circleO, circleP, circleQ, circleR, circleS, circleT }, {name="combo", debugPoly=false})
+  combo:onPlayerInOut(function(isPointInside, point, zone)
+	--print("combo: isPointInside is", isPointInside, " for point", point)
+	if zone then
+		pedArmor = GetPedArmour(GetPlayerPed(-1))
+		print(pedArmor)
+		OpenDressingMenu()
+	end
+  end)
+
+
+Citizen.CreateThread(function()
+
+   
+  
+
+end)
+
+
+--[[
+
+ local plyPed = PlayerPedId()
+    local coord = GetEntityCoords(plyPed)
+    isinsideChaning = changing:isPointInside(coord)
+    Citizen.Wait(500)
+
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
@@ -94,6 +229,8 @@ Citizen.CreateThread(function()
 		end
 	end
 end)
+]]--
+
 
 function OpenDressingMenu()
 	local entering = nil
