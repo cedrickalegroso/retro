@@ -2,11 +2,24 @@ resource_manifest_version '44febabe-d386-4d18-afbe-5e627f4af937'
 
 server_script('server.lua')
 server_script('@mysql-async/lib/MySQL.lua')
-client_script('client/tattooshop.lua')
-client_script('client/config.lua')
-client_script('client/skins.lua')
-client_script('client/client.lua')
-client_script('client/commands.lua')
+
+
+
+
+client_scripts {
+	'@PolyZone/client.lua',
+	'@PolyZone/BoxZone.lua',
+	'@PolyZone/EntityZone.lua',
+	'@PolyZone/CircleZone.lua',
+	'@PolyZone/ComboZone.lua',
+	'@PolyZone/client.lua',
+    'client/tattooshop.lua',
+    'client/config.lua',
+    'client/skins.lua',
+    'client/client.lua',
+    'client/commands.lua'
+}
+
 
 ui_page('client/html/index.html')
 
