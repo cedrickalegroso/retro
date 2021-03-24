@@ -173,7 +173,7 @@ function robgood(q) {
             $("#BANK2").css("color", "#e94444");
             $("#updatetext").text("Javaheri Robbery Allowed");
             // 2 green 2 red
-        } else if (popocount >= 1) {
+        } else if (popocount >= 2) {
             $("#SHOP").css("color", "#4fca4f");
             $("#JAVAHERI").css("color", "#e94444");
             $("#BANK1").css("color", "#e94444");

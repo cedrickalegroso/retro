@@ -44,6 +44,20 @@ RegisterCommand('onhold', function(source)
     end
 end)
 
+RegisterNetEvent('isPriority')
+AddEventHandler('isPriority', function()
+	
+	Citizen.Wait(1)
+	TriggerClientEvent('UpdatePriority', -1, ispriority)
+	TriggerClientEvent('chat:addMessage', -1, {
+		template = '<div class="chat-message system"><b> 👮 RCPD : </b> ^1A priority call is in progress. Please do not interfere, otherwise you will be ^1kicked. ^7All calls are on ^3hold ^7until this one concludes.  </div>',
+		args = { fal, msg }
+	})
+
+	TriggerClientEvent('retro_scripts:progplease', source)
+
+	--TriggerClientEvent('chatMessage', -1, "WARNING", {255, 0, 0}, "^1A priority call is in progress. Please do not interfere, otherwise you will be ^1kicked. ^7All calls are on ^3hold ^7until this one concludes.")
+end)
 
 RegisterCommand('priority', function(source)
     local xPlayer = ESX.GetPlayerFromId(source)
