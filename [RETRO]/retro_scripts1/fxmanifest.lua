@@ -25,7 +25,7 @@ client_script {
   --carry 
   'carry_c.lua',
 
-  'cl_id.lua',
+  --'cl_id.lua',
 
  'cl_crossarm.lua',
 
@@ -67,7 +67,7 @@ client_script {
 
 
   --cooldown
-  'cl_cooldown.lua',
+ -- 'cl_cooldown.lua',
 
   --watermark
   'watermark.lua',
@@ -139,7 +139,7 @@ server_script {
 
 
   --cooldown
-  'sv_cooldown.lua',
+ -- 'sv_cooldown.lua',
 
 
 

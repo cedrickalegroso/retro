@@ -31,6 +31,61 @@ Citizen.CreateThread(function()
 	end
 end)
 
+
+RegisterCommand('onhold', function(source)
+    local xPlayer = ESX.GetPlayerFromId(source)
+
+
+    local job = xPlayer.getJob().name
+
+
+    if job == 'police' then
+		TriggerClientEvent('retro_scripts:holdplease', source)
+    end
+end)
+
+
+RegisterCommand('priority', function(source)
+    local xPlayer = ESX.GetPlayerFromId(source)
+
+
+    local job = xPlayer.getJob().name
+
+
+    if job == 'police' then
+        TriggerClientEvent('chat:addMessage', -1, {
+            template = '<div class="chat-message system"><b> 👮 RCPD : </b> ^1^1A priority call was just conducted. ^3All civilians must wait 15 minutes before conducting another one. ^7Failure to abide by this rule will lead to you being ^1kicked.  </div>',
+            args = { fal, msg }
+        })
+		TriggerClientEvent('retro_scripts:prioplease', source)
+    end
+
+  
+     
+end)
+
+
+RegisterCommand('inprogress', function(source)
+    local xPlayer = ESX.GetPlayerFromId(source)
+
+
+    local job = xPlayer.getJob().name
+
+
+    if job == 'police' then
+        TriggerClientEvent('chat:addMessage', -1, {
+            template = '<div class="chat-message system"><b> 👮 RCPD : </b> ^1^1A priority call was just conducted. ^3All civilians must wait 15 minutes before conducting another one. ^7Failure to abide by this rule will lead to you being ^1kicked.  </div>',
+            args = { fal, msg }
+        })
+		TriggerClientEvent('retro_scripts:progplease', source)
+    end
+
+  
+     
+end)
+
+
+
 AddEventHandler('onResourceStart', function(resource)
 	if resource == GetCurrentResourceName() then
 		Citizen.CreateThread(function()

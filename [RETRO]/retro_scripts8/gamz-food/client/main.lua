@@ -7,6 +7,78 @@ Citizen.CreateThread(function()
     end
 end)
 
+-- POLYZONES
+
+local insideGamzFoods = false
+
+local circleA =
+    CircleZone:Create(
+    vector3(357.55639648438,-585.03576660156,28.796859741211),
+    1.5,
+    {
+        name = 'a',
+        data = {place = 'Vending Machine'}
+    }
+)
+
+local circleB =
+    CircleZone:Create(
+    vector3(460.8740234375,-982.32342529297,30.689685821533),
+    1.5,
+    {
+        name = 'b',
+        data = {place = 'Vending Machine'}
+    }
+)
+
+local circleC =
+    CircleZone:Create(
+    vector3(309.79620361328,-585.67340087891,43.28405380249),
+    0.5,
+    {
+        name = 'c',
+        data = {place = 'Vending Machine'}
+    }
+)
+
+local circleD =
+    CircleZone:Create(
+    vector3(324.46673583984,-598.68237304688,43.284061431885),
+    0.5,
+    {
+        name = 'c',
+        data = {place = 'Vending Machine'}
+    }
+)
+
+local circleE =
+    CircleZone:Create(
+    vector3(-214.72108459473,-1332.8233642578,18.462020874023),
+    0.5,
+    {
+        name = 'c',
+        data = {place = 'Vending Machine'}
+    }
+)
+
+
+
+
+
+
+
+
+local combo = ComboZone:Create({circleA, circleB, circleC, circleD, circleE}, {name = 'combo', debugPoly = false})
+combo:onPlayerInOut(
+    function(isPointInside, point, zone)
+        if zone   then
+            FoodStand(zone.data.place)
+        end
+    end
+)
+
+
+--[[
 Citizen.CreateThread(function()
 
     for place, value in pairs(ConfigGamz.Zones) do
@@ -46,6 +118,9 @@ Citizen.CreateThread(function()
         Citizen.Wait(sleepTime)
     end
 end)
+]]--
+
+
 
 FoodStand = function(place)
 

@@ -205,7 +205,7 @@ ConfigGamz = {}
 
 ConfigGamz.Zones = {
 
-    ["Weazel Store"] = {
+    ["Vending Machine"] = {
 
         ["coords"] = vector3(-596.62091064453,-921.50463867188,23.815698623657),
 

@@ -10,6 +10,9 @@ TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 
 
+
+
+
 RegisterServerEvent('retro_scripts:saveoutfit')
 AddEventHandler('retro_scripts:saveoutfit', function(source, label)
 	local xPlayer = ESX.GetPlayerFromId(source)

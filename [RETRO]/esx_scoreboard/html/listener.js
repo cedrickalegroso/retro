@@ -1,4 +1,5 @@
 var visable = false;
+var popocount = 0;
 $(function() {
     window.addEventListener('message', function(event) {
         switch (event.data.action) {
@@ -96,6 +97,20 @@ $(function() {
                 updatePing(event.data.players);
                 applyPingColor();
                 break;
+            case 'resetCD':
+                CD(new Date(Date.now() + (15 * 60 * 1000)))
+                break;
+            case 'keeptrackpopo':
+
+                popocount = event.data.policeCount;
+                console.log(popocount)
+                break
+            case 'inprog':
+                inprog()
+                break;
+            case 'hold':
+                holdat()
+                break;
             case 'updatePraca':
                 $('#praca').html(event.data.praca);
                 break;
@@ -116,6 +131,107 @@ $(function() {
         }
     }, false);
 });
+
+function inprog() {
+    robgood(1)
+    document.getElementById("demo").innerHTML = "ILLEGAL ACTIVITY INPROGRESS";
+}
+
+
+function holdat() {
+    robgood(1)
+    document.getElementById("demo").innerHTML = "PRIORITY ON HOLD";
+}
+
+function robgood(q) {
+    console.log(popocount)
+    if (q == 1) {
+        $("#SHOP").css("color", "#c2c2c2");
+        $("#JAVAHERI").css("color", "#c2c2c2");
+        $("#BANK1").css("color", "#c2c2c2");
+        $("#BANK2").css("color", "#c2c2c2");
+        $("#updatetext").text("No Robbery Allowed");
+    } else {
+        if (popocount >= 8) {
+            $("#SHOP").css("color", "#4fca4f");
+            $("#JAVAHERI").css("color", "#4fca4f");
+            $("#BANK1").css("color", "#4fca4f");
+            $("#BANK2").css("color", "#4fca4f");
+            $("#updatetext").text("Centeral Bank Robbery Allowed");
+            // 4 green
+        } else if (popocount >= 8) {
+            $("#SHOP").css("color", "#4fca4f");
+            $("#JAVAHERI").css("color", "#4fca4f");
+            $("#BANK1").css("color", "#4fca4f");
+            $("#BANK2").css("color", "#e94444");
+            $("#updatetext").text("Normal Bank Robbery Allowed");
+            // 3 green 1 red
+        } else if (popocount >= 4) {
+            $("#SHOP").css("color", "#4fca4f");
+            $("#JAVAHERI").css("color", "#4fca4f");
+            $("#BANK1").css("color", "#e94444");
+            $("#BANK2").css("color", "#e94444");
+            $("#updatetext").text("Javaheri Robbery Allowed");
+            // 2 green 2 red
+        } else if (popocount >= 1) {
+            $("#SHOP").css("color", "#4fca4f");
+            $("#JAVAHERI").css("color", "#e94444");
+            $("#BANK1").css("color", "#e94444");
+            $("#BANK2").css("color", "#e94444");
+            $("#updatetext").text("Shop Robbery Allowed");
+            // 1 green 3 red
+        } else {
+            $("#SHOP").css("color", "#c2c2c2");
+            $("#JAVAHERI").css("color", "#c2c2c2");
+            $("#BANK1").css("color", "#c2c2c2");
+            $("#BANK2").css("color", "#c2c2c2");
+            $("#updatetext").text("No Robbery Allowed");
+            // 4 red
+        }
+    }
+
+
+
+
+}
+
+function CD(now15) {
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+
+
+        // Get today's date and time
+        var now = new Date().getTime();
+
+        var d = new Date();
+        var n = d.getMinutes();
+
+        // Find the distance between now and the count down date
+        var distance = now15 - now;
+
+
+
+        // Time calculations for days, hours, minutes and seconds
+        //  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        // var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the result in the element with id="demo"
+        document.getElementById("demo").innerHTML = "Priority Cool Down " +
+            // now15.getMinutes() + "m " + now15.getSeconds() + "s";
+
+            minutes + "m " + seconds + "s";
+
+
+        // If the count down is finished, write some text
+        if (distance < 0) {
+            clearInterval(x);
+            robgood(0)
+            document.getElementById("demo").innerHTML = "Illegal Activities Allowed";
+        }
+    }, 1000);
+}
 
 function applyPingColor() {
     $('#playerlist tr').each(function() {

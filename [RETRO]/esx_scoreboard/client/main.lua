@@ -31,6 +31,10 @@ end)
 RegisterNetEvent('esx:setJob')
 AddEventHandler('esx:setJob', function(job)
 	SendNUIMessage({action = "updatePraca", praca = job.label.." - "..job.grade_label})
+
+	ESX.TriggerServerCallback('esx_scoreboard:getConnectedPlayers', function(connectedPlayers)
+		UpdatePlayerTable(connectedPlayers)
+	end)
 end)
 
 RegisterNetEvent('esx:playerLoaded')
@@ -39,6 +43,10 @@ AddEventHandler('esx:playerLoaded', function(xPlayer)
 	-- Job
 	local job = data.job
 	SendNUIMessage({action = "updatePraca", praca = job.label.." - "..job.grade_label})
+
+	ESX.TriggerServerCallback('esx_scoreboard:getConnectedPlayers', function(connectedPlayers)
+		UpdatePlayerTable(connectedPlayers)
+	end)
 	
 end)
 
@@ -52,6 +60,33 @@ Citizen.CreateThread(function()
 		playTime = '00h 00m'
 	})
 end)
+
+
+RegisterNetEvent('retro_scripts:prioplease')
+AddEventHandler('retro_scripts:prioplease', function(source)
+	SendNUIMessage({
+		action = 'resetCD'
+	})
+end)
+
+RegisterNetEvent('retro_scripts:holdplease')
+AddEventHandler('retro_scripts:holdplease', function(source)
+	SendNUIMessage({
+		action = 'hold'
+	})
+end)
+
+RegisterNetEvent('retro_scripts:progplease')
+AddEventHandler('retro_scripts:progplease', function(source)
+	SendNUIMessage({
+		action = 'inprog'
+	})
+end)
+
+
+
+
+
 
 RegisterNetEvent('esx_scoreboard:updateConnectedPlayers')
 AddEventHandler('esx_scoreboard:updateConnectedPlayers', function(connectedPlayers)
@@ -136,10 +171,13 @@ function UpdatePlayerTable(connectedPlayers)
 		jobs   = {ems = ems, police = police, taxi = taxi, mechanic = mechanic, cardealer = cardealer, estate = estate, player_count = players}
 	})
 
-	SendNUIMessage({
-		action = 'updatePoliceCount',
+SendNUIMessage({
+		action = 'keeptrackpopo',
 		policeCount = police
 	})
+	
+
+	
 end
 
 Citizen.CreateThread(function()
