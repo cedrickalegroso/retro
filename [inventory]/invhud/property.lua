@@ -87,7 +87,7 @@ function openPropertyInventory()
   --  refreshPropertyInventory()
   --  Citizen.Wait(250)
  
-    SetNuiFocus(true, true)
+  --  SetNuiFocus(true, true)
 
     Citizen.Wait(250)
     refreshPropertyInventory()
