@@ -3,7 +3,7 @@ local takenoxy = 0
 local alreadyTaken = 0
 
 function setBleedingOn(ped)
-    SetEntityHealth(ped,GetEntityHealth(ped)-2)
+   -- SetEntityHealth(ped,GetEntityHealth(ped)-1)
     if not effect then
   -- StartScreenEffect('Rampage', 0, true)
    effect = true
