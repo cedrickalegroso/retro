@@ -27,7 +27,9 @@ server_scripts {
 
   'esx_bike/translations/en.lua',
 	'esx_bike/translations/cz.lua',
-	'esx_bike/server.lua'
+	'esx_bike/server.lua',
+
+  'sv_stress.lua',
  
 }
 

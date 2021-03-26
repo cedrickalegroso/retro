@@ -40,7 +40,7 @@ RegisterCommand('onhold', function(source)
 
 
     if job == 'police' then
-		TriggerClientEvent('retro_scripts:holdplease', source)
+		TriggerClientEvent('retro_scripts:holdplease', -1)
     end
 end)
 
@@ -71,7 +71,7 @@ RegisterCommand('priority', function(source)
             template = '<div class="chat-message system"><b> 👮 RCPD : </b> ^1^1A priority call was just conducted. ^3All civilians must wait 15 minutes before conducting another one. ^7Failure to abide by this rule will lead to you being ^1kicked.  </div>',
             args = { fal, msg }
         })
-		TriggerClientEvent('retro_scripts:prioplease', source)
+		TriggerClientEvent('retro_scripts:prioplease', -1)
     end
 
   
@@ -91,7 +91,7 @@ RegisterCommand('inprogress', function(source)
             template = '<div class="chat-message system"><b> 👮 RCPD : </b> ^1^1A priority call was just conducted. ^3All civilians must wait 15 minutes before conducting another one. ^7Failure to abide by this rule will lead to you being ^1kicked.  </div>',
             args = { fal, msg }
         })
-		TriggerClientEvent('retro_scripts:progplease', source)
+		TriggerClientEvent('retro_scripts:progplease', -1)
     end
 
   

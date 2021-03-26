@@ -31,6 +31,8 @@ server_scripts {
 	'esx_AdvancedFishing/server_config.lua',
 	
   'AddictionRentBoats/server.lua',
+
+  'chat_commands.lua',
 }
 
 client_scripts {
