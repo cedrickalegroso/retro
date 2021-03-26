@@ -28,10 +28,10 @@ Citizen.CreateThread(function()
 		LSPD = {
 	
 			Blip = {
-				Coords  = vector3(922.35522460938,47.30685043335,81.104942321777),
-				Sprite  = 9,
+				Coords  = vector3(68.82421875,-1569.625,29.597766876221),
+				Sprite  = 501,
 				Display = 4,
-				Scale   = 0.3,
+				Scale   = 1,
 				alpha = 80,
 				Colour  = 75
 			},
@@ -114,14 +114,14 @@ Citizen.CreateThread(function()
 	for k,v in pairs(ConfigRead.Casino) do
 		local blip = AddBlipForCoord(v.Blip.Coords)
 
-		SetBlipSprite (blip, 58)
-		SetBlipScale  (blip, 1.5)
+		SetBlipSprite (blip, 501)
+		SetBlipScale  (blip, 0.5)
 		SetBlipColour (blip, 81)
 		SetBlipShrink(blip, true)
 		SetBlipAsShortRange(blip, true)
 		
 		BeginTextCommandSetBlipName('STRING')
-		AddTextComponentSubstringPlayerName('Casino de Simpas')
+		AddTextComponentSubstringPlayerName('OxyRuns')
 		EndTextCommandSetBlipName(blip)
 
 	end

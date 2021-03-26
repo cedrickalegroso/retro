@@ -342,25 +342,83 @@ AddEventHandler("oxydelivery:client", function()
 
 end)
 
+-- POLYZONES
+
+local insideOXY = false
+
+--Name: OXY | 2021-03-23T10:34:03Z
+local OXY = CircleZone:Create(vector3(68.671722412109,-1569.3902587891,29.597772598267), 1.0, {
+    name="OXY",
+    useZ=false,
+   --debugPoly=true
+})
+
+OXY:onPointInOut(PolyZone.getPlayerPosition, function(isPointInside, point)
+    insideOXY = isPointInside
+    if isPointInside then
+		ESX.UI.Menu.CloseAll()
+
+		ESX.UI.Menu.Open(
+			'default',
+			GetCurrentResourceName(),
+			'police_actions',
+			{
+				title = 'OXY RUNS MISSION',
+				align = 'top-left',
+				elements = {
+					{label = 'Start Mission', value = 's'},
+					{label = 'Close', value = 'close'}
+				}
+			},
+			function(data, menu)
+				if data.current.value == 's' then
+					TriggerServerEvent("oxydelivery:server")
+					menu.close()
+				elseif data.current.value == 'close' then
+					menu.close()
+				end
+			end,
+			function(data, menu)
+				menu.close()
+			end
+		)
+        insideOXY = true
+    else
+		insideOXY = false
+    end
+end)
+
 Citizen.CreateThread(function()
 
-    while true do
+    local plyPed = PlayerPedId()
+    local coord = GetEntityCoords(plyPed)
+    insideOXY = OXY:isPointInside(coord)
+    Citizen.Wait(500)
 
-	    Citizen.Wait(1)
-	    local dropOff6 = #(GetEntityCoords(PlayerPedId()) - vector3(pillWorker["x"],pillWorker["y"],pillWorker["z"]))
-
-		if dropOff6 < 1.6 and not OxyRun then
-
-			DrawText3Ds(pillWorker["x"],pillWorker["y"],pillWorker["z"], "[E] $1500 - Delivery Job (Payment Cash + Oxy)") 
-			if IsControlJustReleased(0,38) then
-				TriggerServerEvent("oxydelivery:server")
-				Citizen.Wait(1000)
-			end
-		end
-
-    end
+   
 
 end)
+
+
+-- Citizen.CreateThread(function()
+
+--     while true do
+
+-- 	    Citizen.Wait(1)
+-- 	    local dropOff6 = #(GetEntityCoords(PlayerPedId()) - vector3(pillWorker["x"],pillWorker["y"],pillWorker["z"]))
+
+-- 		if dropOff6 < 1.6 and not OxyRun then
+
+-- 			DrawText3Ds(pillWorker["x"],pillWorker["y"],pillWorker["z"], "[E] $1500 - Delivery Job (Payment Cash + Oxy)") 
+-- 			if IsControlJustReleased(0,38) then
+-- 				TriggerServerEvent("oxydelivery:server")
+-- 				Citizen.Wait(1000)
+-- 			end
+-- 		end
+
+--     end
+
+-- end)
 
 local firstdeal = false
 Citizen.CreateThread(function()
