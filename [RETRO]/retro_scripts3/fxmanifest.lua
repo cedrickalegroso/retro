@@ -49,7 +49,7 @@ client_scripts {
 
    'cl_annc.lua',
 
-   'recoil.lua',
+  -- 'recoil.lua',
 
 
 }

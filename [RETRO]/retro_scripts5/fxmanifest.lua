@@ -69,8 +69,8 @@ client_scripts {
   'cl_blips.lua',
 
   --delcar
-  'nef_delcar/client/client.lua',
-    'nef_delcar/client/entityiter.lua',
+ -- 'nef_delcar/client/client.lua',
+  --  'nef_delcar/client/entityiter.lua',
 
     --holster
  --   'Reload_Holster/client.lua',

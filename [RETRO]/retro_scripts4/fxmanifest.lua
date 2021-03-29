@@ -63,15 +63,15 @@ server_scripts {
 
 
   --JOBS
-  'esx_jobs/jobs/fisherman.lua',
-	'esx_jobs/jobs/fueler.lua',
+  --'esx_jobs/jobs/fisherman.lua',
+	--'esx_jobs/jobs/fueler.lua',
 	'esx_jobs/jobs/lumberjack.lua',
 	--'esx_jobs/jobs/miner.lua',
 	'esx_jobs/jobs/reporter.lua',
 	'esx_jobs/jobs/slaughterer.lua',
   'esx_jobs/jobs/tailor.lua',
 
-  'esx_jobs/jobs/sv_scrap.lua',
+  --'esx_jobs/jobs/sv_scrap.lua',
   
   'esx_jobs/jobs/farmerserver.lua',
   'esx_jobs/jobs/milkmanserver.lua',
@@ -95,7 +95,7 @@ server_scripts {
    'disc-ammo/server/main.lua',
 
    --attachment
-   'esx_attachments_bleiker/server/main.lua',
+   --'esx_attachments_bleiker/server/main.lua',
 
    --armor
    'esx_Armour/server/sv_armour.lua',
@@ -158,8 +158,8 @@ client_scripts {
   'esx_vangelico_robbery/client/esx_vangelico_robbery_cl.lua',
 
 --Jobs
-  'esx_jobs/jobs/fisherman.lua',
-	'esx_jobs/jobs/fueler.lua',
+ -- 'esx_jobs/jobs/fisherman.lua',
+--	'esx_jobs/jobs/fueler.lua',
 	'esx_jobs/jobs/lumberjack.lua',
 	--'esx_jobs/jobs/miner.lua',
 	'esx_jobs/jobs/reporter.lua',
@@ -168,7 +168,7 @@ client_scripts {
   'esx_jobs/jobs/farmerclient.lua',
   'esx_jobs/jobs/milkmanclient.lua',
 
-  'esx_jobs/jobs/cl_scrap.lua',
+ -- 'esx_jobs/jobs/cl_scrap.lua',
 
 
   'esx_jobs/client/main.lua',
@@ -195,7 +195,7 @@ client_scripts {
 
 
   --attachment
-  'esx_attachments_bleiker/client/main.lua',
+ -- 'esx_attachments_bleiker/client/main.lua',
 
   --arromor
   'esx_Armour/client/cl_armour.lua',
