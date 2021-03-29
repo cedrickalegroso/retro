@@ -1003,7 +1003,7 @@ Config.Shops = {
     },
     ["Ammunation"] = {
         Type = "purchase",
-        NeedsLicense = "weapon",
+      --  NeedsLicense = "weapon",
         Account = "money",
         Society = {
             Name = false,
