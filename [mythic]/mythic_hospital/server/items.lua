@@ -68,3 +68,13 @@ ESX.RegisterUsableItem('oxy', function(source)
 	TriggerClientEvent("mythic_hospital:heal", source, "medkit")
 end)
 
+
+ESX.RegisterUsableItem('stress', function(source)
+	
+	local xPlayer = ESX.GetPlayerFromId(source)
+	print('Use stress tabs player'.. xPlayer.name)
+	xPlayer.removeInventoryItem('stress', 1)
+	TriggerEvent('stress:remove', 50000 ,source)
+end)
+
+
