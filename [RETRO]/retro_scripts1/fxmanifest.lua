@@ -13,19 +13,11 @@ client_script {
   'config.lua',
 
 
-  --anti VDM 
- -- 'cl_antivdm.lua',
-
-  
---  'weapondmg.lua',
-
-   
    'weapondmg1.lua',
 
   --carry 
   'carry_c.lua',
 
-  --'cl_id.lua',
 
  'cl_crossarm.lua',
 
@@ -33,18 +25,6 @@ client_script {
 
  'weapondmg.lua',
 
-  --crouch
- -- 'crouch/client/cor.lua',
- -- 'crouch/client/main.lua',
- -- 'crouch/client/stealthon.lua',
-
-
-
-  --damageragdoll
-  --'cl_damageragdoll.lua',
-
-  --whistle
- -- 'cl_whistle.lua',
 
   --takehostage
   'cl_takehostage.lua',
@@ -58,16 +38,7 @@ client_script {
   --point
   'cl_point.lua',
 
-  --tpm
-  --'cl_tpm.lua',
-
-
-  --carhud
- -- 'SimpleCarHUD_cl.lua',
-
-
-  --cooldown
- -- 'cl_cooldown.lua',
+ 
 
   --watermark
   'watermark.lua',
@@ -85,21 +56,7 @@ client_script {
   --noNPC
 'NoNPC.lua',
 
-  --jumpy
- --- 'cl_jumpy.lua',
-
-  --
- -- 'SimpleCarHUD_cl.lua',
-
-  --blips
-  --'esx_blips/client.lua',
-
-     --emstoggle
-  --   'EMS-toggleid/client.lua',
-
-      --emstoggle
-    --'cl_zone.lua',
-
+ 
 
       --emstoggle
   'cl_3d.lua',
@@ -134,14 +91,7 @@ server_script {
 
  'carry_s.lua',
 
-  --tpm
-  --'sv_tpm.lua',
-
-
-  --cooldown
- -- 'sv_cooldown.lua',
-
-
+ 
 
   --katacke
   'sv_ktackle.lua',
@@ -157,10 +107,7 @@ server_script {
   'svcarryN.lua'
 
 
-    --blips
-    --'esx_blips/server.lua',
-
-
+ 
   
     
 }
