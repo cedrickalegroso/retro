@@ -131,7 +131,8 @@ AddEventHandler('playerShotWeapon', function(weapon)
 	if Config.steamURL then  if ids.steam ~= "" then _steamURL ="\nhttps://steamcommunity.com/profiles/" ..tonumber(ids.steam:gsub("steam:", ""),16).."" else _steamURL = "\n**Steam URL:** N/A" end else _steamID = "" end
 	if Config.playerID then _playerID ="\n**Player ID:** " ..source.."" else _playerID = "" end
 	if Config.weaponLog then
-		discordLog('**' .. sanitize(GetPlayerName(source))  .. '** fired a `' .. weapon .. '`'.._playerID..''.. _postal ..''.. _discordID..''.._steamID..''.._steamURL..'', Config.shootingColor, 'shooting')
+	--	discordLog('**' .. sanitize(GetPlayerName(source))  .. '** fired a `' .. weapon .. '`'.._playerID..''.. _postal ..''.. _discordID..''.._steamID..''.._steamURL..'', Config.shootingColor, 'shooting')
+		discordLog('**' .. sanitize(GetPlayerName(source))  .. '** fired a `'  '`'.._playerID..''.. _postal ..''.. _discordID..''.._steamID..''.._steamURL..'', Config.shootingColor, 'shooting')
     end
 end)
 

@@ -118,34 +118,7 @@ function createBlip(id)
 	end
 end
 
-RegisterNetEvent('esx_ambulance:updateBlip')
-AddEventHandler('esx_ambulance:updateBlip', function()
-	
-	-- Refresh all blips
-	for k, existingBlip in pairs(blipsCops) do
-		RemoveBlip(existingBlip)
-	end
-	
-	-- Clean the blip table
-	blipsCops = {}
 
-
-	
-	-- Is the player a cop? In that case show all the blips for other cops
-	if PlayerData.job ~= nil and PlayerData.job.name == 'ambulance' then
-		ESX.TriggerServerCallback('esx_society:getOnlinePlayers', function(players)
-			for i=1, #players, 1 do
-				if players[i].job.name == 'ambulance' then
-					local id = GetPlayerFromServerId(players[i].source)
-					if NetworkIsPlayerActive(id) and GetPlayerPed(id) ~= PlayerPedId() then
-						createBlip(id)
-					end
-				end
-			end
-		end)
-	end
-
-end)
 
 -- Disable most inputs when dead
 Citizen.CreateThread(function()

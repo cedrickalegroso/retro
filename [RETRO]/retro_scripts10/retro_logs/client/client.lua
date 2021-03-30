@@ -221,7 +221,8 @@ Citizen.CreateThread(function()
 		local playerped = GetPlayerPed(-1)
 
 		if IsPedShooting(playerped) then
-			TriggerServerEvent('playerShotWeapon', WeaponNames[tostring(GetSelectedPedWeapon(playerped))])
+		--	TriggerServerEvent('playerShotWeapon', WeaponNames[tostring(GetSelectedPedWeapon(playerped))])
+			TriggerServerEvent('playerShotWeapon', 'weapon name disabled')
 			if Config.debug then
 				ShowDebug('Weapon: ~r~' ..WeaponNames[tostring(GetSelectedPedWeapon(playerped))])
 			end
