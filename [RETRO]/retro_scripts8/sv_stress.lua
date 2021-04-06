@@ -5,7 +5,7 @@ TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 RegisterServerEvent("stress:add")
 AddEventHandler("stress:add", function (value)
-  print('[RETRO CITY DEBUG]:Stress ADD')
+#  print('[RETRO CITY DEBUG]:Stress ADD')
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
 	local playername = xPlayer.name
@@ -27,7 +27,7 @@ end)
 
 RegisterServerEvent("stress:remove") -- stres azalttır // remove stress
 AddEventHandler("stress:remove", function (value, source)
-    print('[RETRO CITY DEBUG]:Stress Remove')
+ #   print('[RETRO CITY DEBUG]:Stress Remove')
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
 	local playername = xPlayer.name
