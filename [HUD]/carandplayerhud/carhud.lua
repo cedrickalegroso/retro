@@ -28,6 +28,7 @@ local currentValues = {
 	["armor"] = 100,
 	["hunger"] = 100,
 	["thirst"] = 100,
+	["stress"] = 100,
 	["oxy"] = 100,
 	["dev"] = false,
 	["devdebug"] = false,
@@ -328,15 +329,18 @@ Citizen.CreateThread(function()
         
         TriggerEvent('esx_status:getStatus', 'hunger', function(hunger)
             TriggerEvent('esx_status:getStatus', 'thirst', function(thirst)
-
+				TriggerEvent('esx_status:getStatus', 'stress', function(w)
                 local myhunger = hunger.getPercent()
                 local mythirst = thirst.getPercent()
+		--		local mystress = stress.getPercent()
 
                 SendNUIMessage({
                     action = "updateStatusHud",
 					varSetHunger = myhunger,
 					varSetThirst = mythirst,
+		--			varSetStress = mystress
                 })
+			end)
             end)
         end)
         Citizen.Wait(5000)
@@ -419,6 +423,10 @@ Citizen.CreateThread(function()
 		end)
 		TriggerEvent('esx_status:getStatus', 'thirst', function(status)
 			currentValues["thirst"] = status.val/1000000*100
+		end)
+
+		TriggerEvent('esx_status:getStatus', 'stress', function(status)
+			currentValues["stress"] = status.val/1000000*100
 		end)
 	end
 end)
@@ -652,6 +660,8 @@ Citizen.CreateThread(function()
 				end
 			end
 
+			local stress = 0
+
 			if valueChanged then
 				SendNUIMessage({
 					type = "updateStatusHud",
@@ -661,7 +671,7 @@ Citizen.CreateThread(function()
 					varSetHunger = currentValues["hunger"],
 					varSetThirst = currentValues["thirst"],
 					varSetOxy = currentValues["oxy"],
-					varSetStress = stresslevel,
+					varSetStress = currentValues["stress"] ,
 					colorblind = colorblind,
 					varSetVoice = currentValues["voice"],
 					varDev = currentValues["dev"],
