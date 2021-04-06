@@ -11,7 +11,7 @@ RedM = false
 
 settings = {
 	button = 121,
-	forceShowGUIButtons = false,
+	forceShowGUIButtons = true,
 }
 
 

@@ -84,7 +84,7 @@ AddEventHandler('carry:syncTarget1', function(target)
 		DisableControlAction(1, 140, true) --Disables Melee Actions
 		DisableControlAction(1, 141, true) --Disables Melee Actions
 		DisableControlAction(1, 142, true) --Disables Melee Actions 
-		DisableControlAction(1, 37, true) --Disables INPUT_SELECT_WEAPON (tab) Actions
+	--	DisableControlAction(1, 37, true) --Disables INPUT_SELECT_WEAPON (tab) Actions
 		DisablePlayerFiring(playerPed, true) -- Disable weapon firing
 
 		if not IsEntityPlayingAnim(playerPed, "missarmenian2", "corpse_search_exit_ped", 3) then
@@ -181,7 +181,7 @@ AddEventHandler('carry:syncTarget', function(target)
 		DisableControlAction(1, 140, true) --Disables Melee Actions
 		DisableControlAction(1, 141, true) --Disables Melee Actions
 		DisableControlAction(1, 142, true) --Disables Melee Actions 
-		DisableControlAction(1, 37, true) --Disables INPUT_SELECT_WEAPON (tab) Actions
+	--	DisableControlAction(1, 37, true) --Disables INPUT_SELECT_WEAPON (tab) Actions
 		DisablePlayerFiring(playerPed, true) -- Disable weapon firing
 
 		if not IsEntityPlayingAnim(playerPed, "amb@world_human_bum_slumped@male@laying_on_left_side@base", "base", 3) then
